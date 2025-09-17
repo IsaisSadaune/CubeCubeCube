@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool canDash = true;
     private Rigidbody rb;
-    private Vector2 moveInput;
+    [HideInInspector] public Vector2 moveInput;
     private Vector3 direction;
     void Start()
     {

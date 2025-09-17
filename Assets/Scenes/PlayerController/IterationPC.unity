@@ -132,8 +132,8 @@ GameObject:
   - component: {fileID: 440234128}
   - component: {fileID: 440234127}
   - component: {fileID: 440234126}
-  - component: {fileID: 440234131}
   - component: {fileID: 440234132}
+  - component: {fileID: 440234133}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 440234131}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 440234133}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -184,8 +184,8 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Move[/XInputControllerWindows/leftStick,/Keyboard/z,/Keyboard/s,/Keyboard/q,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 440234131}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 440234133}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
@@ -307,22 +307,6 @@ Transform:
   - {fileID: 1003906004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &440234131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440234125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef485534ae1c5bf4d81ac4383517d87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  dashForce: 5
-  dashDuration: 0.1
-  dashCooldown: 0.3
 --- !u!54 &440234132
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -350,6 +334,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &440234133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440234125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a90f3a6fc9fdf4e98a7c50d6f25cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  dashForce: 5
+  dashDuration: 0.1
+  dashCooldown: 0.5
+  moveInput: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
 --- !u!1 &624577748
 GameObject:
   m_ObjectHideFlags: 0
