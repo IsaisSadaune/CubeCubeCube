@@ -23,10 +23,11 @@ public class WalkingState : PlayerState
         Quaternion targetRotation = Quaternion.LookRotation(player.direction);
         player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.15f);
 
-        if (player.moveInput == Vector2.zero)
+        if (player.moveInput == Vector2.zero || !player.isGrounded)
         {
             stateMachine.ChangeState(player.idleState);
         }
+
     }
 
     public override void PhysicsUpdate()

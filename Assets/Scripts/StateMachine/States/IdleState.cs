@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 
 public class IdleState : PlayerState
@@ -6,7 +8,7 @@ public class IdleState : PlayerState
     {
 
     }
-
+    
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
@@ -18,7 +20,8 @@ public class IdleState : PlayerState
     }
     public override void FrameUpdate()
     {
-        if (player.moveInput != Vector2.zero)
+
+            if (player.moveInput != Vector2.zero && player.isGrounded == true)
         {
             stateMachine.ChangeState(player.walkingState);
         }

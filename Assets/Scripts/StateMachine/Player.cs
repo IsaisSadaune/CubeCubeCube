@@ -23,8 +23,9 @@ public class Player : MonoBehaviour
     public Rigidbody rb{ get; private set; }
     #endregion
     #region Others Variables
-    public bool canDash = true;
-    public Dash dash{ get; private set; }
+    [HideInInspector] public bool canDash = true;
+    [HideInInspector] public bool isGrounded = true;
+    public Dash dash { get; private set; }
     #endregion
     #region Animation Triggers
 
