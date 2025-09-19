@@ -16,27 +16,16 @@ public class Player : MonoBehaviour
     public float dashForce = 10f;
     public float dashDuration = 0.5f;
     public float dashCooldown = 0.5f;
-    [HideInInspector] public Vector2 moveInput;
-    [HideInInspector] public Vector3 direction;
+    public Vector2 moveInput { get; private set; }
+    public Vector3 direction { get; private set; }
     #endregion
     #region Components
-    [HideInInspector] public Rigidbody rb;
-    bool canDash;
+    public Rigidbody rb{ get; private set; }
     #endregion
-    private void Awake()
-    {
-        stateMachine = new PlayerStateMachine();
-        idleState = new IdleState(this, stateMachine);
-        walkingState = new WalkingState(this, stateMachine);
-        dashState = new DashState(this, stateMachine);
-        
-    }
-    private void Start()
-    {
-        stateMachine.Initialize(idleState);
-        rb = GetComponent<Rigidbody>();
-    }
-
+    #region Others Variables
+    public bool canDash = true;
+    public Dash dash{ get; private set; }
+    #endregion
     #region Animation Triggers
 
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
@@ -46,6 +35,22 @@ public class Player : MonoBehaviour
     public enum AnimationTriggerType
     { }
     #endregion
+    
+    private void Awake()
+    {
+        stateMachine = new PlayerStateMachine();
+        idleState = new IdleState(this, stateMachine);
+        walkingState = new WalkingState(this, stateMachine);
+        dashState = new DashState(this, stateMachine);
+
+    }
+    private void Start()
+    {
+        dash = GetComponent<Dash>();
+        stateMachine.Initialize(idleState);
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
         stateMachine.currentPlayerState.FrameUpdate();
@@ -72,44 +77,6 @@ public class Player : MonoBehaviour
         {
             stateMachine.ChangeState(dashState);
         }
-    }
-    public void StartDash()
-    {
-        StartCoroutine(Dash());
-    }
-    #endregion
-
-    #region Coroutines
-    public IEnumerator Dash()
-    {
-        canDash = false;
-        RaycastHit hit;
-        float startTime = Time.time;
-        Vector3 startPos = rb.position;
-        Vector3 endPos;
-
-        if (Physics.Raycast(transform.position, rb.transform.forward, out hit, 5f))
-        {
-            endPos = hit.point * 0.9f;
-        }
-        else
-        {
-            endPos = rb.position + rb.transform.forward * dashForce;
-        }
-
-
-
-        while (Time.time < startTime + dashDuration)
-        {
-
-            float t = (Time.time - startTime) / dashDuration;
-            rb.MovePosition(Vector3.Lerp(startPos, endPos, t));
-            yield return null;
-        }
-        stateMachine.ChangeState(idleState);
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-
     }
     #endregion
 }

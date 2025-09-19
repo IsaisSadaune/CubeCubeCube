@@ -8,11 +8,12 @@ public class DashState : PlayerState
 
     }
 
-    bool canDash = true;
+    
+    
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
-        player.StartDash();
+        player.dash.StartDash();
     }
     public override void ExitState()
     {
