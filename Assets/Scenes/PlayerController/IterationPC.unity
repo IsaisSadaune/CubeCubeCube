@@ -232,7 +232,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
   m_PrefabInstance: {fileID: 398264371}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 584120727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50a90f3a6fc9fdf4e98a7c50d6f25cbf, type: 3}
@@ -287,6 +287,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7789820457390626143, guid: 4886b447b8acf1c479fd6cc23241df50, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789820457390626143, guid: 4886b447b8acf1c479fd6cc23241df50, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789820457390626143, guid: 4886b447b8acf1c479fd6cc23241df50, type: 3}
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
@@ -303,8 +311,12 @@ PrefabInstance:
       value: tmp_TestCollision_Cube
       objectReference: {fileID: 0}
     - target: {fileID: 8905166753107818395, guid: 4886b447b8acf1c479fd6cc23241df50, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905166753107818395, guid: 4886b447b8acf1c479fd6cc23241df50, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -435,6 +447,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6d07796fc1a85da46820528de5912c20, type: 2}
+    - target: {fileID: 4235285046465177358, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: capsule
+      value: 
+      objectReference: {fileID: 584120728}
+    - target: {fileID: 4235285046465177358, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: dashForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4511302626942741746, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -490,8 +514,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 584120728}
   m_SourcePrefab: {fileID: 100100000, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+--- !u!1 &584120727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+  m_PrefabInstance: {fileID: 398264371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &584120728
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584120727}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.6237973
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8654757, z: 0}
 --- !u!1 &599324309
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +758,7 @@ GameObject:
   - component: {fileID: 1384036135}
   - component: {fileID: 1384036134}
   - component: {fileID: 1384036133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sol (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +866,7 @@ GameObject:
   - component: {fileID: 1389818176}
   - component: {fileID: 1389818175}
   - component: {fileID: 1389818174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sol (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
