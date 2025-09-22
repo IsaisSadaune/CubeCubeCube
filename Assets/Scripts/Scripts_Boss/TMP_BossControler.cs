@@ -19,7 +19,7 @@ public class TMP_BossControler : MonoBehaviour
     }
     private void Start()
     {
-        DashBoss();
+        //DashBoss();
     }
 
 
@@ -36,6 +36,7 @@ public class TMP_BossControler : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
         if (!isCooldown)
         {
             if (isMoving)
@@ -49,7 +50,7 @@ public class TMP_BossControler : MonoBehaviour
                     StartCoroutine(Cooldown());
                 }
             }
-        }
+        }*/
     }
 
 
