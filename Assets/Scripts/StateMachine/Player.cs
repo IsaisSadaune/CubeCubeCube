@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         Debug.Log($"Dashing {context.performed}");
-        if (context.performed)
+        if (context.performed && isGrounded)
         {
             stateMachine.ChangeState(dashState);
         }
