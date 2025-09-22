@@ -5,11 +5,10 @@ using System.Collections;
 public class WhispBehaviour : MonoBehaviour
 {
     public float TimeActive;
-
+    public Ease easeWhisp;
     private void Start()
     {
         if (TimeActive <= 0) TimeActive = 1f;
-        F_SpawnObject();
     }
 
     private IEnumerator TimeAlive()
@@ -21,9 +20,10 @@ public class WhispBehaviour : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    private void F_SpawnObject()
+    public void F_SpawnObject()
     {
-        transform.DOScaleX(15f, 1f).SetEase(Ease.InElastic);
+        Debug.Log(easeWhisp);
+        transform.DOScaleX(15f, 1f).SetEase(easeWhisp);
         StartCoroutine(TimeAlive());
     }
 }

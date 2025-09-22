@@ -9,7 +9,6 @@ public class TMP_BossPatterns : MonoBehaviour
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject prefabWhisp;
     [SerializeField] private Rigidbody rb;
-    private Tween WhispTween;
 
 
 
@@ -17,8 +16,19 @@ public class TMP_BossPatterns : MonoBehaviour
     public void WhispPattern()
     {
         GameObject _whisp = Instantiate(prefabWhisp, transform.position, Quaternion.identity);
+        _whisp.GetComponent<WhispBehaviour>().F_SpawnObject();
+
     }
 
+    [ContextMenu("Pattern")]
+    public void CoroutinePattern() => StartCoroutine(Pattern());
+
+    private IEnumerator Pattern()
+    {
+        WhispPattern();
+        yield return new WaitForSeconds(1f);
+        DamagesZones();
+    }
 
     [ContextMenu("damageZones")]
     public void DamagesZones()
@@ -44,7 +54,6 @@ public class TMP_BossPatterns : MonoBehaviour
             }
         }
     }
-
 
     private IEnumerator DelaySpawn(float f, Vector3 spawnPos)
     {
