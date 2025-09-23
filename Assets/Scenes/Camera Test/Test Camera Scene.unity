@@ -461,6 +461,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &884851305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884851307}
+  - component: {fileID: 884851306}
+  m_Layer: 0
+  m_Name: Camera Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &884851306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884851305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5e57d268e58fc4ba150002b87bb587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camerasArray:
+  - {fileID: 512821322}
+  - {fileID: 1864673997}
+  cameraToSetActive: 1
+--- !u!4 &884851307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884851305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.257656, y: 15.310329, z: -12.477283}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972645910
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 1019498855}
   serializedVersion: 2
   m_LocalRotation: {x: 0.30602756, y: 0, z: 0, w: 0.9520227}
-  m_LocalPosition: {x: 0, y: 7.1269035, z: -8.126943}
+  m_LocalPosition: {x: 0, y: 7.4872413, z: -7.8685856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -684,8 +732,8 @@ MonoBehaviour:
     Enabled: 1
     DefaultMode: 2
   DefaultBlend:
-    Style: 1
-    Time: 2
+    Style: 0
+    Time: 0
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -896,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1864673998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,6 +1045,7 @@ SceneRoots:
   - {fileID: 1005085483}
   - {fileID: 224331243}
   - {fileID: 259906729}
+  - {fileID: 884851307}
   - {fileID: 1019498858}
   - {fileID: 512821325}
   - {fileID: 1864674000}
