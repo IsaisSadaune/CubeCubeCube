@@ -10,12 +10,14 @@ public class GrenadeBehaviour : MonoBehaviour
 
     private void Start()
     {
+        transform.localScale = Vector3.zero;
         StartCoroutine(KillGrenade());
     }
     private IEnumerator KillGrenade()
     {
-        yield return new WaitForSeconds(Offset());
-        scaleTween = transform.DOScale(new Vector3(transform.localScale.x * size, transform.localScale.y, transform.localScale.z * size), timeAlive).SetEase(Ease.OutElastic);
+        float _offset = Offset();
+        yield return new WaitForSeconds(_offset);
+        scaleTween = transform.DOScale(new Vector3(size, 1, size), timeAlive- _offset).SetEase(Ease.OutElastic);
         yield return scaleTween.WaitForCompletion();
         Destroy(gameObject);
     }
