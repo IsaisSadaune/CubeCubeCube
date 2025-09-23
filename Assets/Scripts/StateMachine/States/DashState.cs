@@ -19,6 +19,7 @@ public class DashState : PlayerState
     {
 
     }
+    
     public override void FrameUpdate()
     {
 

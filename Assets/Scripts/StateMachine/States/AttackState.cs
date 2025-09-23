@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -8,12 +9,11 @@ public class AttackState : PlayerState
 
     }
 
-    int combo;
+    int comboCount;
 
-    public override async void EnterState()
+    public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
-        await Attack();
     }
     public override void ExitState()
     {
@@ -21,8 +21,7 @@ public class AttackState : PlayerState
     }
     public override void FrameUpdate()
     {
-
-
+        player.attack.StoppingAttack();
     }
 
     public override void PhysicsUpdate()
@@ -30,32 +29,4 @@ public class AttackState : PlayerState
 
     }
 
-    async Task Attack()
-    {
-        // switch (combo)
-        // {
-        //     case 0:
-        //         player.attacksCollider[0].gameObject.SetActive(true);
-        //         await Task.Delay(500);
-        //         player.attacksCollider[0].gameObject.SetActive(false);
-        //         combo++;
-        //         break;
-        //     case 1:
-        //         player.attacksCollider[1].gameObject.SetActive(true);
-        //         await Task.Delay(500);
-        //         player.attacksCollider[1].gameObject.SetActive(false);
-        //         combo++;
-        //         break;
-        //     case 2:
-        //         player.attacksCollider[2].gameObject.SetActive(true);
-        //         await Task.Delay(500);
-        //         player.attacksCollider[2].gameObject.SetActive(false);
-        //         await Task.Delay(1000);
-        //         combo = 0;
-        //         break;
-        //     default:
-        //         break;
-        // }
-        
-    }
 }

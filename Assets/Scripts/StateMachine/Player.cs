@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     public Vector2 moveInput { get; private set; }
     public Vector3 direction { get; private set; }
     #endregion
+
     #region Components
     public Rigidbody rb { get; private set; }
     #endregion
@@ -27,10 +29,10 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
-    public BoxCollider[] attacksCollider;
+    public Attack attack { get; private set; }
     #endregion
     #region Animation Triggers
-
+    Animator animator;
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
 
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        attack = GetComponent<Attack>();
+        animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
@@ -88,6 +92,7 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             stateMachine.ChangeState(attackState);
+            attack.LaunchAttack();
         }
     }
     #endregion
