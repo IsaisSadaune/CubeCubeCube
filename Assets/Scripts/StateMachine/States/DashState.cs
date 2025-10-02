@@ -8,8 +8,8 @@ public class DashState : PlayerState
 
     }
 
-    
-    
+
+
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
@@ -19,6 +19,7 @@ public class DashState : PlayerState
     {
 
     }
+    
     public override void FrameUpdate()
     {
 
@@ -28,5 +29,6 @@ public class DashState : PlayerState
     {
 
     }
+    
     
 }

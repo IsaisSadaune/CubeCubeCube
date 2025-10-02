@@ -43,7 +43,6 @@ public class Dash : MonoBehaviour
 
         while (Time.time < startTime + player.dashDuration)
         {
-
             float t = (Time.time - startTime) / player.dashDuration;
             player.rb.MovePosition(Vector3.Lerp(startPos, endPos, t));
             yield return null;
