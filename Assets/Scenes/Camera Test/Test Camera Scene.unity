@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 438093953}
   - component: {fileID: 438093952}
   - component: {fileID: 438093951}
+  - component: {fileID: 438093954}
   m_Layer: 0
   m_Name: Cinemachine Camera 5 - Dolly Camera
   m_TagString: Untagged
@@ -582,27 +583,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SplineSettings:
-    Spline: {fileID: 0}
+    Spline: {fileID: 732416340}
     Position: 0
-    Units: 1
+    Units: 2
   SplineOffset: {x: 0, y: 0, z: 0}
-  CameraRotation: 0
+  CameraRotation: 3
   Damping:
     Enabled: 0
     Position: {x: 0, y: 0, z: 0}
     Angular: 0
   AutomaticDolly:
-    Enabled: 0
+    Enabled: 1
     Method:
-      rid: -2
+      rid: 890591281342054692
   m_LegacyPosition: -1
   m_LegacyUnits: 0
   m_LegacySpline: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 890591281342054692
+      type: {class: SplineAutoDolly/FixedSpeed, ns: Unity.Cinemachine, asm: Unity.Cinemachine}
+      data:
+        Speed: 0.25
 --- !u!114 &438093952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,13 +657,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438093950}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.97627467, y: 14.043465, z: -22.650633}
+  m_LocalRotation: {x: 0.0016613557, y: 0.24145368, z: -0.0004133718, w: 0.9704109}
+  m_LocalPosition: {x: -7.938, y: 1.358, z: -14.964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438093954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438093950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LookAtOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &512821322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1224,7 @@ MonoBehaviour:
   - {fileID: 1864673997}
   - {fileID: 882600997}
   - {fileID: 1681007067}
+  - {fileID: 438093950}
   cameraToSetActive: 4
 --- !u!4 &884851307
 Transform:
@@ -1345,11 +1362,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
+  near clip plane: -5
+  far clip plane: 100
   field of view: 40
-  orthographic: 0
-  orthographic size: 10
+  orthographic: 1
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1373,8 +1390,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019498855}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.97627467, y: 14.043465, z: -22.650633}
+  m_LocalRotation: {x: 0.30602756, y: 0, z: 0, w: 0.9520227}
+  m_LocalPosition: {x: 0, y: 12.953807, z: -16.253885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
