@@ -2056,6 +2056,7 @@ GameObject:
   - component: {fileID: 2592496749765368232}
   - component: {fileID: 1149178582146624706}
   - component: {fileID: 852513687303818800}
+  - component: {fileID: 3019651819689104228}
   m_Layer: 0
   m_Name: Jammo_Player
   m_TagString: Untagged
@@ -2121,6 +2122,10 @@ MonoBehaviour:
   dashCooldown: 0.5
   canDash: 1
   isGrounded: 1
+  comboCount: 0
+  combo: []
+  attacksCollider: []
+  animator: {fileID: 0}
 --- !u!114 &4235285046465177358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,12 +2301,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba48ea8d0c91bf4ba357b272f070ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacksBoxCollider:
-  - {fileID: 2835759571663031294}
-  - {fileID: 4443534626242129279}
-  - {fileID: 2686527714459300009}
-  lastAttackLaunch: 0
-  lastComboEnd: 0
+--- !u!136 &3019651819689104228
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541754002163558908}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.6237973
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8654757, z: 0}
 --- !u!1 &3921334144448749991
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +12,7 @@ public class Player : MonoBehaviour
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     #endregion
+
     #region Movement Variables
     public float speed = 5f;
     public float dashForce = 10f;
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     #region Components
     public Rigidbody rb { get; private set; }
     #endregion
+
     #region Others Variables
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     public float lastComboEnd { get; set; }
     public float lastAttack { get; set; }
     #endregion
+
     #region Animation Triggers
     public Animator animator;
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
         attackState = new AttackState(this, stateMachine);
 
     }
+
     private void Start()
     {
         attack = GetComponent<Attack>();
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time > lastComboEnd + 0.8f && Time.time > lastAttack + 0.3f)
+        if (context.performed && Time.time > lastComboEnd + 0.8f && Time.time > lastAttack + 0.4f)
         {
             stateMachine.ChangeState(attackState);
         }

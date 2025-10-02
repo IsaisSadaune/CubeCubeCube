@@ -14,8 +14,7 @@ public class AttackState : PlayerState
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         
         player.attack.LaunchAttack(player.comboCount);
-        
-        
+        player.lastAttack = Time.time;
     }
     public override void ExitState()
     {
@@ -25,7 +24,6 @@ public class AttackState : PlayerState
         if (player.comboCount < 2)
         {
             player.comboCount++;
-            Debug.Log("a");
         }
         else
         {
