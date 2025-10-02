@@ -302,7 +302,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6065367273894571498, guid: 5969a34d98c51c740983348b08848633, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1099553433}
+      addedObject: {fileID: 1099553434}
   m_SourcePrefab: {fileID: 100100000, guid: 5969a34d98c51c740983348b08848633, type: 3}
 --- !u!1 &231694103
 GameObject:
@@ -1184,7 +1184,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2112901225846569842, guid: 5969a34d98c51c740983348b08848633, type: 3}
   m_PrefabInstance: {fileID: 224331243}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1099553433
+--- !u!114 &1099553434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 196721061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Script: {fileID: 11500000, guid: fab4be1eef88f394ea25f79cf3ef5775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ImpulseDefinition:
@@ -1225,22 +1225,58 @@ MonoBehaviour:
       m_RotationOrder: 4
     ImpulseDuration: 0.2
     ImpulseType: 0
-    DissipationRate: 0.25
-    RawSignal: {fileID: 0}
-    AmplitudeGain: 1
-    FrequencyGain: 1
+    DissipationRate: 0
+    RawSignal: {fileID: 11400000, guid: c19023c8ae2b69f46abebca9ccd76861, type: 2}
+    AmplitudeGain: 2
+    FrequencyGain: 2
     RepeatMode: 0
     Randomize: 1
     TimeEnvelope:
       AttackShape:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       DecayShape:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1794,8 +1830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoiseProfile: {fileID: 11400000, guid: c19023c8ae2b69f46abebca9ccd76861, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 0
-  FrequencyGain: 0
+  AmplitudeGain: 1
+  FrequencyGain: 1
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1681007072
 MonoBehaviour:
@@ -1806,17 +1842,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1681007067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c11265b855408d42af33d62691f5194, type: 3}
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyAfter: 2
   ChannelMask: 1
   Gain: 1
   Use2DDistance: 0
-  UseLocalSpace: 1
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
   ReactionSettings:
     m_SecondaryNoise: {fileID: 11400000, guid: c19023c8ae2b69f46abebca9ccd76861, type: 2}
-    AmplitudeGain: 1
-    FrequencyGain: 1
+    AmplitudeGain: 2
+    FrequencyGain: 2
     Duration: 2
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1784090658
