@@ -4,5 +4,6 @@ using UnityEngine;
 public class AttackSO : ScriptableObject
 {
     public float damage;
+    public string animName;
     public BoxCollider attackCollider;
 }

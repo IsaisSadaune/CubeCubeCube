@@ -30,9 +30,13 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
     public Attack attack { get; private set; }
+    public int comboCount;
+    public List<AttackSO> combo;
+    public BoxCollider[] attacksCollider;
+    public Coroutine resetCombo;
     #endregion
     #region Animation Triggers
-    Animator animator;
+    public Animator animator;
     private void AnimationTriggerEvent(AnimationTriggerType triggerType)
     {
 
@@ -57,11 +61,18 @@ public class Player : MonoBehaviour
         dash = GetComponent<Dash>();
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
+
+
+        for (int i = 0; i < combo.Count; i++)
+        {
+            combo[i].attackCollider = attacksCollider[i];
+        }
     }
 
     private void Update()
     {
         stateMachine.currentPlayerState.FrameUpdate();
+
     }
     private void FixedUpdate()
     {
@@ -92,8 +103,13 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             stateMachine.ChangeState(attackState);
-            attack.LaunchAttack();
         }
+    }
+
+    public IEnumerator resetingCombo()
+    {
+        yield return new WaitForSeconds(2f);
+        comboCount = 0;
     }
     #endregion
 }

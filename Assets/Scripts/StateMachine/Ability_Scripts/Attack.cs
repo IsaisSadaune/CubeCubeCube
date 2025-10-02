@@ -1,59 +1,33 @@
+using NUnit.Framework.Internal.Builders;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    int comboCount = 0;
-    public BoxCollider[] attacksBoxCollider;
-    [HideInInspector] public float lastAttackLaunch;
-    [HideInInspector] public float lastComboEnd;
-    public List<AttackSO> combo;
+    [SerializeField] private float timeBeforeEndCombo;
     Player player;
-
     void Start()
     {
         player = GetComponent<Player>();
-        for (int i = 0; i < attacksBoxCollider.Length; i++)
-        {
-            combo[i].attackCollider = attacksBoxCollider[i];
-        }
+        
     }
-    public void LaunchAttack()
+    public void LaunchAttack(int xCombo)
     {
-        if (Time.time - lastComboEnd > 0.5f && comboCount <= combo.Count)
+        if (player.resetCombo != null)
         {
-            CancelInvoke("EndCombo");
+            StopCoroutine(player.resetCombo);
         }
-
-        if (comboCount > combo.Count)
-        {
-            comboCount = 0;
-            player.stateMachine.ChangeState(player.idleState);
-        }
-        if (Time.time - lastAttackLaunch >= 0.2f)
-        {
-            combo[comboCount].attackCollider.gameObject.SetActive(true);
-            comboCount++;
-            lastAttackLaunch = Time.time;
-
-            //Fais une animation vite fais, pcq je dois faire en sorte que l'activation du collider soit une anim et pas un vieu setactive Sinon trop chiant
-        }
+        player.combo[xCombo].attackCollider.enabled = true;
+        player.animator.SetBool(player.combo[xCombo].animName, true);
+        player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
+        StartCoroutine(ComboTimer());
     }
 
-    public void StoppingAttack()
+    public IEnumerator ComboTimer()
     {
-        if (lastAttackLaunch < Time.time + 1f)
-        {
-            Invoke("EndCombo", 1);
-            combo[comboCount - 1].attackCollider.gameObject.SetActive(false);
-        }
-    }
-
-    void EndCombo()
-    {
-        comboCount = 0;
-        lastComboEnd = Time.time;
+        yield return new WaitForSeconds(0.2f);
         player.stateMachine.ChangeState(player.idleState);
+        player.resetCombo = StartCoroutine(player.resetingCombo());
     }
-    
 }
