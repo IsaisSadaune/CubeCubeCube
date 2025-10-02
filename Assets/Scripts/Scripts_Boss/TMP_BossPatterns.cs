@@ -17,6 +17,11 @@ public class TMP_BossPatterns : MonoBehaviour
     [SerializeField] private Transform MaxPos;
     [SerializeField] private Transform MinPos;
     [SerializeField] private int distanceMiniFromBoss;
+    [Header("Teleportation")]
+    [SerializeField] private Transform centerOfMap;
+    [SerializeField] private float timeToTeleport;
+    [SerializeField] private float timeBetweenTP;
+
 
 
     [ContextMenu("Explosions")]
@@ -75,6 +80,19 @@ public class TMP_BossPatterns : MonoBehaviour
                 StartCoroutine(DelaySpawn(0.5f * i, hit.point));
             }
         }
+    }
+
+    [ContextMenu("Teleport")]
+    public void Teleportation() => StartCoroutine(Teleport());
+    public IEnumerator Teleport()
+    {
+        Tween _t1 = transform.DOScale(Vector3.zero, timeToTeleport);
+        yield return _t1.WaitForCompletion();
+        transform.position = centerOfMap.position;
+        yield return new WaitForSeconds(timeBetweenTP);
+        Tween _t2 = transform.DOScale(Vector3.one * 5, timeToTeleport);
+        yield return _t2.WaitForCompletion();
+
     }
 
     private IEnumerator DelaySpawn(float f, Vector3 spawnPos)
