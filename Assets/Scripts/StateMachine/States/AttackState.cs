@@ -8,11 +8,13 @@ public class AttackState : PlayerState
     {
 
     }
-
+    
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        
         player.attack.LaunchAttack(player.comboCount);
+        
         
     }
     public override void ExitState()
@@ -21,9 +23,15 @@ public class AttackState : PlayerState
         player.animator.SetBool(player.combo[player.comboCount].animName, false);
 
         if (player.comboCount < 2)
+        {
             player.comboCount++;
+            Debug.Log("a");
+        }
         else
+        {
+            player.lastComboEnd = Time.time;
             player.comboCount = 0;
+        }
     }
     public override void FrameUpdate()
     {

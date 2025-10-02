@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
     public int comboCount;
     public List<AttackSO> combo;
     public BoxCollider[] attacksCollider;
-    public Coroutine resetCombo;
+    public Coroutine resetCombo { get; set; }
+    public float lastComboEnd { get; set; }
+    public float lastAttack { get; set; }
     #endregion
     #region Animation Triggers
     public Animator animator;
@@ -100,7 +102,7 @@ public class Player : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.time > lastComboEnd + 0.8f && Time.time > lastAttack + 0.3f)
         {
             stateMachine.ChangeState(attackState);
         }
