@@ -19,7 +19,6 @@ public class AttackState : PlayerState
     public override void ExitState()
     {
         player.combo[player.comboCount].attackCollider.enabled = false;
-        player.animator.SetBool(player.combo[player.comboCount].animName, false);
 
         if (player.comboCount < 2)
         {

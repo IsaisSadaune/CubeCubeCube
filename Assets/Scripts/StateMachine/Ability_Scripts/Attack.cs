@@ -18,14 +18,13 @@ public class Attack : MonoBehaviour
 
 
         player.combo[xCombo].attackCollider.enabled = true;
-        player.animator.SetBool(player.combo[xCombo].animName, true);
         player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
         StartCoroutine(ComboTimer());
     }
 
     public IEnumerator ComboTimer()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         player.stateMachine.ChangeState(player.idleState);
         player.resetCombo = StartCoroutine(player.resetingCombo());
     }

@@ -13,7 +13,7 @@ public class WalkingState : PlayerState
     }
     public override void ExitState()
     {
-        
+
     }
     public override void FrameUpdate()
     {
@@ -21,7 +21,7 @@ public class WalkingState : PlayerState
         player.rb.linearVelocity = move * player.speed;
 
         Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.15f);
+        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
 
         if (player.moveInput == Vector2.zero || !player.isGrounded)
         {
