@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     public ShieldState shieldState{ get; set; }
+    public InteractState interactState { get; set; }
     #endregion
 
     #region Movement Variables
@@ -27,6 +28,11 @@ public class Player : MonoBehaviour
 
     #region Components
     public Rigidbody rb { get; private set; }
+    public PlayerInput playerInput { get; private set; }
+
+    [Header("InputActions")]
+    public InputActionAsset gameplayActions;
+    public InputActionAsset UIActions;
     #endregion
 
     #region Others Variables
@@ -47,6 +53,8 @@ public class Player : MonoBehaviour
 
     [Header("Shield Variables")]
     public GameObject shield;
+
+    private bool talkingTrigger;
     
     #endregion
 
@@ -68,7 +76,7 @@ public class Player : MonoBehaviour
         dashState = new DashState(this, stateMachine);
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
-
+        interactState = new InteractState(this, stateMachine);
     }
 
     private void Start()
@@ -78,6 +86,7 @@ public class Player : MonoBehaviour
         dash = GetComponent<Dash>();
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
+        playerInput = GetComponent<PlayerInput>();
 
 
         for (int i = 0; i < combo.Count; i++)
@@ -131,6 +140,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(context.performed && talkingTrigger)
+        {
+            stateMachine.ChangeState(interactState);
+        }
+    }
+
+    public void ExitInteraction(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            stateMachine.ChangeState(idleState);
+        }
+    }
+
     public IEnumerator resetingCombo()
     {
         yield return new WaitForSeconds(2f);
@@ -143,4 +168,20 @@ public class Player : MonoBehaviour
         canDash = true;
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Interact")
+        {
+            talkingTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Interact")
+        {
+            talkingTrigger = false;
+        }
+    }
 }
