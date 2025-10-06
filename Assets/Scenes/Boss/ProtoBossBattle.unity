@@ -3640,6 +3640,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
   m_PrefabInstance: {fileID: 606242415}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &606486121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606486122}
+  m_Layer: 0
+  m_Name: position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &606486122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606486121}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1, y: 0, z: 6.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &607869786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4095,7 +4126,7 @@ Transform:
   m_GameObject: {fileID: 655281496}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.37, y: 0, z: 4.23}
+  m_LocalPosition: {x: 9.53, y: 0, z: -4.02}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4119,6 +4150,7 @@ MonoBehaviour:
   m_BlackboardVariableOverridesList:
   - rid: 2468667630940061776
   - rid: 2468667630940061836
+  - rid: 2468667639477567643
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4140,6 +4172,14 @@ MonoBehaviour:
           m_Value1: 12563394108209829155
         Name: Spines
         m_Value: {fileID: 1582113346}
+    - rid: 2468667639477567643
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17733717383785786284
+          m_Value1: 16934530316074131733
+        Name: Destination
+        m_Value: {fileID: 606486122}
 --- !u!1001 &659468111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10866,3 +10906,4 @@ SceneRoots:
   - {fileID: 1220766089}
   - {fileID: 91711594}
   - {fileID: 655281502}
+  - {fileID: 606486122}
