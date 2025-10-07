@@ -2,6 +2,7 @@ using System;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
+using DG.Tweening;
 using Action = Unity.Behavior.Action;
 
 [Serializable, GeneratePropertyBag]
@@ -10,33 +11,23 @@ public partial class GoToDestionationAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<Transform> Destination;
-    private Vector3 destinationX;
-    private Vector3 destinationZ;
-    private bool XpositionLanded;
-
+    Sequence tweenList;
 
     protected override Status OnStart()
     {
+        tweenList = DOTween.Sequence();
+        tweenList
+            .Append(Self.Value.transform.DOMoveX(Destination.Value.transform.position.x, 1f).SetEase(Ease.InOutQuint))
+            .Append(Self.Value.transform.DOMoveZ(Destination.Value.transform.position.z, 1f).SetEase(Ease.InOutQuint));
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (!XpositionLanded)
+        if (!tweenList.IsPlaying())
         {
-            Self.Value.transform.Translate(Vector3.right * Destination.Value.transform.position.x * Time.deltaTime * 5f); //peut-etre que c'est une mauvaise idée on sait pas
-            if (Mathf.Abs(Self.Value.transform.position.x - Destination.Value.transform.position.x) < 0.5f)
-            {
-                XpositionLanded = true;
-            }
-        }
-        else
-        {
-            if (Mathf.Abs(Self.Value.transform.position.z - Destination.Value.transform.position.z) < 0.5f)
-            {
-                return Status.Success;
-            }
-            Self.Value.transform.Translate(Vector3.forward * Destination.Value.transform.position.z * Time.deltaTime * 5f); //peut-etre que c'est une mauvaise idée on sait pas
+            Debug.Log("fin");
+            return Status.Success;
         }
         return Status.Running;
     }

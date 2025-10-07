@@ -15,12 +15,21 @@ public class SlabController : MonoBehaviour
 
     public void Disparition()
     {
-        transform.DOScale(Vector3.zero, 0.5f);
+        Sequence s = DOTween.Sequence();
+        s.Append(transform.DOScale(Vector3.zero, 0.5f))
+            .AppendInterval(1f)
+            .Append(Apparition());
     }
 
-    public void Apparition()
+    public Tween Apparition()
     {
-        transform.DOScale(scale, 0.5f);
+        return transform.DOScale(scale, 0.5f);
+    }
+
+    public void Destroyed()
+    {
+        Debug.Log("destroyed function");
+        Disparition();
     }
 
     public void Slimed()
