@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,11 +29,10 @@ public class Player : MonoBehaviour
 
     #region Components
     public Rigidbody rb { get; private set; }
+    [Header("InputActions")]
     public PlayerInput playerInput { get; private set; }
 
-    [Header("InputActions")]
-    public InputActionAsset gameplayActions;
-    public InputActionAsset UIActions;
+    
     #endregion
 
     #region Others Variables
@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
     [Header("Shield Variables")]
     public GameObject shield;
 
+    [Header("Interaction Variables")]
+    public TextMeshProUGUI emptyText;
+    public Dialogues_Parameters dialogue_Parameters { get; set; }
+    public Dialogue_Manager dialogue_Manager { get; set; }
+    public float timeBetweenLetter { get; set; }
     private bool talkingTrigger;
     
     #endregion
@@ -87,6 +92,7 @@ public class Player : MonoBehaviour
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        dialogue_Manager = GetComponent<Dialogue_Manager>();
 
 
         for (int i = 0; i < combo.Count; i++)
@@ -144,15 +150,36 @@ public class Player : MonoBehaviour
     {
         if(context.performed && talkingTrigger)
         {
+            timeBetweenLetter = 0.1f;
             stateMachine.ChangeState(interactState);
         }
     }
 
-    public void ExitInteraction(InputAction.CallbackContext context)
+    public void Next(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
-            stateMachine.ChangeState(idleState);
+            if (dialogue_Parameters.dialogue_Index < dialogue_Parameters.dialogue_content.Length && emptyText.text == dialogue_Parameters.dialogue_content[dialogue_Parameters.dialogue_Index])
+            {
+                dialogue_Parameters.dialogue_Index++;
+                dialogue_Manager.SetDialogue();
+            }
+            else if(dialogue_Parameters.dialogue_Index == dialogue_Parameters.dialogue_content.Length)
+            {
+                stateMachine.ChangeState(idleState);
+            }
+            
+        }
+    }
+    public void FastWritting(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            timeBetweenLetter = 0.02f;
+        }
+        if(context.canceled)
+        {
+            timeBetweenLetter = 0.1f;
         }
     }
 
@@ -174,6 +201,7 @@ public class Player : MonoBehaviour
         if(other.tag == "Interact")
         {
             talkingTrigger = true;
+            dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
         }
     }
 

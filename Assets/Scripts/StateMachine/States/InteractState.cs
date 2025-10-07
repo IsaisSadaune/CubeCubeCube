@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class InteractState : PlayerState
@@ -13,12 +14,17 @@ public class InteractState : PlayerState
     {
         base.EnterState();
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
-        player.playerInput.actions = player.UIActions;
+        player.playerInput.SwitchCurrentActionMap("UI");
+        player.dialogue_Manager.SetDialogue();
+        
     }
     public override void ExitState()
     {
         base.ExitState();
-        player.playerInput.actions = player.gameplayActions;
+        player.playerInput.SwitchCurrentActionMap("Gameplay");
+        player.emptyText.enabled = false;
+        player.dialogue_Manager.dialogue_Background.enabled = false;
+        player.dialogue_Parameters.dialogue_Index = 0;
     }
     public override void FrameUpdate()
     {
