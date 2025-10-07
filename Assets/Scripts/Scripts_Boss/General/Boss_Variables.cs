@@ -17,4 +17,5 @@ public class Boss_Variables : MonoBehaviour
 
     public void SetDestroying() => isDestroying = true;
     public void StopDestroying() => isDestroying = false;
+
 }
