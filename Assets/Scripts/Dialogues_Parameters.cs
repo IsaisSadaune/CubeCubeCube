@@ -2,8 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogues_Parameters : MonoBehaviour
+[System.Serializable]
+public class Dialogues_Parameters 
 {
+    public string npcName;
     [SerializeField] public int dialogue_Index;
     [SerializeField] public string[] dialogue_content;
 }

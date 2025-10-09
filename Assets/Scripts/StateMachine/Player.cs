@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -56,7 +57,6 @@ public class Player : MonoBehaviour
 
     [Header("Interaction Variables")]
     public TextMeshProUGUI emptyText;
-    public Dialogues_Parameters dialogue_Parameters { get; set; }
     public Dialogue_Manager dialogue_Manager { get; set; }
     public float timeBetweenLetter { get; set; }
     private bool talkingTrigger;
@@ -159,15 +159,15 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
-            if (dialogue_Parameters.dialogue_Index < dialogue_Parameters.dialogue_content.Length && emptyText.text == dialogue_Parameters.dialogue_content[dialogue_Parameters.dialogue_Index])
-            {
-                dialogue_Parameters.dialogue_Index++;
-                dialogue_Manager.SetDialogue();
-            }
-            else if(dialogue_Parameters.dialogue_Index == dialogue_Parameters.dialogue_content.Length)
-            {
-                stateMachine.ChangeState(idleState);
-            }
+            //if (dialogue_Parameters.dialogue_Index < dialogue_Parameters.dialogue_content.Length - 1 && emptyText.text == dialogue_Parameters.dialogue_content[dialogue_Parameters.dialogue_Index])
+            //{
+            //    dialogue_Parameters.dialogue_Index++;
+            //    dialogue_Manager.SetDialogue();
+            //}
+            //else if(dialogue_Parameters.dialogue_Index == dialogue_Parameters.dialogue_content.Length - 1)
+            //{
+            //    stateMachine.ChangeState(idleState);
+            //}
             
         }
     }
@@ -201,7 +201,7 @@ public class Player : MonoBehaviour
         if(other.tag == "Interact")
         {
             talkingTrigger = true;
-            dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
+            //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
         }
     }
 

@@ -15,7 +15,6 @@ public class InteractState : PlayerState
         base.EnterState();
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         player.playerInput.SwitchCurrentActionMap("UI");
-        player.dialogue_Manager.SetDialogue();
         
     }
     public override void ExitState()
@@ -24,7 +23,6 @@ public class InteractState : PlayerState
         player.playerInput.SwitchCurrentActionMap("Gameplay");
         player.emptyText.enabled = false;
         player.dialogue_Manager.dialogue_Background.enabled = false;
-        player.dialogue_Parameters.dialogue_Index = 0;
     }
     public override void FrameUpdate()
     {
