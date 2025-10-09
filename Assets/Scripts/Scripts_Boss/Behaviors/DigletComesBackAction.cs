@@ -16,8 +16,10 @@ public partial class DigletComesBackAction : Action
     protected override Status OnStart()
     {
         s = DOTween.Sequence();
-        Self.Value.transform.position = Player.Value.transform.position + Vector3.down * 6f;
-        s.AppendInterval(1f);
+        //Self.Value.transform.position = Player.Value.transform.position + Vector3.down * 6f;
+
+        s.Append(Self.Value.transform.DOMove(Player.Value.transform.position + Vector3.down * 8f, 1f));
+        s.AppendInterval(0.5f);
         s.Append(Self.Value.transform.DOMoveY(0, 1f).SetEase(Ease.InOutQuint));
         return Status.Running;
     }
