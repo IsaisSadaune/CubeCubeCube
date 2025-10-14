@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Boss_Variables : MonoBehaviour
+public class Boss_Variables : MonoBehaviour, IDamageable
 {
     [SerializeField] private float MaxHP;
     public float HP { get; private set; }
@@ -18,4 +18,10 @@ public class Boss_Variables : MonoBehaviour
     public void SetDestroying() => isDestroying = true;
     public void StopDestroying() => isDestroying = false;
 
+    [ContextMenu("damage")]
+    public void TakeDamage()
+    {
+        Debug.Log("ouch");
+        //feedback boss
+    }
 }
