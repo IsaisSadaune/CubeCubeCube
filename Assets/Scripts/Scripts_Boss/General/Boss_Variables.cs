@@ -18,10 +18,12 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public void SetDestroying() => isDestroying = true;
     public void StopDestroying() => isDestroying = false;
 
+
+
+    //feedback boss
     [ContextMenu("damage")]
     public void TakeDamage()
     {
         Debug.Log("ouch");
-        //feedback boss
     }
 }
