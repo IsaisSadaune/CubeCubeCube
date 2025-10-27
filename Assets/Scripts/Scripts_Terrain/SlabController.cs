@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlabController : MonoBehaviour
 {
     private Vector3 scale;
-    private float timebeforeRepop = 3f;
+    private float timebeforeRepop = 1f;
     private Coroutine isSlimed;
     [SerializeField] private GameObject model;
     private void Start()
