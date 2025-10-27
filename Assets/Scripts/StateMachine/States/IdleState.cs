@@ -21,7 +21,7 @@ public class IdleState : PlayerState
     public override void FrameUpdate()
     {
 
-            if (player.moveInput != Vector2.zero && player.isGrounded == true)
+        if (player.moveInput != Vector2.zero && player.isGrounded == true)
         {
             stateMachine.ChangeState(player.walkingState);
         }

@@ -50,7 +50,6 @@ public class Dash : MonoBehaviour
         player.stateMachine.ChangeState(player.idleState);
         yield return new WaitForSeconds(player.dashCooldown);
         player.canDash = true;
-
     }
     #endregion
 }

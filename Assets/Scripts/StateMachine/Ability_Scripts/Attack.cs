@@ -16,7 +16,7 @@ public class Attack : MonoBehaviour
             StopCoroutine(player.resetCombo);
         }
 
-
+        
         player.combo[xCombo].attackCollider.enabled = true;
         player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
         StartCoroutine(ComboTimer());
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
 
     public IEnumerator ComboTimer()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         player.stateMachine.ChangeState(player.idleState);
         player.resetCombo = StartCoroutine(player.resetingCombo());
     }

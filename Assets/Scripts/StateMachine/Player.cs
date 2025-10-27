@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     [Header("Attack Variables")]
     public List<AttackSO> combo;
     public BoxCollider[] attacksCollider;
+    public string[] attacksAnimation;
 
     [SerializeField] private float timeBeforeNextCombo;
     [SerializeField] private float timeBeforeNextAttack;
@@ -120,7 +121,7 @@ public class Player : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         //Debug.Log($"Dashing {context.performed}");
-        if (context.performed && isGrounded && canDash)
+        if (context.performed && isGrounded && canDash && stateMachine.currentPlayerState != attackState)
         {
             stateMachine.ChangeState(dashState);
         }

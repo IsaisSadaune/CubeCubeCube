@@ -2,138 +2,136 @@ Shader "Unlit/FrontOnlyWireframe"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _WireframeColour ("Wireframe colour", color) = (1.0, 1.0, 1.0, 1.0)
-        _WireframeScale("Wireframe scale", float) = 1.5
+        _WireframeColour ("Wireframe Colour", Color) = (1,1,1,1)
+        _FillColour ("Fill Colour", Color) = (0.1,0.1,0.1,1)
+        _WireframeScale ("Wireframe Scale", Float) = 1.5
 
-        [KeywordEnum(BASIC, FIXEDWIDTH, ANTIALIASING)] _WIREFRAME ("Wireframe rendering type", Integer) = 0
-        [Toggle] _QUADS("Show only quads", Integer) = 0
+        [KeywordEnum(BASIC, FIXEDWIDTH, ANTIALIASING)] _WIREFRAME ("Wireframe Rendering Type", Integer) = 0
+        [Toggle] _QUADS ("Show Only Quads", Integer) = 0
     }
+
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Transparent" }
-        LOD 100
+        Tags { "RenderType"="Opaque" "Queue"="Geometry" }
         Blend SrcAlpha OneMinusSrcAlpha
+        LOD 100
 
+        // --- PASS 1 : Faces intérieures (remplissage sombre)
         Pass
         {
-            Cull Back
+            Name "Fill"
+            Cull Front
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
 
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment fragFill
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+            };
+
+            struct v2f
+            {
+                float4 pos : SV_POSITION;
+            };
+
+            fixed4 _FillColour;
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
+
+            fixed4 fragFill(v2f i) : SV_Target
+            {
+                return _FillColour;
+            }
+            ENDCG
+        }
+
+        // --- PASS 2 : Wireframe sur les faces visibles
+        Pass
+        {
+            Name "Wireframe"
+            Cull Back
+            ZWrite On
+            Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
             #pragma vertex vert
             #pragma geometry geom
             #pragma fragment frag
-            // make fog work
             #pragma multi_compile_fog
 
-            #pragma shader_feature _WIREFRAME_BASIC _WIREFRAME_FIXEDWIDTH _WIREFRAME_ANTIALIASING
-            #pragma shader_feature _QUADS_ON
+            #pragma shader_feature_local _WIREFRAME_BASIC _WIREFRAME_FIXEDWIDTH _WIREFRAME_ANTIALIASING
+            #pragma shader_feature_local _QUADS
 
             #include "UnityCG.cginc"
 
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                float3 bary : TEXCOORD1; // les barycentrics (venus du script)
             };
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float3 bary : TEXCOORD0;
             };
 
-            struct g2f
-{
-    float4 pos : SV_POSITION;
-    float3 barycentric : TEXCOORD0;
-};
-
-sampler2D _MainTex;
-float4 _MainTex_ST;
-fixed4 _WireframeColour;
-float _WireframeScale;
+            sampler2D _MainTex;
+            fixed4 _WireframeColour;
+            float _WireframeScale;
 
             v2f vert (appdata v)
             {
                 v2f o;
-                //o.vertex = UnityObjectToClipPos(v.vertex);
-                o.vertex = v.vertex;
-
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.bary = v.bary;
                 return o;
             }
 
             [maxvertexcount(3)]
-            void geom(triangle v2f IN[3], inout TriangleStream<g2f> triStream){
-                float3 modifier = float3(0.0, 0.0 , 0.0);
-
-                #if _QUADS_ON
-                float edgeLength0 = distance(IN[1].vertex, IN[2].vertex);
-                float edgeLength1 = distance(IN[0].vertex, IN[2].vertex);
-                float edgeLength2 = distance(IN[0].vertex, IN[1].vertex);
-
-                if((edgeLength0 > edgeLength1) && (edgeLength0 > edgeLength2))
-                {
-                    modifier = float3(1.0, 0.0, 0.0);
-                }
-                else if((edgeLength1 > edgeLength0) && (edgeLength1 > edgeLength2))
-                {
-                    modifier = float3(0.0, 1.0, 0.0);
-                }
-                else if((edgeLength2 > edgeLength0) && (edgeLength2 > edgeLength1))
-                {
-                    modifier = float3(0.0, 0.0, 1.0);
-                }
-                #endif
-
-
-                g2f o;
-
-                o.pos = UnityObjectToClipPos(IN[0].vertex);
-                o.barycentric = float3(1.0, 0.0, 0.0) + modifier;
-                triStream.Append(o);
-
-                o.pos = UnityObjectToClipPos(IN[1].vertex);
-                o.barycentric = float3(0.0, 1.0, 0.0) + modifier;
-                triStream.Append(o);
-
-                o.pos = UnityObjectToClipPos(IN[2].vertex);
-                o.barycentric = float3(1.0, 0.0, 1.0) + modifier;
-                triStream.Append(o);
-
-
-            }
-            
-            fixed4 frag (g2f i) : SV_Target
+            void geom(triangle v2f IN[3], inout TriangleStream<v2f> triStream)
             {
-                #if _WIREFRAME_BASIC
-                float closest = min(i.barycentric.x, min(i.barycentric.y, i.barycentric.z));
-
-                float alpha = step(closest, _WireframeScale / 20.0);
-
-                #elif _WIREFRAME_FIXEDWIDTH
-                
-                float3 unitWidth = fwidth(i.barycentric);
-                float3 edge = step(i.barycentric, unitWidth * _WireframeScale);
-                float alpha = max(edge.x, max(edge.y, edge.z));
-
-                #elif _WIREFRAME_ANTIALIASING
-                float3 unitWidth = fwidth(i.barycentric);
-                float3 aliased = smoothstep(float3(0.0, 0.0, 0.0), unitWidth * _WireframeScale, i.barycentric);
-                float alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
-
-                #endif
-
-            return fixed4(_WireframeColour.r, _WireframeColour.g, _WireframeColour.b, alpha);
-
+                v2f o;
+                [unroll]
+                for (int i = 0; i < 3; i++)
+                {
+                    o.vertex = IN[i].vertex;
+                    o.bary = IN[i].bary;
+                    triStream.Append(o);
+                }
             }
 
+            fixed4 frag (v2f i) : SV_Target
+            {
+                float alpha = 0;
 
+                #ifdef _WIREFRAME_BASIC
+                    float closest = min(i.bary.x, min(i.bary.y, i.bary.z));
+                    alpha = step(closest, _WireframeScale / 20.0);
+                #elif defined(_WIREFRAME_FIXEDWIDTH)
+                    float3 unitWidth = fwidth(i.bary);
+                    float3 edge = step(i.bary, unitWidth * _WireframeScale);
+                    alpha = max(edge.x, max(edge.y, edge.z));
+                #elif defined(_WIREFRAME_ANTIALIASING)
+                    float3 unitWidth = fwidth(i.bary);
+                    float3 aliased = smoothstep(float3(0,0,0), unitWidth * _WireframeScale, i.bary);
+                    alpha = 1 - min(aliased.x, min(aliased.y, aliased.z));
+                #endif
+
+                return fixed4(_WireframeColour.rgb, alpha * _WireframeColour.a);
+            }
             ENDCG
         }
     }
+    FallBack Off
 }

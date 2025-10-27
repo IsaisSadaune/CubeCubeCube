@@ -1,74 +1,43 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-/// <summary>
-/// Génère des coordonnées barycentriques par sommet pour un mesh donné.
-/// À attacher sur un GameObject contenant un MeshFilter.
-/// </summary>
+[ExecuteInEditMode]
 [RequireComponent(typeof(MeshFilter))]
-public class MeshBarycentricGenerator : MonoBehaviour
+public class GenerateBarycentrics : MonoBehaviour
 {
-    [ContextMenu("Generate Barycentrics")]
-    public void GenerateBarycentrics()
+    public bool generateOnStart = false;
+
+    void Start()
+    {
+        if (generateOnStart)
+            ApplyBarycentrics();
+    }
+
+    public void ApplyBarycentrics()
     {
         MeshFilter mf = GetComponent<MeshFilter>();
         if (mf == null || mf.sharedMesh == null)
         {
-            Debug.LogError("❌ Aucun mesh trouvé sur " + name);
+            Debug.LogWarning("Aucun MeshFilter ou Mesh trouvé sur l’objet.");
             return;
         }
 
-        Mesh mesh = mf.sharedMesh;
-        Mesh newMesh = new Mesh();
-        newMesh.name = mesh.name + "_Wireframe";
+        // Dupliquer le mesh pour ne pas écraser l’original
+        Mesh mesh = Instantiate(mf.sharedMesh);
+        mesh.name = mf.sharedMesh.name + "_Barycentric";
 
-        // On duplique toutes les données sauf les index
-        newMesh.vertices = mesh.vertices;
-        newMesh.normals = mesh.normals;
-        newMesh.uv = mesh.uv;
-        newMesh.colors = mesh.colors;
-        newMesh.tangents = mesh.tangents;
+        int[] tris = mesh.triangles;
+        Vector3[] barycentrics = new Vector3[mesh.vertexCount];
 
-        int[] triangles = mesh.triangles;
-        Vector3[] verts = mesh.vertices;
-
-        // On crée de nouvelles listes pour tout remapper sans partage de sommet
-        List<Vector3> newVerts = new List<Vector3>();
-        List<Vector3> barycentrics = new List<Vector3>();
-        List<int> newTris = new List<int>();
-
-        for (int i = 0; i < triangles.Length; i += 3)
+        for (int i = 0; i < tris.Length; i += 3)
         {
-            int i0 = triangles[i];
-            int i1 = triangles[i + 1];
-            int i2 = triangles[i + 2];
-
-            Vector3 v0 = verts[i0];
-            Vector3 v1 = verts[i1];
-            Vector3 v2 = verts[i2];
-
-            // On assigne 1/0 barycentrique à chaque sommet du triangle
-            newVerts.Add(v0);
-            barycentrics.Add(new Vector3(1, 0, 0));
-            newTris.Add(newVerts.Count - 1);
-
-            newVerts.Add(v1);
-            barycentrics.Add(new Vector3(0, 1, 0));
-            newTris.Add(newVerts.Count - 1);
-
-            newVerts.Add(v2);
-            barycentrics.Add(new Vector3(0, 0, 1));
-            newTris.Add(newVerts.Count - 1);
+            barycentrics[tris[i]] = new Vector3(1, 0, 0);
+            barycentrics[tris[i + 1]] = new Vector3(0, 1, 0);
+            barycentrics[tris[i + 2]] = new Vector3(0, 0, 1);
         }
 
-        newMesh.SetVertices(newVerts);
-        newMesh.SetTriangles(newTris, 0);
-        newMesh.SetUVs(1, barycentrics); // barycentrics stockés dans TEXCOORD1 (ou TEXCOORD0 si tu veux)
-        newMesh.RecalculateBounds();
-        newMesh.RecalculateNormals();
+        mesh.SetUVs(1, new System.Collections.Generic.List<Vector3>(barycentrics));
+        mf.sharedMesh = mesh;
 
-        mf.sharedMesh = newMesh;
-
-        Debug.Log($"✅ Barycentrics générés pour {name} ({newVerts.Count} sommets)");
+        Debug.Log($"✅ Coordonnées barycentriques générées pour {mesh.vertexCount} sommets !");
     }
 }
