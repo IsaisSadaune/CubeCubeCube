@@ -6,13 +6,14 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "DigletAttack", story: "[Self] goes in Ground", category: "Action", id: "cbcc1481329a4d352451e3e3302cb352")]
+[NodeDescription(name: "DigletAttack", story: "[Self] goes in Ground at [speed] speed", category: "Action", id: "cbcc1481329a4d352451e3e3302cb352")]
 public partial class DigletAttackAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<float> Speed;
     private Tween tw;
 
-    private float speed = 5f;
+    private float speed => Speed.Value;
     protected override Status OnStart()
     {
         tw = Self.Value.transform.DOMoveY(1f, 1f/ speed)

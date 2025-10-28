@@ -5,10 +5,11 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Set Boss Slimy", story: "[Self] becomes Slimy", category: "Action", id: "97cbf6cca85b9a1de987b9caf4343e66")]
-public partial class SetBossSlimyAction : Action
+[NodeDescription(name: "StopSlimy", story: "[Self] stop Slimy", category: "Action", id: "943ac544586516f2c4c6146d526b0b76")]
+public partial class StopSlimyAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
+
     protected override Status OnStart()
     {
         return Status.Running;
@@ -17,8 +18,12 @@ public partial class SetBossSlimyAction : Action
     protected override Status OnUpdate()
     {
         Boss_Variables bv = Self.Value.GetComponent<Boss_Variables>();
-        bv.SetSlimy();
-        bv.ResetDetectors();
+        bv.StopSlimy();
         return Status.Success;
     }
+
+    protected override void OnEnd()
+    {
+    }
 }
+

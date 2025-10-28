@@ -17,6 +17,13 @@ public class DetectorBoss : MonoBehaviour
             Debug.Log("detection par boss");
             other.transform.parent.GetComponent<SlabController>().Destroyed();
         }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            other.transform.parent.GetComponent<SlabController>().StopSlimed();
+        }
     }
 }

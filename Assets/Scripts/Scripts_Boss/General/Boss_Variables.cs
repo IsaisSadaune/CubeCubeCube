@@ -7,14 +7,12 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public bool isSlimy { get; private set; }
     public bool isDestroying { get; private set; }
 
-    public void SetSlimy()
-    {
-        isSlimy = true;
-    }
-    public void StopSlimy()
-    {
-        isSlimy = false;
-    }
+    public GameObject detector1;
+
+    public GameObject detector2;
+
+    public void SetSlimy() => isSlimy = true;
+    public void StopSlimy() => isSlimy = false;
 
     public void SetDestroying() => isDestroying = true;
     public void StopDestroying() => isDestroying = false;
@@ -24,6 +22,13 @@ public class Boss_Variables : MonoBehaviour, IDamageable
         HP = MaxHP;
     }
 
+    public void ResetDetectors()
+    {
+        detector1.SetActive(false);
+        detector1.SetActive(true);
+        detector2.SetActive(false);
+        detector2.SetActive(true);
+    }
 
     //feedback boss
     [ContextMenu("damage")]
