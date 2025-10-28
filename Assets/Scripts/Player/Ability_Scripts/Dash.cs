@@ -32,11 +32,11 @@ public class Dash : MonoBehaviour
         }
         else if (Physics.CapsuleCast(p1, p2, capsule.radius, player.rb.transform.forward, out hit, 5f, obstacleMask))
         {
-            endPos = player.rb.position + player.rb.transform.forward * hit.distance;
+            endPos = player.rb.position + player.dashDirection * hit.distance;
         }
         else
         {
-            endPos = player.rb.position + player.rb.transform.forward * player.dashForce;
+            endPos = player.rb.position + player.dashDirection * player.dashForce;
         }
 
 

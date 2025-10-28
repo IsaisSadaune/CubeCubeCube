@@ -4,13 +4,14 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     Player player;
+    Coroutine comboCoroutine;
     void Start()
     {
         player = GetComponent<Player>();
-
     }
     public void LaunchAttack(int xCombo)
     {
+        
         if (player.resetCombo != null)
         {
             StopCoroutine(player.resetCombo);
@@ -19,7 +20,12 @@ public class Attack : MonoBehaviour
         
         player.combo[xCombo].attackCollider.enabled = true;
         player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
-        StartCoroutine(ComboTimer());
+
+        if(comboCoroutine != null)
+        {
+
+        }
+        comboCoroutine = StartCoroutine(ComboTimer());
     }
 
     public IEnumerator ComboTimer()

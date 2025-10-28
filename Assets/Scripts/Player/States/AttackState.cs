@@ -12,7 +12,7 @@ public class AttackState : PlayerState
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
-
+        Debug.Log(player.comboCount);
         player.attack.LaunchAttack(player.comboCount);
         player.animator.SetBool(player.attacksAnimation[player.comboCount], true);
         player.lastAttack = Time.time;
