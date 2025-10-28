@@ -12,7 +12,7 @@ public partial class DigletComesBackAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<GameObject> Player;
     Tween t;
-    private float speed = 2f;
+    private float speed = 5f;
     protected override Status OnStart()
     {
 
@@ -21,7 +21,7 @@ public partial class DigletComesBackAction : Action
             {
                 t = Self.Value.transform.DOMoveY(0, 1f / speed)
                 .SetEase(Ease.InOutQuint)
-                .SetDelay(0.5f);
+                .SetDelay(1f/speed);
             });
 
         return Status.Running;

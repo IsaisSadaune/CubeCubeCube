@@ -12,7 +12,7 @@ public partial class DigletAttackAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     private Tween tw;
 
-    private float speed = 2f;
+    private float speed = 5f;
     protected override Status OnStart()
     {
         tw = Self.Value.transform.DOMoveY(1f, 1f/ speed)
