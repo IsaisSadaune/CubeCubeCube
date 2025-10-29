@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     public float dashForce = 10f;
     public float dashDuration = 0.5f;
     public float dashCooldown = 0.5f;
-    public Vector2 moveInput { get; private set; }
+    [HideInInspector] public Vector2 moveInput;
     public Vector3 direction { get; private set; }
 
     #endregion
@@ -40,11 +41,13 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
+    public Vector3 dashDirection { get; private set; }
     public Attack attack { get; private set; }
     public int comboCount { get; set; }
     [Header("Attack Variables")]
     public List<AttackSO> combo;
     public BoxCollider[] attacksCollider;
+    public string[] attacksAnimation;
 
     [SerializeField] private float timeBeforeNextCombo;
     [SerializeField] private float timeBeforeNextAttack;
@@ -108,39 +111,42 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.currentPlayerState.PhysicsUpdate();
+        dashDirection = new Vector3(moveInput.x, 0, moveInput.y);
     }
 
     #region ControllerFunctions
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        direction = new Vector3(moveInput.x, 0, moveInput.y);
+        direction = new Vector3(moveInput.x, 0, moveInput.y);    
     }
 
     public void Dash(InputAction.CallbackContext context)
     {
         //Debug.Log($"Dashing {context.performed}");
-        if (context.performed && isGrounded && canDash)
+        if (context.performed && isGrounded && canDash && stateMachine.currentPlayerState != attackState)
         {
+            
+            //Récupérer la position du joystick à ce moment là pour que le dash ne soit pas lié avec la position mais le joystick uniquement == fluidifie le dash
             stateMachine.ChangeState(dashState);
         }
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time > lastComboEnd + timeBeforeNextCombo && Time.time > lastAttack + timeBeforeNextAttack)
+        if (context.performed && Time.time > (lastComboEnd + timeBeforeNextCombo) && Time.time > (lastAttack + timeBeforeNextAttack) && stateMachine.currentPlayerState != attackState)
         {
             stateMachine.ChangeState(attackState);
         }
     }
     public void Defense(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && stateMachine.currentPlayerState != attackState)
         {
             stateMachine.ChangeState(shieldState);
         }
 
-        if (context.canceled)
+        if (context.canceled && stateMachine.currentPlayerState == shieldState)
         {
             stateMachine.ChangeState(idleState);
         }

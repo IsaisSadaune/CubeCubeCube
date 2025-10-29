@@ -12,17 +12,20 @@ public class AttackState : PlayerState
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
-        
+        Debug.Log(player.comboCount);
         player.attack.LaunchAttack(player.comboCount);
+        player.animator.SetBool(player.attacksAnimation[player.comboCount], true);
         player.lastAttack = Time.time;
     }
     public override void ExitState()
     {
         player.combo[player.comboCount].attackCollider.enabled = false;
+        player.animator.SetBool(player.attacksAnimation[player.comboCount], false);
 
         if (player.comboCount < 2)
         {
             player.comboCount++;
+            player.lastAttack = Time.time;
         }
         else
         {
@@ -32,7 +35,7 @@ public class AttackState : PlayerState
     }
     public override void FrameUpdate()
     {
-
+        
     }
 
     public override void PhysicsUpdate()
