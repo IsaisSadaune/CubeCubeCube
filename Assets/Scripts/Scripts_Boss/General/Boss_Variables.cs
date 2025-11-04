@@ -1,7 +1,10 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Boss_Variables : MonoBehaviour, IDamageable
 {
+    [SerializeField] private GameObject visual;
+
     [SerializeField] private float MaxHP;
     public float HP { get; private set; }
     public bool isSlimy { get; private set; }
@@ -35,16 +38,36 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public void TakeDamageDebug() => TakeDamage(100);
 
 
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<IDamageable>(out IDamageable dmged))
+        {
+            dmged.TakeDamage(5);
+        }
+    }
     public void TakeDamage(int _dgt)
     {
         Debug.Log("ouch");
         HP -= _dgt;
-        if (HP < 0) Die();
+        if (HP <= 0) Die();
+        else FeedBackDMG();
     }
-
     public void Die()
     {
         Debug.Log("mort");
-        Destroy(gameObject);
+        FeedBackMort();
+    }
+    public void FeedBackDMG()
+    {
+        Vector3 x = visual.transform.localScale;
+        visual.transform.DOScale(x * 1.25f, 0.12f).SetEase(Ease.InOutBounce)
+            .OnComplete(() =>
+            visual.transform.DOScale(x, 0.12f).SetEase(Ease.InOutBounce));
+    }
+    public void FeedBackMort()
+    {
+        visual.transform.DOScale(Vector3.zero, 1f)
+            .OnComplete(() => Destroy(gameObject));
     }
 }
