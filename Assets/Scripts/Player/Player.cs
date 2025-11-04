@@ -225,7 +225,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             Vector3 kbDir = -(other.transform.position - transform.position);
             kbDir = new Vector3(kbDir.x, 0, kbDir.z).normalized;
-            Debug.Log(kbDir);
+            //Debug.Log(kbDir);
             rb.AddForce(kbDir * 200);
             //Debug.Break();
             TakeDamage(0);
