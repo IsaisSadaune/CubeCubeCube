@@ -10,7 +10,7 @@ public partial class PlayerDeathCondition : Condition
 
     public override bool IsTrue()
     {
-        return Player.Value == null;
+        return Player.Value == null || !Player.Value.activeSelf;
     }
 
     public override void OnStart()
