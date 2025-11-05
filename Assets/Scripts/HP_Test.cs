@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HP_Test : MonoBehaviour
 {
-    private float hp_max = 100;
+    private float hp_max = 15;
     float current_hp;
     public Player player;
 
@@ -11,12 +11,18 @@ public class HP_Test : MonoBehaviour
         current_hp = hp_max;
     }
 
-    void OnTriggerEnter(Collider other)
+    public void LoseHP(int x)
     {
-        if (other.tag == "Attack")
+        current_hp -= x;
+        if(current_hp <=0)
         {
-            current_hp -= player.combo[player.comboCount].damage;
-            Debug.Log(current_hp);
-        }   
+            current_hp = 0;
+            KillPlayer();
+        }
+    }
+
+    private void KillPlayer()
+    {
+        Destroy(player.gameObject);
     }
 }

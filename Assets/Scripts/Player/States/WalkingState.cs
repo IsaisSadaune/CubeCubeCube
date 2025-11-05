@@ -13,13 +13,15 @@ public class WalkingState : PlayerState
     }
     public override void ExitState()
     {
-
+        player.moveInput = Vector2.zero;
     }
     public override void FrameUpdate()
     {
-        Vector3 move = new Vector3(player.moveInput.x, 0, player.moveInput.y);
-        player.rb.linearVelocity = move * player.speed;
-
+        if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
+        {
+            Vector3 move = new Vector3(player.moveInput.x, 0, player.moveInput.y);
+            player.rb.linearVelocity = move * player.speed;
+        }
         Quaternion targetRotation = Quaternion.LookRotation(player.direction);
         player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
 
