@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Proto_GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject UI_Reload;
 
     private void Awake()
     {
@@ -14,5 +15,10 @@ public class Proto_GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         UI.SetActive(false);
+    }
+
+    public void ReloadBattle()
+    {
+        SceneManager.LoadScene("ProtoBossBattle");
     }
 }
