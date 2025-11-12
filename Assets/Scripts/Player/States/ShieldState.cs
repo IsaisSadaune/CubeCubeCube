@@ -22,10 +22,6 @@ public class ShieldState : PlayerState
 
     public override void FrameUpdate()
     {
-        if (player.shield.activeSelf)
-        {
-            //Diminuer les dégats subits
-        }
         if (player.moveInput.magnitude > 0.1f)
         {
             lastDirection = player.direction;

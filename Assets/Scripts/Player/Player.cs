@@ -112,15 +112,35 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         stateMachine.currentPlayerState.PhysicsUpdate();
-        dashDirection = new Vector3(moveInput.x, 0, moveInput.y);
-    }
+      Vector3 camForward = Camera.main.transform.forward;
+    Vector3 camRight = Camera.main.transform.right;
 
-    #region ControllerFunctions
-    public void Move(InputAction.CallbackContext context)
-    {
-            moveInput = context.ReadValue<Vector2>();
-            direction = new Vector3(moveInput.x, 0, moveInput.y);
-    }
+    camForward.y = 0f;
+    camRight.y = 0f;
+    camForward.Normalize();
+    camRight.Normalize();
+
+    // dashDirection suit la même logique que direction
+    dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+}
+
+#region ControllerFunctions
+public void Move(InputAction.CallbackContext context)
+{
+    moveInput = context.ReadValue<Vector2>();
+
+    // Calcule la direction selon la caméra
+    Vector3 camForward = Camera.main.transform.forward;
+    Vector3 camRight = Camera.main.transform.right;
+
+    camForward.y = 0f;
+    camRight.y = 0f;
+    camForward.Normalize();
+    camRight.Normalize();
+
+    direction = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+}
+
 
     public void Dash(InputAction.CallbackContext context)
     {
@@ -142,7 +162,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Defense(InputAction.CallbackContext context)
     {
-        if (context.performed && stateMachine.currentPlayerState != attackState)
+        if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
             stateMachine.ChangeState(shieldState);
         }
@@ -245,6 +265,14 @@ public class Player : MonoBehaviour, IDamageable
         iFraming = false; //bug mais c'est pas grave
     }
 
+    bool canShield = true;
+    IEnumerator ShieldBreak()
+    {
+        canShield = false;
+        yield return new WaitForSeconds(2f);
+        canShield = true;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Interact")
@@ -256,7 +284,16 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int dgt)
     {
         Debug.Log("joueur prend dgts");
-        hps.LoseHP(dgt);
+        if (stateMachine.currentPlayerState == shieldState)
+        {
+            hps.LoseHP(dgt / 2);
+            StartCoroutine(ShieldBreak());
+            stateMachine.ChangeState(idleState);
+        }
+        else
+        {
+            hps.LoseHP(dgt);
+        }
         StartCoroutine(cdDamage());
     }
 
