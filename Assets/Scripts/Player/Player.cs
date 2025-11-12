@@ -210,6 +210,7 @@ public class Player : MonoBehaviour, IDamageable
     private float cdCantMove = 0.5f;
     private CapsuleCollider hitbox;
     [SerializeField] private HP_Test hps;
+    private bool iFraming;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -221,15 +222,12 @@ public class Player : MonoBehaviour, IDamageable
 
         //ISAIS : ajout du trigger Boss 
         //C'EST DEGUEULASSE !!!!!!!!!!!!
-        if (other.CompareTag("Boss"))
+        if (other.CompareTag("Boss") && !iFraming)
         {
-            Vector3 kbDir = -(other.transform.position - transform.position);
-            kbDir = new Vector3(kbDir.x, 0, kbDir.z).normalized;
-            //Debug.Log(kbDir);
-            rb.AddForce(kbDir * 200);
+            iFraming = true;
             //Debug.Break();
-            TakeDamage(0);
-            StartCoroutine(cdDamage());
+            Knockback(other.transform);
+            TakeDamage(1);
         }
     }
 
@@ -244,6 +242,7 @@ public class Player : MonoBehaviour, IDamageable
         //playerInput.SwitchCurrentActionMap("Gameplay");
         yield return new WaitForSeconds(cdIFrames);
         hitbox.enabled = true;
+        iFraming = false; //bug mais c'est pas grave
     }
 
     private void OnTriggerExit(Collider other)
@@ -258,6 +257,15 @@ public class Player : MonoBehaviour, IDamageable
     {
         Debug.Log("joueur prend dgts");
         hps.LoseHP(dgt);
+        StartCoroutine(cdDamage());
+    }
+
+    public void Knockback(Transform other)
+    {
+        Vector3 kbDir = -(other.transform.position - transform.position);
+        kbDir = new Vector3(kbDir.x, 0, kbDir.z).normalized;
+        //Debug.Log(kbDir);
+        rb.AddForce(kbDir * 200);
     }
 
     public void Die()

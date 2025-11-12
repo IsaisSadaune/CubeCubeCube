@@ -39,13 +39,14 @@ public class Boss_Variables : MonoBehaviour, IDamageable
 
 
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent<IDamageable>(out IDamageable dmged))
-        {
-            dmged.TakeDamage(5);
-        }
-    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.TryGetComponent<IDamageable>(out IDamageable dmged))
+    //    {
+    //        Debug.Log(other.gameObject + " took dmg");
+    //        dmged.TakeDamage(5);
+    //    }
+    //}
     public void TakeDamage(int _dgt)
     {
         Debug.Log("ouch");

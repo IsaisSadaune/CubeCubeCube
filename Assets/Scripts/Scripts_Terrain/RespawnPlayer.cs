@@ -8,6 +8,7 @@ public class RespawnPlayer : MonoBehaviour
         Debug.Log("PING");
         if(other.CompareTag("Player"))
         {
+            other.GetComponent<HP_Test>().LoseHP(2);
             other.transform.position = respawnPoint.transform.position;
         }
     }

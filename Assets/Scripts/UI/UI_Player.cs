@@ -17,10 +17,16 @@ public class UI_Player : MonoBehaviour
     }
 
     [ContextMenu("RemoveHP")]
-    public void RemoveHP()
+    public void RemoveHP(int x)
     {
-        fullHPs[pointeur].SetActive(false);
-        pointeur--;
+
+        while (x > 0)
+        {
+            fullHPs[pointeur].SetActive(false);
+            x--;
+            pointeur--;
+            if (pointeur < 0) break;
+        }
     }
 
     [ContextMenu("AddHP")]
@@ -32,12 +38,5 @@ public class UI_Player : MonoBehaviour
             fullHPs[pointeur].SetActive(true);
         }
     }
-
-
-    private void Start()
-    {
-        SetHps(8);
-    }
-
 
 }
