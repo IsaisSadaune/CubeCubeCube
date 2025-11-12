@@ -227,7 +227,7 @@ public class Player : MonoBehaviour, IDamageable
             iFraming = true;
             //Debug.Break();
             Knockback(other.transform);
-            TakeDamage(1);
+            TakeDamage(2);
         }
     }
 

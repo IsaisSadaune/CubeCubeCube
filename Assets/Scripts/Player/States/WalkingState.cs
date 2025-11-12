@@ -29,8 +29,23 @@ public class WalkingState : PlayerState
     {
         if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
         {
-            Vector3 move = new Vector3(player.moveInput.x, 0, player.moveInput.y).normalized;
-            player.rb.linearVelocity = move * player.speed;
+            Vector2 input = player.moveInput;
+
+// Récupère les directions avant/droite de la caméra
+Vector3 camForward = Camera.main.transform.forward;
+Vector3 camRight = Camera.main.transform.right;
+
+// On garde le mouvement sur le plan XZ
+camForward.y = 0f;
+camRight.y = 0f;
+camForward.Normalize();
+camRight.Normalize();
+
+// Combine les entrées pour obtenir la direction finale
+Vector3 move = (camForward * input.y + camRight * input.x).normalized;
+
+// Applique la vitesse
+player.rb.linearVelocity = move * player.speed;
 
             Quaternion targetRotation = Quaternion.LookRotation(player.direction);
             player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.5f);
