@@ -17,13 +17,6 @@ public class WalkingState : PlayerState
     }
     public override void FrameUpdate()
     {
-        if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
-        {
-            Vector3 move = new Vector3(player.moveInput.x, 0, player.moveInput.y);
-            player.rb.linearVelocity = move * player.speed;
-        }
-        Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
 
         if (player.moveInput == Vector2.zero || !player.isGrounded)
         {
@@ -33,7 +26,14 @@ public class WalkingState : PlayerState
     }
 
     public override void PhysicsUpdate()
-    { 
+    {
+        if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
+        {
+            Vector3 move = new Vector3(player.moveInput.x, 0, player.moveInput.y).normalized;
+            player.rb.linearVelocity = move * player.speed;
 
+            Quaternion targetRotation = Quaternion.LookRotation(player.direction);
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.5f);
+        }
     }
 }
