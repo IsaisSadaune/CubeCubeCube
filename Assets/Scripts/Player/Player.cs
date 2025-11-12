@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -22,8 +23,10 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Movement Variables")]
     public float speed = 5f;
     public float dashForce = 10f;
-    public float dashDuration = 0.5f;
-    public float dashCooldown = 0.5f;
+    public float dashDuration;
+    public float dashCooldown;
+    public float dashBuffer;
+    private float bufferTimer;
     [HideInInspector] public Vector2 moveInput;
     public Vector3 direction { get; private set; }
 
@@ -57,6 +60,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("Shield Variables")]
     public GameObject shield;
+    public float shieldActivation { get; set; }
+    [SerializeField] private float parryTiming;
 
     [Header("Interaction Variables")]
     public TextMeshProUGUI emptyText;
@@ -108,6 +113,16 @@ public class Player : MonoBehaviour, IDamageable
     private void Update()
     {
         stateMachine.currentPlayerState.FrameUpdate();
+
+        if (bufferTimer > 0)
+        {
+            bufferTimer -= Time.deltaTime;
+        }
+        if(bufferTimer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
+        {
+            stateMachine.ChangeState(dashState);
+            bufferTimer = 0;
+        }
     }
     private void FixedUpdate()
     {
@@ -144,12 +159,9 @@ public void Move(InputAction.CallbackContext context)
 
     public void Dash(InputAction.CallbackContext context)
     {
-        //Debug.Log($"Dashing {context.performed}");
-        if (context.performed && isGrounded && canDash && stateMachine.currentPlayerState != attackState)
+        if(context.performed)
         {
-
-            //Récupérer la position du joystick à ce moment là pour que le dash ne soit pas lié avec la position mais le joystick uniquement == fluidifie le dash
-            stateMachine.ChangeState(dashState);
+            bufferTimer = dashBuffer;
         }
     }
 
@@ -234,7 +246,7 @@ public void Move(InputAction.CallbackContext context)
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Interact")
+        if (other.CompareTag("Interact"))
         {
             talkingTrigger = true;
             //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
@@ -275,7 +287,7 @@ public void Move(InputAction.CallbackContext context)
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Interact")
+        if (other.CompareTag("Interact"))
         {
             talkingTrigger = false;
         }
@@ -284,7 +296,13 @@ public void Move(InputAction.CallbackContext context)
     public void TakeDamage(int dgt)
     {
         Debug.Log("joueur prend dgts");
-        if (stateMachine.currentPlayerState == shieldState)
+
+        if(stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
+        {
+            Debug.Log("PARRY");
+            //Parry();
+        }
+        else if (stateMachine.currentPlayerState == shieldState)
         {
             hps.LoseHP(dgt / 2);
             StartCoroutine(ShieldBreak());
