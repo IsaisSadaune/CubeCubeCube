@@ -10,7 +10,7 @@ public class GroundDetection : MonoBehaviour
         player = GetComponentInParent<Player>();
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Ground")
         {

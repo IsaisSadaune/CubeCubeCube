@@ -15,6 +15,11 @@ public class TMP_DamageBehaviour : MonoBehaviour
         originalScale = transform.localScale;
     }
 
+    private void Update()
+    {
+        Debug.Log("Le caca fait prout");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("bossTrigger");
