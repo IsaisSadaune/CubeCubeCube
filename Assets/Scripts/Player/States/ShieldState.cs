@@ -14,6 +14,7 @@ public class ShieldState : PlayerState
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         player.shield.SetActive(true);
         lastDirection = player.transform.forward;
+        player.shieldActivation = Time.time;
     }
     public override void ExitState()
     {
@@ -22,10 +23,6 @@ public class ShieldState : PlayerState
 
     public override void FrameUpdate()
     {
-        if (player.shield.activeSelf)
-        {
-            //Diminuer les dégats subits
-        }
         if (player.moveInput.magnitude > 0.1f)
         {
             lastDirection = player.direction;

@@ -14,6 +14,7 @@ public class WalkingState : PlayerState
     public override void ExitState()
     {
         player.moveInput = Vector2.zero;
+        player.rb.linearVelocity = Vector3.zero;
     }
     public override void FrameUpdate()
     {

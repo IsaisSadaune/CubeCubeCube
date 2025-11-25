@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -22,8 +23,10 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Movement Variables")]
     public float speed = 5f;
     public float dashForce = 10f;
-    public float dashDuration = 0.5f;
-    public float dashCooldown = 0.5f;
+    public float dashDuration;
+    public float dashCooldown;
+    public float dashBuffer;
+    private float bufferTimer;
     [HideInInspector] public Vector2 moveInput;
     public Vector3 direction { get; private set; }
 
@@ -57,6 +60,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("Shield Variables")]
     public GameObject shield;
+    public float shieldActivation { get; set; }
+    [SerializeField] private float parryTiming;
 
     [Header("Interaction Variables")]
     public TextMeshProUGUI emptyText;
@@ -108,28 +113,55 @@ public class Player : MonoBehaviour, IDamageable
     private void Update()
     {
         stateMachine.currentPlayerState.FrameUpdate();
+
+        if (bufferTimer > 0)
+        {
+            bufferTimer -= Time.deltaTime;
+        }
+        if(bufferTimer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
+        {
+            stateMachine.ChangeState(dashState);
+            bufferTimer = 0;
+        }
     }
     private void FixedUpdate()
     {
         stateMachine.currentPlayerState.PhysicsUpdate();
-        dashDirection = new Vector3(moveInput.x, 0, moveInput.y);
-    }
+      Vector3 camForward = Camera.main.transform.forward;
+    Vector3 camRight = Camera.main.transform.right;
 
-    #region ControllerFunctions
-    public void Move(InputAction.CallbackContext context)
-    {
-            moveInput = context.ReadValue<Vector2>();
-            direction = new Vector3(moveInput.x, 0, moveInput.y);
-    }
+    camForward.y = 0f;
+    camRight.y = 0f;
+    camForward.Normalize();
+    camRight.Normalize();
+
+    // dashDirection suit la même logique que direction
+    dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+}
+
+#region ControllerFunctions
+public void Move(InputAction.CallbackContext context)
+{
+    moveInput = context.ReadValue<Vector2>();
+
+    // Calcule la direction selon la caméra
+    Vector3 camForward = Camera.main.transform.forward;
+    Vector3 camRight = Camera.main.transform.right;
+
+    camForward.y = 0f;
+    camRight.y = 0f;
+    camForward.Normalize();
+    camRight.Normalize();
+
+    direction = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+}
+
 
     public void Dash(InputAction.CallbackContext context)
     {
-        //Debug.Log($"Dashing {context.performed}");
-        if (context.performed && isGrounded && canDash && stateMachine.currentPlayerState != attackState)
+        if(context.performed)
         {
-
-            //Récupérer la position du joystick à ce moment là pour que le dash ne soit pas lié avec la position mais le joystick uniquement == fluidifie le dash
-            stateMachine.ChangeState(dashState);
+            bufferTimer = dashBuffer;
         }
     }
 
@@ -142,7 +174,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Defense(InputAction.CallbackContext context)
     {
-        if (context.performed && stateMachine.currentPlayerState != attackState)
+        if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
             stateMachine.ChangeState(shieldState);
         }
@@ -214,7 +246,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Interact")
+        if (other.CompareTag("Interact"))
         {
             talkingTrigger = true;
             //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
@@ -245,9 +277,17 @@ public class Player : MonoBehaviour, IDamageable
         iFraming = false; //bug mais c'est pas grave
     }
 
+    bool canShield = true;
+    IEnumerator ShieldBreak()
+    {
+        canShield = false;
+        yield return new WaitForSeconds(2f);
+        canShield = true;
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Interact")
+        if (other.CompareTag("Interact"))
         {
             talkingTrigger = false;
         }
@@ -256,7 +296,22 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int dgt)
     {
         Debug.Log("joueur prend dgts");
-        hps.LoseHP(dgt);
+
+        if(stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
+        {
+            Debug.Log("PARRY");
+            //Parry();
+        }
+        else if (stateMachine.currentPlayerState == shieldState)
+        {
+            hps.LoseHP(dgt / 2);
+            StartCoroutine(ShieldBreak());
+            stateMachine.ChangeState(idleState);
+        }
+        else
+        {
+            hps.LoseHP(dgt);
+        }
         StartCoroutine(cdDamage());
     }
 
