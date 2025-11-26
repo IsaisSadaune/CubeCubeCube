@@ -95,7 +95,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        hitbox = GetComponent<CapsuleCollider>();
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
@@ -242,7 +241,8 @@ public class Player : MonoBehaviour, IDamageable
     //tmp var isais
     private float cdIFrames = 1f;
     private float cdCantMove = 0.5f;
-    private CapsuleCollider hitbox;
+    
+    public CapsuleCollider hitbox;
     [SerializeField] private HP_Test hps;
     public bool iFraming { get; private set; }
 

@@ -7095,8 +7095,12 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: hitbox
+      value: 
+      objectReference: {fileID: 1238034941}
+    - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: dashForce
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: dashBuffer
@@ -7112,12 +7116,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: dashCooldown
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: shieldFeedback
       value: 
       objectReference: {fileID: 592688858}
+    - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: timeBeforeNextCombo
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+      propertyPath: timeBeforeNextAttack
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4675595258489116904, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -8115,7 +8127,7 @@ GameObject:
   - component: {fileID: 1229730455}
   - component: {fileID: 1229730454}
   - component: {fileID: 1229730457}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8278,6 +8290,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
   m_PrefabInstance: {fileID: 1233423994}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1238034941 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3510525265170032637, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+  m_PrefabInstance: {fileID: 1038994252}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1251023603
 PrefabInstance:
@@ -13321,7 +13338,7 @@ GameObject:
   - component: {fileID: 2128298212}
   - component: {fileID: 2128298214}
   - component: {fileID: 2128298213}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13589,6 +13606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273184884827514615, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1547032419568078630, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: MaxHP
       value: 150
@@ -13597,6 +13618,10 @@ PrefabInstance:
       propertyPath: damageFeedback
       value: 
       objectReference: {fileID: 1525263045}
+    - target: {fileID: 1966572031093066021, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2463773570773159392, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.63
@@ -13694,9 +13719,17 @@ PrefabInstance:
       propertyPath: managedReferences[2889729989882937734].GUID.m_Value1
       value: 4368275701819081812
       objectReference: {fileID: 0}
+    - target: {fileID: 6095583294340195771, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6187916608394519881, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: m_Name
       value: tmp_Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187916608394519881, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8697116601359446504, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

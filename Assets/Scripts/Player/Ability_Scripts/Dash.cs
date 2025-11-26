@@ -34,6 +34,7 @@ public class Dash : MonoBehaviour
     public IEnumerator DashCoroutine()
     {
         player.canDash = false;
+        player.hitbox.enabled = false;
         RaycastHit hit;
         float startTime = Time.time;
         Vector3 startPos = player.rb.position;
@@ -72,6 +73,8 @@ public class Dash : MonoBehaviour
         player.stateMachine.ChangeState(player.idleState);
         yield return new WaitForSeconds(player.dashCooldown);
         player.canDash = true;
+        yield return new WaitForSeconds(0.2f);
+        player.hitbox.enabled = true;
     }
    
    public IEnumerator DashTrail(float time)
