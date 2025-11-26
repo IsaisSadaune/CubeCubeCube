@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class TutoDamageBox : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Transform respawnPoint; 
+    public Player playerState;
+    public GameObject playerGo; 
+    
+    void OnTriggerEnter()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (playerState.stateMachine.currentPlayerState != playerState.dashState)
+            playerGo.transform.position = respawnPoint.position;
     }
 }
