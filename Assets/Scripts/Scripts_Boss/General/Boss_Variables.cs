@@ -11,6 +11,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public bool isSlimy { get; private set; }
     public bool isDestroying { get; private set; }
     public MMF_Player damageFeedback;
+    public MMF_Player deathFeedback;
     public GameObject detector1;
 
     public GameObject detector2;
@@ -70,7 +71,8 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     }
     public void FeedBackMort()
     {
-        visual.transform.DOScale(Vector3.zero, 1f)
-            .OnComplete(() => Destroy(gameObject));
+        deathFeedback.PlayFeedbacks();
+        //visual.transform.DOScale(Vector3.zero, 1f)
+        //    .OnComplete(() => Destroy(gameObject));
     }
 }

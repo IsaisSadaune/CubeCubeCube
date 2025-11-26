@@ -19,7 +19,8 @@ public class Attack : MonoBehaviour
         }
 
         
-        player.combo[xCombo].attackCollider.gameObject.SetActive(true);
+        player.combo[xCombo].attackCollider.enabled = true;
+        player.combo[xCombo].attackCollider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
 
         if(comboCoroutine != null)
