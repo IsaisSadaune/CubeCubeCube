@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -7,13 +6,30 @@ public class Dash : MonoBehaviour
     public Player player;
     public CapsuleCollider capsule;
     public LayerMask obstacleMask;
+
+    [Header("Mesh Related")]
+    public float timeActive = 2f;
+    public float meshRefreshRate = 0.1f;
+    public Transform positionToSpawn;
+    public Material mat;
+
+    [SerializeField]
+    private SkinnedMeshRenderer[] skinnedMeshRenderers;
+    [SerializeField]
+    private bool isTrailActive = false;
+    
     public void StartDash()
     {
         StartCoroutine(DashCoroutine());
+        if(!isTrailActive)
+        {
+            isTrailActive = true;
+            StartCoroutine(DashTrail(timeActive));
+        }
     }
-    
-    
-    
+
+
+
     #region Coroutines
     public IEnumerator DashCoroutine()
     {
@@ -56,6 +72,41 @@ public class Dash : MonoBehaviour
         player.stateMachine.ChangeState(player.idleState);
         yield return new WaitForSeconds(player.dashCooldown);
         player.canDash = true;
+    }
+   
+   public IEnumerator DashTrail(float time)
+    {
+        while (time > 0)
+        {
+
+            time -= meshRefreshRate;
+
+            if (skinnedMeshRenderers == null || skinnedMeshRenderers.Length == 0)
+{
+    skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+    Debug.Log("SkinnedMeshes found: " + skinnedMeshRenderers.Length);
+}
+
+for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+{
+    GameObject gObj = new GameObject("TrailMesh");
+    gObj.transform.position = positionToSpawn.position;
+    gObj.transform.rotation = skinnedMeshRenderers[i].transform.rotation;
+
+    MeshRenderer mr = gObj.AddComponent<MeshRenderer>();
+    MeshFilter mf = gObj.AddComponent<MeshFilter>();
+
+    Mesh mesh = new Mesh();
+    skinnedMeshRenderers[i].BakeMesh(mesh);
+    mf.mesh = mesh;
+    mr.material = mat;
+
+    Destroy(gObj, 0.2f);
+}
+            
+            yield return new WaitForSeconds(meshRefreshRate);
+        }
+        isTrailActive = false;
     }
     #endregion
 }

@@ -1,12 +1,9 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
-using MoreMountains.Feedbacks;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.MeshOperations;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -62,6 +59,7 @@ public class Player : MonoBehaviour, IDamageable
     public float lastAttack { get; set; }
 
     [Header("Shield Variables")]
+    public MMF_Player shieldFeedback;
     public GameObject shield;
     public float shieldActivation { get; set; }
     [SerializeField] private float parryTiming;
@@ -97,7 +95,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        hitbox = GetComponent<CapsuleCollider>();
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
@@ -121,7 +118,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             bufferTimer -= Time.deltaTime;
         }
-        if(bufferTimer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
+        if (bufferTimer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
             stateMachine.ChangeState(dashState);
             bufferTimer = 0;
@@ -130,39 +127,39 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         stateMachine.currentPlayerState.PhysicsUpdate();
-      Vector3 camForward = Camera.main.transform.forward;
-    Vector3 camRight = Camera.main.transform.right;
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
 
-    camForward.y = 0f;
-    camRight.y = 0f;
-    camForward.Normalize();
-    camRight.Normalize();
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
 
-    // dashDirection suit la même logique que direction
-    dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
-}
+        // dashDirection suit la même logique que direction
+        dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+    }
 
-#region ControllerFunctions
-public void Move(InputAction.CallbackContext context)
-{
-    moveInput = context.ReadValue<Vector2>();
+    #region ControllerFunctions
+    public void Move(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
 
-    // Calcule la direction selon la caméra
-    Vector3 camForward = Camera.main.transform.forward;
-    Vector3 camRight = Camera.main.transform.right;
+        // Calcule la direction selon la caméra
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
 
-    camForward.y = 0f;
-    camRight.y = 0f;
-    camForward.Normalize();
-    camRight.Normalize();
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
 
-    direction = (camForward * moveInput.y + camRight * moveInput.x).normalized;
-}
+        direction = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+    }
 
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             bufferTimer = dashBuffer;
         }
@@ -179,6 +176,7 @@ public void Move(InputAction.CallbackContext context)
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
+            shieldFeedback.PlayFeedbacks();
             stateMachine.ChangeState(shieldState);
         }
 
@@ -243,9 +241,9 @@ public void Move(InputAction.CallbackContext context)
     //tmp var isais
     private float cdIFrames = 1f;
     private float cdCantMove = 0.5f;
-    private CapsuleCollider hitbox;
+    public CapsuleCollider hitbox;
     [SerializeField] private HP_Test hps;
-    private bool iFraming;
+    public bool iFraming { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -253,16 +251,6 @@ public void Move(InputAction.CallbackContext context)
         {
             talkingTrigger = true;
             //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
-        }
-
-        //ISAIS : ajout du trigger Boss 
-        //C'EST DEGUEULASSE !!!!!!!!!!!!
-        if (other.CompareTag("Boss") && !iFraming)
-        {
-            iFraming = true;
-            //Debug.Break();
-            Knockback(other.transform);
-            TakeDamage(2);
         }
     }
 
@@ -300,7 +288,7 @@ public void Move(InputAction.CallbackContext context)
     {
         Debug.Log("joueur prend dgts");
 
-        if(stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
+        if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             Debug.Log("PARRY");
             //Parry();
