@@ -244,7 +244,7 @@ public class Player : MonoBehaviour, IDamageable
     
     public CapsuleCollider hitbox;
     [SerializeField] private HP_Test hps;
-    public bool iFraming { get; private set; }
+    public bool iFraming { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -252,16 +252,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             talkingTrigger = true;
             //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
-        }
-
-        //ISAIS : ajout du trigger Boss 
-        //C'EST DEGUEULASSE !!!!!!!!!!!!
-        if (other.CompareTag("Boss") && !iFraming)
-        {
-            iFraming = true;
-            //Debug.Break();
-            Knockback(other.transform);
-            TakeDamage(2);
         }
     }
 
