@@ -2070,7 +2070,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8447345114822805049}
-  - {fileID: 8231537208724914221}
   - {fileID: 2342561958175109603}
   - {fileID: 1236401970054650298}
   - {fileID: 4444495002077728426}
@@ -2095,6 +2094,7 @@ Transform:
   - {fileID: 4494418218088283728}
   - {fileID: 4977372144643668229}
   - {fileID: 3107201403744340549}
+  - {fileID: 8231537208724914221}
   m_Father: {fileID: 539745478100655087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3465011012192965797
@@ -2437,6 +2437,7 @@ MonoBehaviour:
   dashCooldown: 0.25
   dashBuffer: 0.2
   moveInput: {x: 0, y: 0}
+  dmgFeedback: {fileID: 0}
   canDash: 1
   isGrounded: 1
   combo:
@@ -2475,6 +2476,10 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 72
+  timeActive: 2
+  meshRefreshRate: 0.1
+  positionToSpawn: {fileID: 0}
+  mat: {fileID: 0}
 --- !u!114 &852513687303818800
 MonoBehaviour:
   m_ObjectHideFlags: 0

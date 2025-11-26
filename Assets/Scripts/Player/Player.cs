@@ -62,6 +62,7 @@ public class Player : MonoBehaviour, IDamageable
     public float lastAttack { get; set; }
 
     [Header("Shield Variables")]
+    public MMF_Player shieldFeedback;
     public GameObject shield;
     public float shieldActivation { get; set; }
     [SerializeField] private float parryTiming;
@@ -179,6 +180,7 @@ public void Move(InputAction.CallbackContext context)
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
+            shieldFeedback.PlayFeedbacks();
             stateMachine.ChangeState(shieldState);
         }
 
