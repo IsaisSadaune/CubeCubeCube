@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour, IDamageable
     #endregion
 
     #region Others Variables
+
+    public MMF_Player dmgFeedback;
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
@@ -310,6 +313,7 @@ public void Move(InputAction.CallbackContext context)
         }
         else
         {
+            dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
         }
         StartCoroutine(cdDamage());

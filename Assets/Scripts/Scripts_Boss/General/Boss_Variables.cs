@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class Boss_Variables : MonoBehaviour, IDamageable
@@ -9,7 +10,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public float HP { get; private set; }
     public bool isSlimy { get; private set; }
     public bool isDestroying { get; private set; }
-
+    public MMF_Player damageFeedback;
     public GameObject detector1;
 
     public GameObject detector2;
@@ -61,10 +62,11 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     }
     public void FeedBackDMG()
     {
-        Vector3 x = visual.transform.localScale;
-        visual.transform.DOScale(x * 1.25f, 0.12f).SetEase(Ease.InOutBounce)
-            .OnComplete(() =>
-            visual.transform.DOScale(x, 0.12f).SetEase(Ease.InOutBounce));
+        damageFeedback.PlayFeedbacks();
+        // Vector3 x = visual.transform.localScale;
+        // visual.transform.DOScale(x * 1.25f, 0.12f).SetEase(Ease.InOutBounce)
+        //     .OnComplete(() =>
+        //     visual.transform.DOScale(x, 0.12f).SetEase(Ease.InOutBounce));
     }
     public void FeedBackMort()
     {
