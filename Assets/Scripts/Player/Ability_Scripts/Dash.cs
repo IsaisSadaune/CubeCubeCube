@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -11,9 +10,9 @@ public class Dash : MonoBehaviour
     {
         StartCoroutine(DashCoroutine());
     }
-    
-    
-    
+
+
+
     #region Coroutines
     public IEnumerator DashCoroutine()
     {
