@@ -1,6 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -29,9 +27,9 @@ public class Dash : MonoBehaviour
             StartCoroutine(DashTrail(timeActive));
         }
     }
-    
-    
-    
+
+
+
     #region Coroutines
     public IEnumerator DashCoroutine()
     {

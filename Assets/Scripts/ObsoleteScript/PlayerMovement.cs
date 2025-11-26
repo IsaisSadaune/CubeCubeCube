@@ -1,8 +1,6 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -85,6 +83,6 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-        
+
     }
 }
