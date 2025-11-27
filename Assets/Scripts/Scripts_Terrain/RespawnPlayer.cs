@@ -7,7 +7,7 @@ public class RespawnPlayer : MonoBehaviour
     [SerializeField] private List<SlabController> slabs;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("PING");
+        //Debug.Log("PING");
         if(other.CompareTag("PlayerHitbox"))
         {
             if(!other.transform.parent.GetComponent<Player>().iFraming)
