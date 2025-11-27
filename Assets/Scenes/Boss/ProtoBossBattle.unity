@@ -195,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674980226887039555, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4687,7 +4687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674980226887039555, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10011,6 +10011,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
   m_PrefabInstance: {fileID: 1415455405}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420910997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1547032419568078630, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+  m_PrefabInstance: {fileID: 3271871198100583833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41989871fcd254949ba107d703e4db06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1424903822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14398,7 +14409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1547032419568078630, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: MaxHP
-      value: 150
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1547032419568078630, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: deathFeedback
@@ -14458,12 +14469,21 @@ PrefabInstance:
         UnityEngine.CoreModule]]'
       objectReference: {fileID: 0}
     - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: 'managedReferences[2889730464586662804]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Boss_Variables,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: managedReferences[2889729989882937734].Name
       value: FbPlayerDeath
       objectReference: {fileID: 0}
     - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: managedReferences[2889730464586662804].Name
+      value: Boss_HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: managedReferences[2463158003872301215].m_Value
@@ -14498,8 +14518,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1229730452}
     - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: managedReferences[2889730464586662804].m_Value
+      value: 
+      objectReference: {fileID: 1420910997}
+    - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[10]'
       value: 2889729989882937734
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[11]'
+      value: 2889730464586662804
       objectReference: {fileID: 0}
     - target: {fileID: 2555708168291521901, guid: 01f0e1618a4f844468e830bae8d88017, type: 3}
       propertyPath: managedReferences[2889729989882937734].GUID.m_Value0
