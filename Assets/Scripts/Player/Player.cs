@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IDamageable
     public float speed = 5f;
     public float dashForce = 10f;
     public float dashDuration;
+    public float dashTimer {get; set;}
     public float dashCooldown;
     public float dashBuffer;
     private float bufferTimer;

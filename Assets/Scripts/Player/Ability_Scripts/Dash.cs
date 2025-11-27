@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -21,11 +22,11 @@ public class Dash : MonoBehaviour
     public void StartDash()
     {
         StartCoroutine(DashCoroutine());
-        if(!isTrailActive)
-        {
-            isTrailActive = true;
+        // if(!isTrailActive)
+        // {
+        //     isTrailActive = true;
             StartCoroutine(DashTrail(timeActive));
-        }
+        //}
     }
 
 
@@ -37,6 +38,7 @@ public class Dash : MonoBehaviour
         player.hitbox.enabled = false;
         RaycastHit hit;
         float startTime = Time.time;
+        
         Vector3 startPos = player.rb.position;
         Vector3 endPos;
 
@@ -50,23 +52,35 @@ public class Dash : MonoBehaviour
         else if (Physics.CapsuleCast(p1, p2, capsule.radius, player.rb.transform.forward, out hit, 5f, obstacleMask))
         {
             if (player.dashDirection != Vector3.zero)
+            {
                 endPos = player.rb.position + player.dashDirection * hit.distance;
+                player.dashTimer = hit.distance * player.dashDuration / player.dashForce;
+            }
             else
+            {
                 endPos = player.rb.position + player.transform.forward * hit.distance;
+                player.dashTimer = hit.distance * player.dashDuration / player.dashForce;
+            }
         }
         else
         {
             if (player.dashDirection != Vector3.zero)
+            {
                 endPos = player.rb.position + player.dashDirection * player.dashForce;
+                player.dashTimer = player.dashDuration;
+            }
             else
+            {
                 endPos = player.rb.position + player.transform.forward * player.dashForce;
+                player.dashTimer = player.dashDuration;
+            }
         }
 
 
-
-        while (Time.time < startTime + player.dashDuration)
+        
+        while (Time.time < startTime + player.dashTimer)
         {
-            float t = (Time.time - startTime) / player.dashDuration;
+            float t = (Time.time - startTime) / player.dashTimer;
             player.rb.MovePosition(Vector3.Lerp(startPos, endPos, t));
             yield return null;
         }
@@ -109,7 +123,7 @@ for (int i = 0; i < skinnedMeshRenderers.Length; i++)
             
             yield return new WaitForSeconds(meshRefreshRate);
         }
-        isTrailActive = false;
+        //isTrailActive = false;
     }
     #endregion
 }
