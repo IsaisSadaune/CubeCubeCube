@@ -18,6 +18,7 @@ public partial class DigletAttackAction : Action
     {
         tw = Self.Value.transform.DOMoveY(1f, 1f/ speed)
             .SetEase(Ease.InOutQuint)
+            .SetDelay(0.3f)
             .OnComplete(() =>
             {
                 Self.Value.GetComponent<Boss_Variables>().SetDestroying();
