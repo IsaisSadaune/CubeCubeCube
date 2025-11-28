@@ -5,6 +5,7 @@ public class RespawnPlayer : MonoBehaviour
 {
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private List<SlabController> slabs;
+    [SerializeField] private Player p;
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("PING");
@@ -13,6 +14,7 @@ public class RespawnPlayer : MonoBehaviour
             if(!other.transform.parent.GetComponent<Player>().iFraming)
                 other.transform.parent.GetComponent<HP_Test>().LoseHP(1);
             HardRespawn();
+            p.hasFalledRecently = true;
             other.transform.parent.position = respawnPoint.transform.position;
         }
     }
