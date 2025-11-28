@@ -20,21 +20,23 @@ public class TutoManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(Instance);
     }
-
+    [ContextMenu("transition test")]
     public void TransitionIn()
     {
         asProc = true;
         img.DOFade(1, 1).OnComplete(
             () =>
             {
-                SceneManager.LoadScene("ProtoBossBattle");
+                img.gameObject.SetActive(false);
                 TransitionOut();
+                SceneManager.LoadScene("ProtoBossBattle");
             }
         );
     }
 
     public void TransitionOut()
     {
+        img.gameObject.SetActive(true);
         img.DOFade(0, 1);
     }
 }
