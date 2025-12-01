@@ -239,6 +239,7 @@ public class Player : MonoBehaviour, IDamageable
 
 
     //tmp var isais
+    public bool hasFalledRecently = false;
     private float cdIFrames = 1f;
     private float cdCantMove = 0.5f;
     public CapsuleCollider hitbox;

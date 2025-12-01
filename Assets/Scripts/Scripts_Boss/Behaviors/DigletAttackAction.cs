@@ -14,10 +14,14 @@ public partial class DigletAttackAction : Action
     private Tween tw;
 
     private float speed => Speed.Value;
+
+    private float delayStart = 0.3f;
+
     protected override Status OnStart()
     {
         tw = Self.Value.transform.DOMoveY(1f, 1f/ speed)
             .SetEase(Ease.InOutQuint)
+            .SetDelay(delayStart)
             .OnComplete(() =>
             {
                 Self.Value.GetComponent<Boss_Variables>().SetDestroying();

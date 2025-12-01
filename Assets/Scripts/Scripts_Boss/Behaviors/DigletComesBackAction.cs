@@ -17,7 +17,8 @@ public partial class DigletComesBackAction : Action
     protected override Status OnStart()
     {
         Transform _location;
-        if (Player.Value == null || !Player.Value.activeSelf) _location = Center.Value;
+        if (Player.Value == null || !Player.Value.activeSelf || 
+            Player.Value.GetComponent<Player>().hasFalledRecently) _location = Center.Value;
         else _location = Player.Value.transform;
 
             t = Self.Value.transform.DOMove(_location.transform.position + Vector3.down * 8f, 1f / speed).
