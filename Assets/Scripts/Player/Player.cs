@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IDamageable
     public float dashBuffer;
     private float bufferTimer;
     [HideInInspector] public Vector2 moveInput;
-    public Vector3 direction { get; private set; }
+    public Vector3 direction { get; set; }
 
     #endregion
 
@@ -35,12 +35,13 @@ public class Player : MonoBehaviour, IDamageable
     public Rigidbody rb { get; private set; }
     [Header("InputActions")]
     public PlayerInput playerInput { get; private set; }
-
+    public ParticleSystem dust;
 
     #endregion
 
     #region Others Variables
-
+    public bool isDead {get; set;}
+    public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour, IDamageable
     public float lastAttack { get; set; }
 
     [Header("Shield Variables")]
-    public MMF_Player shieldFeedback;
+    
     public GameObject shield;
     public float shieldActivation { get; set; }
     [SerializeField] private float parryTiming;
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour, IDamageable
         playerInput = GetComponent<PlayerInput>();
         dialogue_Manager = GetComponent<Dialogue_Manager>();
 
-
+        
         for (int i = 0; i < combo.Count; i++)
         {
             combo[i].attackCollider = attacksCollider[i];
@@ -137,6 +138,7 @@ public class Player : MonoBehaviour, IDamageable
         camRight.Normalize();
 
         // dashDirection suit la même logique que direction
+        
         dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
     }
 
@@ -177,7 +179,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
-            shieldFeedback.PlayFeedbacks();
             stateMachine.ChangeState(shieldState);
         }
 
@@ -319,7 +320,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Destroy(gameObject);
+        deathFeedback.PlayFeedbacks();
+    }
+
+    public void CreateDust()
+    {
+        dust.Play();
     }
 
 

@@ -10,11 +10,15 @@ public class WalkingState : PlayerState
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        player.animator.SetBool("isMoving", true);
+        player.CreateDust();
     }
     public override void ExitState()
     {
         player.moveInput = Vector2.zero;
         player.rb.linearVelocity = Vector3.zero;
+        player.animator.SetBool("isMoving", false);
+        player.dust.Stop();
     }
     public override void FrameUpdate()
     {
@@ -24,10 +28,17 @@ public class WalkingState : PlayerState
             stateMachine.ChangeState(player.idleState);
         }
 
+        
     }
 
     public override void PhysicsUpdate()
     {
+        if (player.isDead)
+        {
+            player.rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
         if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
         {
             Vector2 input = player.moveInput;

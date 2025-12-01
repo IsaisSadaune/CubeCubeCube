@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HP_Test : MonoBehaviour
 {
@@ -28,7 +29,9 @@ public class HP_Test : MonoBehaviour
 
     private void KillPlayer()
     {
-        Destroy(player.gameObject);
+        player.deathFeedback.PlayFeedbacks();
+        player.isDead = true;
+        player.animator.SetBool("isDead", true);
     }
 
 }
