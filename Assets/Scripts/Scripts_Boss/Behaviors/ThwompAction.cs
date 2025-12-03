@@ -6,25 +6,27 @@ using Unity.Properties;
 using DG.Tweening;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Dice1_Thwomp", story: "[Self] goes Up", category: "Action", id: "8a29414cc295e410bf511dad269c9b74")]
-public partial class Dice1ThwompAction : Action
+[NodeDescription(name: "Thwomp", story: "[Self] stop then stomp", category: "Action", id: "fff7aa48212834ddcc3440543f896723")]
+public partial class ThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    private Tween t;
+    private bool finished = false;
 
-    
-    private float timeToGoUp = 1;
-    private Ease ease = Ease.InOutQuint;
+    private float timeToStomp = 1f;
+    private Ease ease = Ease.InQuint;
 
     protected override Status OnStart()
     {
-        t = Self.Value.transform.DOMoveY(25, timeToGoUp).SetEase(ease);
+        finished = false;
+        Self.Value.transform.DOMoveY(0, timeToStomp)
+            .SetEase(ease)
+            .OnComplete(() => finished = true);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (!t.IsPlaying())
+        if(finished)
             return Status.Success;
         return Status.Running;
     }

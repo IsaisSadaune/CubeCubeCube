@@ -22,10 +22,10 @@ public class UI_Player : MonoBehaviour
 
         while (x > 0)
         {
+            if (pointeur < 0) break;
             fullHPs[pointeur].SetActive(false);
             x--;
             pointeur--;
-            if (pointeur < 0) break;
         }
     }
 
