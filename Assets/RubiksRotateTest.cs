@@ -1,16 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
+
 public class RubiksRotateTest : MonoBehaviour
 {
-    [SerializeField] private GameObject A1;
-    [SerializeField] private GameObject A2;
-    [SerializeField] private GameObject A3;
-    [SerializeField] private GameObject B1;
-    [SerializeField] private GameObject B2;
-    [SerializeField] private GameObject B3;
-    [SerializeField] private GameObject C1;
-    [SerializeField] private GameObject C2;
-    [SerializeField] private GameObject C3;
+    [SerializeField] private List<GameObject> RubiksCube;
     [SerializeField] private Transform i;
     [SerializeField] private Transform j;
     [SerializeField] private Transform k;
@@ -18,65 +12,106 @@ public class RubiksRotateTest : MonoBehaviour
     [SerializeField] private Transform m;
     [SerializeField] private Transform OGParent;
 
-    [ContextMenu("Rotate I")]
-    public void RotateI()
+    [ContextMenu("Rotate I Alt")]
+    public void RotateIAlt()
     {
-        A1.transform.parent= i;
-        B1.transform.parent= i;
-        C1.transform.parent= i;
-        i.transform.DORotate(new Vector3(360, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisX(i.position.x);
+        foreach (var v in o) v.transform.parent = i;
+        i.transform.DORotate(new Vector3(90, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
-    [ContextMenu("Rotate J")]
-    public void RotateJ()
+    [ContextMenu("Rotate J Alt")]
+    public void RotateJAlt()
     {
-        A1.transform.parent= j;
-        A2.transform.parent= j;
-        A3.transform.parent= j;
-        j.transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisZ(j.position.z);
+        foreach (var v in o) v.transform.parent = j;
+        j.transform.DORotate(new Vector3(0, 0, 90), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
-    [ContextMenu("Rotate K1")]
-    public void RotateK1()
+    [ContextMenu("Rotate K1 Alt")]
+    public void RotateK1Alt()
     {
-        A2.transform.parent= k;
-        B2.transform.parent= k;
-        C2.transform.parent= k;
-        k.transform.DORotate(new Vector3(360, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisZ(k.position.z);
+        foreach (var v in o) v.transform.parent = k;
+        k.transform.DORotate(new Vector3(0, 0, 90), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
-    [ContextMenu("Rotate K2")]
-    public void RotateK2()
+    [ContextMenu("Rotate K2 Alt")]
+    public void RotateK2Alt()
     {
-        B1.transform.parent= k;
-        B2.transform.parent= k;
-        B3.transform.parent= k;
-        k.transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisX(k.position.x);
+        foreach (var v in o) v.transform.parent = k;
+        k.transform.DORotate(new Vector3(90, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
-    [ContextMenu("Rotate L")]
-    public void RotateL()
+    [ContextMenu("Rotate L Alt")]
+    public void RotateLAlt()
     {
-        C1.transform.parent= l;
-        C2.transform.parent= l;
-        C3.transform.parent= l;
-        l.transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisZ(l.position.z);
+        foreach (var v in o) v.transform.parent = l;
+        l.transform.DORotate(new Vector3(0, 0, 90), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
-    [ContextMenu("Rotate M")]
-    public void RotateM()
+    [ContextMenu("Rotate M Alt")]
+    public void RotateMAlt()
     {
-        A3.transform.parent= m;
-        B3.transform.parent= m;
-        C3.transform.parent= m;
-        m.transform.DORotate(new Vector3(360, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
+        ResetPos();
+        ResetParents();
+        List<GameObject> o = GetObjectWithThisX(m.position.x);
+        foreach (var v in o) v.transform.parent = m;
+        m.transform.DORotate(new Vector3(90, 0, 0), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuint).OnComplete(() => ResetParents());
     }
+
+
+
+    //Il est minuit ok laissez-moi test mes théories j'ai rallumé mon PC pour ça
+    public List<GameObject> GetObjectWithThisX(float X)
+    {
+        List<GameObject> objects = new();
+        foreach(var v in RubiksCube) if(Mathf.Approximately(v.transform.position.x, X)) objects.Add(v);
+        return objects;
+    }
+    public List<GameObject> GetObjectWithThisZ(float Z)
+    {
+        List<GameObject> objects = new();
+        foreach(var v in RubiksCube) if(Mathf.Approximately(v.transform.position.z, Z)) objects.Add(v);
+        return objects;
+    }
+
+
     private void ResetParents()
     {
-        A1.transform.parent = OGParent;
-        A2.transform.parent = OGParent;
-        A3.transform.parent = OGParent;
-        B1.transform.parent = OGParent;
-        B2.transform.parent = OGParent;
-        B3.transform.parent = OGParent;
-        C1.transform.parent = OGParent;
-        C2.transform.parent = OGParent;
-        C3.transform.parent = OGParent;
+        foreach(var v in RubiksCube) v.transform.parent = OGParent;
+        i.rotation = Quaternion.identity;
+        j.rotation = Quaternion.identity;
+        k.rotation = Quaternion.identity;
+        l.rotation = Quaternion.identity;
+        m.rotation = Quaternion.identity;
+    }
+    private void ResetPos()
+    {
+        foreach(var v in RubiksCube)
+        {
+            float xValue = v.transform.position.x;
+            float yValue = v.transform.position.y;
+            float zValue = v.transform.position.z;
+            if (xValue < 1 && xValue > -1) xValue = 0f;
+            if (xValue < 6 && xValue > 4 ) xValue = 5f;
+            if (xValue < -4 && xValue > -6) xValue = -5f;
+            if (yValue < 1 && yValue > -1) yValue = 0f;
+            if (yValue < 6 && yValue > 4 ) yValue = 5f;
+            if (yValue < -4 && yValue > -6) yValue = -5f;
+            if (zValue < 1 && zValue > -1) zValue = 0f;
+            if (zValue < 6 && zValue > 4 ) zValue = 5f;
+            if (zValue < -4 && zValue > -6) zValue = -5f;
+            v.transform.position = new(xValue, yValue, zValue);
+
+        }
     }
 
 }
