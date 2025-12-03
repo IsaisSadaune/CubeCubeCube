@@ -22,7 +22,6 @@ public class Dash : MonoBehaviour
     public void StartDash()
     {
         StartCoroutine(DashCoroutine());
-        player.dashSound.Play();
         // if(!isTrailActive)
         // {
         //     isTrailActive = true;

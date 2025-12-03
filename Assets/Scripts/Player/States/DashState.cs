@@ -13,6 +13,7 @@ public class DashState : PlayerState
     public override void EnterState()
     {
         Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        player.dashSound.Play();
         player.dash.StartDash();
     }
     public override void ExitState()

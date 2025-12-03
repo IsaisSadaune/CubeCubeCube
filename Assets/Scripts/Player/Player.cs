@@ -151,6 +151,10 @@ public class Player : MonoBehaviour, IDamageable
     #region ControllerFunctions
     public void Move(InputAction.CallbackContext context)
     {
+        if(context.performed)
+        {
+            moveInput = context.ReadValue<Vector2>();
+        }
         UpdateDirectionFromCamera();
     }
 
