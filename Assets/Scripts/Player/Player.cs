@@ -38,11 +38,15 @@ public class Player : MonoBehaviour, IDamageable
     public ParticleSystem dust;
 
     #endregion
-
-    #region Others Variables
-    public bool isDead {get; set;}
+    #region Feedbacks
+    [Header("Feedbacks References")]
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
+    #endregion
+
+    #region Others Variables
+    public InputActionReference moveRef;
+    public bool isDead {get; set;}
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
@@ -129,6 +133,9 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         stateMachine.currentPlayerState.PhysicsUpdate();
+
+        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+
         Vector3 camForward = Camera.main.transform.forward;
         Vector3 camRight = Camera.main.transform.right;
 
@@ -136,8 +143,6 @@ public class Player : MonoBehaviour, IDamageable
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
-
-        // dashDirection suit la même logique que direction
         
         dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
     }
@@ -145,9 +150,11 @@ public class Player : MonoBehaviour, IDamageable
     #region ControllerFunctions
     public void Move(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        UpdateDirectionFromCamera();
+    }
 
-        // Calcule la direction selon la caméra
+    void UpdateDirectionFromCamera()
+    {
         Vector3 camForward = Camera.main.transform.forward;
         Vector3 camRight = Camera.main.transform.right;
 
