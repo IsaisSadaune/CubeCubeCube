@@ -42,6 +42,7 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Feedbacks References")]
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
+    public AudioSource dashSound;
     #endregion
 
     #region Others Variables
