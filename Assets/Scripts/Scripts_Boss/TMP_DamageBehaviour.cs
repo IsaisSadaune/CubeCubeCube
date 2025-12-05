@@ -22,7 +22,7 @@ public class TMP_DamageBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("bossTrigger");
+        //Debug.Log("bossTrigger");
         if (other.CompareTag("CanDamageBoss"))
         {
             if(F_dmg != null)

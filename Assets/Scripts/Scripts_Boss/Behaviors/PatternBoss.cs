@@ -8,5 +8,6 @@ public enum PatternBoss
 	MegaMove,
 	GoToPlayer,
 	Spines,
-	Slime
+	Slime,
+	Thwomp
 }

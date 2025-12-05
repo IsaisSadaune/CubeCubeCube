@@ -51,14 +51,14 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     //}
     public void TakeDamage(int _dgt)
     {
-        Debug.Log("ouch");
+        //Debug.Log("ouch");
         HP -= _dgt;
         if (HP <= 0) Die();
         else FeedBackDMG();
     }
     public void Die()
     {
-        Debug.Log("mort");
+        //Debug.Log("mort");
         FeedBackMort();
     }
     public void FeedBackDMG()

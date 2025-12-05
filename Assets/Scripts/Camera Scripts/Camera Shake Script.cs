@@ -7,7 +7,7 @@ public class CameraShakeScript : CinemachineImpulseSource
     {
         if(Input.GetKey(KeyCode.Backspace))
         {
-            Debug.Log("Try shake");
+            //Debug.Log("Try shake");
             GenerateImpulse(); 
         }        
     }

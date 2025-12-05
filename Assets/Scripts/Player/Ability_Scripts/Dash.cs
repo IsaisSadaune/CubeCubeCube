@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -18,15 +17,18 @@ public class Dash : MonoBehaviour
     private SkinnedMeshRenderer[] skinnedMeshRenderers;
     [SerializeField]
     private bool isTrailActive = false;
-    
+
     public void StartDash()
     {
-        StartCoroutine(DashCoroutine());
-        // if(!isTrailActive)
-        // {
-        //     isTrailActive = true;
+        if (!player.isDead)
+        {
+            StartCoroutine(DashCoroutine());
+            // if(!isTrailActive)
+            // {
+            //     isTrailActive = true;
             StartCoroutine(DashTrail(timeActive));
-        //}
+            //}
+        }
     }
 
 
@@ -38,7 +40,7 @@ public class Dash : MonoBehaviour
         player.hitbox.enabled = false;
         RaycastHit hit;
         float startTime = Time.time;
-        
+
         Vector3 startPos = player.rb.position;
         Vector3 endPos;
 
@@ -77,7 +79,7 @@ public class Dash : MonoBehaviour
         }
 
 
-        
+
         while (Time.time < startTime + player.dashTimer)
         {
             float t = (Time.time - startTime) / player.dashTimer;
@@ -90,8 +92,8 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         player.hitbox.enabled = true;
     }
-   
-   public IEnumerator DashTrail(float time)
+
+    public IEnumerator DashTrail(float time)
     {
         while (time > 0)
         {
@@ -99,28 +101,28 @@ public class Dash : MonoBehaviour
             time -= meshRefreshRate;
 
             if (skinnedMeshRenderers == null || skinnedMeshRenderers.Length == 0)
-{
-    skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-    Debug.Log("SkinnedMeshes found: " + skinnedMeshRenderers.Length);
-}
+            {
+                skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+                //Debug.Log("SkinnedMeshes found: " + skinnedMeshRenderers.Length);
+            }
 
-for (int i = 0; i < skinnedMeshRenderers.Length; i++)
-{
-    GameObject gObj = new GameObject("TrailMesh");
-    gObj.transform.position = positionToSpawn.position;
-    gObj.transform.rotation = skinnedMeshRenderers[i].transform.rotation;
+            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            {
+                GameObject gObj = new GameObject("TrailMesh");
+                gObj.transform.position = positionToSpawn.position;
+                gObj.transform.rotation = skinnedMeshRenderers[i].transform.rotation;
 
-    MeshRenderer mr = gObj.AddComponent<MeshRenderer>();
-    MeshFilter mf = gObj.AddComponent<MeshFilter>();
+                MeshRenderer mr = gObj.AddComponent<MeshRenderer>();
+                MeshFilter mf = gObj.AddComponent<MeshFilter>();
 
-    Mesh mesh = new Mesh();
-    skinnedMeshRenderers[i].BakeMesh(mesh);
-    mf.mesh = mesh;
-    mr.material = mat;
+                Mesh mesh = new Mesh();
+                skinnedMeshRenderers[i].BakeMesh(mesh);
+                mf.mesh = mesh;
+                mr.material = mat;
 
-    Destroy(gObj, 0.2f);
-}
-            
+                Destroy(gObj, 0.2f);
+            }
+
             yield return new WaitForSeconds(meshRefreshRate);
         }
         //isTrailActive = false;
