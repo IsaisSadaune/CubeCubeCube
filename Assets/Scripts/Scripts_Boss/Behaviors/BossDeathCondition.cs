@@ -10,7 +10,7 @@ public partial class BossDeathCondition : Condition
 
     public override bool IsTrue()
     {
-        Debug.Log("Boss Mort ? : "+Boss.Value.HP );
+        //Debug.Log("Boss Mort ? : "+Boss.Value.HP );
         return Boss.Value.HP <= 0;
     }
 

@@ -29,7 +29,7 @@ public class SlabController : MonoBehaviour
     }
     public void Destroyed()
     {
-        Debug.Log("destroyed function");
+        //Debug.Log("destroyed function");
         Disparition();
     }
 
@@ -37,7 +37,7 @@ public class SlabController : MonoBehaviour
     private Coroutine isSlimed;
     public void Slimed()
     {
-        Debug.Log("slimed function");
+        //Debug.Log("slimed function");
         model.GetComponent<MeshRenderer>().material.color = Color.green;
         slimed = true;
     }
@@ -56,7 +56,7 @@ public class SlabController : MonoBehaviour
 
     private IEnumerator ReconstructionCoroutine(float timebeforeRepop)
     {
-        Debug.Log("ReconstructionCoroutine");
+        //Debug.Log("ReconstructionCoroutine");
         yield return new WaitForSeconds(timebeforeRepop);
         Apparition();
     }

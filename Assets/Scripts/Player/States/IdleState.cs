@@ -11,7 +11,7 @@ public class IdleState : PlayerState
     
     public override void EnterState()
     {
-        Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         
     }
     public override void ExitState()
