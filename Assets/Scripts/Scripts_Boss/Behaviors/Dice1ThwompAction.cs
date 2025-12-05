@@ -12,20 +12,19 @@ public partial class Dice1ThwompAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     private Tween t;
 
-    
-    private float hauteurBoss = 5;
+
     private float timeToGoUp = 1;
     private Ease ease = Ease.InOutQuint;
 
     protected override Status OnStart()
     {
-        t = Self.Value.transform.DOMoveY(hauteurBoss, timeToGoUp).SetEase(ease);
+        t = Self.Value.transform.DOMoveY(25, timeToGoUp).SetEase(ease);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (t.IsComplete())
+        if (!t.IsPlaying())
             return Status.Success;
         return Status.Running;
     }
