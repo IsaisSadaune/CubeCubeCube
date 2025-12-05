@@ -19,14 +19,14 @@ public class UI_Player : MonoBehaviour
     [ContextMenu("RemoveHP")]
     public void RemoveHP(int x)
     {
-
-        while (x > 0)
-        {
-            fullHPs[pointeur].SetActive(false);
-            x--;
-            pointeur--;
-            if (pointeur < 0) break;
-        }
+        if (pointeur > 0)
+            while (x > 0)
+            {
+                fullHPs[pointeur].SetActive(false);
+                x--;
+                pointeur--;
+                if (pointeur < 0) break;
+            }
     }
 
     [ContextMenu("AddHP")]
