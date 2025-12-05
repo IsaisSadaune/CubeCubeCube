@@ -6,7 +6,7 @@ public class SlabController : MonoBehaviour
 {
     private Vector3 scale;
     private float timeSlimed = 1f;
-    private float timeDestroyed = 2f;
+    private float timeDestroyed = 1f;
     private Color startColor;
     public bool slimed = false;
 

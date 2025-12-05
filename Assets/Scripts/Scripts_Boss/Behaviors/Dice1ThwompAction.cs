@@ -18,7 +18,7 @@ public partial class Dice1ThwompAction : Action
 
     protected override Status OnStart()
     {
-        t = Self.Value.transform.DOMoveY(25, timeToGoUp).SetEase(ease);
+        t = Self.Value.transform.DOMoveY(20, timeToGoUp).SetEase(ease);
         return Status.Running;
     }
 

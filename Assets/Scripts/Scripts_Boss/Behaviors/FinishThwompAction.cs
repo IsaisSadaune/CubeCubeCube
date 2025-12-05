@@ -11,7 +11,7 @@ public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     private float timeToStomp = 1f;
-    private Ease ease = Ease.InQuint;
+    private Ease ease = Ease.InOutBack;
     private bool finished = false;
 
     protected override Status OnStart()
@@ -19,7 +19,7 @@ public partial class FinishThwompAction : Action
         finished = false;
         Self.Value.transform.DOMoveY(0, timeToStomp)
             .SetEase(ease)
-            .OnComplete(() => finished = true);
+            .OnComplete(() => finished = true );
         return Status.Running;
     }
 
@@ -34,5 +34,7 @@ public partial class FinishThwompAction : Action
     {
         finished = false;
     }
+
+
 }
 
