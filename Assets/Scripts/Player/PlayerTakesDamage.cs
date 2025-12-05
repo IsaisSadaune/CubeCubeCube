@@ -15,6 +15,12 @@ public class PlayerTakesDamage : MonoBehaviour
             p.Knockback(other.transform);
             p.TakeDamage(2);
         }
+        else if (other.CompareTag("FakeDamage") && !p.iFraming)
+        {
+            p.iFraming = true;
+            p.Knockback(other.transform);
+            p.TakeDamage(0);
+        }
     }
 
 }
