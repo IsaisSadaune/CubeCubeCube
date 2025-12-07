@@ -35,63 +35,64 @@ public class Dash : MonoBehaviour
 
     #region Coroutines
     public IEnumerator DashCoroutine()
+{
+    player.canDash = false;
+    player.hitbox.enabled = false;
+
+    float startTime = Time.time;
+
+    Vector3 startPos = player.rb.position;
+
+
+    Vector3 dashDir = (player.dashDirection != Vector3.zero 
+                        ? player.dashDirection 
+                        : player.transform.forward).normalized;
+
+
+    Vector3 worldCenter = capsule.transform.TransformPoint(capsule.center);
+    float halfHeight = capsule.height / 2f - capsule.radius;
+
+    Vector3 p1 = worldCenter + Vector3.up * halfHeight;
+    Vector3 p2 = worldCenter - Vector3.up * halfHeight;
+
+    RaycastHit hit;
+    float dashDistance = player.dashForce;
+
+    if (Physics.CheckCapsule(p1, p2, capsule.radius, obstacleMask))
     {
-        player.canDash = false;
-        player.hitbox.enabled = false;
-        RaycastHit hit;
-        float startTime = Time.time;
+        dashDistance = 0f;
 
-        Vector3 startPos = player.rb.position;
-        Vector3 endPos;
-
-        Vector3 p1 = player.rb.position + capsule.center + Vector3.up * (capsule.height / 2f - capsule.radius);
-        Vector3 p2 = player.rb.position + capsule.center - Vector3.up * (capsule.height / 2f - capsule.radius);
-
-        if (Physics.CheckCapsule(p1, p2, capsule.radius, obstacleMask))
-        {
-            endPos = player.rb.position;
-        }
-        else if (Physics.CapsuleCast(p1, p2, capsule.radius, player.rb.transform.forward, out hit, 5f, obstacleMask))
-        {
-            if (player.dashDirection != Vector3.zero)
-            {
-                endPos = player.rb.position + player.dashDirection * hit.distance;
-                player.dashTimer = hit.distance * player.dashDuration / player.dashForce;
-            }
-            else
-            {
-                endPos = player.rb.position + player.transform.forward * hit.distance;
-                player.dashTimer = hit.distance * player.dashDuration / player.dashForce;
-            }
-        }
-        else
-        {
-            if (player.dashDirection != Vector3.zero)
-            {
-                endPos = player.rb.position + player.dashDirection * player.dashForce;
-                player.dashTimer = player.dashDuration;
-            }
-            else
-            {
-                endPos = player.rb.position + player.transform.forward * player.dashForce;
-                player.dashTimer = player.dashDuration;
-            }
-        }
-
-
-
-        while (Time.time < startTime + player.dashTimer)
-        {
-            float t = (Time.time - startTime) / player.dashTimer;
-            player.rb.MovePosition(Vector3.Lerp(startPos, endPos, t));
-            yield return null;
-        }
         player.stateMachine.ChangeState(player.idleState);
         yield return new WaitForSeconds(player.dashCooldown);
         player.canDash = true;
-        yield return new WaitForSeconds(0.2f);
-        player.hitbox.enabled = true;
+        yield break;
     }
+   
+    else if (Physics.CapsuleCast(p1, p2, capsule.radius, dashDir, out hit, player.dashForce, obstacleMask))
+    {
+        dashDistance = Mathf.Max(hit.distance - 0.05f, 0f);
+    }
+
+    float dashTime = dashDistance / player.dashForce * player.dashDuration;
+    Vector3 endPos = startPos + dashDir * dashDistance;
+
+    
+    while (Time.time < startTime + dashTime)
+    {
+        float t = (Time.time - startTime) / dashTime;
+        player.rb.MovePosition(Vector3.Lerp(startPos, endPos, t));
+        yield return new WaitForFixedUpdate();
+    }
+
+    player.stateMachine.ChangeState(player.idleState);
+
+   
+    yield return new WaitForSeconds(player.dashCooldown);
+    player.canDash = true;
+
+    yield return new WaitForSeconds(0.1f);
+    player.hitbox.enabled = true;
+}
 
     public IEnumerator DashTrail(float time)
     {
