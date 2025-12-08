@@ -58,7 +58,7 @@ MonoBehaviour:
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
-  passMaterial: {fileID: 2100000, guid: f73e71c1f1ddb0542be28dbccdd508c1, type: 2}
+  passMaterial: {fileID: 0}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
@@ -133,7 +133,8 @@ MonoBehaviour:
   - {fileID: -3662164778901780970}
   - {fileID: -7259161857173076241}
   - {fileID: -340843206726092253}
-  m_RendererFeatureMap: ad6b866f10d7b46c16c69c5c89602dcdef462268c046429b237afccae81445fb
+  - {fileID: 6155540227503692390}
+  m_RendererFeatureMap: ad6b866f10d7b46c16c69c5c89602dcdef462268c046429b237afccae81445fb661afc3439df6c55
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -159,6 +160,20 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &6155540227503692390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8d6ac66772e4185bd13920192d54b3, type: 3}
+  m_Name: VHSPro
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  renderPassEvent: 550
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 0

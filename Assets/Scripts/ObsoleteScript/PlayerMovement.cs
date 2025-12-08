@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log($"Dashing {context.performed}");
+        //Debug.Log($"Dashing {context.performed}");
         if (context.performed)
         {
 

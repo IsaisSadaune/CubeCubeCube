@@ -302,7 +302,7 @@ public class Player : MonoBehaviour, IDamageable
     //ISAIS : Implémentation de l'interface
     public void TakeDamage(int dgt)
     {
-        Debug.Log("joueur prend dgts");
+        //Debug.Log("joueur prend dgts");
 
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {

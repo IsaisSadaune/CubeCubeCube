@@ -23,7 +23,8 @@ public class Attack : MonoBehaviour
 
         
         player.combo[xCombo].attackCollider.enabled = true;
-        slashSound.Play();
+        if(slashSound != null)
+            slashSound.Play();
         player.combo[xCombo].attackCollider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
 
