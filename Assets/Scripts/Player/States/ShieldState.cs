@@ -11,7 +11,7 @@ public class ShieldState : PlayerState
 
     public override void EnterState()
     {
-        Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         player.shield.SetActive(true);
         lastDirection = player.transform.forward;
         player.shieldActivation = Time.time;

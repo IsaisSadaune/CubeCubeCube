@@ -13,7 +13,7 @@ public class InteractState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
-        Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         player.playerInput.SwitchCurrentActionMap("UI");
         
     }
