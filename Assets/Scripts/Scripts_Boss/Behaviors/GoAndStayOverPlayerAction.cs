@@ -15,13 +15,14 @@ public partial class GoAndStayOverPlayerAction : Action
     private bool timePassed = false;
 
 
-    private float distancePlayerBoss = 25f;
+    private float distancePlayerBoss = 20f;
     private float timeBeforeThwomp = 1f;
 
     protected override Status OnStart()
     {
 
         timePassed = false;
+        Boss.Value.transform.DOScale(Vector3.one*5, 0.25f);
         Boss.Value.transform.position = Player.Value.transform.position + Vector3.up * distancePlayerBoss;
         Awaitable a = TimerBeforeFalling();
         return Status.Running;
