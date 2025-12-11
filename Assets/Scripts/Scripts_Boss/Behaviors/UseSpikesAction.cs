@@ -32,7 +32,7 @@ public partial class UseSpikesAction : Action
     {
         await Awaitable.WaitForSecondsAsync(0.5f);
         Spines.Value.SetActive(true);
-        Self.Value.transform.DOPunchScale(Vector3.one * 1.5f, 0.5f);
+        Self.Value.transform.DOPunchScale(Vector3.one * 3f, 0.5f);
         await Awaitable.WaitForSecondsAsync(1f);
         Spines.Value.SetActive(false);
     }
