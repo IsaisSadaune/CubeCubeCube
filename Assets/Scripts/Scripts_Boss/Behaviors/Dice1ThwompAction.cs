@@ -10,7 +10,8 @@ using DG.Tweening;
 public partial class Dice1ThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    private Tween t;
+    private Sequence t;
+
 
 
     private float timeToGoUp = 1;
@@ -18,7 +19,10 @@ public partial class Dice1ThwompAction : Action
 
     protected override Status OnStart()
     {
-        t = Self.Value.transform.DOMoveY(20, timeToGoUp).SetEase(ease);
+        t = DOTween.Sequence();
+        t.Append(Self.Value.transform.DOMoveY(20, timeToGoUp).SetEase(ease));
+        t.Append(Self.Value.transform.DOScale(Vector3.zero, 0.25f));
+        //Attention c'est pas dans la sequence c'est normal
         return Status.Running;
     }
 

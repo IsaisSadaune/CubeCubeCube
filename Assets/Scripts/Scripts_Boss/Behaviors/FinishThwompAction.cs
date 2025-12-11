@@ -11,7 +11,7 @@ public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     private float timeToStomp = 1f;
-    private Ease ease = Ease.InOutBack;
+    private Ease ease = Ease.InQuint; //Changer easing
     private bool finished = false;
 
     protected override Status OnStart()
