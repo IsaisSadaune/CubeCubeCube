@@ -15,24 +15,28 @@ public partial class GoToDestionationAction : Action
     [SerializeReference] public BlackboardVariable<float> Speed;
     [SerializeReference] public BlackboardVariable<GameObject> Feedback;
     Sequence tweenList;
+    Vector3 BossPosition => Self.Value.transform.position;
+    Vector3 DestinationPosition;
+
     private float speed => Speed.Value;
 
     protected override Status OnStart()
     {
+        DestinationPosition = Destination.Value.transform.position;
         Feedback.Value.SetActive(true);
         tweenList = DOTween.Sequence();
 
-        if (!Mathf.Approximately(Destination.Value.transform.position.x, Self.Value.transform.position.x))
+        if (!Mathf.Approximately(DestinationPosition.x, BossPosition.x))
         { 
-            tweenList.AppendCallback( () => Feedback.Value.transform.position = new Vector3(Destination.Value.transform.position.x, -2f, Self.Value.transform.position.z));
+            tweenList.AppendCallback( () => Feedback.Value.transform.position = new Vector3(DestinationPosition.x, -2f, BossPosition.z));
 
-            tweenList.Append(Self.Value.transform.DOMoveX(Destination.Value.transform.position.x, 1f / speed)
+            tweenList.Append(Self.Value.transform.DOMoveX(DestinationPosition.x, 1f / speed)
                     .SetEase(Ease.InOutQuint));
         }
-        if (!Mathf.Approximately(Destination.Value.transform.position.z, Self.Value.transform.position.z))
+        if (!Mathf.Approximately(DestinationPosition.z, BossPosition.z))
         {
-            tweenList.AppendCallback(() => Feedback.Value.transform.position = new Vector3(Self.Value.transform.position.x, -2f, Destination.Value.transform.position.z));
-            tweenList.Append(Self.Value.transform.DOMoveZ(Destination.Value.transform.position.z, 1f / speed)
+            tweenList.AppendCallback(() => Feedback.Value.transform.position = new Vector3(BossPosition.x, -2f, DestinationPosition.z));
+            tweenList.Append(Self.Value.transform.DOMoveZ(DestinationPosition.z, 1f / speed)
                 .SetEase(Ease.InOutQuint));
             }
         return Status.Running;
