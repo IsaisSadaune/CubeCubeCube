@@ -8,9 +8,11 @@ public class HP_Test : MonoBehaviour
     int current_hp;
     public Player player;
     [SerializeField] private UI_Player uip;
+    [SerializeField] private GameObject reloadButton;
 
     void Start()
     {
+        reloadButton.SetActive(false);
         current_hp = hp_max;
         if(uip != null)
             uip.SetHps(current_hp);
@@ -35,6 +37,7 @@ public class HP_Test : MonoBehaviour
         //Debug.Log("je suis mort ouch");
         player.deathFeedback.PlayFeedbacks();
         player.animator.SetBool("isDead", true);
+        reloadButton.SetActive(true);
     }
 
 }

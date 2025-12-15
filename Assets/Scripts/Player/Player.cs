@@ -67,6 +67,7 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
     [Header("Attack Variables")]
     public List<AttackSO> combo;
+    public bool bossHit = false;
     public BoxCollider[] attacksCollider;
     public string[] attacksAnimation;
 
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        Debug.Log(bossHit);
         stateMachine.currentPlayerState.FrameUpdate();
 
         if (bufferTimer > 0)
@@ -353,6 +355,5 @@ public class Player : MonoBehaviour, IDamageable
     {
         dust.Play();
     }
-
 
 }
