@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class HP_Test : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class HP_Test : MonoBehaviour
     void Start()
     {
         current_hp = hp_max;
-        if(uip != null)
+        if (uip != null)
             uip.SetHps(current_hp);
     }
 
@@ -22,7 +20,7 @@ public class HP_Test : MonoBehaviour
         if (uip != null)
             uip.RemoveHP(x);
 
-        if(current_hp <=0)
+        if (current_hp <= 0)
         {
             current_hp = 0;
             KillPlayer();
