@@ -1,9 +1,13 @@
+using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.AppUI.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -15,6 +19,7 @@ public class Player : MonoBehaviour, IDamageable
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
     public InteractState interactState { get; set; }
+    public MenuState menuState{get; set;}
     #endregion
 
     #region Movement Variables
@@ -47,6 +52,12 @@ public class Player : MonoBehaviour, IDamageable
 
     #region Others Variables
     public InputActionReference moveRef;
+
+    [Header("Menu Variables")]
+    public PauseMenu pauseMenu;
+    public int buttonSelected{get; set;}
+
+    [Header("===========================")]
     public bool isDead {get; set;}
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
@@ -56,6 +67,7 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
     [Header("Attack Variables")]
     public List<AttackSO> combo;
+    public bool bossHit = false;
     public BoxCollider[] attacksCollider;
     public string[] attacksAnimation;
 
@@ -98,6 +110,7 @@ public class Player : MonoBehaviour, IDamageable
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
+        menuState = new MenuState(this, stateMachine);
     }
 
     private void Start()
@@ -115,10 +128,12 @@ public class Player : MonoBehaviour, IDamageable
         {
             combo[i].attackCollider = attacksCollider[i];
         }
+
     }
 
     private void Update()
     {
+        Debug.Log(bossHit);
         stateMachine.currentPlayerState.FrameUpdate();
 
         if (bufferTimer > 0)
@@ -340,6 +355,5 @@ public class Player : MonoBehaviour, IDamageable
     {
         dust.Play();
     }
-
 
 }

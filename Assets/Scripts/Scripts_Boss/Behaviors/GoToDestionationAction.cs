@@ -26,6 +26,7 @@ public partial class GoToDestionationAction : Action
         Feedback.Value.SetActive(true);
         tweenList = DOTween.Sequence();
 
+        //verifie si le boss est proche de la position x voulue. Si oui, ne se déplace pas
         if (!Mathf.Approximately(DestinationPosition.x, BossPosition.x))
         { 
             tweenList.AppendCallback( () => Feedback.Value.transform.position = new Vector3(DestinationPosition.x, -2f, BossPosition.z));
@@ -33,6 +34,7 @@ public partial class GoToDestionationAction : Action
             tweenList.Append(Self.Value.transform.DOMoveX(DestinationPosition.x, 1f / speed)
                     .SetEase(Ease.InOutQuint));
         }
+        //pareil en z
         if (!Mathf.Approximately(DestinationPosition.z, BossPosition.z))
         {
             tweenList.AppendCallback(() => Feedback.Value.transform.position = new Vector3(BossPosition.x, -2f, DestinationPosition.z));

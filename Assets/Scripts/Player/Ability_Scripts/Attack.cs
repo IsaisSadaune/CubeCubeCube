@@ -30,15 +30,25 @@ public class Attack : MonoBehaviour
 
         if(comboCoroutine != null)
         {
-
+           
         }
-        comboCoroutine = StartCoroutine(ComboTimer());
+        comboCoroutine = StartCoroutine(ComboTimer());    
     }
 
     public IEnumerator ComboTimer()
     {
-        yield return new WaitForSeconds(0.5f);
-        player.stateMachine.ChangeState(player.idleState);
-        player.resetCombo = StartCoroutine(player.resetingCombo());
+        yield return new WaitForSeconds(0.05f);
+        if(player.bossHit)
+        {
+            yield return new WaitForSeconds(0.01f);
+            player.bossHit = false;
+            player.stateMachine.ChangeState(player.idleState);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            player.stateMachine.ChangeState(player.idleState);
+            player.resetCombo = StartCoroutine(player.resetingCombo());
+        }
     }
 }
