@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private PlayerInput input;
     public bool isPaused { get; private set; }
     [SerializeField] private GameObject pauseCanva;
+    [SerializeField] private GameObject startCanva;
 
     private void Start()
     {
@@ -17,13 +18,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OnPause()
     {
-        if (!isPaused)
+        if (!isPaused && !startCanva.activeSelf)
         {
             isPaused = true;
             pauseCanva.SetActive(isPaused);
             Time.timeScale = 0;
         }
-        else
+        else if (!startCanva.activeSelf)
         {
             isPaused = false;
             pauseCanva.SetActive(isPaused);

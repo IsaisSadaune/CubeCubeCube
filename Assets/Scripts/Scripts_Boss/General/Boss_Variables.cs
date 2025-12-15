@@ -12,9 +12,11 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public bool isDestroying { get; private set; }
     public MMF_Player damageFeedback;
     public MMF_Player deathFeedback;
+    
     public GameObject detector1;
-
     public GameObject detector2;
+
+    public bool IsDead() => HP <= 0;
 
     public void SetSlimy() => isSlimy = true;
     public void StopSlimy() => isSlimy = false;
