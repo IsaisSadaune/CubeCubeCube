@@ -53,7 +53,7 @@ public class UI_Player : MonoBehaviour
         if ((UnityEngine.Object)bv != null && bv.HP > 0)
         {
             time += Time.deltaTime;
-            timer.text = time.ToString();
+            timer.text = time.ToString("f2");
         }
     }
 
