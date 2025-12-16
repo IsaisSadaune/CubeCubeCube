@@ -115,6 +115,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
@@ -122,6 +123,8 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         dialogue_Manager = GetComponent<Dialogue_Manager>();
+
+        playerInput.SwitchCurrentActionMap("UI");
 
         
         for (int i = 0; i < combo.Count; i++)
@@ -133,7 +136,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        Debug.Log(bossHit);
         stateMachine.currentPlayerState.FrameUpdate();
 
         if (bufferTimer > 0)
@@ -189,7 +191,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!context.started) return;
         {
             bufferTimer = dashBuffer;
         }
@@ -212,6 +214,14 @@ public class Player : MonoBehaviour, IDamageable
         if (context.canceled && stateMachine.currentPlayerState == shieldState)
         {
             stateMachine.ChangeState(idleState);
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            pauseMenu.OnPause();
         }
     }
 

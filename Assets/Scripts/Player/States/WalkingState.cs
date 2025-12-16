@@ -39,7 +39,9 @@ public class WalkingState : PlayerState
             return;
         }
 
-        if (stateMachine.currentPlayerState == player.idleState || stateMachine.currentPlayerState == player.walkingState)
+        if (stateMachine.currentPlayerState == player.idleState 
+        || stateMachine.currentPlayerState == player.walkingState 
+        || stateMachine.currentPlayerState == player.attackState)
         {
             Vector2 input = player.moveInput;
 
