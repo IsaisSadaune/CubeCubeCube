@@ -26,12 +26,8 @@ public class Attack : MonoBehaviour
         if(slashSound != null)
             slashSound.Play();
         player.combo[xCombo].attackCollider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        player.rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
-
-        if(comboCoroutine != null)
-        {
-           
-        }
+        player.rb.linearVelocity = player.moveInput * player.speed;
+        
         comboCoroutine = StartCoroutine(ComboTimer());    
     }
 

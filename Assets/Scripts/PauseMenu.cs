@@ -3,13 +3,18 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private PlayerInput input;
-    public bool isPaused { get; private set; }
+    [SerializeField] private Player player;
+    public bool isPaused {get; private set;}
     [SerializeField] private GameObject pauseCanva;
     [SerializeField] private GameObject startCanva;
+
+    [SerializeField] private Button firstSelectedButton;
+    [SerializeField] private Button pauseMenuFirstSelectedButton;
 
     private void Start()
     {
@@ -20,16 +25,30 @@ public class PauseMenu : MonoBehaviour
     {
         if (!isPaused && !startCanva.activeSelf)
         {
-            isPaused = true;
+            Debug.Log("GABOUBOU");
+            isPaused = true;  
             pauseCanva.SetActive(isPaused);
+            EventSystem.current.SetSelectedGameObject(pauseMenuFirstSelectedButton.gameObject);
             Time.timeScale = 0;
+            player.playerInput.SwitchCurrentActionMap("UI");
         }
         else if (!startCanva.activeSelf)
         {
-            isPaused = false;
-            pauseCanva.SetActive(isPaused);
-            Time.timeScale = 1;
+            StartCoroutine(ExitPause());
         }
+    }
+
+    IEnumerator ExitPause()
+    {
+        isPaused = false;
+        pauseCanva.SetActive(isPaused);
+        
+        EventSystem.current.SetSelectedGameObject(firstSelectedButton.gameObject);
+        
+
+        Time.timeScale = 1;
+        yield return null;
+        player.playerInput.SwitchCurrentActionMap("Gameplay");
     }
 
     public void QuitGame()
