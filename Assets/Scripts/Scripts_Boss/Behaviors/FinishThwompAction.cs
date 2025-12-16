@@ -11,28 +11,27 @@ public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     private float timeToStomp = 1f;
-    private Ease ease = Ease.InQuint; //Changer easing
-    private bool finished = false;
+    private Ease ease = Ease.InOutQuint; //Changer easing
+    private Tween finished;
 
     protected override Status OnStart()
     {
-        finished = false;
+        finished = 
         Self.Value.transform.DOMoveY(-0.21f, timeToStomp)
-            .SetEase(ease)
-            .OnComplete(() => finished = true );
+            .SetEase(ease);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (finished)
+        if (!finished.IsPlaying())
             return Status.Success;
         return Status.Running;
     }
 
     protected override void OnEnd()
     {
-        finished = false;
+
     }
 
 
