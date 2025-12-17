@@ -1,15 +1,10 @@
-using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.AppUI.UI;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -21,7 +16,7 @@ public class Player : MonoBehaviour, IDamageable
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
     public InteractState interactState { get; set; }
-    public MenuState menuState{get; set;}
+    public MenuState menuState { get; set; }
     #endregion
 
     #region Movement Variables
@@ -29,7 +24,7 @@ public class Player : MonoBehaviour, IDamageable
     public float speed = 5f;
     public float dashForce = 10f;
     public float dashDuration;
-    public float dashTimer {get; set;}
+    public float dashTimer { get; set; }
     public float dashCooldown;
     public float dashBuffer;
     private float bufferTimer;
@@ -57,10 +52,10 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("Menu Variables")]
     public PauseMenu pauseMenu;
-    public int buttonSelected{get; set;}
+    public int buttonSelected { get; set; }
 
     [Header("===========================")]
-    public bool isDead {get; set;}
+    public bool isDead { get; set; }
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
     public Dash dash { get; private set; }
@@ -80,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable
     public float lastAttack { get; set; }
 
     [Header("Shield Variables")]
-    
+
     public GameObject shield;
     public float shieldActivation { get; set; }
     [SerializeField] private float parryTiming;
@@ -117,7 +112,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        
+
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
@@ -125,14 +120,14 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         dialogue_Manager = GetComponent<Dialogue_Manager>();
-        
+
 
         var actualScene = SceneManager.GetActiveScene();
-        
-        if(actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
+
+        if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
             playerInput.SwitchCurrentActionMap("UI");
 
-        
+
         for (int i = 0; i < combo.Count; i++)
         {
             combo[i].attackCollider = attacksCollider[i];
@@ -167,14 +162,14 @@ public class Player : MonoBehaviour, IDamageable
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
-        
+
         dashDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
     }
 
     #region ControllerFunctions
     public void Move(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             moveInput = context.ReadValue<Vector2>();
         }
@@ -225,7 +220,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Pause(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             pauseMenu.OnPause();
         }
@@ -287,7 +282,7 @@ public class Player : MonoBehaviour, IDamageable
     public bool hasFalledRecently = false;
     private float cdIFrames = 1f;
     private float cdCantMove = 0.5f;
-    
+
     public CapsuleCollider hitbox;
     [SerializeField] private HP_Test hps;
     public bool iFraming { get; set; }
