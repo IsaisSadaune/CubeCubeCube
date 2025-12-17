@@ -126,7 +126,11 @@ public class Player : MonoBehaviour, IDamageable
         playerInput = GetComponent<PlayerInput>();
         dialogue_Manager = GetComponent<Dialogue_Manager>();
         
-        //playerInput.SwitchCurrentActionMap("UI");
+
+        var actualScene = SceneManager.GetActiveScene();
+        
+        if(actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
+            playerInput.SwitchCurrentActionMap("UI");
 
         
         for (int i = 0; i < combo.Count; i++)
