@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        isPaused = false;
         pauseCanva.SetActive(false);
     }
 
@@ -39,7 +40,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (!isPaused && !startCanva.activeSelf)
         {
-            Debug.Log("GABOUBOU");
             isPaused = true;
             pauseCanva.SetActive(isPaused);
             EventSystem.current.SetSelectedGameObject(pauseMenuFirstSelectedButton.gameObject);
