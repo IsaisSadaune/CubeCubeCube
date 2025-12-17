@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.AppUI.UI;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -123,8 +125,8 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         dialogue_Manager = GetComponent<Dialogue_Manager>();
-
-        playerInput.SwitchCurrentActionMap("UI");
+        
+        //playerInput.SwitchCurrentActionMap("UI");
 
         
         for (int i = 0; i < combo.Count; i++)
