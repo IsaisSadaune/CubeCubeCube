@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button firstSelectedButton;
     [SerializeField] private Button pauseMenuFirstSelectedButton;
 
+    [SerializeField] private Input input;
+
     private void Start()
     {
         pauseCanva.SetActive(false);
@@ -44,7 +46,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0;
             player.playerInput.SwitchCurrentActionMap("UI");
         }
-        else if (!startCanva.activeSelf)
+        else if (!startCanva.activeSelf && isPaused)
         {
             StartCoroutine(ExitPause());
         }
