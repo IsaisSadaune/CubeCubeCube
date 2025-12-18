@@ -36,13 +36,13 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         if(player.bossHit)
         {
-            yield return new WaitForSeconds(0.01f);
             player.bossHit = false;
             player.stateMachine.ChangeState(player.idleState);
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            player.combo[player.comboCount].attackCollider.enabled = false;
+            yield return new WaitForSeconds(0.25f);
             player.stateMachine.ChangeState(player.idleState);
             player.resetCombo = StartCoroutine(player.resetingCombo());
         }

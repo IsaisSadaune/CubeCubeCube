@@ -31,6 +31,7 @@ public class HP_Test : MonoBehaviour
 
     private void KillPlayer()
     {
+
         player.isDead = true;
         //Debug.Log("je suis mort ouch");
         player.deathFeedback.PlayFeedbacks();

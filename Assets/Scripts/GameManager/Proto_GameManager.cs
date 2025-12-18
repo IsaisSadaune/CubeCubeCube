@@ -24,7 +24,8 @@ public class Proto_GameManager : MonoBehaviour
 
     public void ReloadBattle()
     {
-        SceneManager.LoadScene("ProtoBossBattle");
+        var actualScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(actualScene.name);
     }
 
     IEnumerator StartGame()

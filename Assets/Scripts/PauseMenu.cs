@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (pauseCanva.gameObject.activeSelf || startCanva.gameObject.activeSelf)
+        if (pauseCanva.gameObject.activeSelf || startCanva.gameObject.activeSelf || player.isDead)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
