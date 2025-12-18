@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -26,8 +27,8 @@ public class Player : MonoBehaviour, IDamageable
     public float dashDuration;
     public float dashTimer { get; set; }
     public float dashCooldown;
-    public float dashBuffer;
-    private float bufferTimer;
+    public float bufferTimer;
+    private float dashBuffer;
     [HideInInspector] public Vector2 moveInput;
     public Vector3 direction { get; set; }
 
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour, IDamageable
     public Attack attack { get; private set; }
     public int comboCount { get; set; }
     [Header("Attack Variables")]
+    private float attackBuffer;
     public List<AttackSO> combo;
     public bool bossHit = false;
     public BoxCollider[] attacksCollider;
@@ -139,14 +141,26 @@ public class Player : MonoBehaviour, IDamageable
     {
         stateMachine.currentPlayerState.FrameUpdate();
 
-        if (bufferTimer > 0)
+        if (dashBuffer > 0)
         {
-            bufferTimer -= Time.deltaTime;
+            dashBuffer -= Time.deltaTime;
         }
-        if (bufferTimer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
+        if (dashBuffer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
             stateMachine.ChangeState(dashState);
-            bufferTimer = 0;
+            dashBuffer = 0;
+        }
+
+        if (attackBuffer > 0)
+        {
+            attackBuffer -= Time.deltaTime;
+        }
+        if (attackBuffer > 0 && Time.time > (lastComboEnd + timeBeforeNextCombo) 
+        && Time.time > (lastAttack + timeBeforeNextAttack) 
+        && stateMachine.currentPlayerState != attackState)
+        {
+            stateMachine.ChangeState(attackState);
+            attackBuffer = 0;
         }
     }
     private void FixedUpdate()
@@ -194,15 +208,15 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!context.started) return;
         {
-            bufferTimer = dashBuffer;
+            dashBuffer = bufferTimer;
         }
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time > (lastComboEnd + timeBeforeNextCombo) && Time.time > (lastAttack + timeBeforeNextAttack) && stateMachine.currentPlayerState != attackState)
+        if (context.performed)
         {
-            stateMachine.ChangeState(attackState);
+            attackBuffer = bufferTimer;
         }
     }
     public void Defense(InputAction.CallbackContext context)

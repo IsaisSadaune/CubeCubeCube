@@ -17,7 +17,7 @@ public class AttackState : PlayerState
         player.animator.SetBool(player.attacksAnimation[player.comboCount], true);
         player.lastAttack = Time.time;
 
-        player.speed /= 2;
+        player.rb.linearVelocity /= 3;
     }
     public override void ExitState()
     {
@@ -35,7 +35,6 @@ public class AttackState : PlayerState
             player.lastComboEnd = Time.time;
             player.comboCount = 0;
         }
-        player.speed *= 2;
     }
     public override void FrameUpdate()
     {

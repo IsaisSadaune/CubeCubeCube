@@ -11,7 +11,6 @@ public class IdleState : PlayerState
     
     public override void EnterState()
     {
-        //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         
     }
     public override void ExitState()
@@ -20,7 +19,7 @@ public class IdleState : PlayerState
     }
     public override void FrameUpdate()
     {
-
+        player.rb.linearVelocity = Vector3.zero;
         if (player.moveInput != Vector2.zero && player.isGrounded == true)
         {
             stateMachine.ChangeState(player.walkingState);
