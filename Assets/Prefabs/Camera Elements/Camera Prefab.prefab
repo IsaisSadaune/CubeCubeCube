@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 2831279123168859726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13955688, y: 0.00000023841858, z: -1.1447582}
+  m_LocalPosition: {x: 2.2971816, y: -0.4509692, z: 1.1389562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,10 +84,13 @@ MonoBehaviour:
   UpdateMethod: 2
   Targets:
   - Object: {fileID: 0}
-    Weight: 50
+    Weight: 10
     Radius: 1
   - Object: {fileID: 5902970391256797800}
-    Weight: 0.25
+    Weight: 50
+    Radius: 1
+  - Object: {fileID: 0}
+    Weight: 5
     Radius: 1
   m_LegacyTargets: []
 --- !u!1 &5020586242458940049
@@ -118,13 +121,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5020586242458940049}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0.13955688, y: 24.748737, z: -25.893497}
+  m_LocalRotation: {x: 0.31598538, y: 0.3596048, z: -0.13088542, w: 0.8681629}
+  m_LocalPosition: {x: -22.078203, y: 28.474468, z: -23.236425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3864635252945365524}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 45, z: 0}
 --- !u!114 &1490852209877058770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDistance: 35
+  CameraDistance: 45
   DeadZoneDepth: 0
   Composition:
     ScreenPosition: {x: 0, y: 0}
@@ -265,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 5033058043956961220}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.53, y: 0, z: 2.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -290,7 +293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1288385559721848960
 Transform:
   m_ObjectHideFlags: 0
@@ -299,13 +302,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8471413701073187364}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0.13955688, y: 11.471528, z: -17.5278}
+  m_LocalRotation: {x: 0.27781588, y: 0.36497167, z: -0.1150751, w: 0.8811196}
+  m_LocalPosition: {x: -9.287378, y: 11.020557, z: -10.445605}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3864635252945365524}
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 45, z: 0}
 --- !u!114 &6131838356062862314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +420,7 @@ MonoBehaviour:
   SignalCombinationMode: 0
   ReactionSettings:
     m_SecondaryNoise: {fileID: 11400000, guid: c19023c8ae2b69f46abebca9ccd76861, type: 2}
-    AmplitudeGain: 0.9
-    FrequencyGain: 0.9
-    Duration: 0.25
+    AmplitudeGain: 0.3
+    FrequencyGain: 0.4
+    Duration: 0.1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
