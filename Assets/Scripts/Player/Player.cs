@@ -278,11 +278,6 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    public IEnumerator resetingCombo()
-    {
-        yield return new WaitForSeconds(2f);
-        comboCount = 0;
-    }
 
     public IEnumerator resetingDash()
     {
