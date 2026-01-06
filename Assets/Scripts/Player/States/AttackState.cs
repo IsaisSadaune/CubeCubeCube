@@ -13,6 +13,10 @@ public class AttackState : PlayerState
     {
         //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         //Debug.Log(player.comboCount);
+        if(Time.time > player.lastAttack + 1.5f)
+        {
+            player.comboCount = 0;
+        }
         player.attack.LaunchAttack(player.comboCount);
         player.animator.SetBool(player.attacksAnimation[player.comboCount], true);
         player.lastAttack = Time.time;

@@ -30,7 +30,6 @@ public class Attack : MonoBehaviour
         if(xCombo == 0)
             player.rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);
         
-        
         comboCoroutine = StartCoroutine(ComboTimer());    
     }
 

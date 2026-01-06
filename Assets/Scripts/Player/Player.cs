@@ -55,7 +55,6 @@ public class Player : MonoBehaviour, IDamageable
     public PauseMenu pauseMenu;
     public int buttonSelected { get; set; }
 
-    [Header("===========================")]
     public bool isDead { get; set; }
     [HideInInspector] public bool canDash = true;
     [HideInInspector] public bool isGrounded = true;
@@ -63,8 +62,10 @@ public class Player : MonoBehaviour, IDamageable
     public Vector3 dashDirection { get; private set; }
     public Attack attack { get; private set; }
     public int comboCount { get; set; }
+
     [Header("Attack Variables")]
     private float attackBuffer;
+    [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
     public bool bossHit = false;
     public BoxCollider[] attacksCollider;
@@ -216,7 +217,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
-            attackBuffer = bufferTimer;
+            attackBuffer = bufferAttackTimer;
         }
     }
     public void Defense(InputAction.CallbackContext context)

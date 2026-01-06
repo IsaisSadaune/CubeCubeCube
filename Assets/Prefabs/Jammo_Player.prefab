@@ -7603,7 +7603,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: d498a0d4-7914-4b2f-98a2-663da82d0da6
-    m_ActionName: 'Gameplay/Pause[/Keyboard/escape,/XInputControllerWindows/start]'
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
@@ -7624,8 +7624,8 @@ MonoBehaviour:
   speed: 15
   dashForce: 8
   dashDuration: 0.2
-  dashCooldown: 0.175
-  dashBuffer: 0.2
+  dashCooldown: 0.225
+  bufferTimer: 0.2
   moveInput: {x: 0, y: 0}
   dust: {fileID: 3840466132025331240}
   deathFeedback: {fileID: 0}
@@ -7635,6 +7635,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   canDash: 1
   isGrounded: 1
+  bufferAttackTimer: 0.35
   combo:
   - {fileID: 11400000, guid: 7a50cd9740d5d2b46a7f3b3105a951bf, type: 2}
   - {fileID: 11400000, guid: ca28f9d699e323e49baedaf53b008fbb, type: 2}
@@ -7674,8 +7675,8 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 72
-  timeActive: 0.2
-  meshRefreshRate: 0.03
+  timeActive: 0.4
+  meshRefreshRate: 0.05
   positionToSpawn: {fileID: 539745478100655087}
   mat: {fileID: 2100000, guid: af1abe3fea060854388901c3a7f0ea1e, type: 2}
   skinnedMeshRenderers: []
@@ -7726,7 +7727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a4bfbdb7af4064aae1b3252a97e536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp_max: 5
+  hp_max: 150
   player: {fileID: 4277801738817917293}
   uip: {fileID: 0}
   reloadButton: {fileID: 0}
@@ -10162,7 +10163,6 @@ GameObject:
   - component: {fileID: 861111482757854205}
   - component: {fileID: 3510525265170032637}
   - component: {fileID: 5083016630101885014}
-  - component: {fileID: 1631269662481207265}
   m_Layer: 8
   m_Name: Hitbox
   m_TagString: PlayerHitbox
@@ -10209,20 +10209,6 @@ CapsuleCollider:
   m_Direction: 1
   m_Center: {x: 0, y: 0.8654757, z: 0}
 --- !u!114 &5083016630101885014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6058944792668776891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37619e11cc606874f9843fd14c7c3738, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hps: {fileID: 8362163876942983215}
-  p: {fileID: 4277801738817917293}
---- !u!114 &1631269662481207265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
