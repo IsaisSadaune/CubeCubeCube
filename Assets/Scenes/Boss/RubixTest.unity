@@ -258,6 +258,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 539745478100655087, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
   m_PrefabInstance: {fileID: 1038994252}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &55350450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+  m_PrefabInstance: {fileID: 1038994252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55350439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a90f3a6fc9fdf4e98a7c50d6f25cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85053107
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4459529163091435175, guid: 25271a5d6375d81458d66e38a681fecd, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7666154221911913796, guid: 25271a5d6375d81458d66e38a681fecd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7457,8 +7472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281cecb3acaca4f45877dfed15d2633b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 1010083001}
+  UI_Panel: {fileID: 704159499}
+  startButton: {fileID: 568987480}
   UI_Reload: {fileID: 1149216868}
+  player: {fileID: 55350450}
 --- !u!4 &1364813045
 Transform:
   m_ObjectHideFlags: 0
@@ -7772,8 +7789,8 @@ Transform:
   m_GameObject: {fileID: 1514439045}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3788182, y: 0.536186, z: -1.0887175}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.3788, y: 0.536186, z: -1.0887175}
+  m_LocalScale: {x: 3.3833, y: 1, z: 3.7342}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 567533353}
