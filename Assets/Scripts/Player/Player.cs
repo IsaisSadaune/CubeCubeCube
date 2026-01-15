@@ -85,7 +85,6 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("Interaction Variables")]
     public TextMeshProUGUI emptyText;
-    public Dialogue_Manager dialogue_Manager { get; set; }
     public float timeBetweenLetter { get; set; }
     private bool talkingTrigger;
 
@@ -122,7 +121,6 @@ public class Player : MonoBehaviour, IDamageable
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
-        dialogue_Manager = GetComponent<Dialogue_Manager>();
 
 
         var actualScene = SceneManager.GetActiveScene();

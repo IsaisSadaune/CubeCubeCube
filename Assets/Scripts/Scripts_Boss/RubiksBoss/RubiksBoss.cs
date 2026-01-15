@@ -19,5 +19,4 @@ public class RubiksBoss : MonoBehaviour
             cubes.Add(transform.GetChild(i).gameObject);
         }
     }
-
 }

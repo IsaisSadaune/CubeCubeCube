@@ -22,7 +22,6 @@ public class InteractState : PlayerState
         base.ExitState();
         player.playerInput.SwitchCurrentActionMap("Gameplay");
         player.emptyText.enabled = false;
-        player.dialogue_Manager.dialogue_Background.enabled = false;
     }
     public override void FrameUpdate()
     {
