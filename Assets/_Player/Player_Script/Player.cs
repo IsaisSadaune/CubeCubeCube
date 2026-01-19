@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    [SerializeField] private HP_Test hps;
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
@@ -292,27 +293,15 @@ public class Player : MonoBehaviour, IDamageable
     private float cdCantMove = 0.5f;
 
     public CapsuleCollider hitbox;
-    [SerializeField] private HP_Test hps;
     public bool iFraming { get; set; }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Interact"))
-        {
-            talkingTrigger = true;
-            //dialogue_Parameters = other.gameObject.GetComponent<Dialogues_Parameters>();
-        }
-    }
 
     //tout pareil qu'au dessus : c'pa'bo
     IEnumerator cdDamage()
     {
         hitbox.enabled = false;
         playerInput.enabled = false;
-        //playerInput.SwitchCurrentActionMap("UI");
         yield return new WaitForSeconds(cdCantMove);
         playerInput.enabled = true;
-        //playerInput.SwitchCurrentActionMap("Gameplay");
         yield return new WaitForSeconds(cdIFrames);
         hitbox.enabled = true;
         iFraming = false; //bug mais c'est pas grave
@@ -326,18 +315,9 @@ public class Player : MonoBehaviour, IDamageable
         canShield = true;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Interact"))
-        {
-            talkingTrigger = false;
-        }
-    }
-    //ISAIS : Implémentation de l'interface
+    #region interfaceDegats
     public void TakeDamage(int dgt)
     {
-        //Debug.Log("joueur prend dgts");
-
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             Debug.Log("PARRY");
@@ -361,10 +341,8 @@ public class Player : MonoBehaviour, IDamageable
     {
         Vector3 kbDir = -(other.transform.position - transform.position);
         kbDir = new Vector3(kbDir.x, 0, kbDir.z).normalized;
-        //Debug.Log(kbDir);
         rb.AddForce(kbDir * 200);
     }
-
     public void Die()
     {
         deathFeedback.PlayFeedbacks();
@@ -374,5 +352,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         dust.Play();
     }
+    #endregion
 
 }

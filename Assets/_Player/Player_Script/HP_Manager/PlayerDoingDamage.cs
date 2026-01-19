@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Proc quand le joueur inflige des dommages.
+/// Se place sur les hitbox d'attaque du joueur
+/// </summary>
 public class PlayerDoingDamage : MonoBehaviour
 {
     public Player player;
