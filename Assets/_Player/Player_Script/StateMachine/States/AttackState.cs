@@ -21,7 +21,7 @@ public class AttackState : PlayerState
         player.animator.SetBool(player.attacksAnimation[player.comboCount], true);
         player.lastAttack = Time.time;
 
-        player.rb.linearVelocity /= 3;;;;;;
+        player.rb.linearVelocity /= 3;
     }
     public override void ExitState()
     {

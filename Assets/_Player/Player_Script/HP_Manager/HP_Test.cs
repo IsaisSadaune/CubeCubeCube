@@ -31,9 +31,7 @@ public class HP_Test : MonoBehaviour
 
     private void KillPlayer()
     {
-
         player.isDead = true;
-        //Debug.Log("je suis mort ouch");
         player.deathFeedback.PlayFeedbacks();
         player.animator.SetBool("isDead", true);
         reloadButton.SetActive(true);

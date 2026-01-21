@@ -5,7 +5,6 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     Player player;
-    Coroutine comboCoroutine;
     
     void Start()
     {
@@ -21,16 +20,13 @@ public class Attack : MonoBehaviour
             StopCoroutine(player.resetCombo);
         }
 
-        
         player.combo[xCombo].attackCollider.enabled = true;
         if(slashSound != null)
             slashSound.Play();
         player.combo[xCombo].attackCollider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
         if(xCombo == 0)
-            player.rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);
-        
-        comboCoroutine = StartCoroutine(ComboTimer());    
+            player.rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);  
     }
 
     public IEnumerator ComboTimer()
