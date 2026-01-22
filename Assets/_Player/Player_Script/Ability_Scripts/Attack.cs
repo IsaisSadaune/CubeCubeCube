@@ -27,10 +27,13 @@ public class Attack : MonoBehaviour
 
         if(xCombo == 0)
             player.rb.AddForce(transform.forward * 5, ForceMode.VelocityChange);  
+    
+        StartCoroutine(ComboTimer());
     }
 
     public IEnumerator ComboTimer()
     {
+        
         yield return new WaitForSeconds(0.05f);
         player.bossHit = false;
         player.stateMachine.ChangeState(player.idleState);

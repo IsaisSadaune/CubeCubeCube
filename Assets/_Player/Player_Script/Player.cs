@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField] private HP_Test hps;
+    public HP_Test hps {get ; set;}
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
@@ -118,6 +118,7 @@ public class Player : MonoBehaviour, IDamageable
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        hps = GetComponent<HP_Test>();
 
 
         var actualScene = SceneManager.GetActiveScene();
@@ -269,6 +270,7 @@ public class Player : MonoBehaviour, IDamageable
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             Debug.Log("PARRY");
+            hps.GainMP(5);
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)
