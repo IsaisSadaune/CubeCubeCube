@@ -281,6 +281,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
+            hps.GainMP(2);
             dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
         }

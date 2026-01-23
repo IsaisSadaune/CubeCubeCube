@@ -18,16 +18,17 @@ public class HP_Test : MonoBehaviour
     {
         reloadButton.SetActive(false);
         current_hp = hp_max;
+        current_mp = 20;
         if (uip != null)
             uip.SetHps(current_hp);
-            uip.SetMps(current_mp);
+            uip.SetMps(mp_max);
             uip.UpdateMps(current_mp);
     }
 
     void Update()
     {
 
-        if(Time.time > lastMpGain + 0.5f)
+        if(Time.time > lastMpGain + 2f)
         {
             isLosingMps = true;
         }
@@ -68,27 +69,21 @@ public class HP_Test : MonoBehaviour
 #region mp
     public void LoseMP(int mp)
     { 
-        Debug.Log(1);
         if(current_mp > 0)
         {
-            Debug.Log(2);
             current_mp -= mp;
             uip.UpdateMps(current_mp);
         }
     }
     public void GainMP(int mp)
     {
+        Debug.Log("a");
         isLosingMps = false;
-        if(current_mp + mp < mp_max)
-        {
-            current_mp += mp;
-        }
-        else
-            current_mp = mp_max;
+
+        current_mp += mp;
 
         uip.UpdateMps(current_mp);
-        lastMpGain = Time.time;
-        
+        lastMpGain = Time.time;      
     }
     
 
@@ -97,7 +92,7 @@ public class HP_Test : MonoBehaviour
         while(isLosingMps)
         {
             LoseMP(1);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
     

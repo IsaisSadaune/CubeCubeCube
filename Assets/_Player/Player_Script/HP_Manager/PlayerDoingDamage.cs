@@ -11,7 +11,7 @@ public class PlayerDoingDamage : MonoBehaviour
     {
         if(other.TryGetComponent<IDamageable>(out IDamageable cible) && !other.CompareTag("Player"))
         {
-            player.hps.GainMP(1);
+            player.hps.GainMP(3);
             player.bossHit = true;
             cible.TakeDamage(player.combo[player.comboCount].damage);   
         }
