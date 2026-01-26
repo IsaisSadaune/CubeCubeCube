@@ -12,26 +12,16 @@ public class Dash : MonoBehaviour
     public float meshRefreshRate = 0.1f;
     public Transform positionToSpawn;
     public Material mat;
-
-    [SerializeField]
     private SkinnedMeshRenderer[] skinnedMeshRenderers;
-    [SerializeField]
-    private bool isTrailActive = false;
 
     public void StartDash()
     {
         if (!player.isDead)
         {
             StartCoroutine(DashCoroutine());
-            // if(!isTrailActive)
-            // {
-            //     isTrailActive = true;
             StartCoroutine(DashTrail(timeActive));
-            //}
         }
     }
-
-
 
     #region Coroutines
     public IEnumerator DashCoroutine()
@@ -43,11 +33,9 @@ public class Dash : MonoBehaviour
 
     Vector3 startPos = player.rb.position;
 
-
     Vector3 dashDir = (player.dashDirection != Vector3.zero 
-                        ? player.dashDirection 
-                        : player.transform.forward).normalized;
-
+                    ? player.dashDirection 
+                    : player.transform.forward).normalized;
 
     Vector3 worldCenter = capsule.transform.TransformPoint(capsule.center);
     float halfHeight = capsule.height / 2f - capsule.radius;
@@ -126,7 +114,6 @@ public class Dash : MonoBehaviour
 
             yield return new WaitForSeconds(meshRefreshRate);
         }
-        //isTrailActive = false;
     }
     #endregion
 }

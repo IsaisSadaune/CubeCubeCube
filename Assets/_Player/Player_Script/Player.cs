@@ -17,8 +17,6 @@ public class Player : MonoBehaviour, IDamageable
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
-    public InteractState interactState { get; set; }
-    public MenuState menuState { get; set; }
     #endregion
 
     #region Movement Variables
@@ -109,8 +107,6 @@ public class Player : MonoBehaviour, IDamageable
         dashState = new DashState(this, stateMachine);
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
-        interactState = new InteractState(this, stateMachine);
-        menuState = new MenuState(this, stateMachine);
     }
 
     private void Start()
@@ -239,53 +235,7 @@ public class Player : MonoBehaviour, IDamageable
             pauseMenu.OnPause();
         }
     }
-
-    public void Interact(InputAction.CallbackContext context)
-    {
-        if (context.performed && talkingTrigger)
-        {
-            timeBetweenLetter = 0.1f;
-            stateMachine.ChangeState(interactState);
-        }
-    }
-
-    public void Next(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            //if (dialogue_Parameters.dialogue_Index < dialogue_Parameters.dialogue_content.Length - 1 && emptyText.text == dialogue_Parameters.dialogue_content[dialogue_Parameters.dialogue_Index])
-            //{
-            //    dialogue_Parameters.dialogue_Index++;
-            //    dialogue_Manager.SetDialogue();
-            //}
-            //else if(dialogue_Parameters.dialogue_Index == dialogue_Parameters.dialogue_content.Length - 1)
-            //{
-            //    stateMachine.ChangeState(idleState);
-            //}
-
-        }
-    }
-    public void FastWritting(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            timeBetweenLetter = 0.02f;
-        }
-        if (context.canceled)
-        {
-            timeBetweenLetter = 0.1f;
-        }
-    }
-
-
-    public IEnumerator resetingDash()
-    {
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-    }
     #endregion
-
-
 
     //tmp var isais
     public bool hasFalledRecently = false;
@@ -306,7 +256,6 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.enabled = true;
         iFraming = false; //bug mais c'est pas grave
     }
-
     bool canShield = true;
     IEnumerator ShieldBreak()
     {
@@ -314,7 +263,6 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(2f);
         canShield = true;
     }
-
     #region interfaceDegats
     public void TakeDamage(int dgt)
     {
