@@ -63,6 +63,7 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
 
     [Header("Attack Variables")]
+    private GapClose gapClose;
     private float attackBuffer;
     [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
@@ -111,7 +112,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
@@ -119,6 +119,7 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         hps = GetComponent<HP_Test>();
+        gapClose = GetComponent<GapClose>();
 
 
         var actualScene = SceneManager.GetActiveScene();
@@ -206,6 +207,14 @@ public class Player : MonoBehaviour, IDamageable
         if (!context.started) return;
         {
             dashBuffer = bufferTimer;
+        }
+    }
+
+    public void GapClose(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            gapClose.GapClosing();
         }
     }
 

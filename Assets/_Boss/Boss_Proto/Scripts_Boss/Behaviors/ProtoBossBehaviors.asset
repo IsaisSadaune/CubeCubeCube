@@ -286,7 +286,7 @@ MonoBehaviour:
   - rid: 2136896670103765440
   - rid: 2136896798716330062
   - rid: 2136896798716330313
-  m_VersionTimestamp: 639013954373242193
+  m_VersionTimestamp: 639051936587986248
   m_DebugInfo: {fileID: 188795285383216093}
   m_RuntimeGraph: {fileID: 5706250015728412709}
   AssetID:
@@ -303,18 +303,6 @@ MonoBehaviour:
       m_Value0: 3335272451348827663
       m_Value1: 11549843281177505721
     Variables: []
-    NamedChildren: []
-  - Name: Set Boss Slimy
-    Story: '[Self] becomes Slimy'
-    RuntimeTypeID:
-      m_Value0: 2133118154064710551
-      m_Value1: 7367384266402531305
-    Variables:
-    - Name: Self
-      Type:
-        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      Tooltip: 
     NamedChildren: []
   - Name: use Spikes
     Story: use [Spines] on [Self] then retract them
@@ -475,18 +463,6 @@ MonoBehaviour:
       m_Value0: 10845871997924083670
       m_Value1: 4041440894818793834
     Variables: []
-    NamedChildren: []
-  - Name: StopSlimy
-    Story: '[Self] stop Slimy'
-    RuntimeTypeID:
-      m_Value0: 17444241636451498644
-      m_Value1: 8506010322980882116
-    Variables:
-    - Name: Self
-      Type:
-        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      Tooltip: 
     NamedChildren: []
   - Name: Log Message
     Story: Log [message] to the console
@@ -732,6 +708,30 @@ MonoBehaviour:
       Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+  - Name: Set Boss Slimy
+    Story: '[Self] becomes Slimy'
+    RuntimeTypeID:
+      m_Value0: 2133118154064710551
+      m_Value1: 7367384266402531305
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  - Name: StopSlimy
+    Story: '[Self] stop Slimy'
+    RuntimeTypeID:
+      m_Value0: 17444241636451498644
+      m_Value1: 8506010322980882116
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
       Tooltip: 
     NamedChildren: []
   - Name: Thwomp
@@ -4288,7 +4288,7 @@ MonoBehaviour:
     - rid: 2463158003872301340
       type: {class: CompositeNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 1223.264, y: -555.9248}
+        Position: {x: 1306.2867, y: -548.2611}
         ID:
           m_Value0: 1293228772261390506
           m_Value1: 4482824344959210177
@@ -8648,7 +8648,7 @@ MonoBehaviour:
     - rid: 2889730487136551815
       type: {class: AbortNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 1198.44, y: -1036.4109}
+        Position: {x: 1307.0077, y: -833.32324}
         ID:
           m_Value0: 10113872330077788146
           m_Value1: 9275064112825870790
@@ -9238,7 +9238,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 13027519040342877945
           m_Value1: 15460046828631745593
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: 188795285383216093}
         BlackboardReference:
           rid: 2136896800297844746
         BlackboardGroupReferences: []
@@ -9250,7 +9250,7 @@ MonoBehaviour:
           rid: 2136896800297844748
         m_EndedNodes:
           rid: 2136896800297844749
-        m_VersionTimestamp: 639013954373242193
+        m_VersionTimestamp: 639051936587986248
     - rid: 2136896800297844746
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
