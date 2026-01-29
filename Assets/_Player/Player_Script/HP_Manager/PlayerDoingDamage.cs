@@ -13,7 +13,10 @@ public class PlayerDoingDamage : MonoBehaviour
         {
             player.hps.GainMP(3);
             player.bossHit = true;
-            cible.TakeDamage(player.combo[player.comboCount].damage);   
+            if(gameObject.tag == "Attack")
+                cible.TakeDamage(player.combo[player.comboCount].damage);
+            else
+                cible.TakeDamage(player.gapClose.damage);
         }
     }
 }
