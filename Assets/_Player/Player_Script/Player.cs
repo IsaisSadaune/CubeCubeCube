@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IDamageable
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
+    public SuperState superState {get; set;}
     #endregion
 
     #region Movement Variables
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Feedbacks References")]
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
+    public MMF_Player parryFeedback;
     public AudioSource dashSound;
     #endregion
 
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
 
     [Header("Attack Variables")]
-    private GapClose gapClose;
+    public GapClose gapClose{get; set;}
     private float attackBuffer;
     [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
@@ -108,6 +110,7 @@ public class Player : MonoBehaviour, IDamageable
         dashState = new DashState(this, stateMachine);
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
+        superState = new SuperState(this, stateMachine);
     }
 
     private void Start()
@@ -214,7 +217,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(context.performed)
         {
-            gapClose.GapClosing();
+            stateMachine.ChangeState(superState);
         }
     }
 
@@ -280,6 +283,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             Debug.Log("PARRY");
             hps.GainMP(5);
+            parryFeedback.PlayFeedbacks();
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)

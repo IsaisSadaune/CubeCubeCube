@@ -12,10 +12,11 @@ public class GapClose : MonoBehaviour
 
     public void GapClosing()
     {
-        Vector3 arrivalPos = boss.transform.position + transform.forward * 2;
-        Vector3 dir = boss.transform.position - transform.position;
+        float distance = Vector3.Distance(transform.position, boss.transform.position);
+        Vector3 endPos = transform.position + player.direction * distance;
 
-        arrivalPos.y = transform.position.y;
-        transform.position = arrivalPos + Vector3.forward * 3;
+        transform.position = endPos;
+        
+        player.stateMachine.ChangeState(player.idleState);
     }
 }
