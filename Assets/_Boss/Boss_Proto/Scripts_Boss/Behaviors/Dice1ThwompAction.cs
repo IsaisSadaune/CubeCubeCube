@@ -19,6 +19,7 @@ public partial class Dice1ThwompAction : Action
 
     protected override Status OnStart()
     {
+        Vector3 scale = Self.Value.transform.localScale;
         t = DOTween.Sequence();
         t.Append(Self.Value.transform.DOMoveY(20, timeToGoUp).SetEase(ease));
         t.Append(Self.Value.transform.DOScale(Vector3.zero, 0.25f));
