@@ -54,6 +54,10 @@ MonoBehaviour:
   - rid: 2377828704869942075
   - rid: 2377828704869942076
   - rid: 2377828705694646326
+  - rid: 2377828725141013197
+  - rid: 2377828725141013198
+  - rid: 2377828725141013199
+  - rid: 2377828728160124946
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -82,7 +86,7 @@ MonoBehaviour:
           m_Value0: 6257656345330240567
           m_Value1: 16072619077661660644
         Name: Boss2
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 7709876810198383962}
     - rid: 2377828704869942076
       type: {class: 'BlackboardVariable`1[[Player, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -99,6 +103,47 @@ MonoBehaviour:
           m_Value1: 10318525453210003098
         Name: Variables
         m_Value: {fileID: 6499712006105977102}
+    - rid: 2377828725141013197
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 7690199559747244544
+          m_Value1: 14571837910679180496
+        Name: 3_Pos1
+        m_Value: {fileID: 0}
+    - rid: 2377828725141013198
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2218188707927689376
+          m_Value1: 14003439235133314303
+        Name: 3_Pos2
+        m_Value: {fileID: 0}
+    - rid: 2377828725141013199
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16516313376471464024
+          m_Value1: 4688484188161472288
+        Name: 3_Pos3
+        m_Value: {fileID: 0}
+    - rid: 2377828728160124946
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3633714414313003360
+          m_Value1: 168873095157213172
+        Name: SlabList
+        m_Value:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
 --- !u!114 &6499712006105977102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,13 +174,21 @@ PrefabInstance:
       propertyPath: bv
       value: 
       objectReference: {fileID: 6499712006105977102}
+    - target: {fileID: 4991763756185410955, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
+      propertyPath: m_Size.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991763756185410955, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
+      propertyPath: m_Size.z
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5329265576637099702, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_Name
       value: Dice_Boss_1
       objectReference: {fileID: 0}
     - target: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.8
       objectReference: {fileID: 0}
     - target: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -172,6 +225,10 @@ PrefabInstance:
     - target: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015503860554755817, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
+      propertyPath: m_Center.y
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4613426732979454136, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
@@ -210,9 +267,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice_Boss_2
       objectReference: {fileID: 0}
+    - target: {fileID: 5329265576637099702, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9.82
       objectReference: {fileID: 0}
     - target: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -259,5 +320,10 @@ PrefabInstance:
 --- !u!4 &5986932028558359991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8079031292327341659, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
+  m_PrefabInstance: {fileID: 2525295438501680108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7709876810198383962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5329265576637099702, guid: 07551a4052b879a4e9150ec0fd90a7a6, type: 3}
   m_PrefabInstance: {fileID: 2525295438501680108}
   m_PrefabAsset: {fileID: 0}

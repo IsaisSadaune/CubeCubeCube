@@ -16,7 +16,7 @@ public partial class FinishThwompAction : Action
 
     protected override Status OnStart()
     {
-        finished = 
+        finished =
         Self.Value.transform.DOMoveY(0, timeToStomp)
             .SetEase(ease);
         return Status.Running;

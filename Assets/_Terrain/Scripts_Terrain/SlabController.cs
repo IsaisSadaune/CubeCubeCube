@@ -8,6 +8,8 @@ public class SlabController : MonoBehaviour
     private float timeDestroyed = 1f;
     private Color startColor;
 
+    public bool hardDisparition { get; private set; } = false;
+
     [SerializeField] private GameObject model;
     private void Start()
     {
@@ -19,6 +21,17 @@ public class SlabController : MonoBehaviour
     {
         transform.DOScale(Vector3.zero, 0.5f);
         StartCoroutine(ReconstructionCoroutine(timeDestroyed));
+    }
+
+    public void HardDisparition()
+    {
+        transform.DOScale(Vector3.zero, 0.5f);
+        hardDisparition = true;
+    }
+    public void HardApparition()
+    {
+        transform.DOScale(scale, 0.5f);
+        hardDisparition = false;
     }
 
     public Tween Apparition()
