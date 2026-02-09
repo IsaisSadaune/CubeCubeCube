@@ -220,7 +220,7 @@ public class Player : MonoBehaviour, IDamageable
             gapClose.hitPrevi.SetActive(true);
             gapClose.posPrevi.SetActive(true);
         }
-        if(context.canceled)
+        if(context.canceled && hps.canUlt)
         {
             gapClose.posPrevi.SetActive(false);
             gapClose.hitPrevi.SetActive(false);
