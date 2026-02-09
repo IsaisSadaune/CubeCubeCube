@@ -11,6 +11,7 @@ public class SuperState : PlayerState
     {
         base.EnterState();
         player.gapClose.GapClosing();
+        player.hps.current_mp = 0;
     }
 
     public override void ExitState()

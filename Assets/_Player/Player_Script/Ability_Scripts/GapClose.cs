@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class GapClose : MonoBehaviour
@@ -7,27 +9,56 @@ public class GapClose : MonoBehaviour
     [SerializeField] private GameObject boss;
     public GameObject hitPrevi; 
     public GameObject posPrevi; 
+    public LayerMask wallLayer;
+    public BoxCollider hitCollider {get; set;}
 
     void Start()
     {
         player = GetComponent<Player>();
-        Vector3 endPos = transform.forward * 12;
-        posPrevi.transform.position = new Vector3(endPos.x, -2f, endPos.z);
+        hitCollider = hitPrevi.GetComponent<BoxCollider>();
     }
 
     public void GapClosing()
     {
-        Vector3 endPos = transform.forward * 12;
-
+        float distance = Vector3.Distance(transform.position + Vector3.up, posPrevi.transform.position);
+        Vector3 dir = (posPrevi.transform.position - transform.position).normalized;
         RaycastHit hit;
-        Physics.Raycast(endPos, Vector3.down, out hit);
-        if(hit.collider.tag == "Ground")
+        StartCoroutine(ColliderActivation());
+        if(Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
         {
-            transform.position = new Vector3(transform.forward.x * 10, transform.position.y, transform.forward.z * 10);
+            Debug.Log("A");
+            player.rb.MovePosition(hit.point);
             player.stateMachine.ChangeState(player.idleState);
         }
         else
+        {
+            Debug.Log("B");
+            player.rb.MovePosition(posPrevi.transform.position);
             player.stateMachine.ChangeState(player.idleState);
+        }
+    }
+    void OnDrawGizmos()
+    {
+        if (posPrevi == null) return;
 
+        Gizmos.color = Color.red;
+
+        Vector3 dir = (posPrevi.transform.position - transform.position).normalized;
+        float distance = Vector3.Distance(transform.position, posPrevi.transform.position);
+
+        Gizmos.DrawRay(transform.position + Vector3.up, dir * distance);
+
+        // Petit sphere au point cible
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(posPrevi.transform.position, 0.2f);
+    }
+
+    IEnumerator ColliderActivation()
+    {
+        GameObject attack = Instantiate(hitPrevi, hitPrevi.transform.position, hitPrevi.transform.rotation);
+        attack.SetActive(true);
+        attack.AddComponent<BoxCollider>().isTrigger = true;
+        yield return new WaitForSeconds(1f);
+        Destroy(attack);
     }
 }

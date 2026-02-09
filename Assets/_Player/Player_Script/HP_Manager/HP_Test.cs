@@ -6,12 +6,12 @@ public class HP_Test : MonoBehaviour
     [SerializeField] private int hp_max;
     int current_hp;
     [SerializeField] private int mp_max;
-    int current_mp;
+    public int current_mp {get; set;}
     public Player player;
     [SerializeField] private UI_Player uip;
     [SerializeField] private GameObject reloadButton;
-    public bool isLosingMps;
-    public float lastMpGain;
+    private bool isLosingMps;
+    public bool canUlt = false;
     private Coroutine MpsLoss;
 
     void Start()
@@ -27,14 +27,10 @@ public class HP_Test : MonoBehaviour
 
     void Update()
     {
-
-        if(Time.time > lastMpGain + 2f)
+        if(current_mp != mp_max)
         {
+            canUlt = false;
             isLosingMps = true;
-        }
-
-        if(isLosingMps && current_mp != mp_max)
-        {
             if(MpsLoss == null)
                 MpsLoss = StartCoroutine(MpLoss());
                 else
@@ -42,6 +38,7 @@ public class HP_Test : MonoBehaviour
         }
         else
             MpsLoss = null;
+            canUlt = true;
     }
 #region hp
     public void LoseHP(int x)
@@ -82,8 +79,7 @@ public class HP_Test : MonoBehaviour
 
         current_mp += mp;
 
-        uip.UpdateMps(current_mp);
-        lastMpGain = Time.time;      
+        uip.UpdateMps(current_mp);    
     }
     
 
@@ -92,7 +88,7 @@ public class HP_Test : MonoBehaviour
         while(isLosingMps)
         {
             LoseMP(1);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
         }
     }
     
