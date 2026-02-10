@@ -215,12 +215,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public void GapClose(InputAction.CallbackContext context)
     {
-        if(context.started && hps.canUlt)
+        if(context.started && hps.CanUlt)
         {
             gapClose.hitPrevi.SetActive(true);
             gapClose.posPrevi.SetActive(true);
         }
-        if(context.canceled && hps.canUlt)
+        if(context.canceled && hps.CanUlt)
         {
             gapClose.posPrevi.SetActive(false);
             gapClose.hitPrevi.SetActive(false);

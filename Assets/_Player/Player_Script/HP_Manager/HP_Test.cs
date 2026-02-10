@@ -10,35 +10,37 @@ public class HP_Test : MonoBehaviour
     public Player player;
     [SerializeField] private UI_Player uip;
     [SerializeField] private GameObject reloadButton;
-    private bool isLosingMps;
-    public bool canUlt = false;
+    public bool CanUlt => current_mp >= mp_max;
     private Coroutine MpsLoss;
 
     void Start()
     {
         reloadButton.SetActive(false);
         current_hp = hp_max;
-        current_mp = 20;
+        current_mp = 0;
         if (uip != null)
+        {
             uip.SetHps(current_hp);
             uip.SetMps(mp_max);
             uip.UpdateMps(current_mp);
+        }
     }
 
-    void Update()
+        void Update()
     {
-        if(current_mp != mp_max)
+        if (current_mp < mp_max)
         {
-            canUlt = false;
-            isLosingMps = true;
-            if(MpsLoss == null)
+            if (MpsLoss == null)
                 MpsLoss = StartCoroutine(MpLoss());
-                else
-                return;
         }
         else
-            MpsLoss = null;
-            canUlt = true;
+        {
+            if (MpsLoss != null)
+            {
+                StopCoroutine(MpsLoss);
+                MpsLoss = null;
+            }
+        }
     }
 #region hp
     public void LoseHP(int x)
@@ -68,24 +70,20 @@ public class HP_Test : MonoBehaviour
     { 
         if(current_mp > 0)
         {
-            current_mp -= mp;
+            current_mp = Mathf.Max(0, current_mp - mp);
             uip.UpdateMps(current_mp);
         }
     }
     public void GainMP(int mp)
     {
-        Debug.Log("a");
-        isLosingMps = false;
-
-        current_mp += mp;
-
-        uip.UpdateMps(current_mp);    
+        current_mp = Mathf.Min(current_mp + mp, mp_max);
+        uip.UpdateMps(current_mp);
     }
     
 
     IEnumerator MpLoss()
     {
-        while(isLosingMps)
+        while(current_mp < mp_max)
         {
             LoseMP(1);
             yield return new WaitForSeconds(0.75f);
