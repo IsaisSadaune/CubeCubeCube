@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IDamageable
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
+    public InteractState interactState{get; set;}
     public WalkingState walkingState { get; set; }
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
@@ -90,6 +91,23 @@ public class Player : MonoBehaviour, IDamageable
     public float timeBetweenLetter { get; set; }
     private bool talkingTrigger;
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Interact"))
+        {
+            talkingTrigger = true;
+            other.GetComponentInChildren<GameObject>().SetActive(true);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Interact"))
+        {
+            talkingTrigger = false;
+            other.GetComponentInChildren<GameObject>().SetActive(false);
+        }
+    }
+
     #endregion
 
     #region Animation Triggers
@@ -111,6 +129,7 @@ public class Player : MonoBehaviour, IDamageable
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
         superState = new SuperState(this, stateMachine);
+        interactState = new InteractState(this, stateMachine);
     }
 
     private void Start()
@@ -204,7 +223,6 @@ public class Player : MonoBehaviour, IDamageable
         direction = (camForward * moveInput.y + camRight * moveInput.x).normalized;
     }
 
-
     public void Dash(InputAction.CallbackContext context)
     {
         if (!context.started) return;
@@ -247,12 +265,18 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(idleState);
         }
     }
-
     public void Pause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             pauseMenu.OnPause();
+        }
+    }
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(context.performed && talkingTrigger)
+        {
+            stateMachine.ChangeState(interactState);
         }
     }
     #endregion
@@ -284,6 +308,7 @@ public class Player : MonoBehaviour, IDamageable
         canShield = true;
     }
     #region interfaceDegats
+
     public void TakeDamage(int dgt)
     {
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
@@ -324,5 +349,4 @@ public class Player : MonoBehaviour, IDamageable
         dust.Play();
     }
     #endregion
-
 }
