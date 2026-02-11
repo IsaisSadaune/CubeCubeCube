@@ -20,7 +20,6 @@ public class PlayerState
 
     public virtual void PhysicsUpdate() {}
 
-    public virtual void AnimationTriggerEvent(Player.AnimationTriggerType triggerType) {}
 
     public virtual void DoCheck() {}
     

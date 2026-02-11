@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -87,16 +88,20 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float parryTiming;
 
     [Header("Interaction Variables")]
-    public TextMeshProUGUI emptyText;
-    public float timeBetweenLetter { get; set; }
+    public GameObject dialogueCanvas;
+    public Image pnjSprite;
     private bool talkingTrigger;
+    public PNJ pnj {get; private set;}
+    public Animator animator;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = true;
-            other.GetComponentInChildren<GameObject>().SetActive(true);
+            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            if(pnj == null)
+                pnj = other.GetComponent<PNJ>();
         }
     }
     void OnTriggerExit(Collider other)
@@ -104,22 +109,12 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = false;
-            other.GetComponentInChildren<GameObject>().SetActive(false);
+            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            pnj = null;
+            stateMachine.ChangeState(idleState);
         }
     }
-
     #endregion
-
-    #region Animation Triggers
-    public Animator animator;
-    private void AnimationTriggerEvent(AnimationTriggerType triggerType)
-    {
-
-    }
-    public enum AnimationTriggerType
-    { }
-    #endregion
-
     private void Awake()
     {
         stateMachine = new PlayerStateMachine();
@@ -143,7 +138,7 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-
+        dialogueCanvas.SetActive(false);
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
@@ -274,9 +269,28 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && talkingTrigger)
+        if(context.performed && talkingTrigger && pnj != null)
         {
             stateMachine.ChangeState(interactState);
+        }
+    }
+
+    public void Close(InputAction.CallbackContext context)
+    {
+        if(context.performed && pnj.textEnded)
+        {
+            stateMachine.ChangeState(idleState);
+        }
+    }
+    public void FastWritting(InputAction.CallbackContext context)
+    {
+        if(context.performed && pnj != null)
+        {
+            pnj.delay /= 2;
+        }
+        if(context.canceled && pnj != null)
+        {
+            pnj.delay *= 2;
         }
     }
     #endregion
