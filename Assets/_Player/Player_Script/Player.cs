@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField] private HP_Test hps;
+    public HP_Test hps {get ; set;}
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IDamageable
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
+    public SuperState superState {get; set;}
     #endregion
 
     #region Movement Variables
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Feedbacks References")]
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
+    public MMF_Player parryFeedback;
     public AudioSource dashSound;
     #endregion
 
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
 
     [Header("Attack Variables")]
+    public GapClose gapClose{get; set;}
     private float attackBuffer;
     [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
@@ -107,17 +110,19 @@ public class Player : MonoBehaviour, IDamageable
         dashState = new DashState(this, stateMachine);
         attackState = new AttackState(this, stateMachine);
         shieldState = new ShieldState(this, stateMachine);
+        superState = new SuperState(this, stateMachine);
     }
 
     private void Start()
     {
-
         attack = GetComponent<Attack>();
         animator = GetComponent<Animator>();
         dash = GetComponent<Dash>();
         stateMachine.Initialize(idleState);
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        hps = GetComponent<HP_Test>();
+        gapClose = GetComponent<GapClose>();
 
 
         var actualScene = SceneManager.GetActiveScene();
@@ -208,6 +213,21 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    public void GapClose(InputAction.CallbackContext context)
+    {
+        if(context.started && hps.CanUlt)
+        {
+            gapClose.hitPrevi.SetActive(true);
+            gapClose.posPrevi.SetActive(true);
+        }
+        if(context.canceled && hps.CanUlt)
+        {
+            gapClose.posPrevi.SetActive(false);
+            gapClose.hitPrevi.SetActive(false);
+            stateMachine.ChangeState(superState);
+        }
+    }
+
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -269,6 +289,8 @@ public class Player : MonoBehaviour, IDamageable
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             Debug.Log("PARRY");
+            hps.GainMP(5);
+            parryFeedback.PlayFeedbacks();
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)
@@ -279,6 +301,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
+            hps.GainMP(2);
             dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
         }
