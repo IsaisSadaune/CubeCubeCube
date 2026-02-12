@@ -8,6 +8,7 @@ public class UIPlayerFight : MonoBehaviour
     [SerializeField] GameObject hpPrefab;
     private List<GameObject> fullHPs = new();
     private int pointeur;
+    [SerializeField] private UIHeartLossFeedback heartLossScript;
 
     private void Start()
     {
@@ -30,7 +31,8 @@ public class UIPlayerFight : MonoBehaviour
         if (pointeur >= 0)
             while (x > 0)
             {
-                fullHPs[pointeur].SetActive(false);
+                heartLossScript = fullHPs[pointeur].GetComponent<UIHeartLossFeedback>();
+                heartLossScript.TriggerHPLossFeedback();
                 x--;
                 pointeur--;
                 if (pointeur < 0) break;
