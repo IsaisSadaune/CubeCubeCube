@@ -51,5 +51,7 @@ public class UIPlayerFight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
             RemoveHP(1); 
+        if (Input.GetKeyDown(KeyCode.L))
+            AddHP();
     }
 }
