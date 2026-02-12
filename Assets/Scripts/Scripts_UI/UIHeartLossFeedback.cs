@@ -14,8 +14,9 @@ public class UIHeartLossFeedback : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    private void Awake()
+    private void OnEnable()
     {
+        Debug.Log("Awake");
         image.color = startColor;
     }
 
