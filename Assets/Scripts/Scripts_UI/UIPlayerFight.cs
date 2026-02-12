@@ -46,4 +46,10 @@ public class UIPlayerFight : MonoBehaviour
             fullHPs[pointeur].SetActive(true);
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            RemoveHP(1); 
+    }
 }
