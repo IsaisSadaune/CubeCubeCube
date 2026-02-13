@@ -1,0 +1,384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6347569076810016846
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  skipIterations:
+    m_OverrideState: 1
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 0.9
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  scatter:
+    m_OverrideState: 1
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 1
+    m_Value: 65472
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 1
+    m_Value: 0
+  downscale:
+    m_OverrideState: 1
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 1
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-1884713113774555601
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-1039863023653046470
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
+  m_Name: FilmGrain
+  m_EditorClassIdentifier: 
+  active: 0
+  type:
+    m_OverrideState: 1
+    m_Value: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  response:
+    m_OverrideState: 1
+    m_Value: 0.714
+  texture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: globalVolume Profile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -1884713113774555601}
+  - {fileID: -6347569076810016846}
+  - {fileID: -1039863023653046470}
+  - {fileID: 7171969818638433673}
+  - {fileID: 8730107054202711168}
+--- !u!114 &7171969818638433673
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0.6
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.25
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &8730107054202711168
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63c99b3ed38a41f39e4d2bc6c00dfba, type: 3}
+  m_Name: VHSProVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  g_pixel: 0
+  g_color: 1
+  g_palette: 0
+  g_crt: 1
+  g_noise: 1
+  g_jitter: 1
+  g_signal: 1
+  g_feedback: 1
+  g_extra: 1
+  g_bypass: 0
+  pixelOn:
+    m_OverrideState: 0
+    m_Value: 0
+  screenResPresetId:
+    m_OverrideState: 0
+    m_Value: 16
+  screenWidth:
+    m_OverrideState: 0
+    m_Value: 1024
+  screenHeight:
+    m_OverrideState: 0
+    m_Value: 768
+  colorOn:
+    m_OverrideState: 1
+    m_Value: 1
+  colorMode:
+    m_OverrideState: 1
+    m_Value: 2
+  colorSyncedOn:
+    m_OverrideState: 1
+    m_Value: 0
+  bitsR:
+    m_OverrideState: 1
+    m_Value: 74
+  bitsG:
+    m_OverrideState: 1
+    m_Value: 243
+  bitsB:
+    m_OverrideState: 1
+    m_Value: 168
+  bitsSynced:
+    m_OverrideState: 1
+    m_Value: 75
+  bitsGray:
+    m_OverrideState: 0
+    m_Value: 1
+  grayscaleColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  ditherOn:
+    m_OverrideState: 1
+    m_Value: 1
+  ditherMode:
+    m_OverrideState: 1
+    m_Value: 3
+  ditherAmount:
+    m_OverrideState: 1
+    m_Value: 1.5
+  paletteOn:
+    m_OverrideState: 0
+    m_Value: 0
+  paletteId:
+    m_OverrideState: 0
+    m_Value: 0
+  paletteDelta:
+    m_OverrideState: 0
+    m_Value: 30
+  paletteTex:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  paletteCustom: {fileID: 0}
+  paletteCustomName: 
+  paletteCustomInit: 0
+  bleedOn:
+    m_OverrideState: 1
+    m_Value: 1
+  crtMode:
+    m_OverrideState: 1
+    m_Value: 0
+  bleedAmount:
+    m_OverrideState: 1
+    m_Value: 0.535
+  bleedMode:
+    m_OverrideState: 1
+    m_Value: 2
+  noiseResGlobal:
+    m_OverrideState: 1
+    m_Value: 1
+  noiseResWidth:
+    m_OverrideState: 0
+    m_Value: 640
+  noiseResHeight:
+    m_OverrideState: 0
+    m_Value: 480
+  filmgrainOn:
+    m_OverrideState: 1
+    m_Value: 1
+  filmGrainAmount:
+    m_OverrideState: 1
+    m_Value: 0.025
+  signalNoiseOn:
+    m_OverrideState: 1
+    m_Value: 0
+  signalNoiseAmount:
+    m_OverrideState: 1
+    m_Value: 0.234
+  signalNoisePower:
+    m_OverrideState: 1
+    m_Value: 0.669
+  lineNoiseOn:
+    m_OverrideState: 1
+    m_Value: 1
+  lineNoiseAmount:
+    m_OverrideState: 1
+    m_Value: 0.5
+  lineNoiseSpeed:
+    m_OverrideState: 1
+    m_Value: 0.75
+  tapeNoiseOn:
+    m_OverrideState: 1
+    m_Value: 0
+  tapeNoiseAmt:
+    m_OverrideState: 1
+    m_Value: 0.05
+  tapeNoiseSpeed:
+    m_OverrideState: 1
+    m_Value: 0.75
+  tapeNoiseAlpha:
+    m_OverrideState: 1
+    m_Value: 0.05
+  scanLinesOn:
+    m_OverrideState: 1
+    m_Value: 1
+  scanLineWidth:
+    m_OverrideState: 1
+    m_Value: 0.25
+  linesFloatOn:
+    m_OverrideState: 0
+    m_Value: 0
+  linesFloatSpeed:
+    m_OverrideState: 0
+    m_Value: 3
+  stretchOn:
+    m_OverrideState: 1
+    m_Value: 1
+  jitterHOn:
+    m_OverrideState: 1
+    m_Value: 1
+  jitterHAmount:
+    m_OverrideState: 1
+    m_Value: 0.15
+  jitterVOn:
+    m_OverrideState: 1
+    m_Value: 0
+  jitterVAmount:
+    m_OverrideState: 1
+    m_Value: 1
+  jitterVSpeed:
+    m_OverrideState: 1
+    m_Value: 1
+  twitchHOn:
+    m_OverrideState: 0
+    m_Value: 0
+  twitchHFreq:
+    m_OverrideState: 0
+    m_Value: 1
+  twitchVOn:
+    m_OverrideState: 0
+    m_Value: 0
+  twitchVFreq:
+    m_OverrideState: 0
+    m_Value: 1
+  signalTweakOn:
+    m_OverrideState: 1
+    m_Value: 0
+  signalAdjustY:
+    m_OverrideState: 1
+    m_Value: -0.025
+  signalAdjustI:
+    m_OverrideState: 1
+    m_Value: 0
+  signalAdjustQ:
+    m_OverrideState: 1
+    m_Value: 0
+  signalShiftY:
+    m_OverrideState: 1
+    m_Value: 1
+  signalShiftI:
+    m_OverrideState: 1
+    m_Value: 1
+  signalShiftQ:
+    m_OverrideState: 1
+    m_Value: 1
+  signalRangeY:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 1}
+  signalRangeI:
+    m_OverrideState: 1
+    m_Value: {x: -1, y: 1}
+  signalRangeQ:
+    m_OverrideState: 1
+    m_Value: {x: -1, y: 1}
+  signalNorm:
+    m_OverrideState: 1
+    m_Value: 0
+  feedbackOn:
+    m_OverrideState: 1
+    m_Value: 1
+  feedbackThresh:
+    m_OverrideState: 1
+    m_Value: 0.2
+  feedbackAmount:
+    m_OverrideState: 1
+    m_Value: 0.9
+  feedbackFade:
+    m_OverrideState: 1
+    m_Value: 0.7
+  feedbackColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.000000031789146, b: 0, a: 1}
+  feedbackDebugOn:
+    m_OverrideState: 0
+    m_Value: 0
+  feedbackMode: 0
+  independentTimeOn:
+    m_OverrideState: 1
+    m_Value: 1
+  bypassOn:
+    m_OverrideState: 0
+    m_Value: 0
+  bypassTex:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
