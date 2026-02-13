@@ -1,0 +1,621 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7324534035462546684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
+  m_Name: RetroBoss_Pattern
+  m_EditorClassIdentifier: 
+  Graphs:
+  - rid: 1031006859798774006
+  RootGraph:
+    rid: 1031006859798774006
+  m_DebugInfo: {fileID: 1791677627927297047}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1031006859798774006
+      type: {class: BehaviorGraphModule, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        AuthoringAssetID:
+          m_Value0: 2606730118038105443
+          m_Value1: 8524466332235183322
+        m_DebugInfo: {fileID: 0}
+        BlackboardReference:
+          rid: 1031006859798774007
+        BlackboardGroupReferences: []
+        Root:
+          rid: 1031006859798774008
+        m_ActiveNodes: []
+        m_NodesToTick: []
+        m_NodesToEnd:
+          rid: 1031006859798774009
+        m_EndedNodes:
+          rid: 1031006859798774010
+        m_VersionTimestamp: 639065801292656054
+    - rid: 1031006859798774007
+      type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Blackboard:
+          rid: 1031006859798774011
+        m_Source: {fileID: -5829139166777449520}
+    - rid: 1031006859798774008
+      type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        ID:
+          m_Value0: 2868639438015980255
+          m_Value1: 1241948631227369972
+        Graph:
+          rid: 1031006859798774006
+        m_Parent:
+          rid: -2
+        m_Child:
+          rid: 1031006859798774012
+        Repeat: 0
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 1031006859798774009
+      type: {class: 'Stack`1[[Unity.Behavior.Node, Unity.Behavior]]', ns: System.Collections.Generic, asm: mscorlib}
+      data: 
+    - rid: 1031006859798774010
+      type: {class: 'HashSet`1[[Unity.Behavior.Node, Unity.Behavior]]', ns: System.Collections.Generic, asm: System.Core}
+      data: 
+    - rid: 1031006859798774011
+      type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Variables:
+        - rid: 1031006859798774013
+        - rid: 1031006859798774014
+        - rid: 1031006859798774015
+        - rid: 1031006859798774016
+        - rid: 1031006859798774017
+    - rid: 1031006859798774012
+      type: {class: PatternPongAction, ns: , asm: Assembly-CSharp}
+      data:
+        ID:
+          m_Value0: 486007322305770932
+          m_Value1: 6243488755279350083
+        Graph:
+          rid: 1031006859798774006
+        m_Parent:
+          rid: 1031006859798774008
+        Self:
+          rid: 1031006859798774013
+        DirectionLeft:
+          rid: 1031006859798774015
+        DirectionRight:
+          rid: 1031006859798774016
+        Speed:
+          rid: 1031006859798774014
+    - rid: 1031006859798774013
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 1031006859798774014
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4923232208237266572
+          m_Value1: 13594187337228095348
+        Name: speed
+        m_Value: 2
+    - rid: 1031006859798774015
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13074226977887177445
+          m_Value1: 1187405036914525194
+        Name: PongPositionsLeft
+        m_Value: []
+    - rid: 1031006859798774016
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17575351185130553121
+          m_Value1: 1823460485576949797
+        Name: PongPositionsRight
+        m_Value: []
+    - rid: 1031006859798774017
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6855562195803251609
+          m_Value1: 5776683884100653563
+        Name: Visual
+        m_Value: {fileID: 0}
+--- !u!114 &-5829139166777449520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: RetroBoss_Pattern Blackboard
+  m_EditorClassIdentifier: 
+  VersionTimestamp: 639065800776451939
+  AssetID:
+    m_Value0: 2606730118038105443
+    m_Value1: 8524466332235183322
+  m_Blackboard:
+    m_Variables:
+    - rid: 1031006858720051209
+    - rid: 1031006858720051445
+    - rid: 1031006858720051361
+    - rid: 1031006859798773869
+    - rid: 1031006859798773988
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1031006858720051209
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 1031006858720051361
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13074226977887177445
+          m_Value1: 1187405036914525194
+        Name: PongPositionsLeft
+        m_Value: []
+    - rid: 1031006858720051445
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4923232208237266572
+          m_Value1: 13594187337228095348
+        Name: speed
+        m_Value: 2
+    - rid: 1031006859798773869
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17575351185130553121
+          m_Value1: 1823460485576949797
+        Name: PongPositionsRight
+        m_Value: []
+    - rid: 1031006859798773988
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6855562195803251609
+          m_Value1: 5776683884100653563
+        Name: Visual
+        m_Value: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
+  m_Name: RetroBoss_Pattern
+  m_EditorClassIdentifier: 
+  Blackboard: {fileID: 532136906487165076}
+  m_Description: 
+  m_Nodes:
+  - rid: 1031006858720051200
+  - rid: 1031006858720051322
+  m_VersionTimestamp: 639065801292656054
+  m_DebugInfo: {fileID: 1791677627927297047}
+  m_RuntimeGraph: {fileID: -7324534035462546684}
+  AssetID:
+    m_Value0: 2606730118038105443
+    m_Value1: 8524466332235183322
+  Story:
+    Story: 
+    StoryVariableNames: []
+    Variables: []
+  m_NodeModelsInfo:
+  - Name: On Start
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 3335272451348827663
+      m_Value1: 11549843281177505721
+    Variables: []
+    NamedChildren: []
+  - Name: PatternPong
+    Story: '[Self] assign a [directionLeft] or [directionRight] at [speed]'
+    RuntimeTypeID:
+      m_Value0: 14852307753849058780
+      m_Value1: 13620106990631026277
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    - Name: DirectionLeft
+      Type:
+        m_SerializableType: System.Collections.Generic.List`1[[UnityEngine.GameObject,
+          UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+          mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: DirectionRight
+      Type:
+        m_SerializableType: System.Collections.Generic.List`1[[UnityEngine.GameObject,
+          UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+          mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    - Name: Speed
+      Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+  - Name: TurnAroundCube
+    Story: '[Visual] turn on itself'
+    RuntimeTypeID:
+      m_Value0: 18279285471953821598
+      m_Value1: 5129998469713354118
+    Variables:
+    - Name: Visual
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  - Name: Set Variable Value
+    Story: 'Set [Variable] value to [Value]'
+    RuntimeTypeID:
+      m_Value0: 5494721648866555964
+      m_Value1: 18024545711220129068
+    Variables:
+    - Name: Variable
+      Type:
+        m_SerializableType: Unity.Behavior.BlackboardVariable, Unity.Behavior, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    - Name: Value
+      Type:
+        m_SerializableType: Unity.Behavior.BlackboardVariable, Unity.Behavior, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  - Name: Restart
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 13639978763537614925
+      m_Value1: 3904329925062786712
+    Variables: []
+    NamedChildren: []
+  - Name: Repeat
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 3696095273264312494
+      m_Value1: 14191201703811421854
+    Variables: []
+    NamedChildren: []
+  - Name: Conditional Guard
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 10845871997924083670
+      m_Value1: 4041440894818793834
+    Variables: []
+    NamedChildren: []
+  - Name: BossPong
+    Story: '[Self] take a [direction]'
+    RuntimeTypeID:
+      m_Value0: 8297059479106833014
+      m_Value1: 14441876872315260750
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    - Name: Direction
+      Type:
+        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  m_Blackboards: []
+  m_MainBlackboardAuthoringAsset: {fileID: 532136906487165076}
+  m_CommandBuffer:
+    m_Commands: []
+  m_SubgraphsInfo: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1031006858720051200
+      type: {class: StartNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 0, y: 0}
+        ID:
+          m_Value0: 2868639438015980255
+          m_Value1: 1241948631227369972
+        Parents: []
+        PortModels:
+        - rid: 1031006858720051201
+        NodeType:
+          m_SerializableType: Unity.Behavior.Start, Unity.Behavior, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 3335272451348827663
+          m_Value1: 11549843281177505721
+        m_FieldValues: []
+        Repeat: 0
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 1031006858720051201
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 1031006858720051200
+        m_Connections:
+        - rid: 1031006858720051323
+    - rid: 1031006858720051322
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: -0.24934304, y: 216.52046}
+        ID:
+          m_Value0: 486007322305770932
+          m_Value1: 6243488755279350083
+        Parents: []
+        PortModels:
+        - rid: 1031006858720051323
+        - rid: 1031006858720051324
+        NodeType:
+          m_SerializableType: PatternPongAction, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 14852307753849058780
+          m_Value1: 13620106990631026277
+        m_FieldValues:
+        - rid: 1031006858720051325
+        - rid: 1031006859798773841
+        - rid: 1031006859798773842
+        - rid: 1031006858720051429
+    - rid: 1031006858720051323
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 1031006858720051322
+        m_Connections:
+        - rid: 1031006858720051201
+    - rid: 1031006858720051324
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 1031006858720051322
+        m_Connections: []
+    - rid: 1031006858720051325
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Self
+        Type:
+          m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 1031006858720051327
+        LinkedVariable:
+          rid: 1031006858720051328
+    - rid: 1031006858720051327
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 1031006858720051328
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 1031006858720051429
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Speed
+        Type:
+          m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 1031006858720051430
+        LinkedVariable:
+          rid: 1031006858720051446
+    - rid: 1031006858720051430
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 0
+    - rid: 1031006858720051446
+      type: {class: 'TypedVariableModel`1[[System.Single, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 4923232208237266572
+          m_Value1: 13594187337228095348
+        Name: speed
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 0
+    - rid: 1031006859798773841
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: DirectionLeft
+        Type:
+          m_SerializableType: System.Collections.Generic.List`1[[UnityEngine.GameObject,
+            UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+            mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 1031006859798773843
+        LinkedVariable:
+          rid: 1031006859798773883
+    - rid: 1031006859798773842
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: DirectionRight
+        Type:
+          m_SerializableType: System.Collections.Generic.List`1[[UnityEngine.GameObject,
+            UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+            mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        LocalValue:
+          rid: 1031006859798773844
+        LinkedVariable:
+          rid: 1031006859798773896
+    - rid: 1031006859798773843
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: []
+    - rid: 1031006859798773844
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: []
+    - rid: 1031006859798773883
+      type: {class: 'TypedVariableModel`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 13074226977887177445
+          m_Value1: 1187405036914525194
+        Name: PongPositionsLeft
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: []
+    - rid: 1031006859798773896
+      type: {class: 'TypedVariableModel`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17575351185130553121
+          m_Value1: 1823460485576949797
+        Name: PongPositionsRight
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: []
+--- !u!114 &532136906487165076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: RetroBoss_Pattern Blackboard
+  m_EditorClassIdentifier: 
+  AssetID:
+    m_Value0: 2606730118038105443
+    m_Value1: 8524466332235183322
+  m_Variables:
+  - rid: 1031006858720051210
+  - rid: 1031006858720051433
+  - rid: 1031006858720051352
+  - rid: 1031006859798773857
+  - rid: 1031006859798773972
+  m_VersionTimestamp: 639065800776451939
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: -5829139166777449520}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1031006858720051210
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 1031006858720051352
+      type: {class: 'TypedVariableModel`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 13074226977887177445
+          m_Value1: 1187405036914525194
+        Name: PongPositionsLeft
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: []
+    - rid: 1031006858720051433
+      type: {class: 'TypedVariableModel`1[[System.Single, mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 4923232208237266572
+          m_Value1: 13594187337228095348
+        Name: speed
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: 2
+    - rid: 1031006859798773857
+      type: {class: 'TypedVariableModel`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 17575351185130553121
+          m_Value1: 1823460485576949797
+        Name: PongPositionsRight
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: []
+    - rid: 1031006859798773972
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6855562195803251609
+          m_Value1: 5776683884100653563
+        Name: Visual
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+--- !u!114 &1791677627927297047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
+  m_Name: RetroBoss_Pattern Debug Info
+  m_EditorClassIdentifier: 
+  m_CodeBreakPointsList: []
