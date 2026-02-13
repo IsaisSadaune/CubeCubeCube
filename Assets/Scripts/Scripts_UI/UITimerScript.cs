@@ -23,7 +23,7 @@ public class UITimerScript : MonoBehaviour
 
     private void IncreaseTimer()
     {
-        if (Time.timeScale == 1f)
+        if (Time.timeScale != 0f)
         {
             timeElapsed += Time.deltaTime;
         }
