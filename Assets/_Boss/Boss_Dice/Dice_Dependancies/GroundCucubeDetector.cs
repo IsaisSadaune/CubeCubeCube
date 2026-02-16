@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class ExploDetector : MonoBehaviour
+public class GroundCucubeDetector : MonoBehaviour
 {
-    [SerializeField] private Cube_Explosif ce;
+    [SerializeField] private Cucube_Deplacement ce;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Ground"))
         {
-            StartCoroutine(ce.StartExplosion());
+            StartCoroutine(ce.StartMovement());
         }
     }
+
 }
