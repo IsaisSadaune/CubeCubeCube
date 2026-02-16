@@ -13,7 +13,7 @@ public class SpawnerExplo : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnExplo(350));
+        StartCoroutine(SpawnExplo(5));
     }
 
     private IEnumerator SpawnExplo(int number)
