@@ -1,16 +1,15 @@
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class UIRageBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public MMProgressBar rageBar;
 
-    // Update is called once per frame
-    void Update()
+    [Range(0f, 100f)] public float value;
+    [MMInspectorButton("ChangeBarValue")] public bool ChangeBarValueBtn;
+
+    void ChangeBarValue()
     {
-        
+        rageBar.UpdateBar(value, 0f, 100f);
     }
 }
