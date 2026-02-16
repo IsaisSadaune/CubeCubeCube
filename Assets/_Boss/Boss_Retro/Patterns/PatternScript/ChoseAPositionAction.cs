@@ -6,52 +6,39 @@ using Unity.Properties;
 using DG.Tweening;
 
 [GeneratePropertyBag]
-[NodeDescription(name: "PatternPong", story: "[Self] assign a [directionLeft] or [directionRight] at [speed]", category: "Action", id: "dcf5f31236ff1dce657e6043255704bd")]
-public partial class PatternPongAction : Action
+[NodeDescription(name: "ChoseAPosition", story: "[Self] assign a [directionLeft] or [directionRight] to endPosition", category: "Action", id: "dcf5f31236ff1dce657e6043255704bd")]
+public partial class ChoseAPositionAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<GameObject>> DirectionLeft;
     [SerializeReference] public BlackboardVariable<List<GameObject>> DirectionRight;
-    [SerializeReference] public BlackboardVariable<float> Speed;
-    float pong = 1.4f;
-    int bonk;
-    Tween t;
-    Vector3 endPos;
+    RetroBoss boss;
     protected override Status OnStart()
     {
+        boss = Self.Value.GetComponent<RetroBoss>();
         if(Self.Value.transform.position.x < 0)
         {
             int rdm = Random.Range(0, DirectionRight.Value.Count);
-            endPos = DirectionRight.Value[rdm].transform.position;
+            boss.pongEndPos = DirectionRight.Value[rdm];
         }
         else
         {
             int rdm = Random.Range(0, DirectionLeft.Value.Count);
-            endPos = DirectionLeft.Value[rdm].transform.position;
+            boss.pongEndPos = DirectionLeft.Value[rdm];
         }
-        
-        t = Self.Value.transform.DOMove(endPos, Speed.Value * pong).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            if(pong >= 0.4f)
-                pong -= 0.2f;
-
-            bonk++;
-        });
+        Debug.Log(boss.pongEndPos);
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if(!t.IsPlaying() && bonk > 10)
+        if(boss.pongEndPos != null)
         {
-            pong = 1.4f;
+            boss.bonk++;
             return Status.Success;
         }
-        else if(!t.IsPlaying() && bonk <= 10)
-            OnStart();
-            
+        else
             return Status.Running;
-
     }
 
     protected override void OnEnd()
