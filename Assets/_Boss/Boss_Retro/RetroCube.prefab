@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 3369780711965215367}
   - component: {fileID: 5785067274958607756}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: RetroCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,6 +185,15 @@ MonoBehaviour:
   m_Graph: {fileID: -7324534035462546684, guid: 632df9363bf72c24dab4a7f0f6fc4c76, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 1031006858720051350
+  - rid: 1031006858720051382
+  - rid: 1031006858720051457
+  - rid: 1031006859798773881
+  - rid: 1031006859798774004
+  - rid: 8335301264613835072
+  - rid: 8335301264613835073
+  - rid: 1031006951718256749
+  - rid: 1031006951718256751
+  - rid: 1031006951718256887
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -198,6 +207,93 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 8741203994308987422}
+    - rid: 1031006858720051382
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13074226977887177445
+          m_Value1: 1187405036914525194
+        Name: PongPositionsLeft
+        m_Value:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+    - rid: 1031006858720051457
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4923232208237266572
+          m_Value1: 13594187337228095348
+        Name: speed
+        m_Value: 1.5
+    - rid: 1031006859798773881
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17575351185130553121
+          m_Value1: 1823460485576949797
+        Name: PongPositionsRight
+        m_Value:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+    - rid: 1031006859798774004
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6855562195803251609
+          m_Value1: 5776683884100653563
+        Name: Visual
+        m_Value: {fileID: 3403275290740697991}
+    - rid: 1031006951718256749
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11570290843679765960
+          m_Value1: 14902099491064548625
+        Name: "Astero\xEFdPrefab"
+        m_Value: {fileID: 9034252859771992692, guid: 570283c81e42d7f44bbffe820e1a7308, type: 3}
+    - rid: 1031006951718256751
+      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9217229143398945209
+          m_Value1: 8265971302313302260
+        Name: AsteroidNbr
+        m_Value: 5
+    - rid: 1031006951718256887
+      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 5852527636546429867
+          m_Value1: 17200563977128600397
+        Name: AsteroidPos
+        m_Value:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+    - rid: 8335301264613835072
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2703300959953319311
+          m_Value1: 1608591315515578930
+        Name: RacketRight
+        m_Value: {fileID: 0}
+    - rid: 8335301264613835073
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 13412987000375201532
+          m_Value1: 18345357966519917166
+        Name: RacketLeft
+        m_Value: {fileID: 0}
 --- !u!114 &5785067274958607756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +307,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonk: 0
+  pongEndPos: {fileID: 0}
