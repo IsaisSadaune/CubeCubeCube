@@ -9,7 +9,7 @@ public class Bounce : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Wall"))
+        if(other.CompareTag("Wall") && this.enabled == true)
         {
             rb.linearVelocity = -rb.linearVelocity;
         }

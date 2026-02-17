@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 3107124818096238850}
   - component: {fileID: 3960197570099410054}
   - component: {fileID: 6931004697028081706}
-  - component: {fileID: 2842617819140311298}
   - component: {fileID: -1396762180774432101}
   - component: {fileID: 3912639492254023064}
+  - component: {fileID: 8555159890765138282}
   m_Layer: 0
-  m_Name: AsteroidPrefab
+  m_Name: Debris
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,21 +111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2842617819140311298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9034252859771992692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7296b31eeb6f1384a8a8279b11b4ab8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  player: {fileID: 4277801738817917293, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
-  prefabDebris: {fileID: 9034252859771992692, guid: 2a2e096467380cd40b00bfa5d8545383, type: 3}
 --- !u!54 &-1396762180774432101
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,3 +150,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f79713f99d34df4992fca56440cf1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8555159890765138282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034252859771992692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3899eb81bccec4b9c0259c811f24b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5

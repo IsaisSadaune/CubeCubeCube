@@ -6,25 +6,23 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public float speed;
+    public float speed = 3f;
     public Player player;
-    public GameObject prefabAsteroid;
+    public GameObject prefabDebris;
     BoxCollider colliderA;
     Bounce bounce;
     Rigidbody rb;
     Vector3 dir;
-    bool isDivide;
     void Start()
     {
         colliderA = GetComponent<BoxCollider>();
-        StartCoroutine(enableCollider());
+        colliderA.enabled = true;
         bounce = GetComponent<Bounce>();
         rb = GetComponent<Rigidbody>();
         dir = player.transform.position - transform.position;
         rb.linearVelocity = transform.forward + dir * speed;  
 
-        if(!isDivide)
-            bounce.enabled = false;
+        bounce.enabled = false;
     }
 
     // Update is called once per frame
@@ -46,12 +44,6 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    IEnumerator enableCollider()
-    {
-        colliderA.enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        colliderA.enabled = true;
-    }
 
     #region Damage&Division
 
@@ -66,22 +58,15 @@ public class Asteroid : MonoBehaviour
 
     void Explosion()
     {
-        if(isDivide)
-            Destroy(gameObject);
-        else
-        {
             for(int i = 0; i < 2; i++)
             {
-                GameObject j = Instantiate(prefabAsteroid);
-                List<Vector3> vectors = new List<Vector3>  {Vector3.right, Vector3.left, Vector3.forward, Vector3.back};
-                int rdm = Random.Range(0, vectors.Count);
-
-                j.GetComponent<Rigidbody>().linearVelocity = j.GetComponent<Rigidbody>().linearVelocity + vectors[rdm] * (speed + 2);
-                j.transform.localScale /= 1.5f;
-                j.GetComponent<Asteroid>().isDivide = true;
+                GameObject instance = Instantiate(prefabDebris, gameObject.transform.position, prefabDebris.transform.rotation);
+                Vector3 randomDir = Random.onUnitSphere;
+                randomDir.y = 0f;
+                randomDir.Normalize();
+                instance.GetComponent<Debris>().Ejection(randomDir);
             }
             Destroy(gameObject);
-        }
     }
     #endregion
 }
