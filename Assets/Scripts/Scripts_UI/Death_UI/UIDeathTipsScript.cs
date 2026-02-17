@@ -1,23 +1,35 @@
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 
 public class UIDeathTipsScript : MonoBehaviour
 {
-    private string tipsToDisplay;
-    public string[] availableTips;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI tipsText;
+    [SerializeField] private GameObject mainVolume, deathVolume;
 
-    private TextMeshProUGUI tipsText;
+    [Header("Tips à afficher")]
+    public UITipsScriptable tipsList;
+    private string tipsToDisplay;
 
     private void Start()
     {
-        tipsText = GetComponent<TextMeshProUGUI>();
+        mainVolume.SetActive(true);
+        deathVolume.SetActive(false);
+    }
+
+    [ContextMenu("Trigger Death")]
+    public void OnPlayerDeath()
+    {
+        mainVolume.SetActive(false);
+        deathVolume.SetActive(true);
         DisplayTips();
     }
 
-    public void DisplayTips()
+    private void DisplayTips()
     {
-        int tableLength = availableTips.Length;
-        tipsToDisplay = availableTips[Random.Range(0, tableLength)];
+        int tableLength = tipsList.availableTips.Length;
+        tipsToDisplay = tipsList.availableTips[Random.Range(0, tableLength)];
 
         tipsText.SetText("Tips : " + tipsToDisplay);
     }
