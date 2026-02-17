@@ -11,9 +11,7 @@ public partial class BonkGal0Condition : Condition
 
     public override bool IsTrue()
     {
-        Bonk.Value = RetroBoss.Instance.bonk;
-
-        if(Bonk.Value <= 0)
+        if(Bonk.Value <= 10)
             return true;
         else
             return false;

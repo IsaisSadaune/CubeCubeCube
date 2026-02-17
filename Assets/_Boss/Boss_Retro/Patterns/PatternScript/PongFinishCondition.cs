@@ -11,12 +11,7 @@ public partial class PongFinishCondition : Condition
 
     public override bool IsTrue()
     {
-        Bonk.Value = RetroBoss.Instance.bonk;
-
-        if(Bonk.Value >= 10) 
-            return true;
-        else
-            return false;
+        return Bonk.Value >= Ten.Value;
     }
 
     public override void OnStart()
