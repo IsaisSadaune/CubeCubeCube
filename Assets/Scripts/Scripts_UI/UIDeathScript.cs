@@ -1,13 +1,13 @@
-using MoreMountains.Feedbacks;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIDeathScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI tipsText;
     [SerializeField] private GameObject mainVolume, deathVolume;
+    [SerializeField] private Button buttonToSelect;
 
     [Header("Tips à afficher")]
     [SerializeField] private string[] availableTips;
@@ -44,6 +44,11 @@ public class UIDeathScript : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void SelectRestartButton()
+    {
+        buttonToSelect.Select();
     }
     #endregion
 }
