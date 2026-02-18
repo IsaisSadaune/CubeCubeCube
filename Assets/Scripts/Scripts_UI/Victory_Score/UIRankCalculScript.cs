@@ -4,24 +4,36 @@ using UnityEngine;
 public class UIRankCalculScript : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI timeText;
-    [SerializeField] private TextMeshProUGUI parryText, healText, lostRageText, rankText;
+    [SerializeField] private TextMeshProUGUI bossNameText;
+    [SerializeField] private TextMeshProUGUI timeText, parryText, healText, lostRageText, rankText, pBText;
     public BossScoreRequirementsScriptable scoreRequirements;
 
     private int finalScore;
+    private char finalRank;
 
     private void Start()
     {
         finalScore = 0;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CalculateAndDisplayVictoryDatas(22.42f, 3, 0, 0);
+        }
+    }
+
     public void CalculateAndDisplayVictoryDatas(float secondsToBeat, int nbrParryDone, int nbrHealsUsed, float lostRage)
     {
+        finalScore = 0;
         TimeScore(secondsToBeat);
         ParryScore(nbrParryDone);
         PointLoss(nbrHealsUsed, lostRage);
 
         DetermineRank();
+
+        UpdateText(secondsToBeat, nbrParryDone, nbrHealsUsed, lostRage);
     }
 
     #region CalculateScore
@@ -33,6 +45,7 @@ public class UIRankCalculScript : MonoBehaviour
             timeScore = 0;
 
         finalScore += Mathf.RoundToInt(timeScore);
+        Debug.Log(timeScore);
     }
 
     void ParryScore(int nbrParryDone)
@@ -41,6 +54,7 @@ public class UIRankCalculScript : MonoBehaviour
             nbrParryDone = scoreRequirements.maxParryAmount;
 
         finalScore += nbrParryDone * scoreRequirements.pointsPerParry;
+        Debug.Log(finalScore);
     }
 
     void PointLoss(int nbrHealsUsed, float rageLost)
@@ -49,20 +63,37 @@ public class UIRankCalculScript : MonoBehaviour
 
         float timesRageLost = rageLost / scoreRequirements.lostRageToTriggerPointLoss;
         finalScore -= (int)timesRageLost * scoreRequirements.pointsLostPerRageLoss;
+        Debug.Log(finalScore);
     }
     #endregion
 
     void DetermineRank()
     {
-        if(finalScore >= scoreRequirements.scoreForS)
-            return;
+        if (finalScore >= scoreRequirements.scoreForS)
+            finalRank = 'S';
         else if (finalScore < scoreRequirements.scoreForS && finalScore >= scoreRequirements.scoreForA)
-            return;
+            finalRank = 'A';
         else if (finalScore < scoreRequirements.scoreForA && finalScore >= scoreRequirements.scoreForB)
-            return;
+            finalRank = 'B';
         else if (finalScore < scoreRequirements.scoreForB && finalScore >= scoreRequirements.scoreForC)
-            return;
+            finalRank = 'C';
         else if (finalScore < scoreRequirements.scoreForC)
-            return;
+            finalRank = 'D';
+    }
+
+    void UpdateText(float secondsToBeat, int nbrParryDone, int nbrHealUsed, float lostRage)
+    {
+        bossNameText.SetText(scoreRequirements.bossName);
+
+        float minutes = Mathf.FloorToInt(secondsToBeat / 60);
+        float unroundedSeconds = secondsToBeat % 60;
+        float seconds = Mathf.Round(unroundedSeconds * 100) / 100;
+        timeText.SetText(minutes + ":" + seconds);
+
+        parryText.SetText(nbrParryDone + "/" + scoreRequirements.maxParryAmount);
+        healText.SetText(nbrHealUsed.ToString());
+        lostRageText.SetText(lostRage.ToString());
+
+        rankText.SetText(finalRank.ToString());
     }
 }

@@ -387,9 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '0
-
-'
+  m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -540,7 +538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3/3
+  m_text: '0/X
 
 '
   m_isRightToLeft: 0
@@ -725,8 +723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 72.14, y: -214.375}
-  m_SizeDelta: {x: 25.72, y: 0}
+  m_AnchoredPosition: {x: 80.71, y: -214.375}
+  m_SizeDelta: {x: 8.58, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2798813352371404874
 CanvasRenderer:
@@ -756,7 +754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '125
+  m_text: 'X
 
 '
   m_isRightToLeft: 0
@@ -1652,8 +1650,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.715, y: -30.625}
-  m_SizeDelta: {x: 68.57, y: 0}
+  m_AnchoredPosition: {x: 55, y: -30.625}
+  m_SizeDelta: {x: 60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8420483316803560798
 CanvasRenderer:
@@ -1683,7 +1681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:22,46
+  m_text: X:xx,xx
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1855,7 +1853,7 @@ GameObject:
   - component: {fileID: 3205098143741295710}
   - component: {fileID: 8043800181549980490}
   m_Layer: 5
-  m_Name: Bottom_Text
+  m_Name: Record_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1908,7 +1906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Personal best : 00:22,46'
+  m_text: 'Personal best : X:XX,XX'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2196,7 +2194,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: S
+  m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2690,11 +2688,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f429f1da050ce41b0c2d89206daca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossNameText: {fileID: 4390009549813617530}
   timeText: {fileID: 4250268885167357597}
   parryText: {fileID: 8555646755982503805}
   healText: {fileID: 8700911787702317678}
-  lostRageText: {fileID: 8700911787702317678}
+  lostRageText: {fileID: 5695336091213900217}
   rankText: {fileID: 2551549777212208582}
+  pBText: {fileID: 8043800181549980490}
+  scoreRequirements: {fileID: 11400000, guid: 00c9e43ee35cc8249a0e9ae3d77fe8f4, type: 2}
 --- !u!1 &8827453032059387785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,7 +2761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boss 1
+  m_text: Boss name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
