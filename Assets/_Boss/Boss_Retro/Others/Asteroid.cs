@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class Asteroid : MonoBehaviour
     Bounce bounce;
     Rigidbody rb;
     Vector3 dir;
+    Vector3 rota;
     void Start()
     {
         colliderA = GetComponent<BoxCollider>();
@@ -23,12 +25,13 @@ public class Asteroid : MonoBehaviour
         rb.linearVelocity = transform.forward + dir * speed;  
 
         bounce.enabled = false;
+        rota = Random.onUnitSphere;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.one);
+        transform.Rotate(rota*2);
     }
 
     void FixedUpdate()

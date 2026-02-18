@@ -1,35 +1,28 @@
-using System.Collections.Generic;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
-using Unity.VisualScripting;
-
 
 [GeneratePropertyBag]
-[NodeDescription(name: "InstantiateAsteroids", story: "Instantiate [n] [AsteroïdPrefab] in [Asteroïds] at [Position]", category: "Action", id: "94363bcb777e165269f70cb2d1ee4227")]
+[NodeDescription(name: "InstantiateAsteroids", story: "Instantiate [AsteroidNbr] [AsteroïdPrefab] on [CircleCollider]", category: "Action", id: "9c2a9a182b0cdd447a21b3dcfe72c828")]
 public partial class InstantiateAsteroidsAction : Action
 {
-    [SerializeReference] public BlackboardVariable<int> N;
+    [SerializeReference] public BlackboardVariable<int> AsteroidNbr;
     [SerializeReference] public BlackboardVariable<GameObject> AsteroïdPrefab;
-    [SerializeReference] public BlackboardVariable<List<GameObject>> Asteroïds;
-    [SerializeReference] public BlackboardVariable<List<GameObject>> Position;
+    [SerializeReference] public BlackboardVariable<GameObject> CircleCollider;
 
-    List<Vector3> possiblePosition = new List<Vector3>();
+    SphereCollider spawnPos;
     protected override Status OnStart()
     {
-        for(int i = 0; i< Position.Value.Count; i++)
+        spawnPos = CircleCollider.Value.GetComponent<SphereCollider>();
+        for(int i = 0; i < AsteroidNbr.Value; i++)
         {
-            possiblePosition.Add(Position.Value[i].transform.position);
-        }
-
-        for(int i = 0; i < N; i++)
-        {
-            int rdm = Random.Range(0, possiblePosition.Count);
-            Vector3 pos = possiblePosition[rdm];
-            possiblePosition.Remove(possiblePosition[rdm]);
-            GameObject j = RetroBoss.Instance.asteroidPattern(AsteroïdPrefab.Value, pos);
-            Asteroïds.Value.Add(j);
+            Vector3 randomPoint = Random.onUnitSphere;
+            randomPoint.y = 0f;
+            randomPoint.Normalize(); 
+            Vector3 pos = spawnPos.bounds.center + randomPoint * spawnPos.bounds.extents.x;
+            pos.y = 2f;
+            RetroBoss.Instance.asteroidPattern(AsteroïdPrefab.Value, pos);
         }
         return Status.Running;
     }

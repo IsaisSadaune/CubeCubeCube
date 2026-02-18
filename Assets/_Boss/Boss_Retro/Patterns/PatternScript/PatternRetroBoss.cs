@@ -4,5 +4,7 @@ using Unity.Behavior;
 [BlackboardEnum]
 public enum PatternRetroBoss
 {
-    PongPattern
+    Asteroids,
+	Pong,
+    None
 }

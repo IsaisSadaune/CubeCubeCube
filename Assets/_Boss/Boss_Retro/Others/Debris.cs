@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
-    public float speed = 5f;
-    Rigidbody rb;
-    BoxCollider c;
+    public float speed = 5f;    Rigidbody rb;   Vector3 rota;    BoxCollider c;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>(); 
         c = GetComponent<BoxCollider>();
+        rota = Random.onUnitSphere;
         StartCoroutine(enableCollider());
+        transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
     }
     void Update()
     {
-        transform.Rotate(Vector3.one);
+        transform.Rotate(rota * 3);
     }
 
     public void Ejection(Vector3 dir)
