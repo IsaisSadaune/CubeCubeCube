@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6246779346921323095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -121,8 +121,9 @@ MonoBehaviour:
   mainVolume: {fileID: 0}
   deathVolume: {fileID: 0}
   availableTips:
-  - You can do it !
-  - You should uninstall
+  - Try attacking the cube
+  - Losing too much health usually means death
+  - "3\xB3 = 27"
 --- !u!1 &2165724261019222497
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +244,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4575195655964305100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7995195526785900016}
+        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3480061705306351192
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +414,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5314897485895266889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7995195526785900016}
+        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
+        m_MethodName: RestartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4161267917833679126
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8101633789865638967
 RectTransform:
   m_ObjectHideFlags: 0

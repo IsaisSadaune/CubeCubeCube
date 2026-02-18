@@ -1,8 +1,9 @@
 using MoreMountains.Feedbacks;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
-public class UIDeathTipsScript : MonoBehaviour
+public class UIDeathScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI tipsText;
@@ -18,7 +19,6 @@ public class UIDeathTipsScript : MonoBehaviour
         deathVolume.SetActive(false);
     }
 
-    [ContextMenu("Trigger Death")]
     public void OnPlayerDeath()
     {
         mainVolume.SetActive(false);
@@ -33,4 +33,17 @@ public class UIDeathTipsScript : MonoBehaviour
 
         tipsText.SetText("Tips : " + tipsToDisplay);
     }
+
+    #region Death buttons scripts
+    public void RestartButton()
+    {
+        Debug.Log("Restart");
+    }
+
+    public void QuitButton()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+    #endregion
 }
