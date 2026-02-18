@@ -53,6 +53,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #region Others Variables
     public InputActionReference moveRef;
+    public LayerMask obstacle;
 
     [Header("Menu Variables")]
     public PauseMenu pauseMenu;
@@ -361,6 +362,29 @@ public class Player : MonoBehaviour, IDamageable
     public void CreateDust()
     {
         dust.Play();
+    }
+    #endregion
+
+    #region Test_Movement
+    public Vector3 wallNormal;
+    public bool isTouchingWall;
+
+    private void OnCollisionStay(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (Vector3.Angle(contact.normal, Vector3.up) > 10f)
+            {
+                wallNormal = contact.normal;
+                isTouchingWall = true;
+                return;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isTouchingWall = false;
     }
     #endregion
 }
