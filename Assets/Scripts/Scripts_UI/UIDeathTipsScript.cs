@@ -9,7 +9,7 @@ public class UIDeathTipsScript : MonoBehaviour
     [SerializeField] private GameObject mainVolume, deathVolume;
 
     [Header("Tips à afficher")]
-    public UITipsScriptable tipsList;
+    [SerializeField] private string[] availableTips;
     private string tipsToDisplay;
 
     private void Start()
@@ -28,8 +28,8 @@ public class UIDeathTipsScript : MonoBehaviour
 
     private void DisplayTips()
     {
-        int tableLength = tipsList.availableTips.Length;
-        tipsToDisplay = tipsList.availableTips[Random.Range(0, tableLength)];
+        int tableLength = availableTips.Length;
+        tipsToDisplay = availableTips[Random.Range(0, tableLength)];
 
         tipsText.SetText("Tips : " + tipsToDisplay);
     }
