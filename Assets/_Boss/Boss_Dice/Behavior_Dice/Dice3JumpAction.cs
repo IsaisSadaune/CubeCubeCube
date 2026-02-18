@@ -13,9 +13,14 @@ public partial class Dice3JumpAction : Action
     [SerializeReference] public BlackboardVariable<Transform> Position;
 
     private Tween t;
+
+    private float jumpPower = ConstantsDice.jumpPower;
+    private float duration = ConstantsDice.duration;
+
+
     protected override Status OnStart()
     {
-        t = Dice.Value.transform.DOJump(Position.Value.transform.position, 10, 1, 1).SetEase(Ease.InExpo);
+        t = Dice.Value.transform.DOJump(Position.Value.transform.position, jumpPower, 1, duration).SetEase(Ease.InExpo);
         return Status.Running;
     }
 

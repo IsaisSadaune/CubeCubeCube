@@ -16,7 +16,7 @@ public partial class Dice6RotateTwiceAction : Action
     private Sequence s;
     private Sequence r;
 
-    private float time = 0.25f;
+    private float timeToMove = ConstantsDice.timeToMove6;
     protected override Status OnStart()
     {
         s = DOTween.Sequence();
@@ -30,8 +30,8 @@ public partial class Dice6RotateTwiceAction : Action
         );
         Quaternion targetRotation = Mode.Value.transform.localRotation * rollDir;
 
-        s.Append(Boss.Value.transform.DOMove(Position.Value.transform.position, time).SetEase(Ease.OutQuint));
-        r.Append(Mode.Value.transform.DOLocalRotateQuaternion(targetRotation, time).SetEase(Ease.OutQuint));
+        s.Append(Boss.Value.transform.DOMove(Position.Value.transform.position, timeToMove).SetEase(Ease.OutQuint));
+        r.Append(Mode.Value.transform.DOLocalRotateQuaternion(targetRotation, timeToMove).SetEase(Ease.OutQuint));
         return Status.Running;
     }
 

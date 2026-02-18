@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Cucube_Deplacement : MonoBehaviour
 {
-    [SerializeField] private int numberOfMovesBeforeDeath = 5;
-    [SerializeField] private float TimeBetweenMoves = 0.2f;
-    [SerializeField] private float TimeToMove = 0.2f;
-    [SerializeField] private float TimeToDie = 1f;
+    private int numberOfMovesBeforeDeath = ConstantsDice.numberOfMovesBeforeDeath;
+    [SerializeField] private float TimeBetweenMoves = ConstantsDice.TimeBetweenMoves;
+    [SerializeField] private float TimeToMove = ConstantsDice.TimeToMove;
+    [SerializeField] private float TimeToDie = ConstantsDice.TimeToDie;
     private Rigidbody rb => GetComponent<Rigidbody>();
 
     private void Awake()

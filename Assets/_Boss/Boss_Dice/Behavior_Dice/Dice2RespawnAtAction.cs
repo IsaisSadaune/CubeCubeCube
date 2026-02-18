@@ -13,10 +13,12 @@ public partial class Dice2RespawnAtAction : Action
     [SerializeReference] public BlackboardVariable<Transform> Here;
     private Tween t;
 
+    private float timeToSpawnBoss2 = ConstantsDice.timeToSpawnBoss2;
+
     protected override Status OnStart()
     {
         Boss.Value.transform.position = Here.Value.position;
-        t = Boss.Value.transform.DOScale(1, 0.5f);
+        t = Boss.Value.transform.DOScale(1, timeToSpawnBoss2);
         return Status.Running;
     }
 

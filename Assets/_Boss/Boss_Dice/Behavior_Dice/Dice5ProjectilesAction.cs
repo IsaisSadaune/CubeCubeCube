@@ -29,11 +29,12 @@ public partial class Dice5ProjectilesAction : Action
         return Status.Running;
     }
 
-    // /!\ Éléments Vibe coded /!\
+    // /!\ Attention, beaucoup d'Éléments Vibe coded, je sais pas faire de physique correctement /!\
 
-    private float spawnRadius = 2f; // Rayon de dispersion autour du joueur
-    private float arcHeight = 15f; // Hauteur de l'arc (ajustez pour plus/moins de hauteur)
-
+    private float spawnRadius = ConstantsDice.spawnRadius; // Rayon de dispersion autour du joueur
+    private float arcHeight = ConstantsDice.arcHeight; // Hauteur de l'arc
+    private float timeBetweenTwoSpawns = ConstantsDice.timeBetweenTwoSpawns;
+    private float BreakAtTheEnd = ConstantsDice.BreakAtTheEnd;
 
     private IEnumerator SpawnExplo(int number)
     {
@@ -69,10 +70,10 @@ public partial class Dice5ProjectilesAction : Action
 
             rb.linearVelocity = horizontalVelocity + Vector3.up * verticalVelocity;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(timeBetweenTwoSpawns);
         }
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(BreakAtTheEnd);
         isComplete = true;
     }
 
