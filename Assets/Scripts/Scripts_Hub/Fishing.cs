@@ -81,7 +81,7 @@ public class Fishing : MonoBehaviour
 
         else
         {
-            fish.SetFloat("fishGet",2);
+            fish.SetFloat("fishGet",1);
             text.SetActive(false);
             ExitFishing();
         }
@@ -91,6 +91,8 @@ public class Fishing : MonoBehaviour
     {
         page = 0;
         button.SetActive(true);
+        fish.SetBool("fishingWin", false);
+        fish.SetFloat("fishGet", 1);
         //redonner contrôle au joueur
     }
 
