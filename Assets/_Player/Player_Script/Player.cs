@@ -11,6 +11,10 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour, IDamageable
 {
     public HP_Test hps {get ; set;}
+    #region Singleton
+    private static Player _instance = null;
+    public static Player Instance => _instance;
+    #endregion
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
@@ -126,6 +130,16 @@ public class Player : MonoBehaviour, IDamageable
         shieldState = new ShieldState(this, stateMachine);
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
+
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Start()
