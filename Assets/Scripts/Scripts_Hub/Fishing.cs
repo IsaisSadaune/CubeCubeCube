@@ -1,9 +1,12 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Fishing : MonoBehaviour
 {
+    private Player player = Player.Instance;
+
     public GameObject button;
     public GameObject qte;
     public GameObject text;
@@ -12,6 +15,7 @@ public class Fishing : MonoBehaviour
     private float fillamount = 0;
     private int coins = 0;
     private int page = 0;
+    private bool hasWin = false;
 
     private void Start()
     {
@@ -20,68 +24,87 @@ public class Fishing : MonoBehaviour
         text.SetActive(false);    
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-       button.SetActive(true);
-       ActivateFishing();
-    }
-
-    //Script qui permet au joueur d'activer le mini-jeu uniquement dans la zone faite pour
-    void ActivateFishing()
-    {
+        if(fillamount < 1 && fillamount >= 0)
+        {
+            fillamount -= 0.0025f;
+            qte.GetComponent<Image>().fillAmount = fillamount;
+        }
         if (button.activeSelf == true)
         {
             if (Input.GetKeyDown(KeyCode.E))//Robin mettre code à lui là
-            { 
-                Debug.Log("ça marche pas assez longtemps patron");
-                button.SetActive (false);
+            {
+                button.SetActive(false);
                 FishGame();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.A)) //Robin mettre code à lui là
+        {
+            if (qte.activeSelf == true)
+            {
+                Debug.Log("babybel");
+                fillamount += 0.1f;
+                qte.GetComponent<Image>().fillAmount = fillamount;
+            }
+        }
+
+        if (fillamount >= 1)
+        {
+            fillamount = 0;
+            qte.SetActive(false);
+            fish.SetBool("fishingWin", true);
+            page++;
+            Win();
+            hasWin = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) && hasWin) //Robin mettre code à lui là
+        {
+            page++;
+            Win();
+        }
+
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       button.SetActive(true);
+
+    }
+
+
 
     //La cam bouge là mais faut demander à Tom
     void FishGame()
     {
+        Player.Instance.playerInput.SwitchCurrentActionMap("UI");
         qte.SetActive (true);
-        //le joueur ne peut plus bouger à partir de maintenant
-        if (Input.GetKeyDown(KeyCode.A)) //Robin mettre code à lui là
-        {
-            fillamount += 0.2f;
-        }
-
-        qte.GetComponent<Image>().fillAmount = fillamount;
-
-        if(fillamount >= 2)
-        {
-            Win();
-        }
+        fillamount = 0;
     }
 
     void Win()
-    {
-        qte.SetActive(false);
-        fish.SetBool("fishingWin", true);
+    {   
 
-        if(Input.GetKeyDown(KeyCode.S)) //Robin mettre code à lui là
-        {
-            page ++;
-        }
-
-        if(page  == 1)
+        if(page == 1)
         {
             text.SetActive(true);
-            //changer le texte affiché
         }
 
-        if(page == 2 && coins == 0)
+        if(page == 2)
         {
-            //changer le texte affiché
+            if(coins == 0)
+            {
+                //changer le texte affiché
+            }
+            fish.SetFloat("fishGet", 1);
+            fish.SetBool("fishingWin", false);
+            coins++;
         }
 
-        else
+        if(page == 3)
         {
-            fish.SetFloat("fishGet",1);
             text.SetActive(false);
             ExitFishing();
         }
@@ -89,10 +112,12 @@ public class Fishing : MonoBehaviour
 
     void ExitFishing()
     {
+        hasWin = false;
         page = 0;
         button.SetActive(true);
-        fish.SetBool("fishingWin", false);
-        fish.SetFloat("fishGet", 1);
+        fish.SetFloat("fishGet", 0);
+        Player.Instance.playerInput.SwitchCurrentActionMap("Gameplay");
+        fillamount = 0;
         //redonner contrôle au joueur
     }
 
