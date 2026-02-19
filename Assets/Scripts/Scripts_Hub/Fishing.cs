@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,22 +6,28 @@ public class Fishing : MonoBehaviour
 {
     public GameObject button;
     public GameObject qte;
-    public float fillamount = 0;
+    public GameObject text;
+    public Animator fish;
+
+    private float fillamount = 0;
+    private int coins = 0;
+    private int page = 0;
 
     private void Start()
     {
         button.SetActive(false);
         qte.SetActive(false);
+        text.SetActive(false);    
     }
 
     private void OnTriggerEnter(Collider other)
     {
        button.SetActive(true);
-       Activatefish();
+       ActivateFishing();
     }
 
     //Script qui permet au joueur d'activer le mini-jeu uniquement dans la zone faite pour
-    void Activatefish()
+    void ActivateFishing()
     {
         if (button.activeSelf == true)
         {
@@ -33,21 +40,62 @@ public class Fishing : MonoBehaviour
         }
     }
 
-    //La cam
+    //La cam bouge là mais faut demander à Tom
     void FishGame()
     {
         qte.SetActive (true);
+        //le joueur ne peut plus bouger à partir de maintenant
         if (Input.GetKeyDown(KeyCode.A)) //Robin mettre code à lui là
         {
-            fillamount += 2f;
+            fillamount += 0.2f;
         }
 
         qte.GetComponent<Image>().fillAmount = fillamount;
+
+        if(fillamount >= 2)
+        {
+            Win();
+        }
+    }
+
+    void Win()
+    {
+        qte.SetActive(false);
+        fish.SetBool("fishingWin", true);
+
+        if(Input.GetKeyDown(KeyCode.S)) //Robin mettre code à lui là
+        {
+            page ++;
+        }
+
+        if(page  == 1)
+        {
+            text.SetActive(true);
+            //changer le texte affiché
+        }
+
+        if(page == 2 && coins == 0)
+        {
+            //changer le texte affiché
+        }
+
+        else
+        {
+            fish.SetFloat("fishGet",2);
+            text.SetActive(false);
+            ExitFishing();
+        }
+    }
+
+    void ExitFishing()
+    {
+        page = 0;
+        button.SetActive(true);
+        //redonner contrôle au joueur
     }
 
     private void OnTriggerExit(Collider other)
     {
         button.SetActive(false);
     }
-
 }
