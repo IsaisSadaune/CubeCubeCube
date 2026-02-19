@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIRankCalculScript : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class UIRankCalculScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bossNameText;
     [SerializeField] private TextMeshProUGUI timeText, parryText, healText, lostRageText, rankText, pBText;
     public BossScoreRequirementsScriptable scoreRequirements;
+    [SerializeField] private Button buttonToSelect;
 
     private int finalScore;
     private char finalRank;
@@ -41,7 +43,7 @@ public class UIRankCalculScript : MonoBehaviour
     {
         float timeScore = scoreRequirements.startTimeScore - (scoreRequirements.scoreLossPerSecond * timeToBeatBoss);
 
-        if (timeScore <= 0) 
+        if (timeScore <= 0)
             timeScore = 0;
 
         finalScore += Mathf.RoundToInt(timeScore);
@@ -50,7 +52,7 @@ public class UIRankCalculScript : MonoBehaviour
 
     void ParryScore(int nbrParryDone)
     {
-        if(nbrParryDone > scoreRequirements.maxParryAmount)
+        if (nbrParryDone > scoreRequirements.maxParryAmount)
             nbrParryDone = scoreRequirements.maxParryAmount;
 
         finalScore += nbrParryDone * scoreRequirements.pointsPerParry;
@@ -96,4 +98,13 @@ public class UIRankCalculScript : MonoBehaviour
 
         rankText.SetText(finalRank.ToString());
     }
+
+    #region Buttons
+
+    public void SelectContinueButton()
+    {
+        buttonToSelect.Select();
+    }
+
+    #endregion
 }
