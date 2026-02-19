@@ -24,8 +24,7 @@ public class UIPlayerFight : MonoBehaviour
         }
         pointeur = hpAmount - 1;
     }
-
-    [ContextMenu("RemoveHP")]
+    
     public void RemoveHP(int x)
     {
         if (pointeur >= 0)
@@ -39,7 +38,6 @@ public class UIPlayerFight : MonoBehaviour
             }
     }
 
-    [ContextMenu("AddHP")]
     public void AddHP()
     {
         if (pointeur < fullHPs.Count - 1)

@@ -811,8 +811,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7395935358204143633}
   - component: {fileID: 3158131947576571170}
-  - component: {fileID: 7090136445421815605}
   - component: {fileID: 1913629062845829416}
+  - component: {fileID: 7090136445421815605}
   m_Layer: 5
   m_Name: UI_Rage_Bar
   m_TagString: Untagged
@@ -1110,22 +1110,6 @@ MonoBehaviour:
   BarTarget: 1
   DelayedBarIncreasingProgress: 1
   DelayedBarDecreasingProgress: 1
---- !u!114 &7090136445421815605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9066078660143688738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d70f365b724f14cbff62df5872f6cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rageBar: {fileID: 3158131947576571170}
-  value: 100
-  ChangeBarValueBtn: 0
-  barFlickerFbPlayer: {fileID: 0}
 --- !u!114 &1913629062845829416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,3 +1534,17 @@ MonoBehaviour:
         EnableOnPlay: 1
         DisableOnSequenceEnd: 0
         DisableOnStop: 0
+--- !u!114 &7090136445421815605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066078660143688738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d70f365b724f14cbff62df5872f6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 100
+  ChangeBarValueBtn: 0
