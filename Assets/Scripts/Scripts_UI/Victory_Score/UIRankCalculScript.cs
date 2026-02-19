@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIRankCalculScript : MonoBehaviour
@@ -8,7 +9,7 @@ public class UIRankCalculScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bossNameText;
     [SerializeField] private TextMeshProUGUI timeText, parryText, healText, lostRageText, rankText, pBText;
     public BossScoreRequirementsScriptable scoreRequirements;
-    [SerializeField] private Button buttonToSelect;
+    public Button buttonToSelect;
 
     private int finalScore;
     private char finalRank;
@@ -67,7 +68,6 @@ public class UIRankCalculScript : MonoBehaviour
         finalScore -= (int)timesRageLost * scoreRequirements.pointsLostPerRageLoss;
         Debug.Log(finalScore);
     }
-    #endregion
 
     void DetermineRank()
     {
@@ -82,6 +82,7 @@ public class UIRankCalculScript : MonoBehaviour
         else if (finalScore < scoreRequirements.scoreForC)
             finalRank = 'D';
     }
+    #endregion
 
     void UpdateText(float secondsToBeat, int nbrParryDone, int nbrHealUsed, float lostRage)
     {
@@ -100,11 +101,12 @@ public class UIRankCalculScript : MonoBehaviour
     }
 
     #region Buttons
-
     public void SelectContinueButton()
     {
-        buttonToSelect.Select();
+        if (buttonToSelect != null)
+            buttonToSelect.Select();
+        else
+            Debug.Log("Button to select is null");
     }
-
     #endregion
 }
