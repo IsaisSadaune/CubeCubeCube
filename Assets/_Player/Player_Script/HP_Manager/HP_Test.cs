@@ -6,7 +6,7 @@ public class HP_Test : MonoBehaviour
     [SerializeField] private int hp_max;
     int current_hp;
     [SerializeField] private int mp_max;
-    public int current_mp {get; set;}
+    public int current_mp;
     public Player player;
     [SerializeField] private UIPlayerFight uip;
     [SerializeField] private UIRageBar uir;
@@ -68,6 +68,7 @@ public class HP_Test : MonoBehaviour
     #region mp
     public void LoseMP(int mp)
     {
+        Debug.Log("Lost" + mp);
         if (current_mp - mp <= 0)
             current_mp = 0;
         else

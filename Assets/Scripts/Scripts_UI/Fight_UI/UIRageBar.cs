@@ -36,7 +36,7 @@ public class UIRageBar : MonoBehaviour
 
     public void DecreaseBarValue(int valueToPull)
     {
-        if ((value += valueToPull) < 0)
+        if ((value -= valueToPull) < 0)
             value = 0;
         else
             value -= valueToPull;
