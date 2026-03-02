@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class UIPlayerFight : MonoBehaviour
 {
-    [SerializeField] private int hpAmount;
     [SerializeField] GameObject hpPrefab;
     private List<GameObject> fullHPs = new();
     private int pointeur;
+    private UIHeartLossFeedback heartLossScript;
 
-    private void Start()
-    {
-        SetMaxHps();
-    }
-
-    public void SetMaxHps()
+    public void SetMaxHps(int hpAmount)
     {
         for (int i = 0; i < hpAmount; i++)
         {
@@ -23,21 +18,20 @@ public class UIPlayerFight : MonoBehaviour
         }
         pointeur = hpAmount - 1;
     }
-
-    [ContextMenu("RemoveHP")]
+    
     public void RemoveHP(int x)
     {
         if (pointeur >= 0)
             while (x > 0)
             {
-                fullHPs[pointeur].SetActive(false);
+                heartLossScript = fullHPs[pointeur].GetComponent<UIHeartLossFeedback>();
+                heartLossScript.TriggerHPLossFeedback();
                 x--;
                 pointeur--;
                 if (pointeur < 0) break;
             }
     }
 
-    [ContextMenu("AddHP")]
     public void AddHP()
     {
         if (pointeur < fullHPs.Count - 1)
@@ -45,5 +39,13 @@ public class UIPlayerFight : MonoBehaviour
             pointeur++;
             fullHPs[pointeur].SetActive(true);
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            RemoveHP(1); 
+        if (Input.GetKeyDown(KeyCode.L))
+            AddHP();
     }
 }
