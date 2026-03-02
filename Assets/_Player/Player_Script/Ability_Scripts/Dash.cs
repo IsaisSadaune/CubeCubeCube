@@ -78,6 +78,8 @@ public class Dash : MonoBehaviour
     yield return new WaitForSeconds(player.dashCooldown);
     player.canDash = true;
 
+    yield return new WaitForSeconds(0.1f);
+    player.hitbox.enabled = true;
 }
 
     public IEnumerator DashTrail(float time)

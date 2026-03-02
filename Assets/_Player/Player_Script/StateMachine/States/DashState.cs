@@ -18,7 +18,7 @@ public class DashState : PlayerState
     }
     public override void ExitState()
     {
-        player.hitbox.enabled = true;
+
     }
     
     public override void FrameUpdate()

@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Proc quand le joueur subit un dï¿½gat.
+/// Proc quand le joueur subit un dégat.
 /// Se place sur la hitbox du joueur.
 /// </summary>
 public class PlayerTakesDamage : MonoBehaviour
@@ -22,11 +22,6 @@ public class PlayerTakesDamage : MonoBehaviour
             p.iFraming = true;
             p.Knockback(other.transform);
             p.TakeDamage(0);
-        }
-        if(other.CompareTag("Projectile") && !p.iFraming)
-        {
-            p.iFraming = true;
-            p.TakeDamage(1);
         }
     }
 
