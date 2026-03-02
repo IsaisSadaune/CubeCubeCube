@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,6 @@ public class UIDeathScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tipsText;
     [SerializeField] private GameObject mainVolume, deathVolume;
     [SerializeField] private Button buttonToSelect;
-
     [Header("Tips à afficher")]
     [SerializeField] private string[] availableTips;
     private string tipsToDisplay;
