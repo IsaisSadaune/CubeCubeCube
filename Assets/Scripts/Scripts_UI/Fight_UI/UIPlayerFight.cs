@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class UIPlayerFight : MonoBehaviour
 {
-    [SerializeField] private int hpAmount;
     [SerializeField] GameObject hpPrefab;
     private List<GameObject> fullHPs = new();
     private int pointeur;
     private UIHeartLossFeedback heartLossScript;
 
-    private void Start()
-    {
-        SetMaxHps();
-    }
-
-    public void SetMaxHps()
+    public void SetMaxHps(int hpAmount)
     {
         for (int i = 0; i < hpAmount; i++)
         {

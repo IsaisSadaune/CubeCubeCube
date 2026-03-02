@@ -494,9 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2671503f0a63684d9fe022f665d4ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpAmount: 5
   hpPrefab: {fileID: 4668091691342299047, guid: 9408f6306819a494091f152edfe8bed6, type: 3}
-  heartLossScript: {fileID: 0}
 --- !u!1 &5808711741258417464
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +810,7 @@ GameObject:
   - component: {fileID: 7395935358204143633}
   - component: {fileID: 3158131947576571170}
   - component: {fileID: 1913629062845829416}
-  - component: {fileID: 7090136445421815605}
+  - component: {fileID: 8682543923663321158}
   m_Layer: 5
   m_Name: UI_Rage_Bar
   m_TagString: Untagged
@@ -1534,7 +1532,7 @@ MonoBehaviour:
         EnableOnPlay: 1
         DisableOnSequenceEnd: 0
         DisableOnStop: 0
---- !u!114 &7090136445421815605
+--- !u!114 &8682543923663321158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1546,5 +1544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d70f365b724f14cbff62df5872f6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 100
+  rageMax: 0
+  value: 0
   ChangeBarValueBtn: 0

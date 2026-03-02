@@ -8,30 +8,30 @@ public class UIRageBar : MonoBehaviour
     private MMProgressBar rageBar;
     private MMF_Player barFlickerFbPlayer;
 
-    [Range(0f, 100f)] public float value;
-    [MMInspectorButton("ChangeBarValue")] public bool ChangeBarValueBtn;
+    public float rageMax;
+    public float value;
+    [MMFInspectorButton("ChangeBarValue")] public bool ChangeBarValueBtn;
 
     private void Start()
     {
         rageBar = GetComponent<MMProgressBar>();
         barFlickerFbPlayer = GetComponent<MMF_Player>();
-        ChangeBarValue();
         StartCoroutine(BarFlickerTrigger());
     }
 
-    void ChangeBarValue()
+    public void ChangeBarValue(float startValue)
     {
-        rageBar.UpdateBar(value, 0f, 100f);
+        rageBar.UpdateBar(startValue, 0f, rageMax);
     }
 
     public void IncreaseRageBar(int valueToAdd)
     {
-        if ((value += valueToAdd) > 100)
-            value = 100;
+        if ((value += valueToAdd) > rageMax)
+            value = rageMax;
         else
             value += valueToAdd;
 
-        ChangeBarValue();
+        ChangeBarValue(value);
     }
 
     public void DecreaseBarValue(int valueToPull)
@@ -41,12 +41,12 @@ public class UIRageBar : MonoBehaviour
         else
             value -= valueToPull;
 
-        ChangeBarValue();
+        ChangeBarValue(value);
     }
 
     IEnumerator BarFlickerTrigger()
     {
-        yield return new WaitUntil(() => value == 100f);
+        yield return new WaitUntil(() => value == rageMax);
         barFlickerFbPlayer.PlayFeedbacks();
 
         // Mettre le double de la durée du Holding pause entre deux swaps d'image en temps
