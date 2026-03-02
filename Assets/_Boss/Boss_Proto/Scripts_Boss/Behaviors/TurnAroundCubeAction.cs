@@ -6,15 +6,15 @@ using Unity.Properties;
 using DG.Tweening;
 
 [GeneratePropertyBag]
-[NodeDescription(name: "TurnAroundCube", story: "[Visual] turn on itself", category: "Action", id: "9e1fc4f74911adfd86dd8fa56d6a3147")]
+[NodeDescription(name: "TurnAroundCube", story: "Cubes Turn Around [Self]", category: "Action", id: "9e1fc4f74911adfd86dd8fa56d6a3147")]
 public partial class TurnAroundCubeAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Visual;
+    [SerializeReference] public BlackboardVariable<GameObject> Self;
 
     
     protected override Status OnStart()
     {
-        Visual.Value.transform.DORotate(1080f * Vector3.one, 2f);
+        Self.Value.transform.DORotate(1080f * Vector3.one, 5f);
         return Status.Running;
     }
 
