@@ -8,7 +8,7 @@ public class UIPlayerFight : MonoBehaviour
     [SerializeField] GameObject hpPrefab;
     private List<GameObject> fullHPs = new();
     private int pointeur;
-    [SerializeField] private UIHeartLossFeedback heartLossScript;
+    private UIHeartLossFeedback heartLossScript;
 
     private void Start()
     {
