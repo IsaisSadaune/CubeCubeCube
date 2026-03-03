@@ -37,8 +37,27 @@ public class GameManager_Offi : MonoBehaviour
 
 
 
-    // /!\ Fonctions à appeler quand le boss est vaincu /!\
-    public void Boss1Beaten(float time, char rank)
+    // /!\ Fonction à appeler quand le boss est vaincu /!\
+    public void UpdateScore(int bossNumber, float time, char rank)
+    {
+        switch(bossNumber)
+        {
+            case 1:
+                Boss1UpdateScores(time, rank); 
+                break;
+            case 2:
+                Boss2UpdateScores(time, rank);
+                break;
+            case 3:
+                Boss3UpdateScores(time, rank);
+                break;
+            default:
+                Debug.LogWarning("ERREUR, LE BOSS NUMERO " + bossNumber + " N'EXISTE PAS !");
+                break;
+        }
+    }
+
+    private void Boss1UpdateScores(float time, char rank)
     {
         if(time < recordBoss1)
             recordBoss1 = time;
@@ -47,7 +66,7 @@ public class GameManager_Offi : MonoBehaviour
         if (act == 0) 
             act++;
     }
-    public void Boss2Beaten(float time, char rank)
+    private void Boss2UpdateScores(float time, char rank)
     {
         if(time < recordBoss2)
             recordBoss2 = time;
@@ -55,7 +74,7 @@ public class GameManager_Offi : MonoBehaviour
         if (act == GameProgression.Boss1Beaten)
             act++;
     }
-    public void Boss3Beaten(float time, char rank)
+    private void Boss3UpdateScores(float time, char rank)
     {
         if(time < recordBoss3)
             recordBoss3 = time;
@@ -66,6 +85,17 @@ public class GameManager_Offi : MonoBehaviour
 
     private char BestRank(char a, char b)
     {
+        if(a != 'A' && a != 'B' && a != 'C' && a != 'D' && a != 'S')
+        {
+            Debug.LogWarning("ERREUR, LE RANG " + a + "EST INVALIDE");
+            return 'D';
+        }
+        if(b != 'A' && b != 'B' && b != 'C' && b != 'D' && b != 'S')
+        {
+            Debug.LogWarning("ERREUR, LE RANG " + b + "EST INVALIDE");
+            return 'D';
+        }
+
         if (a == 'S' || b == 'S') 
             return 'S';
         if (a < b) 
