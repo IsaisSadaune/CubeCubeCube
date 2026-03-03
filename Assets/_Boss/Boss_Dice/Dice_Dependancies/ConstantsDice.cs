@@ -13,6 +13,8 @@ public class ConstantsDice
     public const float duration = 0.9f;
 
     //Dice 4
+    public const float timeToSpawn = 0.25f;
+
     public const float distanceToMoveIn4 = 10f;
     public const float timeToMoveIn4 = 1f;
 
