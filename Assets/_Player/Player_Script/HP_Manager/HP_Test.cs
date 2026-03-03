@@ -9,13 +9,12 @@ public class HP_Test : MonoBehaviour
     public int current_mp {get; set;}
     public Player player;
     [SerializeField] private UI_Player uip;
-    [SerializeField] private GameObject reloadButton;
+
     public bool CanUlt => current_mp >= mp_max;
     private Coroutine MpsLoss;
 
     void Start()
     {
-        reloadButton.SetActive(false);
         current_hp = hp_max;
         current_mp = 0;
         if (uip != null)
@@ -61,7 +60,6 @@ public class HP_Test : MonoBehaviour
         player.isDead = true;
         player.deathFeedback.PlayFeedbacks();
         player.animator.SetBool("isDead", true);
-        reloadButton.SetActive(true);
     }
 #endregion
 
