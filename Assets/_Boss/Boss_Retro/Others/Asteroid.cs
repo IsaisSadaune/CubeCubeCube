@@ -21,8 +21,8 @@ public class Asteroid : MonoBehaviour
         colliderA.enabled = true;
         bounce = GetComponent<Bounce>();
         rb = GetComponent<Rigidbody>();
-        dir = player.transform.position - transform.position;
-        rb.linearVelocity = transform.forward + dir * speed;  
+        dir = Player.Instance.transform.position - transform.position;
+        rb.linearVelocity = dir * speed;  
 
         bounce.enabled = false;
         rota = Random.onUnitSphere;
