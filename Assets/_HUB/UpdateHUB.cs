@@ -83,7 +83,7 @@ public class UpdateHUB : MonoBehaviour
         int speed = 1;
         while(isUpdating)
         {
-            if(speed >= 6)
+            if(speed >= 4)
             {
                 isUpdating = false;
             }
