@@ -169,6 +169,10 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if(!isGrounded)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
         stateMachine.currentPlayerState.FrameUpdate();
 
         if (dashBuffer > 0)
