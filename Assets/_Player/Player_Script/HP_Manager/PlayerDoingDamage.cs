@@ -9,17 +9,14 @@ public class PlayerDoingDamage : MonoBehaviour
     public Player player;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out IDamageable cible) && !other.CompareTag("Player"))
+        if(other.TryGetComponent<IDamageable>(out IDamageable cible) && !other.CompareTag("Player"))
         {
-            Debug.Log("dgt");
+            player.hps.GainMP(3);
             player.bossHit = true;
-            cible.TakeDamage(player.combo[player.comboCount].damage);   
-        }
-        else if(other.transform.parent != null && other.transform.parent.TryGetComponent(out IDamageable cible2) && !other.CompareTag("Player"))
-        {
-            Debug.Log("dgt");
-            player.bossHit = true;
-            cible2.TakeDamage(player.combo[player.comboCount].damage);
+            if(gameObject.tag == "Attack")
+                cible.TakeDamage(player.combo[player.comboCount].damage);
+            else
+                cible.TakeDamage(player.gapClose.damage);
         }
     }
 }

@@ -54,10 +54,27 @@ public class WalkingState : PlayerState
 
             Vector3 move = (camForward * input.y + camRight * input.x).normalized;
 
-            player.rb.linearVelocity = move * player.speed;
+            float speedMultiplier = 1f;
+
+            if (player.isTouchingWall && move != Vector3.zero)
+            {
+                float dot = Vector3.Dot(move, player.wallNormal);
+
+                if (dot < 0f) 
+                {
+                    move = move - player.wallNormal * dot;
+                    speedMultiplier = 0.75f;
+                }
+            }
+
+            player.rb.linearVelocity = move * player.speed * speedMultiplier;
 
             Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.5f);
+            player.transform.rotation = Quaternion.Slerp(
+                player.transform.rotation,
+                targetRotation,
+                0.5f
+            );
         }
     }
 }

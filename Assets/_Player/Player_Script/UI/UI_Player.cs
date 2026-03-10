@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Player : MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class UI_Player : MonoBehaviour
     [SerializeField] private GameObject hpPrefab;
     [SerializeField] private TextMeshProUGUI timer;
     private List<GameObject> fullHPs = new();
+    [SerializeField] private Slider mp_Slider;
     private int pointeur;
-
     private float time;
+
+    #region HP
     public void SetHps(int hpsMax)
     {
         for (int i = 0; i < hpsMax; i++)
@@ -43,6 +46,19 @@ public class UI_Player : MonoBehaviour
             fullHPs[pointeur].SetActive(true);
         }
     }
+    #endregion
+
+    #region Mana
+    public void SetMps(int MaxMps)
+    {
+        mp_Slider.maxValue = MaxMps;
+    }
+    public void UpdateMps(int actualMps)
+    {
+        mp_Slider.value = actualMps;
+    }
+
+    #endregion
     private void Start()
     {
         time = 0;
