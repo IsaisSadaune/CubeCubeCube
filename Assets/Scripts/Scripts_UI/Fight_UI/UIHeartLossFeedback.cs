@@ -16,7 +16,7 @@ public class UIHeartLossFeedback : MonoBehaviour
 
     private void OnEnable()
     {
-        image.color = startColor;
+        //image.color = startColor;
     }
 
     public void TriggerHPLossFeedback()
