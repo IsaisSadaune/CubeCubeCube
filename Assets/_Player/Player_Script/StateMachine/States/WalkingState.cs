@@ -30,7 +30,7 @@ public class WalkingState : PlayerState
         
     }
 
-    public override void PhysicsUpdate()
+   public override void PhysicsUpdate()
     {
         if (player.isDead)
         {
@@ -38,43 +38,67 @@ public class WalkingState : PlayerState
             return;
         }
 
-        if (stateMachine.currentPlayerState == player.idleState 
-            || stateMachine.currentPlayerState == player.walkingState 
-            || stateMachine.currentPlayerState == player.attackState)
+        if (stateMachine.currentPlayerState == player.idleState ||
+            stateMachine.currentPlayerState == player.walkingState ||
+            stateMachine.currentPlayerState == player.attackState)
         {
-            Vector2 input = player.moveInput;
-
-            Vector3 camForward = Camera.main.transform.forward;
-            Vector3 camRight = Camera.main.transform.right;
-
-            camForward.y = 0f;
-            camRight.y = 0f;
-            camForward.Normalize();
-            camRight.Normalize();
-
-            Vector3 move = (camForward * input.y + camRight * input.x).normalized;
-
-            float speedMultiplier = 1f;
-
-            if (player.isTouchingWall && move != Vector3.zero)
-            {
-                float dot = Vector3.Dot(move, player.wallNormal);
-
-                if (dot < 0f) 
-                {
-                    move = move - player.wallNormal * dot;
-                    speedMultiplier = 0.75f;
-                }
-            }
-
-            player.rb.linearVelocity = move * player.speed * speedMultiplier;
-
-            Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-            player.transform.rotation = Quaternion.Slerp(
-                player.transform.rotation,
-                targetRotation,
-                0.5f
-            );
+            Move();
+            Rotate();
         }
     }
+
+    void Move()
+    {
+        Vector2 input = player.moveInput;
+
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDir = (camForward * input.y + camRight * input.x);
+
+        if (moveDir.magnitude > 1f)
+            moveDir.Normalize();
+
+        float speedMultiplier = 1f;
+
+        if (player.isTouchingWall && moveDir != Vector3.zero)
+        {
+            float dot = Vector3.Dot(moveDir, player.wallNormal);
+
+            if (dot < 0f)
+            {
+                moveDir -= player.wallNormal * dot;
+                speedMultiplier = 0.75f;
+            }
+        }
+
+        Vector3 velocity = player.rb.linearVelocity;
+
+        velocity.x = moveDir.x * player.speed * speedMultiplier;
+        velocity.z = moveDir.z * player.speed * speedMultiplier;
+
+        player.rb.linearVelocity = velocity;
+
+        if (moveDir != Vector3.zero)
+            player.direction = moveDir;
+    }
+    void Rotate()
+{
+    if (player.direction == Vector3.zero)
+        return;
+
+    Quaternion targetRotation = Quaternion.LookRotation(player.direction);
+
+    player.transform.rotation = Quaternion.Slerp(
+        player.transform.rotation,
+        targetRotation,
+        player.rotationSpeed * Time.fixedDeltaTime
+    );
+}
 }

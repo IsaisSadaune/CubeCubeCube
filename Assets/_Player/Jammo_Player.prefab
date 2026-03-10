@@ -7666,7 +7666,19 @@ MonoBehaviour:
     m_ActionId: 02c8ba45-14e1-45a8-ab94-1939fb907a51
     m_ActionName: 'Gameplay/Dash[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/buttonSouth,/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4277801738817917293}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fd5f2d1a-39e6-440b-910a-9c3ace0fe9a3
     m_ActionName: 'Gameplay/Interact[/Keyboard/f,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
@@ -7702,11 +7714,35 @@ MonoBehaviour:
     m_ActionId: 698dbca7-decc-4c8d-9ac8-3e6acb33feae
     m_ActionName: 'Gameplay/Attack[/XInputControllerWindows/buttonWest,/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4277801738817917293}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 25307ced-d3f3-48f3-8357-2210f7f2d2da
     m_ActionName: 'UI/Next[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4277801738817917293}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: FastWritting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4a7767a6-f98c-4ee2-b60f-219eba50fbbf
     m_ActionName: UI/FastWritting
   - m_PersistentCalls:
@@ -7759,6 +7795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  rotationSpeed: 15
   dashForce: 8
   dashDuration: 0.2
   dashCooldown: 0.225
@@ -7770,6 +7807,9 @@ MonoBehaviour:
   parryFeedback: {fileID: 0}
   dashSound: {fileID: 0}
   moveRef: {fileID: 0}
+  obstacle:
+    serializedVersion: 2
+    m_Bits: 0
   pauseMenu: {fileID: 0}
   canDash: 1
   isGrounded: 1
@@ -7791,10 +7831,13 @@ MonoBehaviour:
   timeBeforeNextAttack: 0.3
   shield: {fileID: 100141475122835697}
   parryTiming: 1
-  emptyText: {fileID: 0}
+  dialogueCanvas: {fileID: 0}
+  pnjSprite: {fileID: 0}
   animator: {fileID: 7635726066119915157}
   hasFalledRecently: 0
   hitbox: {fileID: 3510525265170032637}
+  wallNormal: {x: 0, y: 0, z: 0}
+  isTouchingWall: 0
 --- !u!114 &4235285046465177358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7866,7 +7909,6 @@ MonoBehaviour:
   mp_max: 50
   player: {fileID: 4277801738817917293}
   uip: {fileID: 0}
-  reloadButton: {fileID: 0}
 --- !u!114 &215593597128228371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8639,6 +8681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961d6c62e248e6449961c2080c5c335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &4608544476467774058
 GameObject:
   m_ObjectHideFlags: 0

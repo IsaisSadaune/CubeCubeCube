@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IDamageable
     #region Movement Variables
     [Header("Movement Variables")]
     public float speed = 5f;
+    public float rotationSpeed = 15f;
     public float dashForce = 10f;
     public float dashDuration;
     public float dashTimer { get; set; }
@@ -104,7 +105,6 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = true;
-            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
             if(pnj == null)
                 pnj = other.GetComponent<PNJ>();
         }
@@ -114,7 +114,6 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = false;
-            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             pnj = null;
             stateMachine.ChangeState(idleState);
         }
@@ -171,7 +170,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(!isGrounded)
         {
-            rb.linearVelocity = Vector3.zero;
+            rb.linearVelocity = new Vector3(Vector3.zero.x, rb.linearVelocity.y, Vector3.zero.z);
         }
         stateMachine.currentPlayerState.FrameUpdate();
 
@@ -305,11 +304,11 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(context.performed && pnj != null)
         {
-            pnj.delay /= 2;
+            pnj.delay /= 10;
         }
         if(context.canceled && pnj != null)
         {
-            pnj.delay *= 2;
+            pnj.delay *= 10;
         }
     }
     #endregion

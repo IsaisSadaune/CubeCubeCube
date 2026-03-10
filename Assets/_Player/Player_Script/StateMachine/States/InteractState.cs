@@ -19,12 +19,12 @@ public class InteractState : PlayerState
 
     public override void ExitState()
     {
-        base.ExitState();
-        player.dialogueCanvas.SetActive(false);
         player.pnj.emptyDialogueText.text = "";
         player.pnj.emptyNameText.text = "";
         player.pnj.textEnded = false;
+        player.dialogueCanvas.SetActive(false);
         player.playerInput.SwitchCurrentActionMap("Gameplay");
+        base.ExitState();    
     }
 
     public override void FrameUpdate()
