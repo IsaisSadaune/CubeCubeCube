@@ -17,6 +17,9 @@ public class RespawnPlayer : MonoBehaviour
             p.hasFalledRecently = true;
             other.transform.position = respawnPoint.position;
         }
+
+        if(other.TryGetComponent(out GroundCucubeDetector detec))
+            Destroy(detec);
     }
 
 

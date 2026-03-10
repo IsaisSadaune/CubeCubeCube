@@ -6,10 +6,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
     public HP_Test hps {get ; set;}
+    #region Singleton
+    private static Player _instance = null;
+    public static Player Instance => _instance;
+    #endregion
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #region Others Variables
     public InputActionReference moveRef;
+    public LayerMask obstacle;
 
     [Header("Menu Variables")]
     public PauseMenu pauseMenu;
@@ -87,16 +93,20 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float parryTiming;
 
     [Header("Interaction Variables")]
-    public TextMeshProUGUI emptyText;
-    public float timeBetweenLetter { get; set; }
+    public GameObject dialogueCanvas;
+    public Image pnjSprite;
     private bool talkingTrigger;
+    public PNJ pnj {get; private set;}
+    public Animator animator;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = true;
-            other.GetComponentInChildren<GameObject>().SetActive(true);
+            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            if(pnj == null)
+                pnj = other.GetComponent<PNJ>();
         }
     }
     void OnTriggerExit(Collider other)
@@ -104,22 +114,12 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = false;
-            other.GetComponentInChildren<GameObject>().SetActive(false);
+            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            pnj = null;
+            stateMachine.ChangeState(idleState);
         }
     }
-
     #endregion
-
-    #region Animation Triggers
-    public Animator animator;
-    private void AnimationTriggerEvent(AnimationTriggerType triggerType)
-    {
-
-    }
-    public enum AnimationTriggerType
-    { }
-    #endregion
-
     private void Awake()
     {
         stateMachine = new PlayerStateMachine();
@@ -130,6 +130,16 @@ public class Player : MonoBehaviour, IDamageable
         shieldState = new ShieldState(this, stateMachine);
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
+
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Start()
@@ -143,7 +153,7 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-
+        dialogueCanvas.SetActive(false);
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
@@ -159,6 +169,10 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if(!isGrounded)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
         stateMachine.currentPlayerState.FrameUpdate();
 
         if (dashBuffer > 0)
@@ -274,9 +288,28 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && talkingTrigger)
+        if(context.performed && talkingTrigger && pnj != null)
         {
             stateMachine.ChangeState(interactState);
+        }
+    }
+
+    public void Close(InputAction.CallbackContext context)
+    {
+        if(context.performed && pnj.textEnded)
+        {
+            stateMachine.ChangeState(idleState);
+        }
+    }
+    public void FastWritting(InputAction.CallbackContext context)
+    {
+        if(context.performed && pnj != null)
+        {
+            pnj.delay /= 2;
+        }
+        if(context.canceled && pnj != null)
+        {
+            pnj.delay *= 2;
         }
     }
     #endregion
@@ -347,6 +380,29 @@ public class Player : MonoBehaviour, IDamageable
     public void CreateDust()
     {
         dust.Play();
+    }
+    #endregion
+
+    #region Test_Movement
+    public Vector3 wallNormal;
+    public bool isTouchingWall;
+
+    private void OnCollisionStay(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if (Vector3.Angle(contact.normal, Vector3.up) > 10f)
+            {
+                wallNormal = contact.normal;
+                isTouchingWall = true;
+                return;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isTouchingWall = false;
     }
     #endregion
 }

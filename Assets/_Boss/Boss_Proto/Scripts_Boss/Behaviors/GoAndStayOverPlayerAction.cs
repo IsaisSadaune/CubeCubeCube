@@ -22,7 +22,7 @@ public partial class GoAndStayOverPlayerAction : Action
     {
 
         timePassed = false;
-        Boss.Value.transform.DOScale(Vector3.one*5, 0.25f);
+        Boss.Value.transform.DOScale(Vector3.one, 0.25f);
         Boss.Value.transform.position = Player.Value.transform.position + Vector3.up * distancePlayerBoss;
         Awaitable a = TimerBeforeFalling();
         return Status.Running;

@@ -10,10 +10,20 @@ public class Proto_GameManager : MonoBehaviour
     [SerializeField] private GameObject UI_Panel;
     [SerializeField] private Button startButton;
     [SerializeField] private GameObject UI_Reload;
-    [SerializeField] Player player;
+    [field: SerializeField] public Player player { get; private set; }
+
+    private static Proto_GameManager gameManager;
+    public static Proto_GameManager GameManager => gameManager;
 
     private void Awake()
     {
+        if(gameManager != null && gameManager != this)
+        {
+            Destroy(gameObject);
+        }
+        gameManager = this;
+        DontDestroyOnLoad(gameObject);
+
         Time.timeScale = 0;
     }
 

@@ -37,21 +37,6 @@ public class GapClose : MonoBehaviour
             player.stateMachine.ChangeState(player.idleState);
         }
     }
-    void OnDrawGizmos()
-    {
-        if (posPrevi == null) return;
-
-        Gizmos.color = Color.red;
-
-        Vector3 dir = (posPrevi.transform.position - transform.position).normalized;
-        float distance = Vector3.Distance(transform.position, posPrevi.transform.position);
-
-        Gizmos.DrawRay(transform.position + Vector3.up, dir * distance);
-
-        // Petit sphere au point cible
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(posPrevi.transform.position, 0.2f);
-    }
 
     IEnumerator ColliderActivation()
     {
