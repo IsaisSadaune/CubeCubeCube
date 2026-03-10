@@ -4,6 +4,7 @@ using UnityEngine;
 public class GroundDetection : MonoBehaviour
 {
     private Player player;
+    public LayerMask groundLayer;
 
     void Start()
     {
@@ -12,7 +13,7 @@ public class GroundDetection : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "Ground")
+        if (collider.tag == "Ground" || Physics.Raycast(transform.position, Vector3.down, 1f, groundLayer))
         {
             player.isGrounded = true;
         }

@@ -1,15 +1,23 @@
-using DG.Tweening;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class HubManager : MonoBehaviour
 {
     public bool asProc = false;
+    
 
     [ContextMenu("transition test")]
+
+    void Start()
+    {
+        
+    }
     public void TransitionIn()
     {
-                SceneManager.LoadScene("Tutorial Scene");
+        SceneManager.LoadScene("Tutorial Scene");
     }
+
+    
 }
