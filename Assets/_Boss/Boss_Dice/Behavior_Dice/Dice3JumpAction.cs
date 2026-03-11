@@ -20,7 +20,7 @@ public partial class Dice3JumpAction : Action
 
     protected override Status OnStart()
     {
-        t = Dice.Value.transform.DOJump(Position.Value.transform.position, jumpPower, 1, duration).SetEase(Ease.InExpo);
+        t = Dice.Value.transform.DOJump(Position.Value.transform.position, jumpPower, 1, duration).SetEase(Ease.InExpo).SetUpdate(UpdateType.Fixed); ;
         return Status.Running;
     }
 
