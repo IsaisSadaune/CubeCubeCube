@@ -7,7 +7,7 @@ public class PreviFeedbackScript : MonoBehaviour
     [SerializeField] private Color startColor, endColor;
     private Renderer renderer;
     private Vector3 baseScale;
-    [SerializeField] private float changeScaleDuration, changeColorDuration, timeBeforeChangingColor, timeBeforeDestroyWhenFinished;
+    [SerializeField] private float changeScaleDuration, changeColorDuration, timeBeforeDestroyWhenFinished;
 
     private void Start()
     {
@@ -23,6 +23,6 @@ public class PreviFeedbackScript : MonoBehaviour
         transform.DOScale(baseScale, changeScaleDuration);
         renderer.material.DOColor(endColor, changeColorDuration);
         yield return new WaitForSeconds(timeBeforeDestroyWhenFinished);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
