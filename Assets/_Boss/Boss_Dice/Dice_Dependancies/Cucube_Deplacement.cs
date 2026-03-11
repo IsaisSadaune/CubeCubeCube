@@ -15,7 +15,7 @@ public class Cucube_Deplacement : MonoBehaviour
     {
         Physics.IgnoreCollision(
             gameObject.GetComponent<Collider>(), 
-            Proto_GameManager.GameManager.player.gameObject.GetComponent<Collider>(), 
+            GameManager_Offi.Instance.p.gameObject.GetComponent<Collider>(), 
             true);
     }
 
@@ -27,7 +27,7 @@ public class Cucube_Deplacement : MonoBehaviour
         {
             yield return new WaitForSeconds(TimeBetweenMoves);
 
-            Vector3 direction = GetClosestOrthogonalDirection(transform, Proto_GameManager.GameManager.player.transform.position);
+            Vector3 direction = GetClosestOrthogonalDirection(transform, GameManager_Offi.Instance.p.transform.position);
             Vector3 targetPos = transform.position + direction;
 
             // Calculer la rotation en espace monde
