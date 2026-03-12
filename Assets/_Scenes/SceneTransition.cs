@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class SceneTransition : MonoBehaviour
 {
     public string sceneName;
+    public string transiName;
     public TextMeshProUGUI enterSceneText;
     public GameObject uiTransi;
     public Button yesButton;
@@ -18,7 +19,7 @@ public class SceneTransition : MonoBehaviour
             yesButton.onClick.RemoveAllListeners();
             noButton.onClick.RemoveAllListeners();
             enterSceneText.text = "";
-            enterSceneText.text = sceneName + " ?";
+            enterSceneText.text = transiName;
             Player.Instance.playerInput.SwitchCurrentActionMap("UI");
             uiTransi.SetActive(true);
             yesButton.onClick.AddListener(GoIntoScene);

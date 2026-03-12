@@ -10,9 +10,14 @@ public class PNJ : MonoBehaviour
     public TextMeshProUGUI emptyDialogueText;
     public TextMeshProUGUI emptyNameText;
     public bool textEnded {get; set;}
+    Coroutine dialogueCoroutine;
     public void ShowText()
     {
-        StartCoroutine(LetterByLetter());
+        if(dialogueCoroutine == null)
+            dialogueCoroutine = StartCoroutine(LetterByLetter());
+        else
+            StopCoroutine(LetterByLetter());
+            dialogueCoroutine = null;
     }
 
     IEnumerator LetterByLetter()

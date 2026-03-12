@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject dialogueCanvas;
     public Image pnjSprite;
     private bool talkingTrigger;
-    public PNJ pnj {get; private set;}
+    [SerializeField] public PNJ pnj;
     public Animator animator;
 
     void OnTriggerEnter(Collider other)
@@ -114,8 +114,8 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = false;
-            pnj = null;
             stateMachine.ChangeState(idleState);
+            pnj = null;
         }
     }
     #endregion
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && talkingTrigger && pnj != null)
+        if(context.performed && talkingTrigger && pnj != null && stateMachine.currentPlayerState == idleState)
         {
             stateMachine.ChangeState(interactState);
         }
@@ -295,7 +295,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Close(InputAction.CallbackContext context)
     {
-        if(context.performed && pnj.textEnded)
+        if(context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
         {
             stateMachine.ChangeState(idleState);
         }
@@ -383,8 +383,8 @@ public class Player : MonoBehaviour, IDamageable
     #endregion
 
     #region Test_Movement
-    public Vector3 wallNormal;
-    public bool isTouchingWall;
+    public Vector3 wallNormal {get; set;}
+    public bool isTouchingWall {get; private set;}
 
     private void OnCollisionStay(Collision collision)
     {
