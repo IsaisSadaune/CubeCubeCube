@@ -52,7 +52,6 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
     public MMF_Player parryFeedback;
-    public AudioSource dashSound;
     #endregion
 
     #region Others Variables
@@ -153,7 +152,8 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-        dialogueCanvas.SetActive(false);
+        if(dialogueCanvas != null)
+            dialogueCanvas.SetActive(false);
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
@@ -165,6 +165,9 @@ public class Player : MonoBehaviour, IDamageable
             combo[i].attackCollider = attacksCollider[i];
         }
 
+
+        if (GameManager_Offi.Instance != null) 
+            GameManager_Offi.Instance.SetPlayer(this);
     }
 
     private void Update()

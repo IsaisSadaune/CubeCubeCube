@@ -8,8 +8,8 @@ public class UIRageBar : MonoBehaviour
     private MMProgressBar rageBar;
     private MMF_Player barFlickerFbPlayer;
 
-    public float rageMax;
-    public float value;
+    private float rageMax;
+    private float value;
     [MMFInspectorButton("ChangeBarValue")] public bool ChangeBarValueBtn;
 
     private void Start()
@@ -17,6 +17,14 @@ public class UIRageBar : MonoBehaviour
         rageBar = GetComponent<MMProgressBar>();
         barFlickerFbPlayer = GetComponent<MMF_Player>();
         StartCoroutine(BarFlickerTrigger());
+        value = 0;
+        ChangeBarValue(value);
+    }
+
+
+    public void SetRageMax(float rageMax)
+    {
+        this.rageMax = rageMax;
     }
 
     public void ChangeBarValue(float startValue)

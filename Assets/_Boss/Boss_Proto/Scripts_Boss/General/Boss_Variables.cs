@@ -8,8 +8,9 @@ public class Boss_Variables : MonoBehaviour, IDamageable
 
     [SerializeField] private float MaxHP;
     public float HP { get; private set; }
-    public bool isSlimy { get; private set; }
     public bool isDestroying { get; private set; }
+    public bool isHardDestroying { get; private set; }
+
     public MMF_Player damageFeedback;
     public MMF_Player deathFeedback;
     
@@ -18,11 +19,11 @@ public class Boss_Variables : MonoBehaviour, IDamageable
 
     public bool IsDead() => HP <= 0;
 
-    public void SetSlimy() => isSlimy = true;
-    public void StopSlimy() => isSlimy = false;
-
     public void SetDestroying() => isDestroying = true;
     public void StopDestroying() => isDestroying = false;
+
+    public void SetHardDestroying() => isHardDestroying = true;
+    public void StopHardDestroying() => isHardDestroying = false;
 
     private void Awake()
     {

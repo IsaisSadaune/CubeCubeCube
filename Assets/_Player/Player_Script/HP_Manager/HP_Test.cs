@@ -6,9 +6,11 @@ public class HP_Test : MonoBehaviour
     [SerializeField] private int hp_max;
     int current_hp;
     [SerializeField] private int mp_max;
-    public int current_mp {get; set;}
+    public int current_mp { get; set; }
     public Player player;
-    [SerializeField] private UI_Player uip;
+    [SerializeField] private UIPlayerFight upf;
+    [SerializeField] private UIRageBar rageBar;
+
 
     public bool CanUlt => current_mp >= mp_max;
     private Coroutine MpsLoss;
@@ -17,15 +19,19 @@ public class HP_Test : MonoBehaviour
     {
         current_hp = hp_max;
         current_mp = 0;
-        if (uip != null)
+
+
+        if (upf != null)
         {
-            uip.SetHps(current_hp);
-            uip.SetMps(mp_max);
-            uip.UpdateMps(current_mp);
+            upf.SetMaxHps(hp_max);
+        }
+        if (rageBar != null)
+        {
+            rageBar.SetRageMax(mp_max);
         }
     }
 
-        void Update()
+    void Update()
     {
         if (current_mp < mp_max)
         {
@@ -41,13 +47,13 @@ public class HP_Test : MonoBehaviour
             }
         }
     }
-#region hp
+    #region hp
     public void LoseHP(int x)
     {
         current_hp -= x;
         GainMP(3);
-        if (uip != null)
-            uip.RemoveHP(x);
+        if (upf != null)
+            upf.RemoveHP(x);
 
         if (current_hp <= 0)
         {
@@ -61,32 +67,32 @@ public class HP_Test : MonoBehaviour
         player.deathFeedback.PlayFeedbacks();
         player.animator.SetBool("isDead", true);
     }
-#endregion
+    #endregion
 
-#region mp
+    #region mp
     public void LoseMP(int mp)
-    { 
-        if(current_mp > 0)
+    {
+        if (current_mp > 0)
         {
             current_mp = Mathf.Max(0, current_mp - mp);
-            uip.UpdateMps(current_mp);
+            rageBar.DecreaseBarValue(mp);
         }
     }
     public void GainMP(int mp)
     {
         current_mp = Mathf.Min(current_mp + mp, mp_max);
-        uip.UpdateMps(current_mp);
+        rageBar.IncreaseRageBar(mp);
     }
-    
+
 
     IEnumerator MpLoss()
     {
-        while(current_mp < mp_max)
+        while (current_mp < mp_max)
         {
             LoseMP(1);
             yield return new WaitForSeconds(0.75f);
         }
     }
-    
-#endregion
+
+    #endregion
 }
