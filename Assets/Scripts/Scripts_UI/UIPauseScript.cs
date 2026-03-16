@@ -16,7 +16,6 @@ public class UIPauseScript : MonoBehaviour
         pauseFeedbacks.PlayFeedbacks();
     }
 
-    [ContextMenu("Resume the game")]
     public void ResumeGame()
     {
         Time.timeScale = 1f;
@@ -30,6 +29,7 @@ public class UIPauseScript : MonoBehaviour
     }
     public void RestartButtonPressed()
     {
+        Time.timeScale = 1f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
@@ -37,6 +37,7 @@ public class UIPauseScript : MonoBehaviour
     public void QuitPauseButtonPressed()
     {
         // Revenir au HUB si le joueur est dans un boss
+        Debug.Log("Quit still not implemented");
     }
     #endregion
 }
