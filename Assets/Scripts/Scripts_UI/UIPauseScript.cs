@@ -8,16 +8,23 @@ public class UIPauseScript : MonoBehaviour
     [SerializeField] private MMF_Player pauseFeedbacks;
     [SerializeField] private GameObject PauseCanva;
     [SerializeField] private Button buttonToSelect;
+    private bool paused;
 
-    [ContextMenu("Pause the game")]
     public void PauseGame()
     {
-        Time.timeScale = 0f;
-        pauseFeedbacks.PlayFeedbacks();
+        if (!paused)
+        {
+            paused = true;
+            Time.timeScale = 0f;
+            pauseFeedbacks.PlayFeedbacks();
+        }
+        else 
+            ResumeGame();
     }
 
     public void ResumeGame()
     {
+        paused = false;
         Time.timeScale = 1f;
         PauseCanva.SetActive(false);
     }
