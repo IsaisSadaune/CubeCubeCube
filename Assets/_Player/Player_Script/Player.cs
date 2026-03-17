@@ -156,7 +156,9 @@ public class Player : MonoBehaviour, IDamageable
         gapClose = GetComponent<GapClose>();
 
         dialogueCanvas.SetActive(false);
-        interactImage.SetActive(false);
+        if(interactImage != null)
+            interactImage.SetActive(false);
+            
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
