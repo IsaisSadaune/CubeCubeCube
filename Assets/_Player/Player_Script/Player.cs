@@ -96,6 +96,7 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Interaction Variables")]
     public GameObject dialogueCanvas;
     public Image pnjSprite;
+    public GameObject interactImage;
     private bool talkingTrigger;
     [SerializeField] public PNJ pnj;
     public Animator animator;
@@ -105,6 +106,7 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = true;
+            interactImage.SetActive(true);
             if(pnj == null)
                 pnj = other.GetComponent<PNJ>();
         }
@@ -113,6 +115,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(other.CompareTag("Interact"))
         {
+            interactImage.SetActive(false);
             talkingTrigger = false;
             stateMachine.ChangeState(idleState);
             pnj = null;
@@ -153,6 +156,7 @@ public class Player : MonoBehaviour, IDamageable
         gapClose = GetComponent<GapClose>();
 
         dialogueCanvas.SetActive(false);
+        interactImage.SetActive(false);
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
