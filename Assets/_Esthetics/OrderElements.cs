@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class OrderElements : MonoBehaviour
 {
-    
+    private float timeToMove = 0.25f;
     [SerializeField] private Transform parent;
 
     private Vector3 pos1 => parent.GetChild(0).position;
@@ -77,53 +77,53 @@ public class OrderElements : MonoBehaviour
     private Sequence SetTo1()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos0, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos0, timeToMove));
         return s;
     }
     private Sequence SetTo2()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos1, 0.5f));
-        s.Join(transform.GetChild(1).DOMove(pos6, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos1, timeToMove));
+        s.Join(transform.GetChild(1).DOMove(pos6, timeToMove));
         return s;
     }
     private Sequence SetTo3()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos1, 0.5f));
-        s.Join(transform.GetChild(1).DOMove(pos0, 0.5f));
-        s.Join(transform.GetChild(2).DOMove(pos6, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos1, timeToMove));
+        s.Join(transform.GetChild(1).DOMove(pos0, timeToMove));
+        s.Join(transform.GetChild(2).DOMove(pos6, timeToMove));
         return s;
     }
     private Sequence SetTo4()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos1, 0.5f));
-        s.Join(transform.GetChild(1).DOMove(pos3, 0.5f));
-        s.Join(transform.GetChild(2).DOMove(pos4, 0.5f));
-        s.Join(transform.GetChild(3).DOMove(pos6, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos1, timeToMove));
+        s.Join(transform.GetChild(1).DOMove(pos3, timeToMove));
+        s.Join(transform.GetChild(2).DOMove(pos4, timeToMove));
+        s.Join(transform.GetChild(3).DOMove(pos6, timeToMove));
         return s;
     }
     private Sequence SetTo5()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos1, 0.5f));
-        s.Join(transform.GetChild(1).DOMove(pos3, 0.5f));
-        s.Join(transform.GetChild(3).DOMove(pos4, 0.5f));
-        s.Join(transform.GetChild(4).DOMove(pos6, 0.5f));
-        s.Join(transform.GetChild(5).DOMove(pos0, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos1, timeToMove));
+        s.Join(transform.GetChild(1).DOMove(pos3, timeToMove));
+        s.Join(transform.GetChild(3).DOMove(pos4, timeToMove));
+        s.Join(transform.GetChild(4).DOMove(pos6, timeToMove));
+        s.Join(transform.GetChild(5).DOMove(pos0, timeToMove));
         return s;
     }
 
     private Sequence SetTo6()
     {
         Sequence s = DOTween.Sequence();
-        s.Join(transform.GetChild(0).DOMove(pos1, 0.5f));
-        s.Join(transform.GetChild(1).DOMove(pos2, 0.5f));
-        s.Join(transform.GetChild(2).DOMove(pos3, 0.5f));
-        s.Join(transform.GetChild(3).DOMove(pos4, 0.5f));
-        s.Join(transform.GetChild(4).DOMove(pos5, 0.5f));
-        s.Join(transform.GetChild(5).DOMove(pos6, 0.5f));
+        s.Join(transform.GetChild(0).DOMove(pos1, timeToMove));
+        s.Join(transform.GetChild(1).DOMove(pos2, timeToMove));
+        s.Join(transform.GetChild(2).DOMove(pos3, timeToMove));
+        s.Join(transform.GetChild(3).DOMove(pos4, timeToMove));
+        s.Join(transform.GetChild(4).DOMove(pos5, timeToMove));
+        s.Join(transform.GetChild(5).DOMove(pos6, timeToMove));
         return s;
     }
 
@@ -137,7 +137,7 @@ public class OrderElements : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
-            s.Join(transform.GetChild(i).DOMove(position[i], 0.5f));
+            s.Join(transform.GetChild(i).DOMove(position[i], timeToMove));
         }
         position.Clear();
         return s;
@@ -149,7 +149,7 @@ public class OrderElements : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             int index = i;
-            Tween t = transform.GetChild(index).DOMove(parent.GetChild(transform.childCount).position, 0.5f);
+            Tween t = transform.GetChild(index).DOMove(parent.GetChild(transform.childCount).position, timeToMove);
             position.Add(transform.GetChild(index).position);
             if (index >= number)
                 t.OnComplete(() => transform.GetChild(index).gameObject.SetActive(false));
