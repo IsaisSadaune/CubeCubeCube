@@ -6,5 +6,6 @@ public enum PatternRetroBoss
 {
     Asteroids,
 	Pong,
+    Pacman,
     None
 }

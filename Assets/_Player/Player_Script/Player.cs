@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IDamageable
     #region Movement Variables
     [Header("Movement Variables")]
     public float speed = 5f;
+    public float rotationSpeed = 15f;
     public float dashForce = 10f;
     public float dashDuration;
     public float dashTimer { get; set; }
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
     public MMF_Player parryFeedback;
+    public AudioSource dashSound;
     #endregion
 
     #region Others Variables
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour, IDamageable
     public LayerMask obstacle;
 
     [Header("Menu Variables")]
-    public UIPauseScript pauseMenu;
+    public PauseMenu pauseMenu;
     public int buttonSelected { get; set; }
 
     public bool isDead { get; set; }
@@ -94,8 +96,9 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Interaction Variables")]
     public GameObject dialogueCanvas;
     public Image pnjSprite;
+    public GameObject interactImage;
     private bool talkingTrigger;
-    public PNJ pnj {get; private set;}
+    [SerializeField] public PNJ pnj;
     public Animator animator;
 
     void OnTriggerEnter(Collider other)
@@ -103,7 +106,7 @@ public class Player : MonoBehaviour, IDamageable
         if(other.CompareTag("Interact"))
         {
             talkingTrigger = true;
-            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            interactImage.SetActive(true);
             if(pnj == null)
                 pnj = other.GetComponent<PNJ>();
         }
@@ -112,10 +115,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(other.CompareTag("Interact"))
         {
+            interactImage.SetActive(false);
             talkingTrigger = false;
-            other.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-            pnj = null;
             stateMachine.ChangeState(idleState);
+            pnj = null;
         }
     }
     #endregion
@@ -152,8 +155,10 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-        if(dialogueCanvas != null)
-            dialogueCanvas.SetActive(false);
+        dialogueCanvas.SetActive(false);
+        if(interactImage != null)
+            interactImage.SetActive(false);
+            
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
@@ -165,16 +170,13 @@ public class Player : MonoBehaviour, IDamageable
             combo[i].attackCollider = attacksCollider[i];
         }
 
-
-        if (GameManager_Offi.Instance != null) 
-            GameManager_Offi.Instance.SetPlayer(this);
     }
 
     private void Update()
     {
         if(!isGrounded)
         {
-            rb.linearVelocity = Vector3.zero;
+            rb.linearVelocity = new Vector3(Vector3.zero.x, rb.linearVelocity.y, Vector3.zero.z);
         }
         stateMachine.currentPlayerState.FrameUpdate();
 
@@ -286,12 +288,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
-            pauseMenu.PauseGame();
+            pauseMenu.OnPause();
         }
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && talkingTrigger && pnj != null)
+        if(context.performed && talkingTrigger && pnj != null && stateMachine.currentPlayerState == idleState)
         {
             stateMachine.ChangeState(interactState);
         }
@@ -299,7 +301,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Close(InputAction.CallbackContext context)
     {
-        if(context.performed && pnj.textEnded)
+        if(context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
         {
             stateMachine.ChangeState(idleState);
         }
@@ -308,11 +310,11 @@ public class Player : MonoBehaviour, IDamageable
     {
         if(context.performed && pnj != null)
         {
-            pnj.delay /= 2;
+            pnj.delay /= 10;
         }
         if(context.canceled && pnj != null)
         {
-            pnj.delay *= 2;
+            pnj.delay *= 10;
         }
     }
     #endregion
@@ -387,8 +389,8 @@ public class Player : MonoBehaviour, IDamageable
     #endregion
 
     #region Test_Movement
-    public Vector3 wallNormal;
-    public bool isTouchingWall;
+    public Vector3 wallNormal {get; set;}
+    public bool isTouchingWall {get; private set;}
 
     private void OnCollisionStay(Collision collision)
     {
