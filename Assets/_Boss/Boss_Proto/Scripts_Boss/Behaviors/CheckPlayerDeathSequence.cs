@@ -6,7 +6,8 @@ using Composite = Unity.Behavior.Composite;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "CheckPlayerDeath", story: "Execute while [Player] is alive", category: "Flow", id: "902ece0b54ee032684c0a034a83a3242")]
-public partial class CheckPlayerDeathSequence : Composite
+public partial class CheckPlayerDeath
+    : Composite
 {
     [SerializeReference] public BlackboardVariable<GameObject> Player;
     [SerializeReference] public Node Playerisalive;

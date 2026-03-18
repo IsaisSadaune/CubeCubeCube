@@ -5,10 +5,10 @@ using UnityEngine;
 public class SlabController : MonoBehaviour
 {
     private Vector3 scale;
-    private float timeSlimed = 1f;
     private float timeDestroyed = 1f;
     private Color startColor;
-    public bool slimed = false;
+
+    public bool hardDisparition { get; private set; } = false;
 
     [SerializeField] private GameObject model;
     private void Start()
@@ -23,6 +23,18 @@ public class SlabController : MonoBehaviour
         StartCoroutine(ReconstructionCoroutine(timeDestroyed));
     }
 
+    public void HardDisparition()
+    {
+        Debug.Log("disparition");
+        transform.DOScale(Vector3.zero, 1f);
+        hardDisparition = true;
+    }
+    public void HardApparition()
+    {
+        transform.DOScale(scale, 0.5f);
+        hardDisparition = false;
+    }
+
     public Tween Apparition()
     {
         return transform.DOScale(scale, 0.5f);
@@ -31,27 +43,6 @@ public class SlabController : MonoBehaviour
     {
         //Debug.Log("destroyed function");
         Disparition();
-    }
-
-
-    private Coroutine isSlimed;
-    public void Slimed()
-    {
-        //Debug.Log("slimed function");
-        model.GetComponent<MeshRenderer>().material.color = Color.green;
-        slimed = true;
-    }
-
-    public void StopSlimed()
-    {
-        if (isSlimed != null) StopCoroutine(isSlimed);
-        isSlimed = StartCoroutine(SlimeCoroutine());
-    }
-
-    private IEnumerator SlimeCoroutine()
-    {
-        yield return new WaitForSeconds(timeSlimed);
-        model.GetComponent<MeshRenderer>().material.color = startColor;
     }
 
     private IEnumerator ReconstructionCoroutine(float timebeforeRepop)
