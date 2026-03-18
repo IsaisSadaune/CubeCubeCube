@@ -59,7 +59,7 @@ public class Player : MonoBehaviour, IDamageable
     public LayerMask obstacle;
 
     [Header("Menu Variables")]
-    public PauseMenu pauseMenu;
+    public UIPauseScript pauseMenu;
     public int buttonSelected { get; set; }
 
     public bool isDead { get; set; }
@@ -286,7 +286,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
-            pauseMenu.OnPause();
+            pauseMenu.PauseGame();
         }
     }
     public void Interact(InputAction.CallbackContext context)
