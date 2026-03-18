@@ -8,6 +8,7 @@ public class RetroBoss : MonoBehaviour
     private static RetroBoss _instance = null;
     public static RetroBoss Instance => _instance;
     public int bonk = 0;
+    public float pacManSpeed;
     public GameObject pongEndPos;
     public int pacmanMoveNbr = 5;
     private int actualMoveNbr;
@@ -43,27 +44,38 @@ public class RetroBoss : MonoBehaviour
             isMoving = true;
             actualMoveNbr++;
 
-            float dx = transform.position.x - Player.Instance.transform.position.x;
-            float dz = transform.position.z - Player.Instance.transform.position.z;
+            Vector3 targetPos = Player.Instance.transform.position;
 
-            float durationX = Mathf.Abs(dx) / 20f;
-            float durationZ = Mathf.Abs(dz) / 20f;
+            float dx = transform.position.x - targetPos.x;
+            float dz = transform.position.z - targetPos.z;
 
-            if (Mathf.Abs(dx) <= Mathf.Abs(dz) && dx != 0)
+            float durationX = Mathf.Abs(dx) / pacManSpeed;
+            float durationZ = Mathf.Abs(dz) / pacManSpeed;
+
+            if (Mathf.Abs(dx) >= Mathf.Abs(dz) && dx != 0)
             {
-                transform.DOMoveX(Player.Instance.transform.position.x, durationX).SetEase(Ease.Linear);
+                transform.DOMoveX(targetPos.x, durationX).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(durationX);
-                transform.DOMoveZ(Player.Instance.transform.position.z, durationZ).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(durationZ);
+
+                float newDz = transform.position.z - targetPos.z;
+                float newDurationZ = Mathf.Abs(newDz) / pacManSpeed;
+
+                transform.DOMoveZ(targetPos.z, newDurationZ).SetEase(Ease.Linear);
+                yield return new WaitForSeconds(newDurationZ);
             }
             else if (dz != 0)
             {
-                transform.DOMoveZ(Player.Instance.transform.position.z, durationZ).SetEase(Ease.Linear);
+                transform.DOMoveZ(targetPos.z, durationZ).SetEase(Ease.Linear);
                 yield return new WaitForSeconds(durationZ);
-                transform.DOMoveX(Player.Instance.transform.position.x, durationX).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(durationX);
+
+                float newDx = transform.position.x - targetPos.x;
+                float newDurationX = Mathf.Abs(newDx) / pacManSpeed;
+
+                transform.DOMoveX(targetPos.x, newDurationX).SetEase(Ease.Linear);
+                yield return new WaitForSeconds(newDurationX);
             }
         }
+
         actualMoveNbr = 0;
         isMoving = false;
     }
