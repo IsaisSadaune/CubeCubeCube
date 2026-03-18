@@ -7502,7 +7502,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7589355023666928457}
   - {fileID: 220651697652300259}
@@ -7833,11 +7833,11 @@ MonoBehaviour:
   parryTiming: 1
   dialogueCanvas: {fileID: 0}
   pnjSprite: {fileID: 0}
+  interactImage: {fileID: 0}
+  pnj: {fileID: 0}
   animator: {fileID: 7635726066119915157}
   hasFalledRecently: 0
   hitbox: {fileID: 3510525265170032637}
-  wallNormal: {x: 0, y: 0, z: 0}
-  isTouchingWall: 0
 --- !u!114 &4235285046465177358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7908,7 +7908,8 @@ MonoBehaviour:
   hp_max: 5
   mp_max: 50
   player: {fileID: 4277801738817917293}
-  uip: {fileID: 0}
+  upf: {fileID: 0}
+  rageBar: {fileID: 0}
 --- !u!114 &215593597128228371
 MonoBehaviour:
   m_ObjectHideFlags: 0
