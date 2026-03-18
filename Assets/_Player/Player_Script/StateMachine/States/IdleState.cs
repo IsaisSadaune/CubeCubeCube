@@ -19,7 +19,7 @@ public class IdleState : PlayerState
     }
     public override void FrameUpdate()
     {
-        player.rb.linearVelocity = Vector3.zero;
+        player.rb.linearVelocity = new Vector3(Vector3.zero.x, player.rb.linearVelocity.y, Vector3.zero.z);
         if (player.moveInput != Vector2.zero && player.isGrounded == true)
         {
             stateMachine.ChangeState(player.walkingState);

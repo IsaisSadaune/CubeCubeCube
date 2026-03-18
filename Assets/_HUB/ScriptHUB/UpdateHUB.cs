@@ -25,7 +25,6 @@ public class UpdateHUB : MonoBehaviour
         {
             g.SetActive(false);
         }
-
         UpdateHub();
     }
 
@@ -48,7 +47,6 @@ public class UpdateHUB : MonoBehaviour
         switch(hubPhase)
         {
             case 0 :
-                LaunchUpdateFeedbacks();
                 if(!hubPrefabs[hubPhase].activeSelf)
                     hubPrefabs[hubPhase].SetActive(true);
             break;
@@ -83,7 +81,7 @@ public class UpdateHUB : MonoBehaviour
         int speed = 1;
         while(isUpdating)
         {
-            if(speed >= 6)
+            if(speed >= 4)
             {
                 isUpdating = false;
             }
