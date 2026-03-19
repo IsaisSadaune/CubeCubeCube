@@ -155,7 +155,7 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-        if(dialogueCanvas != null)
+        if(dialogueCanvas != null) 
             dialogueCanvas.SetActive(false);
         if(interactImage != null)
             interactImage.SetActive(false);
