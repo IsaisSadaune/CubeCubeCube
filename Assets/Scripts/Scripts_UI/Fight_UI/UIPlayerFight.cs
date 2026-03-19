@@ -1,13 +1,15 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIPlayerFight : MonoBehaviour
 {
     [SerializeField] GameObject hpPrefab;
     private List<GameObject> fullHPs = new();
     private int pointeur;
-    private UIHeartLossFeedback heartLossScript;
+    private Image heartSprite;
+    [SerializeField] private Color fullHpColor, noHpColor;
 
     public void SetMaxHps(int hpAmount)
     {
@@ -24,8 +26,8 @@ public class UIPlayerFight : MonoBehaviour
         if (pointeur >= 0)
             while (x > 0)
             {
-                heartLossScript = fullHPs[pointeur].GetComponent<UIHeartLossFeedback>();
-                heartLossScript.TriggerHPLossFeedback();
+                heartSprite = fullHPs[pointeur].GetComponent<Image>();
+                heartSprite.color = noHpColor;
                 x--;
                 pointeur--;
                 if (pointeur < 0) break;
@@ -37,6 +39,8 @@ public class UIPlayerFight : MonoBehaviour
         if (pointeur < fullHPs.Count - 1)
         {
             pointeur++;
+            heartSprite = fullHPs[pointeur].GetComponent<Image>();
+            heartSprite.color = fullHpColor;
             fullHPs[pointeur].SetActive(true);
         }
     }
