@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IDamageable
     public LayerMask obstacle;
 
     [Header("Menu Variables")]
-    public PauseMenu pauseMenu;
+    public UIPauseScript pauseMenu;
     public int buttonSelected { get; set; }
 
     public bool isDead { get; set; }
@@ -155,7 +155,8 @@ public class Player : MonoBehaviour, IDamageable
         hps = GetComponent<HP_Test>();
         gapClose = GetComponent<GapClose>();
 
-        dialogueCanvas.SetActive(false);
+        if(dialogueCanvas != null) 
+            dialogueCanvas.SetActive(false);
         if(interactImage != null)
             interactImage.SetActive(false);
             
@@ -288,7 +289,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
-            pauseMenu.OnPause();
+            pauseMenu.PauseGame();
         }
     }
     public void Interact(InputAction.CallbackContext context)
