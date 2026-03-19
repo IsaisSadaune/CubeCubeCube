@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +12,25 @@ public class UIPlayerFight : MonoBehaviour
 
     public void SetMaxHps(int hpAmount)
     {
+        ClearHealthBar();
+
         for (int i = 0; i < hpAmount; i++)
         {
+            Debug.Log("Instantiate an HP");
             GameObject g = Instantiate(hpPrefab, transform);
-            fullHPs.Add(g.transform.GetChild(1).gameObject);
+            fullHPs.Add(g);
         }
         pointeur = hpAmount - 1;
     }
-    
+
+    void ClearHealthBar()
+    {
+        for (int i = (transform.childCount - 1); i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
     public void RemoveHP(int x)
     {
         if (pointeur >= 0)
@@ -48,8 +58,11 @@ public class UIPlayerFight : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
-            RemoveHP(1); 
+            RemoveHP(1);
         if (Input.GetKeyDown(KeyCode.L))
             AddHP();
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SetMaxHps(10);
     }
 }
