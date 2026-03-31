@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIRageBar : MonoBehaviour
 {
-    private MMProgressBar rageBar;
+    public MMProgressBar rageBar;
     private MMF_Player barFlickerFbPlayer;
 
     private float rageMax;
@@ -22,9 +22,9 @@ public class UIRageBar : MonoBehaviour
     }
 
 
-    public void SetRageMax(float rageMax)
+    public void SetRageMax(float maxRage)
     {
-        this.rageMax = rageMax;
+        this.rageMax = maxRage;
     }
 
     public void ChangeBarValue(float startValue)
@@ -34,20 +34,14 @@ public class UIRageBar : MonoBehaviour
 
     public void IncreaseRageBar(int valueToAdd)
     {
-        if ((value += valueToAdd) > rageMax)
-            value = rageMax;
-        else
-            value += valueToAdd;
+        value = Mathf.Min(value + valueToAdd, rageMax);
 
         ChangeBarValue(value);
     }
 
     public void DecreaseBarValue(int valueToPull)
     {
-        if ((value -= valueToPull) < 0)
-            value = 0;
-        else
-            value -= valueToPull;
+        value = Mathf.Max(0, value - valueToPull);
 
         ChangeBarValue(value);
     }
@@ -57,7 +51,7 @@ public class UIRageBar : MonoBehaviour
         yield return new WaitUntil(() => value == rageMax);
         barFlickerFbPlayer.PlayFeedbacks();
 
-        // Mettre le double de la durée du Holding pause entre deux swaps d'image en temps
+        // Mettre le double de la durï¿½e du Holding pause entre deux swaps d'image en temps
         yield return new WaitForSecondsRealtime(0.50f);
         StartCoroutine(BarFlickerTrigger());
     }

@@ -5,17 +5,17 @@ public class HP_Test : MonoBehaviour
 {
     [SerializeField] private int hp_max;
     int current_hp;
-    [SerializeField] private int mp_max;
+    [SerializeField] public int mp_max;
     public int current_mp { get; set; }
     public Player player;
     [SerializeField] private UIPlayerFight upf;
-    [SerializeField] private UIRageBar rageBar;
+    [SerializeField] public UIRageBar rageBar;
 
 
     public bool CanUlt => current_mp >= mp_max;
     private Coroutine MpsLoss;
 
-    void Start()
+    void Awake()
     {
         current_hp = hp_max;
         current_mp = 0;
