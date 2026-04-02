@@ -17,6 +17,7 @@ public class SuperState : PlayerState
     {
         base.ExitState();
         player.hps.current_mp = 0;
+        player.hps.rageBar.DecreaseBarValue(player.hps.mp_max);
     }
 
     public override void FrameUpdate()
