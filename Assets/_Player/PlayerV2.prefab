@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 692932158285137810}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.807, z: 1.5}
+  m_LocalPosition: {x: -1.9060001, y: 0.807, z: 2.2539997}
   m_LocalScale: {x: 2, y: 0.201, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cdccc2fad17e943810e524f1611b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1306149838767247564}
 --- !u!82 &4273293036942285819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ Transform:
   m_GameObject: {fileID: 804145924169043333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.807, z: 1.25}
+  m_LocalPosition: {x: -1.9060001, y: 0.807, z: 2.0039997}
   m_LocalScale: {x: 5, y: 0.201, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cdccc2fad17e943810e524f1611b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1306149838767247564}
 --- !u!82 &1393902071852182825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 3847360606476653394}
   - component: {fileID: 4716094907151960582}
   m_Layer: 0
-  m_Name: Player_model
+  m_Name: PlayerV2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +560,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.787, y: -0.343, z: -8.51}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6848443988793257397}
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Move[/XInputControllerWindows/leftStick,/Keyboard/z,/Keyboard/s,/Keyboard/q,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Dash[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/buttonSouth,/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Interact[/Keyboard/f,/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Defense
         m_Mode: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Defense[/Mouse/rightButton,/XInputControllerWindows/rightShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
     m_ActionName: UI/FastWritting
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 0
@@ -778,7 +778,7 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: GapClose
         m_Mode: 0
@@ -835,24 +835,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfef8c8f93affab4b994f8d5895074b7, type: 2}
   bossHit: 0
   attacksCollider:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7849188329582302268}
+  - {fileID: 1895185128370758489}
+  - {fileID: 5723864225086323938}
   attacksAnimation:
   - FirstSlash
   - SecondSlash
   - FinalSlash
   timeBeforeNextCombo: 0.5
   timeBeforeNextAttack: 0.3
-  shield: {fileID: 0}
+  shield: {fileID: 6864827843319562208}
   parryTiming: 1
   dialogueCanvas: {fileID: 0}
   pnjSprite: {fileID: 0}
   interactImage: {fileID: 0}
   pnj: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 4095123332794226675}
   hasFalledRecently: 0
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 6899726118193864532}
 --- !u!114 &5270792996112133959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,14 +865,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e10e90e59c657142beea65fa5717a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  capsule: {fileID: 0}
+  player: {fileID: 1306149838767247564}
+  capsule: {fileID: 9077947427035083999}
   obstacleMask:
     serializedVersion: 2
     m_Bits: 72
   timeActive: 0.4
   meshRefreshRate: 0.05
-  positionToSpawn: {fileID: 0}
+  positionToSpawn: {fileID: 9042982479897492147}
   mat: {fileID: 2100000, guid: af1abe3fea060854388901c3a7f0ea1e, type: 2}
 --- !u!114 &5247518854017902334
 MonoBehaviour:
@@ -895,15 +895,21 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361484611944057971}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 82a2914d8f86c62488456950c8330e38, type: 3}
-  m_Controller: {fileID: 9100000, guid: 535d24752e3d6444da644e79e90ec2ca, type: 2}
+  m_Avatar: {fileID: 9000000, guid: d0144b7c08137944bb09f26d94dec12c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 157904397da295843bfdcd1a3975fb74, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftHand'\n\tTransform 'mixamorig:Spine1'\n\tTransform
+    'mixamorig:Spine2'\n\tTransform 'mixamorig:RightUpLeg'\n\tTransform 'mixamorig:RightForeArm'\n\tTransform
+    'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:Head'\n\tand more ...\n\tFrom animation
+    clip 'mixamo.com'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -922,7 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp_max: 5
   mp_max: 50
-  player: {fileID: 0}
+  player: {fileID: 1306149838767247564}
   upf: {fileID: 0}
   rageBar: {fileID: 0}
 --- !u!114 &4716094907151960582
@@ -1364,7 +1370,7 @@ Transform:
   m_GameObject: {fileID: 3037394264507296234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.807, z: 1.5}
+  m_LocalPosition: {x: -1.906, y: 0.807, z: 2.254}
   m_LocalScale: {x: 2, y: 0.201, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1404,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cdccc2fad17e943810e524f1611b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1306149838767247564}
 --- !u!82 &6686125441550010619
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1594,7 +1600,7 @@ Transform:
   m_GameObject: {fileID: 3652576348093947429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.81, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 0.1, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7255,8 +7261,8 @@ Transform:
   m_GameObject: {fileID: 6864827843319562208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5739994, y: 2.166, z: -0.97999954}
-  m_LocalScale: {x: 3.4318, y: 3.4318, z: 3.4318}
+  m_LocalPosition: {x: -0.25, y: 2.43, z: 0.3}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9042982479897492147}
@@ -7765,7 +7771,7 @@ Transform:
   m_GameObject: {fileID: 8309185939556365834}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9.5}
+  m_LocalPosition: {x: -1.8100004, y: 0, z: 9.5}
   m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
