@@ -12,19 +12,21 @@ public class EnableSeeThroughScript : MonoBehaviour
 
     private void Start()
     {
-        _materialInstance = GetComponent<Renderer>().material;    
+        _materialInstance = GetComponent<Renderer>().material;
     }
 
     private void Update()
     {
-        if (Physics.Linecast(raycastDirection.position, playerPosition.position, out hitInfo))
+        if (Physics.Linecast(raycastDirection.position, playerPosition.position, out hitInfo, layerMask))
         {
-            Debug.Log(hitInfo.collider.tag);
             if (hitInfo.collider.CompareTag("BossModel"))
                 playerBehindBoss = true;
             else
                 playerBehindBoss = false;
         }
+        else
+            playerBehindBoss = false;
+        
 
         if (playerBehindBoss)
         {
