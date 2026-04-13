@@ -6,18 +6,18 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Finish Thwomp", story: "[Self] fall", category: "Action", id: "85c4d16275fa241848b690c01baba5ec")]
+[NodeDescription(name: "Finish Thwomp", story: "[Self] fall for [timeToFall]", category: "Action", id: "85c4d16275fa241848b690c01baba5ec")]
 public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
-    private float timeToStomp = 1f;
+    [SerializeReference] public BlackboardVariable<float> TimeToFall;
     private Ease ease = Ease.InOutQuint; //Changer easing
     private Tween finished;
 
     protected override Status OnStart()
     {
         finished =
-        Self.Value.transform.DOMoveY(0, timeToStomp)
+        Self.Value.transform.DOMoveY(0, TimeToFall.Value)
             .SetEase(ease);
         return Status.Running;
     }

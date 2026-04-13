@@ -13,8 +13,7 @@ public partial class SetFeedbackUnderBossAction : Action
 
     protected override Status OnStart()
     {
-        Physics.Raycast(Position.Value.transform.position, Vector3.down, out RaycastHit r);
-        Feedback.Value.transform.position = r.point;
+        Feedback.Value.transform.position = new Vector3(Position.Value.transform.position.x, 0.25f , Position.Value.transform.position.z);
         return Status.Running;
     }
 
