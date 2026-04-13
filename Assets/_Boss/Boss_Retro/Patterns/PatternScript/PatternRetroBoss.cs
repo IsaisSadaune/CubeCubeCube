@@ -7,5 +7,6 @@ public enum PatternRetroBoss
     Asteroids,
 	Pong,
     Pacman,
+    Tetris,
     None
 }

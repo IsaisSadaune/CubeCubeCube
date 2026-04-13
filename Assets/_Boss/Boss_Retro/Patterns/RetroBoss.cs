@@ -26,6 +26,11 @@ public class RetroBoss : MonoBehaviour
             _instance = this;
         }
     }
+    public GameObject tetrisPiece(GameObject prefab, Vector3 pos)
+    {
+        Instantiate(prefab, pos, prefab.transform.rotation);
+        return prefab;
+    }
 
     public GameObject asteroidPattern(GameObject prefab, Vector3 pos)
     {
