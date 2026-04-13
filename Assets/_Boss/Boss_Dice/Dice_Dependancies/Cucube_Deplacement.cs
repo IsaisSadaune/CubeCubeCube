@@ -13,7 +13,7 @@ public class Cucube_Deplacement : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(Player.Instance.gameObject.GetComponent<Collider>());
+    
         Physics.IgnoreCollision(
             gameObject.GetComponent<Collider>(),
             Player.Instance.gameObject.GetComponent<Collider>(), 
@@ -23,6 +23,7 @@ public class Cucube_Deplacement : MonoBehaviour
     public IEnumerator StartMovement()
     {
         rb.isKinematic = true;
+        gameObject.GetComponent<Collider>().isTrigger = true;
 
         for (int i = 0; i < numberOfMovesBeforeDeath; i++)
         {

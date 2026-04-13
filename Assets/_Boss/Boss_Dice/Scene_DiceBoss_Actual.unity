@@ -217,6 +217,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 921204705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &55116549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361484611944057971, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+  m_PrefabInstance: {fileID: 7233887354951012858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &55397979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1235,7 @@ MonoBehaviour:
   - {fileID: 1905291811}
   - {fileID: 1476400672}
   - {fileID: 201037657}
-  p: {fileID: 0}
+  p: {fileID: 1397592228}
 --- !u!33 &352548346
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5625,7 +5630,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
   m_PrefabInstance: {fileID: 7233887354951012858}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 55116549}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50a90f3a6fc9fdf4e98a7c50d6f25cbf, type: 3}
@@ -5641,6 +5646,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9042982479897492147, guid: 504b9e43711dd064288f170bd1717752, type: 3}
   m_PrefabInstance: {fileID: 7233887354951012858}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1397592240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55116549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37619e11cc606874f9843fd14c7c3738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 1397592228}
 --- !u!1 &1406759753
 GameObject:
   m_ObjectHideFlags: 0
@@ -8144,7 +8162,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 6feb180c321da924799dd4fd48f82da0, type: 3}
     - target: {fileID: 2207171411175117343, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2207171411175117343, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: ShapeModule.m_TextureClipChannel
@@ -8377,7 +8395,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1361484611944057971, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1397592240}
   m_SourcePrefab: {fileID: 100100000, guid: 504b9e43711dd064288f170bd1717752, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
