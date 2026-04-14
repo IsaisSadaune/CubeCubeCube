@@ -51,6 +51,10 @@ public partial class PacmanMoveAction : Action
                 });
             });
         }
+        else if(dx == 0 && dz == 0)
+        {
+            done = true;
+        }
         return Status.Running;
     }
 

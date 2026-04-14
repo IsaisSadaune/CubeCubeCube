@@ -11,7 +11,10 @@ public partial class PongFinishCondition : Condition
 
     public override bool IsTrue()
     {
-        return Bonk.Value >= Ten.Value;
+        if(Bonk.Value >= Ten.Value)
+            return true;
+
+        else return false;
     }
 
     public override void OnStart()
