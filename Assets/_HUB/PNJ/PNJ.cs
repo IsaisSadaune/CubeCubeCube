@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class PNJ : MonoBehaviour
     public TextMeshProUGUI emptyNameText;
     public bool textEnded {get; set;}
     Coroutine dialogueCoroutine;
+
     public void ShowText()
     {
         if(dialogueCoroutine == null)
@@ -19,6 +21,7 @@ public class PNJ : MonoBehaviour
             StopCoroutine(LetterByLetter());
             dialogueCoroutine = null;
     }
+
 
     IEnumerator LetterByLetter()
     {

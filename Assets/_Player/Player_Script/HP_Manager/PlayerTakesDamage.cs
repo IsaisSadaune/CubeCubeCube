@@ -11,8 +11,11 @@ public class PlayerTakesDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Trigger touché par : {other.gameObject.name} | Tag : {other.tag} | iFraming : {p.iFraming}");
+
         if (other.CompareTag("Boss") && !p.iFraming)
         {
+            Debug.Log("degat du boss sur joueur");
             p.iFraming = true;
             p.Knockback(other.transform);
             p.TakeDamage(1);
@@ -29,5 +32,14 @@ public class PlayerTakesDamage : MonoBehaviour
             p.TakeDamage(1);
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Boss") && !p.iFraming)
+        {
+            Debug.Log("degat du boss sur joueur");
+            p.iFraming = true;
+            p.Knockback(collision.transform);
+            p.TakeDamage(1);
+        }
+    }
 }
