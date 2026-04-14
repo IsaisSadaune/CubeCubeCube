@@ -9,7 +9,6 @@ public class PlayerDoingDamage : MonoBehaviour
     public Player player;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (!other.CompareTag("Player"))
         {
             IDamageable cible  = null;

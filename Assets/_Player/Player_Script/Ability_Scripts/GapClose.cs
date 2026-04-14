@@ -6,7 +6,6 @@ public class GapClose : MonoBehaviour
 {
     private Player player;
     public int damage;
-    [SerializeField] private GameObject boss;
     public GameObject hitPrevi; 
     public GameObject posPrevi; 
     public LayerMask wallLayer;
@@ -26,13 +25,11 @@ public class GapClose : MonoBehaviour
         StartCoroutine(ColliderActivation());
         if(Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
         {
-            Debug.Log("A");
             player.rb.MovePosition(hit.point);
             player.stateMachine.ChangeState(player.idleState);
         }
         else
         {
-            Debug.Log("B");
             player.rb.MovePosition(posPrevi.transform.position);
             player.stateMachine.ChangeState(player.idleState);
         }
