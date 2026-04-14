@@ -15,6 +15,7 @@ public partial class SelfJumpAction : Action
     private bool done = false;
     protected override Status OnStart()
     {
+        done = false;
         float currentY = Self.Value.transform.rotation.eulerAngles.y;
         Quaternion targetRotation = Quaternion.Euler(0, currentY + 180, 0);
 

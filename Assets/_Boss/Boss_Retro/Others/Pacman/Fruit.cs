@@ -8,7 +8,6 @@ public class Fruit : MonoBehaviour
     {
         if(other.CompareTag("Boss"))
         {
-            RetroBoss.Instance.StartingPattern();
             gameObject.SetActive(false);
         }
     }

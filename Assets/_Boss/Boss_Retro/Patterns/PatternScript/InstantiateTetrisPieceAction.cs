@@ -7,21 +7,19 @@ using Unity.Properties;
 using DG.Tweening;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "InstantiateTetrisPiece", story: "Instantiate one of [TetrisPieces] at [ArenaTiles] position", category: "Action", id: "16cf250540c1b5d4fe42d50fa87d7050")]
+[NodeDescription(name: "InstantiateTetrisPiece", story: "Instantiate one of [TetrisPiecesLeft] at [ArenaTiles] position", category: "Action", id: "16cf250540c1b5d4fe42d50fa87d7050")]
 public partial class InstantiateTetrisPieceAction : Action
 {
-    [SerializeReference] public BlackboardVariable<List<GameObject>> TetrisPieces;
     [SerializeReference] public BlackboardVariable<List<GameObject>> ArenaTiles;
-
-bool done = false;
+    [SerializeReference] public BlackboardVariable<List<GameObject>> TetrisPiecesLeft;
+    bool done = false;
     protected override Status OnStart()
     {
-        int rdmPiece = UnityEngine.Random.Range(0, TetrisPieces.Value.Count);
+        int rdmPiece = UnityEngine.Random.Range(0, TetrisPiecesLeft.Value.Count);
         int rdmPos = UnityEngine.Random.Range(0, ArenaTiles.Value.Count);
 
-        GameObject piece = RetroBoss.Instance.tetrisPiece(TetrisPieces.Value[rdmPiece], ArenaTiles.Value[rdmPos].transform.position);
-        TetrisPieces.Value.Remove(piece);
-        ArenaTiles.Value.Remove(ArenaTiles.Value[rdmPos]);
+        GameObject piece = RetroBoss.Instance.tetrisPiece(TetrisPiecesLeft.Value[rdmPiece], ArenaTiles.Value[rdmPos].transform.position);
+        TetrisPiecesLeft.Value.Remove(piece);
 
         return Status.Running;
     }
