@@ -3,29 +3,22 @@ using UnityEngine;
 public class TextScroll_script : MonoBehaviour
 {
     [SerializeField] private GameObject titleToInstantiate;
-    [SerializeField] private Transform parentTransform;
+    [SerializeField] private ScriptToReferenceInstantPos parentTransformScript;
     [SerializeField] private float scrollSpeed;
-    private Vector3 instantiatePosition;
+    [SerializeField] private Transform instantiatePosition, destroyPosition;
     private bool hasInstantiated;
-
-    private void Start()
-    {
-        parentTransform = GameObject.Find("ScrollingText_Canva").transform;
-        hasInstantiated = false;
-        instantiatePosition = new Vector3(-600, transform.position.y, transform.position.z);
-    }
 
     private void Update()
     {
-        if (transform.position.x >= 0 && !hasInstantiated)
+        if (transform.position.x <= 0 && !hasInstantiated)
         {
             hasInstantiated = true;
-            Instantiate(titleToInstantiate, instantiatePosition, Quaternion.identity, parentTransform);
+            Instantiate(titleToInstantiate, instantiatePosition.position, Quaternion.identity, parentTransformScript.parentTransform);
         }
 
-        if (transform.position.x >= 1200)
+        if (transform.position.x <= destroyPosition.position.x)
             Destroy(this.gameObject);
 
-        transform.position = new Vector3(transform.position.x + scrollSpeed * Time.deltaTime, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x - scrollSpeed * Time.deltaTime, transform.position.y, transform.position.z);
     }
 }
