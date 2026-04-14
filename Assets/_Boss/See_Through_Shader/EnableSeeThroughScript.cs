@@ -17,6 +17,8 @@ public class EnableSeeThroughScript : MonoBehaviour
 
     private void Update()
     {
+        raycastDirection.position = new Vector3(playerPosition.position.x - 20, 5, playerPosition.position.z - 20);
+
         if (Physics.Linecast(raycastDirection.position, playerPosition.position, out hitInfo, layerMask))
         {
             if (hitInfo.collider.CompareTag("BossModel"))
