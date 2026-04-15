@@ -11,7 +11,7 @@ public class PlayerTakesDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Trigger touché par : {other.gameObject.name} | Tag : {other.tag} | iFraming : {p.iFraming}");
+        //Debug.Log($"Trigger touché par : {other.gameObject.name} | Tag : {other.tag} | iFraming : {p.iFraming}");
 
         if (other.CompareTag("Boss") && !p.iFraming)
         {
