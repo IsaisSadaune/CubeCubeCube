@@ -25,13 +25,15 @@ public class GameManager_Offi : MonoBehaviour
     public Player p { get; private set; }
     public void SetPlayer(Player p) => this.p = p;
 
+    public bool fight = false;
+
     #region score
     public float recordTempsBoss1 { get; private set; }
     public float recordTempsBoss2 { get; private set; }
     public float recordTempsBoss3 { get; private set; }
-    public char rankBoss1 { get; private set; }
-    public char rankBoss2 { get; private set; }
-    public char rankBoss3 { get; private set; }
+    public char rankBoss1 { get; private set; } = 'D';
+    public char rankBoss2 { get; private set; } = 'D';
+    public char rankBoss3 { get; private set; } = 'D';
     public GameProgression act { get; private set; } = 0;
 
 
@@ -87,17 +89,17 @@ public class GameManager_Offi : MonoBehaviour
         if (a != 'A' && a != 'B' && a != 'C' && a != 'D' && a != 'S')
         {
             Debug.LogWarning("ERREUR, LE RANG " + a + "EST INVALIDE");
-            return 'D';
+            return 'E';
         }
         if (b != 'A' && b != 'B' && b != 'C' && b != 'D' && b != 'S')
         {
             Debug.LogWarning("ERREUR, LE RANG " + b + "EST INVALIDE");
-            return 'D';
+            return 'E';
         }
 
         if (a == 'S' || b == 'S')
             return 'S';
-        if (a < b)
+        if (a > b)
             return b;
         return a;
     }
@@ -127,31 +129,44 @@ public class GameManager_Offi : MonoBehaviour
         NbHeal = 0;
         Temps = 0f;
         RagePerdue = 0f;
+        fight = true;
     }
 
 
 
     public void IncreaseTimer()
     {
-        if (Time.timeScale != 0f)
+        if (Time.timeScale != 0f && fight)
         {
             Temps += Time.deltaTime;
         }
     }
     public void AddStatParry()
     {
-        NbParry++;
+        if(fight)
+            NbParry++;
     }
     public void AddHeal()
     {
-        NbHeal++;
+        if(fight)
+            NbHeal++;
     }
     public void AddRagePerdue()
     {
-        RagePerdue++;
+        if(fight)
+            RagePerdue++;
+    }
+    public void EndBattle()
+    {
+        if(fight)
+            fight = false;
     }
 
     #endregion
 
-
+    private void Start()
+    {
+        Debug.Log("Start temporaire, à placer ailleurs");
+        ResetStats();
+    }
 }
