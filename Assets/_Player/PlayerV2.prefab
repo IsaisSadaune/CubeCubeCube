@@ -571,6 +571,7 @@ Transform:
   - {fileID: 835103579444189587}
   - {fileID: 4113125997022921970}
   - {fileID: 2891956147317122483}
+  - {fileID: 7036866513984976315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &192823823133800085
@@ -944,7 +945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  boss: {fileID: 0}
   hitPrevi: {fileID: 0}
   posPrevi: {fileID: 0}
   wallLayer:
@@ -7617,6 +7617,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7721814169179937762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7036866513984976315}
+  m_Layer: 10
+  m_Name: RaycastDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7036866513984976315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721814169179937762}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -18.951252, y: 14.732489, z: -35.731243}
+  m_LocalScale: {x: 62.5, y: 62.499996, z: 62.499996}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9042982479897492147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7869769960698209876
 GameObject:
   m_ObjectHideFlags: 0
