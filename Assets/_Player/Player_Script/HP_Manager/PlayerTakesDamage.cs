@@ -15,7 +15,7 @@ public class PlayerTakesDamage : MonoBehaviour
 
         if (other.CompareTag("Boss") && !p.iFraming)
         {
-            Debug.Log("degat du boss sur joueur");
+            //Debug.Log("degat du boss sur joueur");
             p.iFraming = true;
             p.Knockback(other.transform);
             p.TakeDamage(1);
