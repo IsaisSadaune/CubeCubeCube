@@ -25,7 +25,7 @@ public class SlabController : MonoBehaviour
 
     public void HardDisparition()
     {
-        Debug.Log("disparition");
+        //Debug.Log("disparition");
         transform.DOScale(Vector3.zero, 1f);
         hardDisparition = true;
     }
