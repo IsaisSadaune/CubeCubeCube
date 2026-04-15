@@ -13,7 +13,7 @@ public class TetrisPiece : MonoBehaviour
 
     IEnumerator DestroyingGround()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         transform.DOMoveY(1f, 0.5f).SetEase(Ease.Linear);
         yield return new WaitForSeconds(0.7f);
         transform.DOMoveY(-5f, 1f).SetEase(Ease.Linear).OnComplete(() =>

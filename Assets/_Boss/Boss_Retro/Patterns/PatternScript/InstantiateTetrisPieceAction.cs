@@ -16,9 +16,9 @@ public partial class InstantiateTetrisPieceAction : Action
     protected override Status OnStart()
     {
         int rdmPiece = UnityEngine.Random.Range(0, TetrisPiecesLeft.Value.Count);
-        int rdmPos = UnityEngine.Random.Range(0, ArenaTiles.Value.Count);
+        //int rdmPos = UnityEngine.Random.Range(0, ArenaTiles.Value.Count);
 
-        GameObject piece = RetroBoss.Instance.tetrisPiece(TetrisPiecesLeft.Value[rdmPiece], ArenaTiles.Value[rdmPos].transform.position);
+        GameObject piece = RetroBoss.Instance.tetrisPiece(TetrisPiecesLeft.Value[rdmPiece], Player.Instance.transform.position);
         TetrisPiecesLeft.Value.Remove(piece);
 
         return Status.Running;
