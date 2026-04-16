@@ -496,6 +496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8310653314805360469}
+  - component: {fileID: 7085575165620067169}
   m_Layer: 5
   m_Name: UI_Buttons
   m_TagString: Untagged
@@ -524,6 +525,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7085575165620067169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128876403793394292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c4613028444da46aae9502e6eaca59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3378480164463951753
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,9 +794,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3463411846032248955}
-        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
-        m_MethodName: RestartButton
+      - m_Target: {fileID: 7085575165620067169}
+        m_TargetAssemblyTypeName: UIButtonsScript, Assembly-CSharp
+        m_MethodName: RestartSceneButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2479,9 +2492,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3463411846032248955}
-        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
-        m_MethodName: QuitButton
+      - m_Target: {fileID: 7085575165620067169}
+        m_TargetAssemblyTypeName: UIButtonsScript, Assembly-CSharp
+        m_MethodName: QuitToHubButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

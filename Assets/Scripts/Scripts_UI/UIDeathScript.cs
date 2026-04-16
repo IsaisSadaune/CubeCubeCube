@@ -35,21 +35,8 @@ public class UIDeathScript : MonoBehaviour
         tipsText.SetText("Tips : " + tipsToDisplay);
     }
 
-    #region Death buttons scripts
-    public void RestartButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    
-    public void QuitButton()
-    {
-        Debug.Log("Quit");
-        Application.Quit();
-    }
-
     public void SelectRestartButton()
     {
         buttonToSelect.Select();
     }
-    #endregion
 }
