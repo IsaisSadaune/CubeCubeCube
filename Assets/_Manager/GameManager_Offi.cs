@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class GameManager_Offi : MonoBehaviour
@@ -28,19 +29,33 @@ public class GameManager_Offi : MonoBehaviour
     public bool fight = false;
 
     #region score
-    public float recordTempsBoss1 { get; private set; }
-    public float recordTempsBoss2 { get; private set; }
-    public float recordTempsBoss3 { get; private set; }
+    public float recordTempsBoss1 { get; private set; } = 99999;
+    public float recordTempsBoss2 { get; private set; } = 99999;
+    public float recordTempsBoss3 { get; private set; } = 99999;
     public char rankBoss1 { get; private set; } = 'D';
     public char rankBoss2 { get; private set; } = 'D';
     public char rankBoss3 { get; private set; } = 'D';
     public GameProgression act { get; private set; } = 0;
+
+    public float GetPBBoss(int number)
+    {
+        switch (number)
+        {
+            case 1: return recordTempsBoss1;
+            case 2: return recordTempsBoss2;
+            case 3: return recordTempsBoss3;
+            default:
+                Debug.Log("ERREUR");
+                return 999999999;
+        }
+    }
 
 
 
     // /!\ Fonction à appeler quand le boss est vaincu /!\
     public void UpdateScore(int bossNumber, float time, char rank)
     {
+        //Debug.Log("UpdateScore");
         switch (bossNumber)
         {
             case 1:
@@ -89,12 +104,12 @@ public class GameManager_Offi : MonoBehaviour
         if (a != 'A' && a != 'B' && a != 'C' && a != 'D' && a != 'S')
         {
             Debug.LogWarning("ERREUR, LE RANG " + a + "EST INVALIDE");
-            return 'E';
+            return 'D';
         }
         if (b != 'A' && b != 'B' && b != 'C' && b != 'D' && b != 'S')
         {
             Debug.LogWarning("ERREUR, LE RANG " + b + "EST INVALIDE");
-            return 'E';
+            return 'D';
         }
 
         if (a == 'S' || b == 'S')
@@ -143,22 +158,22 @@ public class GameManager_Offi : MonoBehaviour
     }
     public void AddStatParry()
     {
-        if(fight)
+        if (fight)
             NbParry++;
     }
     public void AddHeal()
     {
-        if(fight)
+        if (fight)
             NbHeal++;
     }
     public void AddRagePerdue()
     {
-        if(fight)
+        if (fight)
             RagePerdue++;
     }
     public void EndBattle()
     {
-        if(fight)
+        if (fight)
             fight = false;
     }
 
@@ -166,7 +181,42 @@ public class GameManager_Offi : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start temporaire, à placer ailleurs");
+        Debug.Log("Start temporaire pour reset stats, à placer ailleurs");
         ResetStats();
+
+
+        //SaveStats();
+        LoadStats();
+    }
+
+    public void SaveStats()
+    {
+        string pb1 = recordTempsBoss1.ToString();
+        string pb2 = recordTempsBoss2.ToString();
+        string pb3 = recordTempsBoss3.ToString();
+        string rank1 = rankBoss1.ToString();
+        string rank2 = rankBoss2.ToString();
+        string rank3 = rankBoss3.ToString();
+        string progression = act.ToString();
+
+        string saveString = string.Join("\n", pb1, pb2, pb3, rank1, rank2, rank3, progression);
+        File.WriteAllText(Application.dataPath + "/save.txt", saveString);
+    }
+
+
+    private void LoadStats()
+    {
+        string file = File.ReadAllText(Application.dataPath + "/save.txt");
+
+        string[] contents = file.Split("\n");
+        recordTempsBoss1 = float.Parse(contents[0]);
+        recordTempsBoss2 = float.Parse(contents[1]);
+        recordTempsBoss3 = float.Parse(contents[2]);
+
+        rankBoss1 = char.Parse(contents[3]);
+        rankBoss2 = char.Parse(contents[4]);
+        rankBoss3 = char.Parse(contents[5]);
+        act = (GameProgression)System.Enum.Parse(typeof(GameProgression), contents[6]);
+
     }
 }
