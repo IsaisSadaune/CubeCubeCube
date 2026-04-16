@@ -3622,6 +3622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147087470876343049}
+  - component: {fileID: 8800618318828200842}
   m_Layer: 5
   m_Name: UI_Buttons
   m_TagString: Untagged
@@ -3650,6 +3651,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8800618318828200842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633892710519445477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c4613028444da46aae9502e6eaca59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3736121851771382058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3699,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 25.715, y: -30.625}
-  m_SizeDelta: {x: 51.43, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8405122970451900488
 CanvasRenderer:
@@ -4499,7 +4512,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 30, y: -153.125}
-  m_SizeDelta: {x: 60, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9199809225169011186
 CanvasRenderer:
@@ -4735,9 +4748,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
-        m_MethodName: QuitButton
+      - m_Target: {fileID: 8800618318828200842}
+        m_TargetAssemblyTypeName: UIButtonsScript, Assembly-CSharp
+        m_MethodName: SendToSceneDependingGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5019,9 +5032,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIDeathScript, Assembly-CSharp
-        m_MethodName: RestartButton
+      - m_Target: {fileID: 8800618318828200842}
+        m_TargetAssemblyTypeName: UIButtonsScript, Assembly-CSharp
+        m_MethodName: RestartSceneButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5342,7 +5355,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 80.71, y: -153.125}
-  m_SizeDelta: {x: 8.58, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3215831810097977968
 CanvasRenderer:

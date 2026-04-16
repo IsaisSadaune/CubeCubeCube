@@ -2,6 +2,7 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIDeathScript : MonoBehaviour
 {
@@ -34,21 +35,8 @@ public class UIDeathScript : MonoBehaviour
         tipsText.SetText("Tips : " + tipsToDisplay);
     }
 
-    #region Death buttons scripts
-    public void RestartButton()
-    {
-        Debug.Log("Restart");
-    }
-
-    public void QuitButton()
-    {
-        Debug.Log("Quit");
-        Application.Quit();
-    }
-
     public void SelectRestartButton()
     {
         buttonToSelect.Select();
     }
-    #endregion
 }

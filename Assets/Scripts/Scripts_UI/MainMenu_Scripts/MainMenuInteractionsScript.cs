@@ -21,19 +21,8 @@ public class MainMenuInteractionsScript : MonoBehaviour
         startGameFeedbacks.PlayFeedbacks();
     }
 
-    public void PlayButtonPressed()
-    {
-        Debug.Log("Code pas écrit Bozo");
-    }
-
     public void CreditsButtonPressed()
     {
         Debug.Log("Code pas écrit Bozo");
-    }
-
-    public void QuitButtonPressed()
-    {
-        Debug.Log("Try Quit");
-        Application.Quit();
     }
 }
