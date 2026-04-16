@@ -12,7 +12,7 @@ public class UIRankCalculScript : MonoBehaviour
     public Button buttonToSelect;
 
     private int finalScore;
-    private char finalRank;
+    public char finalRank { get; private set; }
 
     private void Start()
     {
