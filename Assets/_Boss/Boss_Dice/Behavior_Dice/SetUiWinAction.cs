@@ -17,8 +17,8 @@ public partial class SetUiWinAction : Action
     protected override Status OnStart()
     {
 
+        //gm.EndBattle();
         MMFFeedbackUI.Value.PlayFeedbacks();
-        gm.EndBattle();
         gm.UpdateScore(NumberBoss, gm.Temps, Score.Value.finalRank);
         Score.Value.CalculateAndDisplayVictoryDatas(gm.Temps, gm.NbParry, gm.NbHeal, gm.RagePerdue, NumberBoss);
 
