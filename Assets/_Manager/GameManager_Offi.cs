@@ -79,7 +79,7 @@ public class GameManager_Offi : MonoBehaviour
             recordTempsBoss1 = time;
         rankBoss1 = BestRank(rankBoss1, rank);
 
-        if (act == 0)
+        if (act == GameProgression.TutoFinished)
             act++;
     }
     private void Boss2UpdateScores(float time, char rank)
@@ -97,6 +97,12 @@ public class GameManager_Offi : MonoBehaviour
         rankBoss3 = BestRank(rankBoss3, rank);
         if (act == GameProgression.Boss2Beaten)
             act++;
+    }
+
+    public void TutoFinished()
+    {
+        if(act == 0)
+            act = GameProgression.TutoFinished;
     }
 
     private char BestRank(char a, char b)
@@ -123,9 +129,10 @@ public class GameManager_Offi : MonoBehaviour
     public enum GameProgression
     {
         Start = 0,
-        Boss1Beaten = 1,
-        Boss2Beaten = 2,
-        Boss3Beaten = 3,
+        TutoFinished = 1,
+        Boss1Beaten = 2,
+        Boss2Beaten = 3,
+        Boss3Beaten = 4,
     }
 
     #region stats
