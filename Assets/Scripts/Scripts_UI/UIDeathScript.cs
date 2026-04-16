@@ -2,6 +2,7 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIDeathScript : MonoBehaviour
 {
@@ -37,9 +38,9 @@ public class UIDeathScript : MonoBehaviour
     #region Death buttons scripts
     public void RestartButton()
     {
-        Debug.Log("Restart");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    
     public void QuitButton()
     {
         Debug.Log("Quit");
