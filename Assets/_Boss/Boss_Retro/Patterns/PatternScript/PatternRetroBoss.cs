@@ -9,5 +9,6 @@ public enum PatternRetroBoss
     PongOver,
     Pacman,
     Tetris,
+    StreetFighter,
     None
 }

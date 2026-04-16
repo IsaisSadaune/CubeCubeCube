@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using Unity.Behavior;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RetroBoss : MonoBehaviour
@@ -32,5 +33,25 @@ public class RetroBoss : MonoBehaviour
     {
         Instantiate(prefab, pos, prefab.transform.rotation);
         return prefab;
+    }
+
+    public GameObject bombPattern(GameObject prefab)
+    {
+        GameObject bomb = Instantiate(prefab, transform.position, prefab.transform.rotation);
+        return bomb;
+    }
+    public GameObject Explosion(GameObject prefab)
+    {
+        return Instantiate(prefab, transform.position, prefab.transform.rotation);
+    }
+
+    public GameObject Hadouken(GameObject prefab, float speed)
+    {
+        GameObject fireball = Instantiate(prefab, transform.position, prefab.transform.rotation);
+
+        Vector3 dir = (Player.Instance.transform.position - fireball.transform.position).normalized;
+
+        fireball.GetComponent<Rigidbody>().AddForce(dir * speed, ForceMode.Impulse);
+        return fireball;
     }
 }
