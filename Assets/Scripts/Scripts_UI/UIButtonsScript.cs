@@ -3,9 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class UIButtonsScript : MonoBehaviour
 {
-    public void ContinueToHubButtonPressed()
+    
+    public void MainMenuPlayButtonPressed()
     {
-        Debug.Log("Envoyer le joueur au HUB et sauvegarder le jeu");
+
+    }
+    public void SendToSceneButton(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
     public void RestartSceneButton()
     {
