@@ -40,11 +40,5 @@ public class UIPauseScript : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
-
-    public void QuitPauseButtonPressed()
-    {
-        // Revenir au HUB si le joueur est dans un boss
-        Debug.Log("Quit still not implemented");
-    }
     #endregion
 }
