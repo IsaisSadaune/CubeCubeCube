@@ -26,7 +26,7 @@ public class GameManager_Offi : MonoBehaviour
     public Player p { get; private set; }
     public void SetPlayer(Player p) => this.p = p;
 
-    public bool fight = false;
+    public bool fight { get; private set; } = false;
 
     #region score
     public float recordTempsBoss1 { get; private set; } = 99999;
@@ -128,11 +128,11 @@ public class GameManager_Offi : MonoBehaviour
 
     public enum GameProgression
     {
-        Start = 0,
-        TutoFinished = 1,
-        Boss1Beaten = 2,
-        Boss2Beaten = 3,
-        Boss3Beaten = 4,
+        Start = 0, //Lancement du jeu -> Finir Tuto
+        TutoFinished = 1, // Finir Tuto -> Battre Boss1
+        Boss1Beaten = 2, // Finir Boss1 -> Finir Boss2
+        Boss2Beaten = 3, // Zone de fin
+        Boss3Beaten = 4, //Inutilisé
     }
 
     #region stats
