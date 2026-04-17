@@ -24,6 +24,7 @@ public partial class ThrowBombAction : Action
             Debug.Log(BombList.Value.Count);
             Vector3 pos  = ArenaTiles.Value[rdmPos].transform.position;
             pos.y = 2f;
+            ArenaTiles.Value.Remove(ArenaTiles.Value[rdmPos]);
             bomb.transform.DOMove(pos, 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
                 done = true;

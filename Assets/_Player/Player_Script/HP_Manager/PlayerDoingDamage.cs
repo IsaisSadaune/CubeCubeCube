@@ -9,7 +9,7 @@ public class PlayerDoingDamage : MonoBehaviour
     public Player player;
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Projectile"))
         {
             IDamageable cible  = null;
             if (other.GetComponent<IDamageable>() != null)

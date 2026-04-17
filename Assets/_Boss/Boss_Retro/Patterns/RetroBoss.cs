@@ -8,8 +8,8 @@ public class RetroBoss : MonoBehaviour
 {
     private static RetroBoss _instance = null;
     public static RetroBoss Instance => _instance;
-    public int bonk = 0;
-    public GameObject pongEndPos;
+    public int bonk {get; set;}
+    public GameObject pongEndPos {get; set;}
 
     void Awake()
     {
@@ -40,9 +40,9 @@ public class RetroBoss : MonoBehaviour
         GameObject bomb = Instantiate(prefab, transform.position, prefab.transform.rotation);
         return bomb;
     }
-    public GameObject Explosion(GameObject prefab)
+    public void Explosion(GameObject prefab)
     {
-        return Instantiate(prefab, transform.position, prefab.transform.rotation);
+        Instantiate(prefab, new Vector3(transform.position.x, 0.75f, transform.position.z), prefab.transform.rotation);
     }
 
     public GameObject Hadouken(GameObject prefab, float speed)

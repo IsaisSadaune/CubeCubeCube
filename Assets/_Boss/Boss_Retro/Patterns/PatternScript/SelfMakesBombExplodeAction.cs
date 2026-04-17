@@ -14,23 +14,31 @@ public partial class SelfMakesBombExplodeAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<GameObject>> BombList;
     [SerializeReference] public BlackboardVariable<GameObject> Explosion;
+
+    bool done;
     protected override Status OnStart()
     {
-        for(int i = 0; i < BombList.Value.Count; i++)
+        done = false;
+        float distance = Vector3.Distance(Self.Value.transform.position, BombList.Value[0].transform.position);
+        float timeToGo = 3.5f / distance;
+        Self.Value.transform.DOMove(new Vector3(BombList.Value[0].transform.position.x, 5f, BombList.Value[0].transform.position.z), timeToGo).SetEase(Ease.Linear).OnComplete(() =>
         {
-            Self.Value.transform.DOMove(BombList.Value[i].transform.position, 2f).SetEase(Ease.InOutQuad).OnComplete(() =>
+            Self.Value.transform.DOMoveY(2f, 0.2f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                BombList.Value.Remove(BombList.Value[i]);
-                GameObject explosion = RetroBoss.Instance.Explosion(Explosion);
-                Debug.Log("FAH");
+                GameObject bomb = BombList.Value[0];
+                BombList.Value.Remove(bomb);
+                MonoBehaviour.Destroy(bomb);
+                RetroBoss.Instance.Explosion(Explosion);
+                done = true;
             });
-        }
+        });
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        if(done) return Status.Success;
+        else return Status.Running;
     }
 
     protected override void OnEnd()
