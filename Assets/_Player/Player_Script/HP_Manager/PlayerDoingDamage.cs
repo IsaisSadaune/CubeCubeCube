@@ -13,16 +13,22 @@ public class PlayerDoingDamage : MonoBehaviour
         {
             IDamageable cible  = null;
             if (other.GetComponent<IDamageable>() != null)
-                cible = GetComponent<IDamageable>();
-            else if (other.transform.parent.GetComponent<IDamageable>() != null)
+            {
+                cible = other.GetComponent<IDamageable>();
+            }
+            else if (other.transform.parent != null && other.transform.parent.GetComponent<IDamageable>() != null)
                 cible = other.transform.parent.GetComponent<IDamageable>();
 
             if (cible != null)
             {
                 player.hps.GainMP(3);
                 player.bossHit = true;
-                if (gameObject.tag == "Attack")
+                Debug.Log(gameObject);
+                if (gameObject.CompareTag("Attack"))
+                {
+                    Debug.Log("attaque boss");
                     cible.TakeDamage(player.combo[player.comboCount].damage);
+                }
                 else
                     cible.TakeDamage(player.gapClose.damage);
             }
