@@ -13,7 +13,6 @@ public partial class CubesAwayAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Self;
 
     RubiksBoss rubiks;
-    bool next = false;
     protected override Status OnStart()
     {
         rubiks = Self.Value.GetComponent<RubiksBoss>();

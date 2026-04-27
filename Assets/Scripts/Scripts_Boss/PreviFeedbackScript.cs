@@ -5,7 +5,7 @@ using UnityEngine;
 public class PreviFeedbackScript : MonoBehaviour
 {
     [SerializeField] private Color startColor, endColor;
-    private Renderer renderer;
+    private Renderer rend;
     private Vector3 baseScale;
     [SerializeField] private float changeScaleDuration, changeColorDuration, timeBeforeDestroy;
 
@@ -23,15 +23,15 @@ public class PreviFeedbackScript : MonoBehaviour
     {
         baseScale = transform.localScale;
         transform.localScale = new Vector3(0.1f, transform.localScale.y, 0.1f);
-        renderer = GetComponent<Renderer>();
-        renderer.material.color = startColor;
+        rend = GetComponent<Renderer>();
+        rend.material.color = startColor;
         c = StartCoroutine(TriggerFeedbacks());
     }
 
     private IEnumerator TriggerFeedbacks()
     {
         transform.DOScale(baseScale, changeScaleDuration);
-        renderer.material.DOColor(endColor, changeColorDuration);
+        rend.material.DOColor(endColor, changeColorDuration);
         yield return new WaitForSeconds(timeBeforeDestroy);
         gameObject.SetActive(false);
     }

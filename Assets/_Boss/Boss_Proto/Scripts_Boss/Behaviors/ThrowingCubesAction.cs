@@ -10,7 +10,7 @@ using Unity.Properties;
 public partial class ThrowingCubesAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Cube;
-    private bool test = false;
+    //private bool test = false;
     RubiksBoss rubiks;
     
     protected override Status OnStart()

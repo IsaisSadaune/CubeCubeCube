@@ -12,7 +12,7 @@ public class RetroBoss : MonoBehaviour
     public GameObject pongEndPos;
     public int pacmanMoveNbr = 5;
     private int actualMoveNbr;
-    private bool isMoving = false;
+    //private bool isMoving = false;
 
     void Awake()
     {
@@ -41,7 +41,7 @@ public class RetroBoss : MonoBehaviour
     {
         while (actualMoveNbr < pacmanMoveNbr)
         {
-            isMoving = true;
+            //isMoving = true;
             actualMoveNbr++;
 
             Vector3 targetPos = Player.Instance.transform.position;
@@ -77,6 +77,6 @@ public class RetroBoss : MonoBehaviour
         }
 
         actualMoveNbr = 0;
-        isMoving = false;
+        //isMoving = false;
     }
 }
