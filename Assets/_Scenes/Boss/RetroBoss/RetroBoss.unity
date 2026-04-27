@@ -1477,6 +1477,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1287716647}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
+      propertyPath: managedReferences[8086847028498530403].Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: managedReferences[8086847046856737156].BoundRenderer
       value: 
       objectReference: {fileID: 1861485119}
@@ -1487,7 +1491,7 @@ PrefabInstance:
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: managedReferences[8086847028498530403].AnimateScaleTarget
       value: 
-      objectReference: {fileID: 1287716647}
+      objectReference: {fileID: 1861485121}
     - target: {fileID: 3558834795538582604, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: m_Name
       value: Feedbacks_Boss
@@ -3490,11 +3494,11 @@ PrefabInstance:
     - target: {fileID: 1467190318206580673, guid: 3fa8cf6bf61ecee4aa1f7ba0753bdc2d, type: 3}
       propertyPath: managedReferences[8086847075568582752].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 704820154}
     - target: {fileID: 1467190318206580673, guid: 3fa8cf6bf61ecee4aa1f7ba0753bdc2d, type: 3}
       propertyPath: managedReferences[8086847075568582734].AnimateScaleTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 704820164}
     - target: {fileID: 1467190318206580673, guid: 3fa8cf6bf61ecee4aa1f7ba0753bdc2d, type: 3}
       propertyPath: managedReferences[8086847075568582731].FreezeFrameDuration
       value: 2
@@ -4500,6 +4504,27 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
   m_PrefabInstance: {fileID: 699582779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &704820154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361484611944057971, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+  m_PrefabInstance: {fileID: 1382013943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &704820160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+  m_PrefabInstance: {fileID: 1382013943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704820154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a90f3a6fc9fdf4e98a7c50d6f25cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &704820164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9042982479897492147, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+  m_PrefabInstance: {fileID: 1382013943}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &706467453 stripped
 GameObject:
@@ -7785,6 +7810,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1195717195489609859, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 704820160}
+    - target: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: actualSuper
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: dmgFeedback
       value: 
@@ -7801,14 +7834,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerV2
       objectReference: {fileID: 0}
+    - target: {fileID: 1458827486706314258, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Super
+      objectReference: {fileID: 0}
     - target: {fileID: 1895185128370758489, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172814239178116678, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3652576348093947429, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3847360606476653394, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: upf
       value: 
       objectReference: {fileID: 1274251742}
+    - target: {fileID: 3847360606476653394, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+      propertyPath: mp_max
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3847360606476653394, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: rageBar
       value: 
@@ -10297,6 +10346,11 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2999579812363911939, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
   m_PrefabInstance: {fileID: 6353967813589955435}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1861485121 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7410571833251020714, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+  m_PrefabInstance: {fileID: 6353967813589955435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865380106
 GameObject:
   m_ObjectHideFlags: 0
@@ -12197,6 +12251,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 670616863547525866, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: MaxHP
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 670616863547525866, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: deathFeedback
       value: 
       objectReference: {fileID: 355813996}
@@ -12257,6 +12315,11 @@ PrefabInstance:
       propertyPath: 'managedReferences[2612055195506180440]'
       value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.GameObject,
         UnityEngine.CoreModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: 'managedReferences[2612055422099783971]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[System.Single,
+        mscorlib]]'
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: 'managedReferences[3651636749975945243]'
@@ -12367,6 +12430,10 @@ PrefabInstance:
       value: ArenaPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[2612055422099783971].Name
+      value: SpeedBomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[3651636749975945243].Name
       value: "R\xE9gion Tetris"
       objectReference: {fileID: 0}
@@ -12420,7 +12487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 31
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[1031006858720051457].m_Value
@@ -12474,6 +12541,10 @@ PrefabInstance:
       propertyPath: managedReferences[2612055195506180440].m_Value
       value: 
       objectReference: {fileID: 91711593}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[2612055422099783971].m_Value
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[3651636749975945243].m_Value
       value: ===========================================================
@@ -12607,6 +12678,10 @@ PrefabInstance:
       value: 2612055195506180440
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[31]'
+      value: 2612055422099783971
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[2612055126391128304].GUID.m_Value0
       value: 17623102717986064148
       objectReference: {fileID: 0}
@@ -12693,6 +12768,14 @@ PrefabInstance:
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[2612055195506180440].GUID.m_Value1
       value: 17692000042024169139
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[2612055422099783971].GUID.m_Value0
+      value: 14885094413859939062
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[2612055422099783971].GUID.m_Value1
+      value: 11121023917771838523
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[3651636749975945243].GUID.m_Value0

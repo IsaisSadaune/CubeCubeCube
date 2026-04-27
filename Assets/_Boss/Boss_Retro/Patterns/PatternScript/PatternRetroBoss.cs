@@ -10,5 +10,6 @@ public enum PatternRetroBoss
     Pacman,
     Tetris,
     StreetFighter,
+    Bomberman,
     None
 }

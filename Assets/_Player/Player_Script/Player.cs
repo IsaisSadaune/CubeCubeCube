@@ -55,7 +55,7 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player parryFeedback;
     public AudioSource dashSound;
     #endregion
-
+    public Super actualSuper;
     #region Others Variables
     public InputActionReference moveRef;
     public LayerMask obstacle;
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour, IDamageable
             interactImage.SetActive(false);
             
         var actualScene = SceneManager.GetActiveScene();
-
+        
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
             playerInput.SwitchCurrentActionMap("UI");
 
@@ -187,6 +187,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         if (dashBuffer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(dashState);
             dashBuffer = 0;
         }
@@ -199,6 +200,7 @@ public class Player : MonoBehaviour, IDamageable
         && Time.time > (lastAttack + timeBeforeNextAttack) 
         && stateMachine.currentPlayerState != attackState)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(attackState);
             attackBuffer = 0;
         }
@@ -247,22 +249,27 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!context.started) return;
         {
+            gapClose.isUlting = false;
             dashBuffer = bufferTimer;
         }
     }
 
-    public void GapClose(InputAction.CallbackContext context)
+    public void Super(InputAction.CallbackContext context)
     {
         if(context.started && hps.CanUlt)
-        {
-            gapClose.hitPrevi.SetActive(true);
-            gapClose.posPrevi.SetActive(true);
-        }
-        if(context.canceled && hps.CanUlt)
-        {
-            gapClose.posPrevi.SetActive(false);
-            gapClose.hitPrevi.SetActive(false);
+        { 
+            gapClose.isUlting = true;
             stateMachine.ChangeState(superState);
+        }
+        if(context.canceled && hps.CanUlt && gapClose.isUlting)
+        {
+            gapClose.isUlting = false;
+            if(actualSuper == global::Super.GapClose)
+                gapClose.GapClosing();
+        }
+        else if(context.canceled && hps.CanUlt && !gapClose.isUlting)
+        {
+            stateMachine.ChangeState(idleState);
         }
     }
 
@@ -270,6 +277,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
+            gapClose.isUlting = false;
             attackBuffer = bufferAttackTimer;
         }
     }
@@ -277,6 +285,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(shieldState);
         }
 
@@ -289,6 +298,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
+            gapClose.isUlting = false;
             pauseMenu.PauseGame();
         }
     }
@@ -365,6 +375,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
+            gapClose.isUlting = false;
             hps.GainMP(2);
             dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
