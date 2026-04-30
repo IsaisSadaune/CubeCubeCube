@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 4095123332794226675}
   - component: {fileID: 3847360606476653394}
   - component: {fileID: 4716094907151960582}
+  - component: {fileID: 1271103993579202331}
   m_Layer: 0
   m_Name: PlayerV2
   m_TagString: Player
@@ -821,6 +822,7 @@ MonoBehaviour:
   dmgFeedback: {fileID: 0}
   parryFeedback: {fileID: 0}
   dashSound: {fileID: 0}
+  actualSuper: 0
   moveRef: {fileID: 0}
   obstacle:
     serializedVersion: 2
@@ -944,11 +946,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  isUlting: 0
   hitPrevi: {fileID: 3652576348093947429}
   posPrevi: {fileID: 8309185939556365834}
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1271103993579202331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361484611944057971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3552079c92835f408f7b36c11ded427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healPower: 2
 --- !u!1 &1365216436709845157
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -73,7 +74,8 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
 
     [Header("Attack Variables")]
-    public GapClose gapClose{get; set;}
+    public GapClose gapClose{get; private set;}
+    public Healing healing {get; private set;}
     private float attackBuffer;
     [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
@@ -132,7 +134,11 @@ public class Player : MonoBehaviour, IDamageable
         shieldState = new ShieldState(this, stateMachine);
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
+        
 
+        gapClose = GetComponent<GapClose>();
+        healing = GetComponent<Healing>();
+        
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -153,7 +159,7 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         hps = GetComponent<HP_Test>();
-        gapClose = GetComponent<GapClose>();
+        
 
         if(dialogueCanvas != null) 
             dialogueCanvas.SetActive(false);
@@ -265,7 +271,13 @@ public class Player : MonoBehaviour, IDamageable
         {
             gapClose.isUlting = false;
             if(actualSuper == global::Super.GapClose)
+            {
                 gapClose.GapClosing();
+            }
+            else if(actualSuper == global::Super.Heal)
+            {
+                healing.Heal();   
+            }
         }
         else if(context.canceled && hps.CanUlt && !gapClose.isUlting)
         {

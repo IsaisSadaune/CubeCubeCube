@@ -5,6 +5,7 @@ using UnityEngine;
 public class GapClose : MonoBehaviour
 {
     private Player player;
+    public int mp_Cost;
     public int damage;
     public bool isUlting;
     public GameObject hitPrevi; 
@@ -20,7 +21,7 @@ public class GapClose : MonoBehaviour
 
     void Update()
     {
-        if(isUlting)
+        if(isUlting && player.actualSuper == Super.GapClose)
         {
             if(!hitPrevi.activeSelf || !posPrevi.activeSelf)
             {
@@ -45,7 +46,7 @@ public class GapClose : MonoBehaviour
             RaycastHit hit;
             StartCoroutine(ColliderActivation());
             player.hps.current_mp = 0;
-            player.hps.rageBar.DecreaseBarValue(player.hps.mp_max);
+            player.hps.rageBar.DecreaseBarValue(mp_Cost);
             if(Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
             {
                 player.rb.MovePosition(hit.point);

@@ -5,21 +5,29 @@ public class HP_Test : MonoBehaviour
 {
     [SerializeField] private int hp_max;
     int current_hp;
-    [SerializeField] public int mp_max;
+    int mp_max = 0;
     public int current_mp { get; set; }
-    public Player player;
+    Player player;
     [SerializeField] private UIPlayerFight upf;
     [SerializeField] public UIRageBar rageBar;
-
-
     public bool CanUlt => current_mp >= mp_max;
     private Coroutine MpsLoss;
 
-    void Awake()
+    void Start()
     {
+        player = GetComponent<Player>();
+        if(player.actualSuper == Super.Heal)
+        {
+            mp_max = player.healing.mp_Cost;
+        }
+        if(player.actualSuper == Super.GapClose)
+        {
+            mp_max = player.gapClose.mp_Cost;
+        }
+
+        player = GetComponent<Player>();
         current_hp = hp_max;
         current_mp = 0;
-
 
         if (upf != null)
         {
@@ -61,6 +69,21 @@ public class HP_Test : MonoBehaviour
             KillPlayer();
         }
     }
+
+    public void GainHP(int x)
+    {
+        current_hp += x;
+        if(current_hp >= hp_max)
+        {
+            current_hp = hp_max;
+        }
+        for(int i = 0; i < x; i++)
+        {
+            upf.AddHP();
+        }
+        Debug.Log(current_hp);
+    }
+
     private void KillPlayer()
     {
         player.isDead = true;
