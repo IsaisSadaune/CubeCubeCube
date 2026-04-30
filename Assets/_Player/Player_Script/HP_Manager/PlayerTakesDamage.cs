@@ -11,11 +11,11 @@ public class PlayerTakesDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Trigger touché par : {other.gameObject.name} | Tag : {other.tag} | iFraming : {p.iFraming}");
+        //Debug.Log($"Trigger touché par : {other.gameObject.name} | Tag : {other.tag} | iFraming : {p.iFraming}");
 
         if (other.CompareTag("Boss") && !p.iFraming)
         {
-            Debug.Log("degat du boss sur joueur");
+            //Debug.Log("degat du boss sur joueur");
             p.iFraming = true;
             p.Knockback(other.transform);
             p.TakeDamage(1);

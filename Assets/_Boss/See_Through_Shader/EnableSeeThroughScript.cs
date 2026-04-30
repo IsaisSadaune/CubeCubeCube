@@ -4,7 +4,7 @@ using DG.Tweening;
 public class EnableSeeThroughScript : MonoBehaviour
 {
     private bool playerBehindBoss;
-    [SerializeField] private Transform playerPosition, cameraPosition;
+    [SerializeField] private Transform playerPosition, raycastDirection;
     [SerializeField] private LayerMask layerMask;
     private Material _materialInstance; 
     private RaycastHit hitInfo;
@@ -12,19 +12,23 @@ public class EnableSeeThroughScript : MonoBehaviour
 
     private void Start()
     {
-        _materialInstance = GetComponent<Renderer>().material;    
+        _materialInstance = GetComponent<Renderer>().material;
     }
 
     private void Update()
     {
-        if (Physics.Linecast(cameraPosition.position, playerPosition.position, out hitInfo))
+        raycastDirection.position = new Vector3(playerPosition.position.x - 20, 5, playerPosition.position.z - 20);
+
+        if (Physics.Linecast(raycastDirection.position, playerPosition.position, out hitInfo, layerMask))
         {
-            Debug.Log(hitInfo.collider.tag);
             if (hitInfo.collider.CompareTag("BossModel"))
                 playerBehindBoss = true;
             else
                 playerBehindBoss = false;
         }
+        else
+            playerBehindBoss = false;
+        
 
         if (playerBehindBoss)
         {
@@ -41,6 +45,6 @@ public class EnableSeeThroughScript : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(cameraPosition.position, playerPosition.position);
+        //Gizmos.DrawLine(raycastDirection.position, playerPosition.position);
     }
 }

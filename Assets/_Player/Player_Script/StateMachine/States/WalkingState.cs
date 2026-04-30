@@ -9,7 +9,7 @@ public class WalkingState : PlayerState
     
     public override void EnterState()
     {
-        Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         player.animator.SetBool("isMoving", true);
         player.CreateDust();
     }

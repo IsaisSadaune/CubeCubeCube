@@ -16,7 +16,7 @@ public class UIPlayerFight : MonoBehaviour
 
         for (int i = 0; i < hpAmount; i++)
         {
-            Debug.Log("Instantiate an HP");
+            //Debug.Log("Instantiate an HP");
             GameObject g = Instantiate(hpPrefab, transform);
             fullHPs.Add(g);
         }

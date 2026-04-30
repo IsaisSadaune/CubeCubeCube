@@ -375,6 +375,7 @@ public class Player : MonoBehaviour, IDamageable
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             Debug.Log("PARRY");
+            GameManager_Offi.Instance.AddStatParry();
             hps.GainMP(5);
             parryFeedback.PlayFeedbacks();
             //Parry();

@@ -12,22 +12,22 @@ public class UIRankCalculScript : MonoBehaviour
     public Button buttonToSelect;
 
     private int finalScore;
-    private char finalRank;
+    public char finalRank { get; private set; }
 
     private void Start()
     {
         finalScore = 0;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CalculateAndDisplayVictoryDatas(22.42f, 3, 0, 0);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        CalculateAndDisplayVictoryDatas(22.42f, 3, 0, 0);
+    //    }
+    //}
 
-    public void CalculateAndDisplayVictoryDatas(float secondsToBeat, int nbrParryDone, int nbrHealsUsed, float lostRage)
+    public void CalculateAndDisplayVictoryDatas(float secondsToBeat, int nbrParryDone, int nbrHealsUsed, float lostRage, int bossnumber)
     {
         finalScore = 0;
         TimeScore(secondsToBeat);
@@ -37,7 +37,9 @@ public class UIRankCalculScript : MonoBehaviour
         DetermineRank();
 
         UpdateText(secondsToBeat, nbrParryDone, nbrHealsUsed, lostRage);
+        UpdatePB(bossnumber);
     }
+
 
     #region CalculateScore
     void TimeScore(float timeToBeatBoss)
@@ -48,7 +50,7 @@ public class UIRankCalculScript : MonoBehaviour
             timeScore = 0;
 
         finalScore += Mathf.RoundToInt(timeScore);
-        Debug.Log(timeScore);
+        //Debug.Log(timeScore);
     }
 
     void ParryScore(int nbrParryDone)
@@ -57,7 +59,7 @@ public class UIRankCalculScript : MonoBehaviour
             nbrParryDone = scoreRequirements.maxParryAmount;
 
         finalScore += nbrParryDone * scoreRequirements.pointsPerParry;
-        Debug.Log(finalScore);
+        //Debug.Log(finalScore);
     }
 
     void PointLoss(int nbrHealsUsed, float rageLost)
@@ -66,7 +68,7 @@ public class UIRankCalculScript : MonoBehaviour
 
         float timesRageLost = rageLost / scoreRequirements.lostRageToTriggerPointLoss;
         finalScore -= (int)timesRageLost * scoreRequirements.pointsLostPerRageLoss;
-        Debug.Log(finalScore);
+        //Debug.Log(finalScore);
     }
 
     void DetermineRank()
@@ -98,6 +100,17 @@ public class UIRankCalculScript : MonoBehaviour
         lostRageText.SetText(lostRage.ToString());
 
         rankText.SetText(finalRank.ToString());
+
+    }
+
+    void UpdatePB(int bossNumber)
+    {
+        //PersonalBest
+        float pbBoss = GameManager_Offi.Instance.GetPBBoss(bossNumber);
+        float minutes = Mathf.FloorToInt(pbBoss / 60);
+        float unroundedSeconds = pbBoss % 60;
+        float seconds = Mathf.Round(unroundedSeconds * 100) / 100;
+        pBText.SetText("Personal Best : " + minutes + ":" + seconds);
     }
 
     #region Buttons

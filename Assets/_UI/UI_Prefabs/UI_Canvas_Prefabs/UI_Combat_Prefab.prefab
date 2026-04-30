@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5611412095617533612}
   - component: {fileID: 6445229931383660309}
+  - component: {fileID: 7750172961850696442}
   m_Layer: 0
   m_Name: UI_Pause
   m_TagString: Untagged
@@ -49,6 +50,18 @@ MonoBehaviour:
   pauseFeedbacks: {fileID: 3645647462836720822}
   PauseCanva: {fileID: 6581321256326551920}
   buttonToSelect: {fileID: 5637745368117508495}
+--- !u!114 &7750172961850696442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169177917996952798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c4613028444da46aae9502e6eaca59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2272465570938577130
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,9 +183,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6445229931383660309}
-        m_TargetAssemblyTypeName: UIPauseScript, Assembly-CSharp
-        m_MethodName: QuitPauseButtonPressed
+      - m_Target: {fileID: 7750172961850696442}
+        m_TargetAssemblyTypeName: UIButtonsScript, Assembly-CSharp
+        m_MethodName: SendToSceneDependingGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1299,14 +1312,13 @@ MonoBehaviour:
   InScriptDrivenPause: 0
   FeedbacksList:
   - rid: 1459637150876172391
+  - rid: 1459637150876172415
   - rid: 1459637150876172400
   - rid: 1459637150876172399
   - rid: 1459637150876172401
   - rid: 1459637150876172402
   - rid: 1459637150876172403
   - rid: 1459637150876172404
-  - rid: 1459637150876172414
-  - rid: 1459637150876172415
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   RestoreInitialValuesOnDisable: 0
@@ -1908,88 +1920,6 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls: []
         AllowHierarchyActivationForDurationComputation: 1
-    - rid: 1459637150876172414
-      type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
-      data:
-        Active: 1
-        UniqueID: 1069374168
-        Label: Holding Pause
-        OriginalLabel: Holding Pause
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          PlayCount: 0
-          LimitPlayCount: 0
-          MaxPlayCount: 3
-          SetPlayCountToZeroOnReset: 0
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        AutomaticShakerSetupButton:
-          ButtonText: 
-        Owner: {fileID: 3645647462836720822}
-        DebugActive: 0
-        PauseDuration: 0.05
-        RandomizePauseDuration: 0
-        MinPauseDuration: 1
-        MaxPauseDuration: 3
-        RandomizeOnEachPlay: 1
-        ScriptDriven: 0
-        AutoResume: 0
-        AutoResumeAfter: 0.25
     - rid: 1459637150876172415
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Tools}
       data:
@@ -3490,6 +3420,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 190510905960125891}
     m_Modifications:
+    - target: {fileID: 86189862437829127, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86189862437829127, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86189862437829127, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86189862437829127, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371670219898455327, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371670219898455327, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371670219898455327, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371670219898455327, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270442760904510958, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270442760904510958, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270442760904510958, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270442760904510958, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538344856323436649, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538344856323436649, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538344856323436649, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538344856323436649, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2576695618803160536, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3604,6 +3598,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044448376526258203, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580055853366425523, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580055853366425523, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580055853366425523, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580055853366425523, guid: 345a4911b7c7d8b438c9913268b683ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
