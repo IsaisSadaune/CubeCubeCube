@@ -13,4 +13,10 @@ public class RespawnBoxScript : MonoBehaviour
             player.transform.rotation = teleportLocation.rotation;
         }
     }
+
+    public void SetNewSpawnPoint(Transform newspawn)
+    {
+        teleportLocation = newspawn;
+    }
+
 }
