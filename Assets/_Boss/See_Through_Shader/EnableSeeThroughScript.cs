@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class EnableSeeThroughScript : MonoBehaviour
 {
-    private bool playerBehindBoss;
+    [SerializeField] private bool playerBehindBoss;
     [SerializeField] private Transform playerPosition, raycastDirection;
     [SerializeField] private LayerMask layerMask;
     private Material _materialInstance; 
@@ -45,6 +45,6 @@ public class EnableSeeThroughScript : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        //Gizmos.DrawLine(raycastDirection.position, playerPosition.position);
+        Gizmos.DrawLine(raycastDirection.position, playerPosition.position);
     }
 }
