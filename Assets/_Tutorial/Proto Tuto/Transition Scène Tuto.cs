@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class TransitionScèneTuto : MonoBehaviour
 {
+    public UIButtonsScript uib;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!TutoManager.Instance.asProc)
-            TutoManager.Instance.TransitionIn();
+        uib.SendToHUBDependingGameState();
     }
 }

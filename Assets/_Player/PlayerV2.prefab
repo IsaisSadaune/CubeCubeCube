@@ -586,7 +586,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1306149838767247564}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: GapClose
+        m_MethodName: Super
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -627,7 +627,7 @@ MonoBehaviour:
   dmgFeedback: {fileID: 0}
   parryFeedback: {fileID: 0}
   dashSound: {fileID: 0}
-  actualSuper: 0
+  actualSuper: 1
   moveRef: {fileID: 0}
   obstacle:
     serializedVersion: 2
@@ -734,8 +734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp_max: 5
-  mp_max: 50
-  player: {fileID: 1306149838767247564}
   upf: {fileID: 0}
   rageBar: {fileID: 0}
 --- !u!114 &4716094907151960582
@@ -750,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3668cc95610746b15648470034ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mp_Cost: 40
   damage: 20
   isUlting: 0
   hitPrevi: {fileID: 3652576348093947429}
@@ -770,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healPower: 2
+  mp_Cost: 60
 --- !u!1 &1365216436709845157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cdccc2fad17e943810e524f1611b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1306149838767247564}
 --- !u!1 &3772679949640543868
 GameObject:
   m_ObjectHideFlags: 0
