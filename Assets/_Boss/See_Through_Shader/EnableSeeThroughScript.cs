@@ -42,9 +42,9 @@ public class EnableSeeThroughScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(raycastDirection.position, playerPosition.position);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawLine(raycastDirection.position, playerPosition.position);
+    //}
 }
