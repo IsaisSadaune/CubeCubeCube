@@ -8,22 +8,13 @@ public class UIDeathScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI tipsText;
-    [SerializeField] private GameObject mainVolume, deathVolume;
     [SerializeField] private Button buttonToSelect;
     [Header("Tips à afficher")]
     [SerializeField] private string[] availableTips;
     private string tipsToDisplay;
 
-    private void Start()
-    {
-        mainVolume.SetActive(true);
-        deathVolume.SetActive(false);
-    }
-
     public void OnPlayerDeath()
     {
-        mainVolume.SetActive(false);
-        deathVolume.SetActive(true);
         DisplayTips();
     }
 
