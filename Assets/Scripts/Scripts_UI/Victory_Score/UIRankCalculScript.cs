@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIRankCalculScript : MonoBehaviour
@@ -18,14 +17,6 @@ public class UIRankCalculScript : MonoBehaviour
     {
         finalScore = 0;
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        CalculateAndDisplayVictoryDatas(22.42f, 3, 0, 0);
-    //    }
-    //}
 
     public void CalculateAndDisplayVictoryDatas(float secondsToBeat, int nbrParryDone, int nbrHealsUsed, float lostRage, int bossnumber)
     {
