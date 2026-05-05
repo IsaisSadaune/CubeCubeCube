@@ -17,7 +17,7 @@ public class MainMenuInteractionsScript : MonoBehaviour
 
     private void TriggerGameStart()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         startGameFeedbacks.PlayFeedbacks();
     }
 
