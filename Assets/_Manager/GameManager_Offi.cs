@@ -52,7 +52,7 @@ public class GameManager_Offi : MonoBehaviour
 
 
 
-    // /!\ Fonction à appeler quand le boss est vaincu /!\
+    // /!\ Fonction ï¿½ appeler quand le boss est vaincu /!\
     public void UpdateScore(int bossNumber, float time, char rank)
     {
         //Debug.Log("UpdateScore");
@@ -132,7 +132,7 @@ public class GameManager_Offi : MonoBehaviour
         TutoFinished = 1, // Finir Tuto -> Battre Boss1
         Boss1Beaten = 2, // Finir Boss1 -> Finir Boss2
         Boss2Beaten = 3, // Zone de fin
-        Boss3Beaten = 4, //Inutilisé
+        Boss3Beaten = 4, //Inutilisï¿½
     }
 
     #region stats
@@ -143,7 +143,7 @@ public class GameManager_Offi : MonoBehaviour
     public float Temps { get; private set; } = 0f;
 
     /// <summary>
-    /// Appeler cette fonction pour remettre les stats du joueur à 0 (à activer avant chaque debut de combat)
+    /// Appeler cette fonction pour remettre les stats du joueur ï¿½ 0 (ï¿½ activer avant chaque debut de combat)
     /// </summary>
     public void ResetStats()
     {
@@ -188,7 +188,7 @@ public class GameManager_Offi : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start temporaire pour reset stats, à placer ailleurs");
+        Debug.Log("Start temporaire pour reset stats, ï¿½ placer ailleurs");
         ResetStats();
 
 

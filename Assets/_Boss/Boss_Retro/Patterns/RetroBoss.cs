@@ -1,18 +1,15 @@
 using System.Collections;
 using DG.Tweening;
 using Unity.Behavior;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RetroBoss : MonoBehaviour
 {
     private static RetroBoss _instance = null;
     public static RetroBoss Instance => _instance;
-    public int bonk = 0;
-    public float pacManSpeed;
-    public GameObject pongEndPos;
-    public int pacmanMoveNbr = 5;
-    private int actualMoveNbr;
-    //private bool isMoving = false;
+    public int bonk {get; set;}
+    public GameObject pongEndPos {get; set;}
 
     void Awake()
     {
@@ -26,6 +23,11 @@ public class RetroBoss : MonoBehaviour
             _instance = this;
         }
     }
+    public GameObject tetrisPiece(GameObject prefab, Vector3 pos)
+    {
+        Instantiate(prefab, new Vector3(pos.x, pos.y + 8, pos.z), prefab.transform.rotation);
+        return prefab;
+    }
 
     public GameObject asteroidPattern(GameObject prefab, Vector3 pos)
     {
@@ -33,50 +35,23 @@ public class RetroBoss : MonoBehaviour
         return prefab;
     }
 
-    public void StartingPattern()
+    public GameObject bombPattern(GameObject prefab)
     {
-        StartCoroutine(PacmanPattern());
+        GameObject bomb = Instantiate(prefab, transform.position, prefab.transform.rotation);
+        return bomb;
     }
-    public IEnumerator PacmanPattern()
+    public void Explosion(GameObject prefab)
     {
-        while (actualMoveNbr < pacmanMoveNbr)
-        {
-            //isMoving = true;
-            actualMoveNbr++;
+        Instantiate(prefab, new Vector3(transform.position.x, 0.75f, transform.position.z), prefab.transform.rotation);
+    }
 
-            Vector3 targetPos = Player.Instance.transform.position;
+    public GameObject Hadouken(GameObject prefab, float speed)
+    {
+        GameObject fireball = Instantiate(prefab, transform.position, prefab.transform.rotation);
 
-            float dx = transform.position.x - targetPos.x;
-            float dz = transform.position.z - targetPos.z;
+        Vector3 dir = (Player.Instance.transform.position - fireball.transform.position).normalized;
 
-            float durationX = Mathf.Abs(dx) / pacManSpeed;
-            float durationZ = Mathf.Abs(dz) / pacManSpeed;
-
-            if (Mathf.Abs(dx) >= Mathf.Abs(dz) && dx != 0)
-            {
-                transform.DOMoveX(targetPos.x, durationX).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(durationX);
-
-                float newDz = transform.position.z - targetPos.z;
-                float newDurationZ = Mathf.Abs(newDz) / pacManSpeed;
-
-                transform.DOMoveZ(targetPos.z, newDurationZ).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(newDurationZ);
-            }
-            else if (dz != 0)
-            {
-                transform.DOMoveZ(targetPos.z, durationZ).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(durationZ);
-
-                float newDx = transform.position.x - targetPos.x;
-                float newDurationX = Mathf.Abs(newDx) / pacManSpeed;
-
-                transform.DOMoveX(targetPos.x, newDurationX).SetEase(Ease.Linear);
-                yield return new WaitForSeconds(newDurationX);
-            }
-        }
-
-        actualMoveNbr = 0;
-        //isMoving = false;
+        fireball.GetComponent<Rigidbody>().AddForce(dir * speed, ForceMode.Impulse);
+        return fireball;
     }
 }

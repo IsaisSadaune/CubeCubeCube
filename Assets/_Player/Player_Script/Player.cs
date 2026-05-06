@@ -1,8 +1,6 @@
 using MoreMountains.Feedbacks;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +8,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    public HP_Test hps {get ; set;}
+    public HP_Test hps { get; set; }
     #region Singleton
     private static Player _instance = null;
     public static Player Instance => _instance;
@@ -18,12 +16,12 @@ public class Player : MonoBehaviour, IDamageable
     #region States
     public PlayerStateMachine stateMachine { get; set; }
     public IdleState idleState { get; set; }
-    public InteractState interactState{get; set;}
+    public InteractState interactState { get; set; }
     public WalkingState walkingState { get; set; }
     public DashState dashState { get; set; }
     public AttackState attackState { get; set; }
     public ShieldState shieldState { get; set; }
-    public SuperState superState {get; set;}
+    public SuperState superState { get; set; }
     #endregion
 
     #region Movement Variables
@@ -55,7 +53,7 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player parryFeedback;
     public AudioSource dashSound;
     #endregion
-
+    public Super actualSuper;
     #region Others Variables
     public InputActionReference moveRef;
     public LayerMask obstacle;
@@ -73,7 +71,8 @@ public class Player : MonoBehaviour, IDamageable
     public int comboCount { get; set; }
 
     [Header("Attack Variables")]
-    public GapClose gapClose{get; set;}
+    public GapClose gapClose { get; private set; }
+    public Healing healing { get; private set; }
     private float attackBuffer;
     [SerializeField] private float bufferAttackTimer;
     public List<AttackSO> combo;
@@ -103,17 +102,17 @@ public class Player : MonoBehaviour, IDamageable
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Interact"))
+        if (other.CompareTag("Interact"))
         {
             talkingTrigger = true;
             interactImage.SetActive(true);
-            if(pnj == null)
+            if (pnj == null)
                 pnj = other.GetComponent<PNJ>();
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Interact"))
+        if (other.CompareTag("Interact"))
         {
             interactImage.SetActive(false);
             talkingTrigger = false;
@@ -132,6 +131,10 @@ public class Player : MonoBehaviour, IDamageable
         shieldState = new ShieldState(this, stateMachine);
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
+
+
+        gapClose = GetComponent<GapClose>();
+        healing = GetComponent<Healing>();
 
         if (_instance != null && _instance != this)
         {
@@ -153,13 +156,13 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         hps = GetComponent<HP_Test>();
-        gapClose = GetComponent<GapClose>();
 
-        if(dialogueCanvas != null) 
+
+        if (dialogueCanvas != null)
             dialogueCanvas.SetActive(false);
-        if(interactImage != null)
+        if (interactImage != null)
             interactImage.SetActive(false);
-            
+
         var actualScene = SceneManager.GetActiveScene();
 
         if (actualScene == SceneManager.GetSceneByName("ProtoBossBattle"))
@@ -175,7 +178,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if(!isGrounded)
+        if (!isGrounded)
         {
             rb.linearVelocity = new Vector3(Vector3.zero.x, rb.linearVelocity.y, Vector3.zero.z);
         }
@@ -187,6 +190,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         if (dashBuffer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(dashState);
             dashBuffer = 0;
         }
@@ -195,10 +199,11 @@ public class Player : MonoBehaviour, IDamageable
         {
             attackBuffer -= Time.deltaTime;
         }
-        if (attackBuffer > 0 && Time.time > (lastComboEnd + timeBeforeNextCombo) 
-        && Time.time > (lastAttack + timeBeforeNextAttack) 
+        if (attackBuffer > 0 && Time.time > (lastComboEnd + timeBeforeNextCombo)
+        && Time.time > (lastAttack + timeBeforeNextAttack)
         && stateMachine.currentPlayerState != attackState)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(attackState);
             attackBuffer = 0;
         }
@@ -247,22 +252,33 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!context.started) return;
         {
+            gapClose.isUlting = false;
             dashBuffer = bufferTimer;
         }
     }
 
-    public void GapClose(InputAction.CallbackContext context)
+    public void Super(InputAction.CallbackContext context)
     {
-        if(context.started && hps.CanUlt)
+        if (context.started && hps.CanUlt)
         {
-            gapClose.hitPrevi.SetActive(true);
-            gapClose.posPrevi.SetActive(true);
-        }
-        if(context.canceled && hps.CanUlt)
-        {
-            gapClose.posPrevi.SetActive(false);
-            gapClose.hitPrevi.SetActive(false);
+            gapClose.isUlting = true;
             stateMachine.ChangeState(superState);
+        }
+        if (context.canceled && hps.CanUlt && gapClose.isUlting)
+        {
+            gapClose.isUlting = false;
+            if (actualSuper == global::Super.GapClose)
+            {
+                gapClose.GapClosing();
+            }
+            else if (actualSuper == global::Super.Heal)
+            {
+                healing.Heal();
+            }
+        }
+        else if (context.canceled && hps.CanUlt && !gapClose.isUlting)
+        {
+            stateMachine.ChangeState(idleState);
         }
     }
 
@@ -270,6 +286,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
+            gapClose.isUlting = false;
             attackBuffer = bufferAttackTimer;
         }
     }
@@ -277,6 +294,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
+            gapClose.isUlting = false;
             stateMachine.ChangeState(shieldState);
         }
 
@@ -289,12 +307,13 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
+            gapClose.isUlting = false;
             pauseMenu.PauseGame();
         }
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        if(context.performed && talkingTrigger && pnj != null && stateMachine.currentPlayerState == idleState)
+        if (context.performed && talkingTrigger && pnj != null && stateMachine.currentPlayerState == idleState)
         {
             stateMachine.ChangeState(interactState);
         }
@@ -302,18 +321,18 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Close(InputAction.CallbackContext context)
     {
-        if(context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
+        if (context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
         {
             stateMachine.ChangeState(idleState);
         }
     }
     public void FastWritting(InputAction.CallbackContext context)
     {
-        if(context.performed && pnj != null)
+        if (context.performed && pnj != null)
         {
             pnj.delay /= 10;
         }
-        if(context.canceled && pnj != null)
+        if (context.canceled && pnj != null)
         {
             pnj.delay *= 10;
         }
@@ -366,6 +385,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
+            gapClose.isUlting = false;
             hps.GainMP(2);
             dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
@@ -391,8 +411,8 @@ public class Player : MonoBehaviour, IDamageable
     #endregion
 
     #region Test_Movement
-    public Vector3 wallNormal {get; set;}
-    public bool isTouchingWall {get; private set;}
+    public Vector3 wallNormal { get; set; }
+    public bool isTouchingWall { get; private set; }
 
     private void OnCollisionStay(Collision collision)
     {
