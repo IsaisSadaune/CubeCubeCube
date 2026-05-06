@@ -17,7 +17,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate == 0)
         {
             Debug.Log("Cinématique 1 tuto");
-            tutostate++;
+            tutostate=1;
         }
     }
 
@@ -26,7 +26,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 1)
         {
             Debug.Log("Cinématique 2 en arriere plan");
-            tutostate++;
+            tutostate=2;
         }
     }
 
@@ -43,7 +43,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Remerciements");
             Debug.Log("Cinématique 3 Tuto");
-            tutostate++;
+            tutostate=3;
         }
     }
     public void Tuto4()
@@ -58,7 +58,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 3)
         {
             Debug.Log("Cinematique 4 Tuto");
-            tutostate++;
+            tutostate=4;
         }
     }
 
@@ -67,7 +67,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 4)
         {
             Debug.Log("Passage dans le couloir 5, Glitchs");
-        tutostate++;
+        tutostate=5;
     }
 }
 
@@ -83,7 +83,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 5)
         {
             Debug.Log("Cinematique 6 Tuto");
-            tutostate++;
+            tutostate=6;
         }
     }
     public void Tuto7()
@@ -101,7 +101,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("BossBattu");
             Debug.Log("Cinematique 8");
-            tutostate++;
+            tutostate=7;
         }
     }
 }
