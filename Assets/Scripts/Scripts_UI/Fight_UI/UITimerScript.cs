@@ -16,10 +16,8 @@ public class UITimerScript : MonoBehaviour
 
     private void UpdateTimerUI()
     {
-        float minutes = Mathf.FloorToInt(GameManager_Offi.Instance.Temps / 60);
-        float unroundedSeconds = GameManager_Offi.Instance.Temps % 60;
-        float seconds = Mathf.Round(unroundedSeconds * 100) / 100;
+        float seconds = Mathf.Round(GameManager_Offi.Instance.Temps * 100) / 100;
 
-        timerTextUI.SetText(minutes + ":" + seconds);
+        timerTextUI.SetText(seconds.ToString("F2").Replace(',', '.'));
     }
 }

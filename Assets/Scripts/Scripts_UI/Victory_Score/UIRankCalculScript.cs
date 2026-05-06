@@ -42,13 +42,10 @@ public class UIRankCalculScript : MonoBehaviour
     {
         bossNameText.SetText(scoreRequirements.bossName);
 
-        float minutes = Mathf.FloorToInt(secondsToBeat / 60);
-        float unroundedSeconds = secondsToBeat % 60;
-        float seconds = Mathf.Round(unroundedSeconds * 100) / 100;
-        timeText.SetText(minutes + ":" + seconds);
+        float seconds = Mathf.Round(secondsToBeat * 100) / 100;
+        timeText.SetText(""+seconds+" s");
 
         rankText.SetText(finalRank.ToString());
-
     }
 
     void UpdatePB(int bossNumber)
