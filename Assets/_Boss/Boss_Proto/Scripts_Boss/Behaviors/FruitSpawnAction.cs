@@ -1,11 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Unity.Behavior;
+using Unity.Properties;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
-using Unity.Properties;
-using UnityEditor.ShaderGraph.Internal;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FruitSpawn", story: "[Fruit] Spawn at Position from [FruitPositions]", category: "Action", id: "d92eee975be5e0c3280afe3db9b7daa5")]

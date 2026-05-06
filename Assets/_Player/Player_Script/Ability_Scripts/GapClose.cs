@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class GapClose : MonoBehaviour
@@ -8,10 +7,10 @@ public class GapClose : MonoBehaviour
     public int mp_Cost;
     public int damage;
     public bool isUlting;
-    public GameObject hitPrevi; 
-    public GameObject posPrevi; 
+    public GameObject hitPrevi;
+    public GameObject posPrevi;
     public LayerMask wallLayer;
-    public BoxCollider hitCollider {get; set;}
+    public BoxCollider hitCollider { get; set; }
 
     void Start()
     {
@@ -21,9 +20,9 @@ public class GapClose : MonoBehaviour
 
     void Update()
     {
-        if(isUlting && player.actualSuper == Super.GapClose)
+        if (isUlting && player.actualSuper == Super.GapClose)
         {
-            if(!hitPrevi.activeSelf || !posPrevi.activeSelf)
+            if (!hitPrevi.activeSelf || !posPrevi.activeSelf)
             {
                 hitPrevi.SetActive(true);
                 posPrevi.SetActive(true);
@@ -37,7 +36,7 @@ public class GapClose : MonoBehaviour
     }
     public void GapClosing()
     {
-        if(!isUlting)
+        if (!isUlting)
         {
             hitPrevi.SetActive(false);
             posPrevi.SetActive(false);
@@ -47,7 +46,7 @@ public class GapClose : MonoBehaviour
             StartCoroutine(ColliderActivation());
             player.hps.current_mp = 0;
             player.hps.rageBar.DecreaseBarValue(mp_Cost);
-            if(Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
+            if (Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
             {
                 player.rb.MovePosition(hit.point);
                 player.stateMachine.ChangeState(player.idleState);
@@ -57,7 +56,7 @@ public class GapClose : MonoBehaviour
                 player.rb.MovePosition(posPrevi.transform.position);
                 player.stateMachine.ChangeState(player.idleState);
             }
-            
+
         }
     }
 
