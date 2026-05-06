@@ -43,7 +43,7 @@ public class UIRankCalculScript : MonoBehaviour
         bossNameText.SetText(scoreRequirements.bossName);
 
         float seconds = Mathf.Round(secondsToBeat * 100) / 100;
-        timeText.SetText(""+seconds+" s");
+        timeText.SetText(seconds.ToString("F2").Replace(',', '.') + " s");
 
         rankText.SetText(finalRank.ToString());
     }
@@ -52,10 +52,9 @@ public class UIRankCalculScript : MonoBehaviour
     {
         //PersonalBest
         float pbBoss = GameManager_Offi.Instance.GetPBBoss(bossNumber);
-        float minutes = Mathf.FloorToInt(pbBoss / 60);
-        float unroundedSeconds = pbBoss % 60;
-        float seconds = Mathf.Round(unroundedSeconds * 100) / 100;
-        pBText.SetText("Personal Best : " + minutes + ":" + seconds);
+        float seconds = Mathf.Round(pbBoss * 100) / 100;
+
+        pBText.SetText("Personal Best : " + seconds.ToString("F2").Replace(',', '.'));
     }
 
     #region Buttons
