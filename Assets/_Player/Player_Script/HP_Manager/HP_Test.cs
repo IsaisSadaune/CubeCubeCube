@@ -16,11 +16,11 @@ public class HP_Test : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        if(player.actualSuper == Super.Heal)
+        if (player.actualSuper == Super.Heal)
         {
             mp_max = player.healing.mp_Cost;
         }
-        if(player.actualSuper == Super.GapClose)
+        if (player.actualSuper == Super.GapClose)
         {
             mp_max = player.gapClose.mp_Cost;
         }
@@ -76,11 +76,11 @@ public class HP_Test : MonoBehaviour
     public void GainHP(int x)
     {
         current_hp += x;
-        if(current_hp >= hp_max)
+        if (current_hp >= hp_max)
         {
             current_hp = hp_max;
         }
-        for(int i = 0; i < x; i++)
+        for (int i = 0; i < x; i++)
         {
             upf.AddHP();
         }
