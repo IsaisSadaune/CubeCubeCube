@@ -1,7 +1,7 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIPauseScript : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class UIPauseScript : MonoBehaviour
             Time.timeScale = 0f;
             pauseFeedbacks.PlayFeedbacks();
         }
-        else 
+        else
             ResumeGame();
     }
 
