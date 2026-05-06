@@ -8,11 +8,12 @@ public class UIPauseScript : MonoBehaviour
     [SerializeField] private MMF_Player pauseFeedbacks;
     [SerializeField] private GameObject PauseCanva;
     [SerializeField] private Button buttonToSelect;
+    [SerializeField] private Player player;
     private bool paused;
 
     public void PauseGame()
     {
-        if (!paused)
+        if (!paused && !player.isDead)
         {
             paused = true;
             Time.timeScale = 0f;

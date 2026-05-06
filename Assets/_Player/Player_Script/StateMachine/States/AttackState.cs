@@ -13,7 +13,7 @@ public class AttackState : PlayerState
     {
         //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
         //Debug.Log(player.comboCount);
-        if(Time.time > player.lastAttack + 1.5f)
+        if(Time.time > player.lastAttack + 0.5f)
         {
             player.comboCount = 0;
         }

@@ -1,8 +1,6 @@
-using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class UIDeathScript : MonoBehaviour
 {

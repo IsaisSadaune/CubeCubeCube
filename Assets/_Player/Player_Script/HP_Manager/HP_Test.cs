@@ -58,15 +58,18 @@ public class HP_Test : MonoBehaviour
     #region hp
     public void LoseHP(int x)
     {
-        current_hp -= x;
-        GainMP(3);
-        if (upf != null)
-            upf.RemoveHP(x);
-
-        if (current_hp <= 0)
+        if (!player.isDead)
         {
-            current_hp = 0;
-            KillPlayer();
+            current_hp -= x;
+            GainMP(3);
+            if (upf != null)
+                upf.RemoveHP(x);
+
+            if (current_hp <= 0)
+            {
+                current_hp = 0;
+                KillPlayer();
+            }
         }
     }
 
@@ -86,9 +89,12 @@ public class HP_Test : MonoBehaviour
 
     private void KillPlayer()
     {
-        player.isDead = true;
-        player.deathFeedback.PlayFeedbacks();
-        player.animator.SetBool("isDead", true);
+        if (!player.isDead)
+        {
+            player.isDead = true;
+            player.deathFeedback.PlayFeedbacks();
+            player.animator.SetBool("isDead", true);
+        }
     }
     #endregion
 

@@ -193,7 +193,7 @@ public class GameManager_Offi : MonoBehaviour
 
 
         //SaveStats();
-        // LoadStats();
+        LoadStats();
     }
 
     public void SaveStats()
