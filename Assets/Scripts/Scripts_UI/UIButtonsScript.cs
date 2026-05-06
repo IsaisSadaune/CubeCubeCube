@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -47,11 +46,11 @@ public class UIButtonsScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         //Check si le joueur se trouve dans le HUB
-        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "Final_Hub3") 
-        { 
+        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "Final_Hub3")
+        {
             SceneManager.LoadScene("MainMenuScene");
-            return; 
-        } 
+            return;
+        }
         else if (SceneManager.GetActiveScene().name == "")
             SendToHUBDependingGameState();
         else
