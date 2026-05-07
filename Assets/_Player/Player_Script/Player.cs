@@ -386,8 +386,6 @@ public class Player : MonoBehaviour, IDamageable
         else
         {
             gapClose.isUlting = false;
-            hps.GainMP(2);
-            dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
         }
         StartCoroutine(cdDamage());

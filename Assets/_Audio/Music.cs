@@ -17,12 +17,17 @@ public class Music : MonoBehaviour
 
     public void PitchDecreasing()
     {
-        StartCoroutine(PitchDecreaser());
+        StartCoroutine(PitchDecreaser(0f));
     }
 
-    IEnumerator PitchDecreaser()
+    public void PitchDeathLevel()
     {
-        while(gameplayMusic.pitch > 0f)
+        StartCoroutine(PitchDecreaser(0.4f));
+    }
+
+    IEnumerator PitchDecreaser(float pitchTarget)
+    {
+        while(gameplayMusic.pitch > pitchTarget)
         {
             gameplayMusic.pitch -= 0.05f;
             yield return new WaitForSeconds(0.1f);
