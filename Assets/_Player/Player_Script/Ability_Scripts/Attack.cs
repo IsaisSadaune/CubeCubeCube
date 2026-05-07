@@ -34,7 +34,7 @@ public class Attack : MonoBehaviour
     public IEnumerator ComboTimer()
     {
         
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         player.bossHit = false;
         player.stateMachine.ChangeState(player.idleState);
         // if(player.bossHit)
