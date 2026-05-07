@@ -126,14 +126,7 @@ public class GameManager_Offi : MonoBehaviour
     }
     #endregion
 
-    public enum GameProgression
-    {
-        Start = 0, //Lancement du jeu -> Finir Tuto
-        TutoFinished = 1, // Finir Tuto -> Battre Boss1
-        Boss1Beaten = 2, // Finir Boss1 -> Finir Boss2
-        Boss2Beaten = 3, // Zone de fin
-        Boss3Beaten = 4, //Inutilis�
-    }
+
 
     #region stats
     //Statistiques
@@ -226,4 +219,13 @@ public class GameManager_Offi : MonoBehaviour
         act = (GameProgression)System.Enum.Parse(typeof(GameProgression), contents[6]);
 
     }
+}
+
+public enum GameProgression
+{
+    Start = 0, //Lancement du jeu -> Finir Tuto
+    TutoFinished = 1, // Finir Tuto -> Battre Boss1
+    Boss1Beaten = 2, // Finir Boss1 -> Finir Boss2
+    Boss2Beaten = 3, // Zone de fin
+    Boss3Beaten = 4, //Inutilis�
 }
