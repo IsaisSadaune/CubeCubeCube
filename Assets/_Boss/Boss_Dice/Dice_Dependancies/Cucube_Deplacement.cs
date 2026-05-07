@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public class Cucube_Deplacement : MonoBehaviour
@@ -13,10 +12,10 @@ public class Cucube_Deplacement : MonoBehaviour
 
     private void Awake()
     {
-    
+
         Physics.IgnoreCollision(
             gameObject.GetComponent<Collider>(),
-            Player.Instance.gameObject.GetComponent<Collider>(), 
+            Player.Instance.gameObject.GetComponent<Collider>(),
             true);
     }
 

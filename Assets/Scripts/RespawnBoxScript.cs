@@ -13,4 +13,10 @@ public class RespawnBoxScript : MonoBehaviour
 
         }
     }
+
+    public void SetNewSpawnPoint(Transform newspawn)
+    {
+        teleportLocation = newspawn;
+    }
+
 }

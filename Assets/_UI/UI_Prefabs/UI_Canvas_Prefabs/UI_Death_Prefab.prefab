@@ -454,6 +454,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -640,6 +641,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -909,6 +911,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1045,6 +1048,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1480,10 +1484,10 @@ MonoBehaviour:
         ReplaceText: 0
         HideTextOnInitialization: 1
         NewText: You died
-        RevealMode: 0
-        DurationMode: 0
+        RevealMode: 2
+        DurationMode: 1
         IntervalBetweenReveals: 0.1
-        RevealDuration: 1
+        RevealDuration: 0.25
         OnReveal:
           m_PersistentCalls:
             m_Calls: []
@@ -1651,7 +1655,7 @@ MonoBehaviour:
         RevealMode: 0
         DurationMode: 1
         IntervalBetweenReveals: 0.1
-        RevealDuration: 1.5
+        RevealDuration: 0.5
         OnReveal:
           m_PersistentCalls:
             m_Calls: []
@@ -1730,7 +1734,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 679139007340720391}
         DebugActive: 0
-        PauseDuration: 0.5
+        PauseDuration: 0.25
         RandomizePauseDuration: 0
         MinPauseDuration: 1
         MaxPauseDuration: 3
@@ -2364,8 +2368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipsText: {fileID: 7798161443514731914}
-  mainVolume: {fileID: 0}
-  deathVolume: {fileID: 336266566328477882}
   buttonToSelect: {fileID: 1542573263890164702}
   availableTips:
   - Try attacking the cube

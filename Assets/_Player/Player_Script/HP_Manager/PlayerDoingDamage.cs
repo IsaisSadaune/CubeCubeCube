@@ -11,7 +11,7 @@ public class PlayerDoingDamage : MonoBehaviour
     {
         if (!other.CompareTag("Player") && !other.CompareTag("Projectile"))
         {
-            IDamageable cible  = null;
+            IDamageable cible = null;
             if (other.GetComponent<IDamageable>() != null)
             {
                 cible = other.GetComponent<IDamageable>();
@@ -31,7 +31,7 @@ public class PlayerDoingDamage : MonoBehaviour
                 }
                 else
                     cible.TakeDamage(player.gapClose.damage);
-                    GetComponent<BoxCollider>().enabled = false;
+                GetComponent<BoxCollider>().enabled = false;
             }
         }
     }

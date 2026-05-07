@@ -13,15 +13,15 @@ public class UIButtonsScript : MonoBehaviour
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)1:
+            case (GameProgression)1:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)2:
+            case (GameProgression)2:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)3:
+            case (GameProgression)3:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
@@ -46,9 +46,11 @@ public class UIButtonsScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         //Check si le joueur se trouve dans le HUB
-        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2"
-            || SceneManager.GetActiveScene().name == "Final_Hub3")
+        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "Final_Hub3")
+        {
             SceneManager.LoadScene("MainMenuScene");
+            return;
+        }
         else if (SceneManager.GetActiveScene().name == "")
             SendToHUBDependingGameState();
         else
