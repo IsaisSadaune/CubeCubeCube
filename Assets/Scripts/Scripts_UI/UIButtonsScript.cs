@@ -13,15 +13,15 @@ public class UIButtonsScript : MonoBehaviour
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)1:
+            case (GameProgression)1:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)2:
+            case (GameProgression)2:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
-            case (GameManager_Offi.GameProgression)3:
+            case (GameProgression)3:
                 SceneManager.LoadScene("Final_Hub2");
                 break;
 
