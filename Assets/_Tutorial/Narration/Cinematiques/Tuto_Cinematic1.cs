@@ -8,12 +8,6 @@ public class Tuto_Cinematic1 : CinematicPlayer
     [SerializeField] private Player player;
     [SerializeField] private GameObject dialogue;
 
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(1f);
-        PlayCinematic();
-    }
-
     public override void PlayCinematic()
     {
         //Sequence s = DOTween.Sequence();
@@ -33,7 +27,7 @@ public class Tuto_Cinematic1 : CinematicPlayer
         s.Append(CubeInf1.transform.DOMoveY(15f, 1).SetEase(Ease.OutBack));
         s.Join(dialogue.transform.DOMoveY(15f,1).SetEase(Ease.OutBack));
         s.AppendInterval(1.5f);
-        //Cube Disparait (leger glitch) et se désactive
+        //Effet Glitch à ajouter
         s.Append(CubeInf1.transform.DOMoveZ(-25f, 1).SetEase(Ease.InBack))
             .OnComplete(() => CubeInf1.SetActive(false));
 
