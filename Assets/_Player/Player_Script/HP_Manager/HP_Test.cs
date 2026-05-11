@@ -61,6 +61,7 @@ public class HP_Test : MonoBehaviour
         if (!player.isDead)
         {
             current_hp -= x;
+            player.dmgFeedback.PlayFeedbacks();
             GainMP(3);
             if (upf != null)
                 upf.RemoveHP(x);

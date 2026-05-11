@@ -6,15 +6,16 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using DG.Tweening;
 using Unity.VisualScripting;
+using MoreMountains.Feedbacks;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SelfMakesBombExplode", story: "[Self] jump on each [BombList] and make [Explosion] at [SpeedBomb]", category: "Action", id: "723efe833ae969178d2491e01dcaf800")]
-public partial class SelfMakesBombExplodeAction : Action
+[NodeDescription(name: "SelfJumpOnBomb", story: "[Self] jump on each [BombList] at [SpeedBomb] and play [BombFeedbacks]", category: "Action", id: "723efe833ae969178d2491e01dcaf800")]
+public partial class SelfJumpOnBombAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<List<GameObject>> BombList;
-    [SerializeReference] public BlackboardVariable<GameObject> Explosion;
     [SerializeReference] public BlackboardVariable<float> SpeedBomb;
+    [SerializeReference] public BlackboardVariable<MMF_Player> BombFeedbacks;
     bool done;
     protected override Status OnStart()
     {
@@ -28,7 +29,7 @@ public partial class SelfMakesBombExplodeAction : Action
                 GameObject bomb = BombList.Value[0];
                 BombList.Value.Remove(bomb);
                 MonoBehaviour.Destroy(bomb);
-                RetroBoss.Instance.Explosion(Explosion);
+                BombFeedbacks.Value.PlayFeedbacks();
                 done = true;
             });
         });
