@@ -1,10 +1,12 @@
 using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PreBossUIScript : MonoBehaviour
 {
+    public PlayerInput input;
     public enum BossSelection { DiceBoss, RetroBoss }
     [SerializeField] BossSelection bossReferenced;
 
@@ -19,6 +21,8 @@ public class PreBossUIScript : MonoBehaviour
     [ContextMenu("Open the menu")]
     public void OpenMenu()
     {
+        input.SwitchCurrentActionMap("UI");
+        Debug.Log(input.currentActionMap);
         SearchStatsDependingOnBossNbr();
         UpdateText();
         openFeedbacks.PlayFeedbacks();
@@ -77,6 +81,8 @@ public class PreBossUIScript : MonoBehaviour
 
     public void CloseMenu()
     {
+        input.SwitchCurrentActionMap("Gameplay");
+        Debug.Log(input.currentActionMap);
         closeFeedbacks.PlayFeedbacks();
     }
 

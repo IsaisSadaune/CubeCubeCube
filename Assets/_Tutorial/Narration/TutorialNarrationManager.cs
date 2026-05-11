@@ -1,11 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class TutorialNarrationManager : MonoBehaviour
 {
+
+
     public int tutostate { get; private set; } = 0;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(1f);
         Tuto1();
     }
 
@@ -18,6 +22,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 1 tuto");
             tutostate=1;
+            GetComponent<Tuto_Cinematic1>().PlayCinematic();
         }
     }
 
@@ -27,6 +32,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 2 en arriere plan");
             tutostate=2;
+            GetComponent<Tuto_Cinematic2>().PlayCinematic();
         }
     }
 
@@ -35,6 +41,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 2)
         {
             Debug.Log("Le joueur entre dans la salle 3");
+            GetComponent<Tuto_Cinematic3>().PlayCinematic();
         }
     }
     public void Tuto3CorruptionVaincue()
