@@ -6,6 +6,11 @@ public class MainMenuInteractionsScript : MonoBehaviour
     [SerializeField] MMF_Player startGameFeedbacks;
     bool GameStarted;
 
+    [Header("Credits Screen")]
+    public GameObject creditsScreen;
+    [SerializeField] MMF_Player creditsPlayer;
+
+
     private void Update()
     {
         if (Input.anyKey && !GameStarted) 
@@ -23,6 +28,7 @@ public class MainMenuInteractionsScript : MonoBehaviour
 
     public void CreditsButtonPressed()
     {
-        Debug.Log("Code pas écrit Bozo");
+        creditsScreen.SetActive(true);
+        creditsPlayer.PlayFeedbacks();
     }
 }
