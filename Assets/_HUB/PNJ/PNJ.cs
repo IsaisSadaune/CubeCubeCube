@@ -32,7 +32,11 @@ public class PNJ : MonoBehaviour
         yield return null;
         yield return null;
         
+        if(emptyDialogueText.fontSize > 30)
+            emptyDialogueText.fontSize = 30f;
+    
         float lockedFontSize = emptyDialogueText.fontSize;
+
         emptyDialogueText.enableAutoSizing = false;
         emptyDialogueText.fontSize = lockedFontSize;
 
