@@ -9,32 +9,34 @@ public class InstantiateScrollingTextColumn : MonoBehaviour
 
     private void Start()
     {
-        InstantatiateRandomColumn();
+        StartCoroutine(InstantatiateRandomColumn());
+        enableInstantiation = true;
     }
 
     IEnumerator InstantatiateRandomColumn()
     {
         yield return new WaitUntil(() => enableInstantiation);
 
-        Debug.Log("Try Instantiate");
-
-        switch (Random.Range(1, 4))
+        switch (Random.Range(1, 5))
         {
             case 1:
-                Instantiate(textColumn1, instPosColumn1);
+                Instantiate(textColumn1, instPosColumn1.position, Quaternion.identity);
                 break;
             case 2:
-                Instantiate(textColumn2, instPosColumn2);
+                Instantiate(textColumn2, instPosColumn2.position, Quaternion.identity);
                 break;
             case 3:
-                Instantiate(textColumn3, instPosColumn3);
+                Instantiate(textColumn3, instPosColumn3.position, Quaternion.identity);
                 break;
             case 4:
-                Instantiate(textColumn4, instPosColumn4);
+                Instantiate(textColumn4, instPosColumn4.position, Quaternion.identity);
+                break;
+
+            default:
                 break;
         }
 
-        yield return new WaitForSeconds(Random.Range(0.5f, 1.25f));
+        yield return new WaitForSeconds(Random.Range(1f, 1.75f));
 
         StartCoroutine(InstantatiateRandomColumn());
     }
