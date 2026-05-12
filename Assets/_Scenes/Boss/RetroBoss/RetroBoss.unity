@@ -582,6 +582,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7066520216164169596, guid: 9e2f73d0a4a07514ab65170ab91cc1d0, type: 3}
   m_PrefabInstance: {fileID: 89419164}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &90876757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8703091533455747730, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+  m_PrefabInstance: {fileID: 6353967813589955435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91711593
 GameObject:
   m_ObjectHideFlags: 0
@@ -36555,27 +36566,27 @@ PrefabInstance:
       objectReference: {fileID: 1287716647}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: FeedbacksList.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: 'FeedbacksList.Array.data[0]'
-      value: 5478766647979540599
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
-      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 5478766557601465018
       objectReference: {fileID: 0}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
-      propertyPath: 'FeedbacksList.Array.data[2]'
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 5478766557601465019
       objectReference: {fileID: 0}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
-      propertyPath: 'FeedbacksList.Array.data[3]'
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 5478766557601465020
       objectReference: {fileID: 0}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
-      propertyPath: 'FeedbacksList.Array.data[4]'
+      propertyPath: 'FeedbacksList.Array.data[3]'
       value: 5478766557601465021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
+      propertyPath: 'FeedbacksList.Array.data[4]'
+      value: 5478766557601465022
       objectReference: {fileID: 0}
     - target: {fileID: 2971484977428924195, guid: 7250bc57256986e4baa996634b0a50ac, type: 3}
       propertyPath: 'FeedbacksList.Array.data[5]'
@@ -49898,7 +49909,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2b000339b22ab584ea8bc594434a3672, type: 3}
+  m_Resource: {fileID: 8300000, guid: 40372a84c6ffc78418df7117c75c329a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 0.75
@@ -51281,7 +51292,7 @@ AudioSource:
   m_GameObject: {fileID: 1954261844}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 710edf5c21724cf409b437bf7d5df498, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -52987,6 +52998,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 167449975845523505, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: m_Name
+      value: Fireball_Feedbacks
+      objectReference: {fileID: 0}
     - target: {fileID: 670616863547525866, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: MaxHP
       value: 50
@@ -52999,6 +53014,14 @@ PrefabInstance:
       propertyPath: damageFeedback
       value: 
       objectReference: {fileID: 949820884}
+    - target: {fileID: 1387088750676635595, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MaxVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387088750676635595, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MinVolume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1387088750676635595, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[5478766557601465040].TargetAudioSource
       value: 
@@ -53250,6 +53273,14 @@ PrefabInstance:
     - target: {fileID: 2456120012627040290, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[5478766647461544322].UseRange
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456120012627040290, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MaxVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456120012627040290, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MinVolume
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2456120012627040290, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[5478766647019045076].Frequency
@@ -56733,6 +56764,11 @@ PrefabInstance:
         MoreMountains.Tools]]'
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: 'managedReferences[5478766665656959891]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[MoreMountains.Feedbacks.MMF_Player,
+        MoreMountains.Tools]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: 'managedReferences[8335301310446829787]'
       value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.GameObject,
         UnityEngine.CoreModule]]'
@@ -56876,6 +56912,10 @@ PrefabInstance:
       value: TetrisFeedbacks
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766665656959891].Name
+      value: FireballFeedbacks
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[8335301310446829787].Name
       value: CircleCollider
       objectReference: {fileID: 0}
@@ -56893,7 +56933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[1031006858720051457].m_Value
@@ -57011,6 +57051,10 @@ PrefabInstance:
       propertyPath: managedReferences[5478766647690396302].m_Value
       value: 
       objectReference: {fileID: 1676306480}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766665656959891].m_Value
+      value: 
+      objectReference: {fileID: 90876757}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[8335301264613835072].m_Value
       value: 
@@ -57153,7 +57197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[37]'
-      value: 5478766556319842378
+      value: 5478766665656959891
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[2612055126391128304].GUID.m_Value0
@@ -57402,6 +57446,14 @@ PrefabInstance:
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[5478766647690396302].GUID.m_Value1
       value: 900947637578251642
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766665656959891].GUID.m_Value0
+      value: 14810285600731584267
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766665656959891].GUID.m_Value1
+      value: 6918003062112332942
       objectReference: {fileID: 0}
     - target: {fileID: 3369780711965215367, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: managedReferences[8335301310446829787].GUID.m_Value0
@@ -58347,6 +58399,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8703091533455747730, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MaxVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703091533455747730, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].MinVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703091533455747730, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766557601465040].TargetAudioSource
+      value: 
+      objectReference: {fileID: 1954261845}
+    - target: {fileID: 8703091533455747730, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: 'managedReferences[5478766557601465040].RandomSfx.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7258b7be5e286d245bd4ebfca02d65f0, type: 3}
     - target: {fileID: 8741203994308987422, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: m_Name
       value: RetroCube
