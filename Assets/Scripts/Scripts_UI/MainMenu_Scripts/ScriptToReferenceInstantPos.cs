@@ -10,7 +10,6 @@ public class ScriptToReferenceInstantPos : MonoBehaviour
         parentTransform = GetComponent<Transform>();
     }
 
-    [ContextMenu("Enable Scrolling")]
     public void EnableScrolling()
     {
         scrollingEnabled = true;
