@@ -13,7 +13,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
 
     public MMF_Player damageFeedback;
     public MMF_Player deathFeedback;
-    
+
     public GameObject detector1;
     public GameObject detector2;
 
@@ -72,10 +72,14 @@ public class Boss_Variables : MonoBehaviour, IDamageable
         //     .OnComplete(() =>
         //     visual.transform.DOScale(x, 0.12f).SetEase(Ease.InOutBounce));
     }
-    public void FeedBackMort()
+    public virtual void FeedBackMort()
     {
-        deathFeedback.PlayFeedbacks();
-        //visual.transform.DOScale(Vector3.zero, 1f)
-        //    .OnComplete(() => Destroy(gameObject));
+        if (deathFeedback != null)
+            deathFeedback.PlayFeedbacks();
+        else
+        {
+            visual.transform.DOScale(Vector3.zero, 1f)
+                .OnComplete(() => Destroy(gameObject));
+        }
     }
 }

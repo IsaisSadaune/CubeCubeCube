@@ -174,6 +174,9 @@ public class Player : MonoBehaviour, IDamageable
             combo[i].attackCollider = attacksCollider[i];
         }
 
+        //c'est beau la prog quand meme
+        if(GameManager_Offi.Instance != null)
+            GameManager_Offi.Instance.SetPlayer(this);
     }
 
     private void Update()

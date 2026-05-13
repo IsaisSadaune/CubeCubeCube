@@ -6,6 +6,25 @@ public class TutorialNarrationManager : MonoBehaviour
 
 
     public int tutostate { get; private set; } = 0;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private MMF_Player cinematic1;
+    [SerializeField] private MMF_Player cinematic2;
+    [SerializeField] private MMF_Player cinematic3;
+
+    [SerializeField] private HP_GlitchTuto glitchCubeDestroyed;
+
+    [SerializeField] private Tuto_Cinematic3 walls3;
+    [SerializeField] private MMF_Player cinematic3Finished;
+    [SerializeField] private MMF_Player cinematic5;
+    [SerializeField] private MMF_Player cinematic6;
+>>>>>>> Stashed changes
+
+    private void OnEnable()
+    {
+        glitchCubeDestroyed.GlitchDestroyed += Tuto3CorruptionVaincue;
+    }
+
 
     private IEnumerator Start()
     {
@@ -41,7 +60,13 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 2)
         {
             Debug.Log("Le joueur entre dans la salle 3");
+<<<<<<< Updated upstream
             GetComponent<Tuto_Cinematic3>().PlayCinematic();
+=======
+            cinematic3.PlayFeedbacks();
+            Debug.Log("fermetureSalle3");
+            walls3.PlayCinematic();
+>>>>>>> Stashed changes
         }
     }
     public void Tuto3CorruptionVaincue()
@@ -51,6 +76,11 @@ public class TutorialNarrationManager : MonoBehaviour
             Debug.Log("Remerciements");
             Debug.Log("Cinématique 3 Tuto");
             tutostate=3;
+<<<<<<< Updated upstream
+=======
+            Debug.Log("ouverture portes");
+            walls3.UnlockZone();
+>>>>>>> Stashed changes
         }
     }
     public void Tuto4()
