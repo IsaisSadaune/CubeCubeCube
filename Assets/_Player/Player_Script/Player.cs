@@ -132,7 +132,7 @@ public class Player : MonoBehaviour, IDamageable
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
 
-
+        interactImage.SetActive(false);
         gapClose = GetComponent<GapClose>();
         healing = GetComponent<Healing>();
 
