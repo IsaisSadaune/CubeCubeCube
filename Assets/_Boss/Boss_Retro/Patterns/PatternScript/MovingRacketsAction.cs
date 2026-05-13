@@ -12,21 +12,31 @@ public partial class MovingRacketsAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> RacketLeft;
     [SerializeReference] public BlackboardVariable<GameObject> RacketRight;
     RetroBoss boss;
+    bool done;
     protected override Status OnStart()
     {
+        done = false;
         boss = RetroBoss.Instance;
 
         if(boss.pongEndPos.transform.position.x > 0)
-            RacketLeft.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.5f).SetEase(Ease.InOutQuad);
+            RacketLeft.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
+            {
+                done = true;
+            });
         else
-            RacketRight.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.5f).SetEase(Ease.InOutQuad);
+            RacketRight.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
+            {
+                done = true;
+            });
 
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        if (done) return Status.Success;
+
+        else return Status.Running;
     }
 
     protected override void OnEnd()
