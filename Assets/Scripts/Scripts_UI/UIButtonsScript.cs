@@ -10,11 +10,11 @@ public class UIButtonsScript : MonoBehaviour
         switch (GameManager_Offi.Instance.act)
         {
             case 0:
-                SceneManager.LoadScene("Final_Hub2");
+                SceneManager.LoadScene("TutorialScene");
                 break;
 
             case (GameProgression)1:
-                SceneManager.LoadScene("Final_Hub2");
+                SceneManager.LoadScene("Final_Hub1");
                 break;
 
             case (GameProgression)2:
@@ -26,7 +26,7 @@ public class UIButtonsScript : MonoBehaviour
                 break;
 
             default:
-                SceneManager.LoadScene("Final_Hub2");
+                SceneManager.LoadScene("TutorialScene");
                 break;
         }
     }
@@ -51,7 +51,7 @@ public class UIButtonsScript : MonoBehaviour
             SceneManager.LoadScene("MainMenuScene");
             return;
         }
-        else if (SceneManager.GetActiveScene().name == "")
+        else if (SceneManager.GetActiveScene().name == "RetroBoss" || SceneManager.GetActiveScene().name == "Scene_DiceBoss_Actual")
             SendToHUBDependingGameState();
         else
             Application.Quit();
