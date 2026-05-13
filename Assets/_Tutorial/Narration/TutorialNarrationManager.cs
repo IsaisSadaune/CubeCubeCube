@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,12 @@ public class TutorialNarrationManager : MonoBehaviour
 
 
     public int tutostate { get; private set; } = 0;
+    [SerializeField] private MMF_Player cinematic1;
+    [SerializeField] private MMF_Player cinematic2;
+    [SerializeField] private MMF_Player cinematic3;
+    [SerializeField] private MMF_Player cinematic3Finished;
+    [SerializeField] private MMF_Player cinematic5;
+    [SerializeField] private MMF_Player cinematic6;
 
     private IEnumerator Start()
     {
@@ -22,7 +29,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 1 tuto");
             tutostate=1;
-            GetComponent<Tuto_Cinematic1>().PlayCinematic();
+            cinematic1.PlayFeedbacks();
         }
     }
 
@@ -32,7 +39,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 2 en arriere plan");
             tutostate=2;
-            GetComponent<Tuto_Cinematic2>().PlayCinematic();
+            cinematic2.PlayFeedbacks();
         }
     }
 
@@ -41,16 +48,17 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 2)
         {
             Debug.Log("Le joueur entre dans la salle 3");
-            GetComponent<Tuto_Cinematic3>().PlayCinematic();
+            cinematic3.PlayFeedbacks();
+            Debug.Log("fermetureSalle3");
         }
     }
     public void Tuto3CorruptionVaincue()
     {
         if (tutostate <= 2)
         {
-            Debug.Log("Remerciements");
-            Debug.Log("Cinématique 3 Tuto");
+            cinematic3Finished.PlayFeedbacks();
             tutostate=3;
+            Debug.Log("ouverture portes");
         }
     }
     public void Tuto4()
