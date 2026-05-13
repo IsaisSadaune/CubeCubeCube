@@ -57,8 +57,8 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 2)
         {
+            tutostate = 3;
             Debug.Log("Le joueur entre dans la salle 3");
-            GetComponent<Tuto_Cinematic3>().PlayCinematic();
             cinematic3.PlayFeedbacks();
             Debug.Log("fermetureSalle3");
             walls3.PlayCinematic();
@@ -66,10 +66,9 @@ public class TutorialNarrationManager : MonoBehaviour
     }
     public void Tuto3CorruptionVaincue()
     {
-        if (tutostate <= 2)
+        if (tutostate <= 3)
         {
             cinematic3Finished.PlayFeedbacks();
-            tutostate=3;
             Debug.Log("ouverture portes");
             walls3.UnlockZone();
             Debug.Log("ouverture portes");

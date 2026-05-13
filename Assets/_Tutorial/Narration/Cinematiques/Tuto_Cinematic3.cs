@@ -17,20 +17,23 @@ public class Tuto_Cinematic3 : CinematicPlayer
         foreach(var z in WallsToCreatePermanently)
             z.gameObject.SetActive(true);
         foreach (var z in ZonesToRemovePermanently)
-            s.Join(z.transform.DOMoveY(z.transform.position.y-35f, 1f));
+            s.Join(z.transform.DOMoveY(z.transform.position.y - 35f, 1f));
         foreach (var z in ZonesToRemoveTemporary)
             s.Join(z.transform.DOMoveY(z.transform.position.y - 35f, 1f));
     }
 
-    public void UnlockZone()
+    public virtual void UnlockZone()
     {
         foreach (var z in ZonesToRemoveTemporary)
+        {
+            //var tmp = z.transform.position+ new Vector3(0f,35f,0f);
             z.transform.DOMoveY(z.transform.position.y + 35f, 1f);
-        foreach(var z in WallsToRemoveAtTheEnd)
+        }
+        foreach (var z in WallsToRemoveAtTheEnd)
             z.gameObject.SetActive(false);
     }
 
-    public void ActivateGlitchToHit()
+    public virtual void ActivateGlitchToHit()
     {
 
     }

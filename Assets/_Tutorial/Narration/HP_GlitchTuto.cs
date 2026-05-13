@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class HP_GlitchTuto : Boss_Variables
 {
@@ -7,7 +6,10 @@ public class HP_GlitchTuto : Boss_Variables
 
     public override void FeedBackMort()
     {
-        base.FeedBackMort();
-        GlitchDestroyed?.Invoke();
+        if (!isDying)
+        {
+            base.FeedBackMort();
+            GlitchDestroyed?.Invoke();
+        }
     }
 }

@@ -25,6 +25,8 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public void SetHardDestroying() => isHardDestroying = true;
     public void StopHardDestroying() => isHardDestroying = false;
 
+    protected bool isDying = false;
+
     private void Awake()
     {
         HP = MaxHP;
@@ -74,12 +76,16 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     }
     public virtual void FeedBackMort()
     {
-        if (deathFeedback != null)
-            deathFeedback.PlayFeedbacks();
-        else
+        if (!isDying)
         {
-            visual.transform.DOScale(Vector3.zero, 1f)
-                .OnComplete(() => Destroy(gameObject));
+            isDying = true;
+            if (deathFeedback != null)
+                deathFeedback.PlayFeedbacks();
+            else
+            {
+                visual.transform.DOScale(Vector3.zero, 1f)
+                    .OnComplete(() => Destroy(gameObject));
+            }
         }
     }
 }
