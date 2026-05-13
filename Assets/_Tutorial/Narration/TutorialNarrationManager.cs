@@ -39,7 +39,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 1 tuto");
             tutostate=1;
-            GetComponent<Tuto_Cinematic1>().PlayCinematic();
+            cinematic1.PlayFeedbacks();
         }
     }
 
@@ -49,7 +49,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinématique 2 en arriere plan");
             tutostate=2;
-            GetComponent<Tuto_Cinematic2>().PlayCinematic();
+            cinematic2.PlayFeedbacks();
         }
     }
 
@@ -68,12 +68,11 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 2)
         {
-            Debug.Log("Remerciements");
-            Debug.Log("Cinématique 3 Tuto");
+            cinematic3Finished.PlayFeedbacks();
             tutostate=3;
-
             Debug.Log("ouverture portes");
             walls3.UnlockZone();
+            Debug.Log("ouverture portes");
         }
     }
     public void Tuto4()

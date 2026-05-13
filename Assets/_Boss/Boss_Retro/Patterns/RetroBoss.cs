@@ -25,7 +25,7 @@ public class RetroBoss : MonoBehaviour
     }
     public GameObject tetrisPiece(GameObject prefab, Vector3 pos)
     {
-        Instantiate(prefab, new Vector3(pos.x, pos.y + 8, pos.z), prefab.transform.rotation);
+        Instantiate(prefab, new Vector3(pos.x, pos.y + 16, pos.z), prefab.transform.rotation);
         return prefab;
     }
 

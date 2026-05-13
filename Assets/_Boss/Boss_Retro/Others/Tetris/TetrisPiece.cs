@@ -14,12 +14,19 @@ public class TetrisPiece : MonoBehaviour
     IEnumerator DestroyingGround()
     {
         yield return new WaitForSeconds(0.3f);
-        transform.DOMoveY(1f, 0.5f).SetEase(Ease.Linear);
-        yield return new WaitForSeconds(0.7f);
-        transform.DOMoveY(-10f, 1f).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            Destroy(gameObject);
-        });
+        transform.DOMoveY(0.5f, 0.5f).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(0.75f);
+        // Idée à équilibrer mais c'est golri
+
+        // if(gameObject.name == "SquarePiece(Clone)")
+        // {
+        //    Vector3 dir = GetClosestOrthogonalDirection(transform, Player.Instance.transform.position);
+        //     gameObject.transform.DOMove(dir * 50, 2f).OnComplete(()=>Destroy(gameObject)); 
+        // }
+        // else
+
+        Destroy(gameObject);
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -27,8 +34,26 @@ public class TetrisPiece : MonoBehaviour
         if(other.CompareTag("Ground"))
         {
             Debug.Log("Collision with ground");
-            tile = other.transform.parent.GetComponent<SlabController>();
-            tile.Destroyed();
+
+        }
+    }
+
+    public Vector3 GetClosestOrthogonalDirection(Transform from, Vector3 targetPosition)
+    {
+        Vector3 directionToTarget = targetPosition - from.position;
+        directionToTarget.y = 0;
+        directionToTarget.Normalize();
+
+        float absX = Mathf.Abs(directionToTarget.x);
+        float absZ = Mathf.Abs(directionToTarget.z);
+
+        if (absX > absZ)
+        {
+            return directionToTarget.x > 0 ? Vector3.right : Vector3.left;
+        }
+        else
+        {
+            return directionToTarget.z > 0 ? Vector3.forward : Vector3.back;
         }
     }
 }

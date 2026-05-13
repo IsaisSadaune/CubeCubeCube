@@ -25,10 +25,14 @@ public partial class ThrowBombAction : Action
             Vector3 pos  = ArenaTiles.Value[rdmPos].transform.position;
             pos.y = 2f;
             ArenaTiles.Value.Remove(ArenaTiles.Value[rdmPos]);
-            bomb.transform.DOMove(pos, 1f).SetEase(Ease.InOutQuad).OnComplete(() =>
+            bomb.transform.DOMove(pos, 1f)
+            .SetDelay(UnityEngine.Random.Range(0.1f,0.5f))
+            .SetEase(Ease.InOutQuad).OnComplete(() =>
             {
                 done = true;
+                bomb.GetComponent<Rigidbody>().isKinematic=false;
             });
+
         }
         return Status.Running;
     }

@@ -96,8 +96,8 @@ public class Dash : MonoBehaviour
             for (int i = 0; i < skinnedMeshRenderers.Length; i++)
             {
                 GameObject gObj = new GameObject("TrailMesh");
-                gObj.transform.position = positionToSpawn.position;
-                gObj.transform.rotation = skinnedMeshRenderers[i].transform.rotation;
+                gObj.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+                gObj.transform.rotation = transform.rotation;
 
                 MeshRenderer mr = gObj.AddComponent<MeshRenderer>();
                 MeshFilter mf = gObj.AddComponent<MeshFilter>();

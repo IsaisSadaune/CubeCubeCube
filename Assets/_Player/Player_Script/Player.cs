@@ -132,7 +132,7 @@ public class Player : MonoBehaviour, IDamageable
         superState = new SuperState(this, stateMachine);
         interactState = new InteractState(this, stateMachine);
 
-
+        interactImage.SetActive(false);
         gapClose = GetComponent<GapClose>();
         healing = GetComponent<Healing>();
 
@@ -389,8 +389,6 @@ public class Player : MonoBehaviour, IDamageable
         else
         {
             gapClose.isUlting = false;
-            hps.GainMP(2);
-            dmgFeedback.PlayFeedbacks();
             hps.LoseHP(dgt);
         }
         StartCoroutine(cdDamage());
