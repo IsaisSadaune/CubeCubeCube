@@ -354,6 +354,17 @@ public class Player : MonoBehaviour, IDamageable
     public CapsuleCollider hitbox;
     public bool iFraming { get; set; }
 
+
+    public void TutorialStopPlayer()
+    {
+        playerInput.enabled = false;
+    }
+
+    public void TutorialPlayerIsFine()
+    {
+        playerInput.enabled = true;
+    }
+
     //tout pareil qu'au dessus : c'pa'bo
     IEnumerator cdDamage()
     {

@@ -30,7 +30,7 @@ public class TutorialNarrationManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         Tuto1();
     }
 
