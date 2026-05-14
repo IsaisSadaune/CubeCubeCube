@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tuto_Cinematic3 : CinematicPlayer
+public class RoomToLock : RoomManager
 {
     [SerializeField] List<Collider> WallsToCreatePermanently;
     [SerializeField] List<GameObject> ZonesToRemovePermanently;
@@ -11,7 +11,7 @@ public class Tuto_Cinematic3 : CinematicPlayer
     [SerializeField] List<Collider> WallsToRemoveAtTheEnd;
 
 
-    public override void PlayCinematic()
+    public override void EnteredInRoom()
     {
         var s = DOTween.Sequence();
         foreach(var z in WallsToCreatePermanently)
@@ -33,9 +33,5 @@ public class Tuto_Cinematic3 : CinematicPlayer
             z.gameObject.SetActive(false);
     }
 
-    public virtual void ActivateGlitchToHit()
-    {
-
-    }
 
 }
