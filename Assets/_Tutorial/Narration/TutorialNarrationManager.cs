@@ -11,6 +11,7 @@ public class TutorialNarrationManager : MonoBehaviour
     [SerializeField] private MMF_Player cinematic1;
     [SerializeField] private MMF_Player cinematic2;
     [SerializeField] private MMF_Player cinematic3;
+    [SerializeField] private MMF_Player cinematic6;
 
     [SerializeField] private HP_GlitchTuto glitchCubeDestroyed;
 
@@ -115,6 +116,7 @@ public class TutorialNarrationManager : MonoBehaviour
             Debug.Log("Le joueur entre dans la salle 6");
             GameManager_Offi.Instance.p.hps.RageBarFull += Tuto6SuperProc;
             walls6.EnteredInRoom();
+            cinematic6.PlayFeedbacks();
         }
     }
     public void Tuto6SuperProc()
