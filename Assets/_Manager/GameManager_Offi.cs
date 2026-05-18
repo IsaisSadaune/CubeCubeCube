@@ -21,6 +21,8 @@ public class GameManager_Offi : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
 
+        Screen.SetResolution(1440, 1080, FullScreenMode.FullScreenWindow);
+
         LoadingScreen = transform.GetChild(0).gameObject;
         LoadingBarFill = LoadingScreen.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Image>();
 
