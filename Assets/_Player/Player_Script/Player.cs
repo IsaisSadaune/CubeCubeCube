@@ -190,6 +190,9 @@ public class Player : MonoBehaviour, IDamageable
         }
         if (dashBuffer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
+            //is dashing true
+            animator.SetBool("isDashing", true);
+
             gapClose.isUlting = false;
             stateMachine.ChangeState(dashState);
             dashBuffer = 0;
