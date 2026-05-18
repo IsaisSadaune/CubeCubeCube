@@ -1,5 +1,8 @@
+using System.Collections;
 using System.IO;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager_Offi : MonoBehaviour
 {
@@ -18,8 +21,12 @@ public class GameManager_Offi : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
-    }
 
+        LoadingScreen = transform.GetChild(0).gameObject;
+        LoadingBarFill = LoadingScreen.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Image>();
+
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
 
 
 
@@ -219,7 +226,39 @@ public class GameManager_Offi : MonoBehaviour
         act = (GameProgression)System.Enum.Parse(typeof(GameProgression), contents[6]);
 
     }
+    #region SceneLoading
+
+    private GameObject LoadingScreen;
+    private UnityEngine.UI.Image LoadingBarFill;
+    Coroutine loadScene; 
+    public void LoadCoroutineScene(string sceneName)
+    {
+        loadScene = StartCoroutine(LoadSceneAsync(sceneName));
+    }
+    public IEnumerator LoadSceneAsync(string sceneName)
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        LoadingBarFill.fillAmount = 0f;
+
+        yield return null;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        while(!operation.isDone)
+        {
+            Debug.Log(transform.GetChild(0).ToString());
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            
+            LoadingBarFill.fillAmount = progressValue;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        LoadingScreen.SetActive(false);
+        loadScene = null;
+    }
+    #endregion
 }
+
 
 public enum GameProgression
 {

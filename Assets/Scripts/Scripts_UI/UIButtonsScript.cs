@@ -1,32 +1,38 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIButtonsScript : MonoBehaviour
 {
 
+    public void Awake()
+    {
+
+    }
     public void SendToHUBDependingGameState()
     {
         Time.timeScale = 1f;
         switch (GameManager_Offi.Instance.act)
         {
             case 0:
-                SceneManager.LoadScene("TutorialScene");
+                SendToGivenScene("TutorialScene");
                 break;
 
             case (GameProgression)1:
-                SceneManager.LoadScene("Final_Hub1");
+                SendToGivenScene("Final_Hub1");
                 break;
 
             case (GameProgression)2:
-                SceneManager.LoadScene("Final_Hub2");
+                SendToGivenScene("Final_Hub2");
                 break;
 
             case (GameProgression)3:
-                SceneManager.LoadScene("Final_Hub2");
+                SendToGivenScene("Final_Hub2");
                 break;
 
             default:
-                SceneManager.LoadScene("TutorialScene");
+                SendToGivenScene("TutorialScene");
                 break;
         }
     }
@@ -34,12 +40,12 @@ public class UIButtonsScript : MonoBehaviour
     public void SendToGivenScene(string sceneToSendTo)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(sceneToSendTo);
+        GameManager_Offi.Instance.LoadCoroutineScene(sceneToSendTo);
     }
 
     public void RestartSceneButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SendToGivenScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGameButton()
