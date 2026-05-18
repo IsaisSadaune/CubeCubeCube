@@ -52,7 +52,7 @@ public class UIButtonsScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         //Check si le joueur se trouve dans le HUB
-        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "Final_Hub3")
+        if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "TutorialScene")
         {
             SceneManager.LoadScene("MainMenuScene");
             return;
