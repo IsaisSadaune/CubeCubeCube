@@ -1,10 +1,12 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuInteractionsScript : MonoBehaviour
 {
     [SerializeField] MMF_Player startGameFeedbacks;
     bool GameStarted;
+    [SerializeField] Button buttonToSelect;
 
     [Header("Credits Screen")]
     public GameObject creditsScreen;
@@ -30,5 +32,10 @@ public class MainMenuInteractionsScript : MonoBehaviour
     {
         creditsScreen.SetActive(true);
         creditsPlayer.PlayFeedbacks();
+    }
+
+    public void ButtonSelectMainMenu()
+    {
+        buttonToSelect.Select();
     }
 }
