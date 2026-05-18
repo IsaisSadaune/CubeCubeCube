@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ public class RoomToLock : RoomManager
     public override void EnteredInRoom()
     {
         var s = DOTween.Sequence();
-        foreach(var z in WallsToCreatePermanently)
+        foreach (var z in WallsToCreatePermanently)
             z.gameObject.SetActive(true);
         foreach (var z in ZonesToRemovePermanently)
             s.Join(z.transform.DOMoveY(z.transform.position.y - 35f, 1f));
@@ -24,13 +23,18 @@ public class RoomToLock : RoomManager
 
     public virtual void UnlockZone()
     {
+        Sequence s = DOTween.Sequence();
         foreach (var z in ZonesToRemoveTemporary)
         {
             //var tmp = z.transform.position+ new Vector3(0f,35f,0f);
-            z.transform.DOMoveY(z.transform.position.y + 35f, 1f);
+            s.Join(z.transform.DOMoveY(z.transform.position.y + 35f, 1f));
         }
-        foreach (var z in WallsToRemoveAtTheEnd)
-            z.gameObject.SetActive(false);
+        s.OnComplete(() =>
+        {
+            foreach (var z in WallsToRemoveAtTheEnd)
+                z.gameObject.SetActive(false);
+        }
+        );
     }
 
 
