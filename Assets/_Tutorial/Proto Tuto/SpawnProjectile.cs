@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnProjectile : MonoBehaviour
 {
-    [SerializeField] private float f;
+    [SerializeField] private float cooldown;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform endPosition;
 
-
+    private Sequence s;
 
     private void Start()
     {
@@ -17,9 +17,13 @@ public class SpawnProjectile : MonoBehaviour
 
     private IEnumerator CooldownSpawnProjectile()
     {
-        yield return new WaitForSeconds(f);
+        yield return new WaitForSeconds(cooldown);
         GameObject p = Instantiate(projectile, transform.position, projectile.transform.rotation, transform);
-        p.transform.DOMove(endPosition.position, 3f).OnComplete(() => Destroy(p.gameObject));
+        
+        s = DOTween.Sequence();
+        s.Append(p.transform.DOMove(endPosition.position, 3f));
+        s.Append(p.transform.DOScale(0, 1f));
+        s.OnComplete(() => Destroy(p));
         StartCoroutine(CooldownSpawnProjectile());
     }
 }

@@ -1,22 +1,37 @@
+using DG.Tweening;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using UnityEngine;
 
 public class TutorialNarrationManager : MonoBehaviour
 {
-
+    private int numberDefenseProc=0;
 
     public int tutostate { get; private set; } = 0;
     [SerializeField] private MMF_Player cinematic1;
     [SerializeField] private MMF_Player cinematic2;
     [SerializeField] private MMF_Player cinematic3;
-    [SerializeField] private MMF_Player cinematic3Finished;
-    [SerializeField] private MMF_Player cinematic5;
     [SerializeField] private MMF_Player cinematic6;
+
+    [SerializeField] private HP_GlitchTuto glitchCubeDestroyed;
+
+    [SerializeField] private RoomToLock walls3;
+    [SerializeField] private MMF_Player cinematic3Finished;
+    [SerializeField] private RoomToLock walls4;
+    [SerializeField] private RoomToLock walls6;
+
+    [SerializeField] private HP_GlitchTuto CubeNeedToMove;
+
+
+    private void OnEnable()
+    {
+        glitchCubeDestroyed.GlitchDestroyed += Tuto3CorruptionVaincue;
+    }
+
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         Tuto1();
     }
 
@@ -47,17 +62,20 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 2)
         {
+            tutostate = 3;
             Debug.Log("Le joueur entre dans la salle 3");
             cinematic3.PlayFeedbacks();
             Debug.Log("fermetureSalle3");
+            walls3.EnteredInRoom();
         }
     }
     public void Tuto3CorruptionVaincue()
     {
-        if (tutostate <= 2)
+        if (tutostate <= 3)
         {
             cinematic3Finished.PlayFeedbacks();
-            tutostate=3;
+            Debug.Log("ouverture portes");
+            walls3.UnlockZone();
             Debug.Log("ouverture portes");
         }
     }
@@ -65,15 +83,19 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 3)
         {
+            tutostate = 4;
+            walls4.EnteredInRoom();
             Debug.Log("Le joueur entre dans la salle 4");
+            numberDefenseProc = 0;
+            GameManager_Offi.Instance.p.playerUsedParry += Tuto4ParryProc;
         }
     }
-    public void Tuto4DefenseProc()
+    public void Tuto4ParryProc()
     {
-        if (tutostate <= 3)
+        numberDefenseProc++;
+        if (tutostate <= 4 && numberDefenseProc>=3)
         {
-            Debug.Log("Cinematique 4 Tuto");
-            tutostate=4;
+            walls4.UnlockZone();
         }
     }
 
@@ -90,33 +112,46 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 5)
         {
+            tutostate = 6;
             Debug.Log("Le joueur entre dans la salle 6");
+            GameManager_Offi.Instance.p.hps.RageBarFull += Tuto6SuperProc;
+            walls6.EnteredInRoom();
+            cinematic6.PlayFeedbacks();
         }
     }
     public void Tuto6SuperProc()
     {
-        if (tutostate <= 5)
+        if (tutostate <= 6)
         {
             Debug.Log("Cinematique 6 Tuto");
-            tutostate=6;
+            CubeNeedToMove.transform.DOMoveX(CubeNeedToMove.transform.position.x + 50f, 1f)
+                
+                .OnComplete(() =>
+                {
+                    Destroy(CubeNeedToMove.gameObject);
+                    walls6.UnlockZone();
+
+                    });
         }
     }
     public void Tuto7()
     {
         if (tutostate <= 6)
         {
+            tutostate = 7;
             Debug.Log("Le joueur entre salle 8");
             Debug.Log("Boss Battle");
+            Tuto8BossVaincu();
         }
     }
 
     public void Tuto8BossVaincu()
     {
-        if (tutostate <= 6)
+        if (tutostate <= 7)
         {
             Debug.Log("BossBattu");
             Debug.Log("Cinematique 8");
-            tutostate=7;
+            tutostate=8;
         }
     }
 }
