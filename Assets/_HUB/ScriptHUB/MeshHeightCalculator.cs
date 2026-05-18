@@ -19,6 +19,6 @@ public class MeshHeightCalculator : MonoBehaviour
     void Update()
     {
         height = mesh.bounds.size.y;
-        mat.SetFloat("height", height);
+        mat.SetFloat("_Height", height);
     }
 }
