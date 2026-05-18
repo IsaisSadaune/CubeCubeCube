@@ -5,7 +5,17 @@ public class UITimerScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI timerTextUI;
+    private float seconds;
 
+    private void Start()
+    {
+        SetTimerTo0();
+    }
+
+    public void SetTimerTo0()
+    {
+        seconds = 0f;
+    }
 
     private void Update()
     {
@@ -16,7 +26,7 @@ public class UITimerScript : MonoBehaviour
 
     private void UpdateTimerUI()
     {
-        float seconds = Mathf.Round(GameManager_Offi.Instance.Temps * 100) / 100;
+        seconds = Mathf.Round(GameManager_Offi.Instance.Temps * 100) / 100;
 
         timerTextUI.SetText(seconds.ToString("F2").Replace(',', '.'));
     }
