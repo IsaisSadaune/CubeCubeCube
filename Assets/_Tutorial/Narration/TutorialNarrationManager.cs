@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TutorialNarrationManager : MonoBehaviour
 {
-    private int numberDefenseProc=0;
+    private int numberDefenseProc = 0;
 
     public int tutostate { get; private set; } = 0;
     [SerializeField] private MMF_Player cinematic1;
@@ -21,6 +21,7 @@ public class TutorialNarrationManager : MonoBehaviour
     [SerializeField] private RoomToLock walls4;
     [SerializeField] private RoomToLock walls6;
 
+    [SerializeField] private RoomToLock walls8;
     [SerializeField] private HP_GlitchTuto CubeNeedToMove;
 
 
@@ -44,7 +45,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate == 0)
         {
             Debug.Log("Cinématique 1 tuto");
-            tutostate=1;
+            tutostate = 1;
             cinematic1.PlayFeedbacks();
         }
     }
@@ -54,7 +55,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 1)
         {
             Debug.Log("Cinématique 2 en arriere plan");
-            tutostate=2;
+            tutostate = 2;
             cinematic2.PlayFeedbacks();
         }
     }
@@ -91,11 +92,14 @@ public class TutorialNarrationManager : MonoBehaviour
             GameManager_Offi.Instance.p.playerUsedParry += Tuto4ParryProc;
         }
     }
-    bool hasEventProc = false;
+	
+	
+    private bool hasEventProc = false;
     public void Tuto4ParryProc()
     {
         numberDefenseProc++;
-        if (tutostate <= 4 && numberDefenseProc>=3 && !hasEventProc)
+
+        if (tutostate <= 4 && numberDefenseProc >= 3 && !hasEventProc)
         {
             walls4.UnlockZone();
             hasEventProc = true;
@@ -107,9 +111,9 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 4)
         {
             Debug.Log("Passage dans le couloir 5, Glitchs");
-        tutostate=5;
+            tutostate = 5;
+        }
     }
-}
 
     public void Tuto6()
     {
@@ -128,13 +132,13 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("Cinematique 6 Tuto");
             CubeNeedToMove.transform.DOMoveX(CubeNeedToMove.transform.position.x + 50f, 1f)
-                
+
                 .OnComplete(() =>
                 {
                     Destroy(CubeNeedToMove.gameObject);
                     walls6.UnlockZone();
 
-                    });
+                });
         }
     }
     public void Tuto7()
@@ -144,8 +148,18 @@ public class TutorialNarrationManager : MonoBehaviour
             tutostate = 7;
             Debug.Log("Le joueur entre salle 8");
             Debug.Log("Boss Battle");
+            //walls8.EnteredInRoom();
+            //Tuto8BossVaincu();
             Tuto8BossVaincu();
+            walls8.EnteredInRoom();
+            StartCoroutine(SimulateBoss());
         }
+    }
+
+    private IEnumerator SimulateBoss()
+    {
+        yield return new WaitForSeconds(3f);
+        walls8.UnlockZone();
     }
 
     public void Tuto8BossVaincu()
@@ -154,7 +168,7 @@ public class TutorialNarrationManager : MonoBehaviour
         {
             Debug.Log("BossBattu");
             Debug.Log("Cinematique 8");
-            tutostate=8;
+            tutostate = 8;
         }
     }
 }
