@@ -321,7 +321,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Close(InputAction.CallbackContext context)
     {
-        if (context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
+        if (context.performed && pnj != null && stateMachine.currentPlayerState == interactState)
         {
             stateMachine.ChangeState(idleState);
         }
