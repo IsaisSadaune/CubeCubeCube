@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class HP_Test : MonoBehaviour
 {
+    public event Action RageBarFull;
+
     [SerializeField] private int hp_max;
     int current_hp;
     int mp_max = 0;
@@ -111,6 +114,10 @@ public class HP_Test : MonoBehaviour
     public void GainMP(int mp)
     {
         current_mp = Mathf.Min(current_mp + mp, mp_max);
+
+        if (current_mp >= mp_max)
+            RageBarFull?.Invoke();
+
         rageBar.IncreaseRageBar(mp);
     }
 
