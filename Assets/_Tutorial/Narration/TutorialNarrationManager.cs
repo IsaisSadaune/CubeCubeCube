@@ -148,9 +148,18 @@ public class TutorialNarrationManager : MonoBehaviour
             tutostate = 7;
             Debug.Log("Le joueur entre salle 8");
             Debug.Log("Boss Battle");
-            walls8.EnteredInRoom();
+            //walls8.EnteredInRoom();
             //Tuto8BossVaincu();
+            Tuto8BossVaincu();
+            walls8.EnteredInRoom();
+            StartCoroutine(SimulateBoss());
         }
+    }
+
+    private IEnumerator SimulateBoss()
+    {
+        yield return new WaitForSeconds(3f);
+        walls8.UnlockZone();
     }
 
     public void Tuto8BossVaincu()
