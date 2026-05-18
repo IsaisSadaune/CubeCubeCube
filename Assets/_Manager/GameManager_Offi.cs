@@ -1,6 +1,5 @@
 using System.Collections;
 using System.IO;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,7 +107,7 @@ public class GameManager_Offi : MonoBehaviour
 
     public void TutoFinished()
     {
-        if(act == 0)
+        if (act == 0)
             act = GameProgression.TutoFinished;
     }
 
@@ -153,7 +152,6 @@ public class GameManager_Offi : MonoBehaviour
         RagePerdue = 0f;
         fight = true;
     }
-
 
 
     public void IncreaseTimer()
@@ -230,7 +228,7 @@ public class GameManager_Offi : MonoBehaviour
 
     private GameObject LoadingScreen;
     private UnityEngine.UI.Image LoadingBarFill;
-    Coroutine loadScene; 
+    Coroutine loadScene;
     public void LoadCoroutineScene(string sceneName)
     {
         loadScene = StartCoroutine(LoadSceneAsync(sceneName));
@@ -244,11 +242,11 @@ public class GameManager_Offi : MonoBehaviour
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
-        while(!operation.isDone)
+        while (!operation.isDone)
         {
             Debug.Log(transform.GetChild(0).ToString());
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            
+
             LoadingBarFill.fillAmount = progressValue;
 
             yield return null;

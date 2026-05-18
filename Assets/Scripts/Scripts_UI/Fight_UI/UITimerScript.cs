@@ -14,6 +14,7 @@ public class UITimerScript : MonoBehaviour
 
     public void SetTimerTo0()
     {
+        GameManager_Offi.Instance.ResetStats();
         seconds = 0f;
     }
 
