@@ -251,8 +251,9 @@ public class GameManager_Offi : MonoBehaviour
             
             LoadingBarFill.fillAmount = progressValue;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
+        yield return new WaitForSeconds(1f);
         LoadingScreen.SetActive(false);
         loadScene = null;
     }
