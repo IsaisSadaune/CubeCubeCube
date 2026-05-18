@@ -197,6 +197,9 @@ public class Player : MonoBehaviour, IDamageable
         }
         if (dashBuffer > 0 && canDash && isGrounded && stateMachine.currentPlayerState != attackState)
         {
+            //is dashing true
+            animator.SetBool("isDashing", true);
+
             gapClose.isUlting = false;
             stateMachine.ChangeState(dashState);
             dashBuffer = 0;
@@ -328,7 +331,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Close(InputAction.CallbackContext context)
     {
-        if (context.performed && pnj.textEnded && pnj != null && stateMachine.currentPlayerState == interactState)
+        if (context.performed && pnj != null && stateMachine.currentPlayerState == interactState)
         {
             stateMachine.ChangeState(idleState);
         }

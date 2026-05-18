@@ -12,12 +12,10 @@ GameObject:
   - component: {fileID: 2427400417854943601}
   - component: {fileID: 6548855913317444311}
   - component: {fileID: 2390997457882546600}
-  - component: {fileID: 6698245358425292273}
-  - component: {fileID: 8259184110382851338}
   - component: {fileID: 176037581562673717}
   m_Layer: 0
-  m_Name: CubO
-  m_TagString: Interact
+  m_Name: CubA
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1395b8a9928fe614fb88f97b3c8590be, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,44 +109,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &6698245358425292273
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4804398456541113311, guid: 605f578002f8cfc419e9627418f8b0ac, type: 3}
-  m_PrefabInstance: {fileID: 7678862233290929961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708076024701698548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8259184110382851338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4898333734566825301, guid: 605f578002f8cfc419e9627418f8b0ac, type: 3}
-  m_PrefabInstance: {fileID: 7678862233290929961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708076024701698548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a17532a610545458cbf6c11a7e800d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: Vite ! C'est la Ca00011001001strophe
-  pnj_Sprite: {fileID: 0}
-  delay: 0.05
-  emptyDialogueText: {fileID: 0}
-  emptyNameText: {fileID: 0}
 --- !u!95 &176037581562673717
 Animator:
   serializedVersion: 7
@@ -171,6 +131,77 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4040077902972951226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6264029856358852448}
+  - component: {fileID: 7205401966697226854}
+  - component: {fileID: 1497095551696874343}
+  m_Layer: 0
+  m_Name: CubA (1)
+  m_TagString: Interact
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6264029856358852448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4040077902972951226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: 0, y: 1.41, z: 0}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.6999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8422031764128909117}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
+--- !u!135 &7205401966697226854
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4040077902972951226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1497095551696874343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4040077902972951226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a17532a610545458cbf6c11a7e800d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: "Enfin sorti de l\xE0 ! Merci \xD4h Cube !"
+  pnj_Sprite: {fileID: 21300000, guid: 8b3553c89364bc44f98aa7892478221c, type: 3}
+  delay: 0.05
+  emptyDialogueText: {fileID: 0}
+  emptyNameText: {fileID: 0}
 --- !u!1 &8448938266742228506
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +234,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5761374648349627032}
+  - {fileID: 6264029856358852448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8323157668307358577
