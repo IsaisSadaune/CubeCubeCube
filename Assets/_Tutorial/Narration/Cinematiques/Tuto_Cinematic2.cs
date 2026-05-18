@@ -1,14 +1,14 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Tuto_Cinematic2 : CinematicPlayer
+public class Tuto_Cinematic2 : RoomManager
 {
     [SerializeField] private GameObject CubeInf;
     [SerializeField] private Player player;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private GameObject dialogue2;
 
-    public override void PlayCinematic()
+    public override void EnteredInRoom()
     {
 
         Sequence s = DOTween.Sequence();

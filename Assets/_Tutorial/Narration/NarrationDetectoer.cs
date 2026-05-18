@@ -38,6 +38,7 @@ public class NarrationDetectoer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ProcNarration();
+        if(other.CompareTag("Player"))
+            ProcNarration();
     }
 }

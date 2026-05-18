@@ -9,6 +9,9 @@ public class PlayerDoingDamage : MonoBehaviour
     public Player player;
     private void OnTriggerEnter(Collider other)
     {
+        if (player == null)
+            player = GameManager_Offi.Instance.p;
+
         if (!other.CompareTag("Player") && !other.CompareTag("Projectile"))
         {
             IDamageable cible = null;

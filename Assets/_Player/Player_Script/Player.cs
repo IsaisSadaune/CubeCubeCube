@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    //event tuto
+    public event Action playerUsedParry;
+
     public HP_Test hps { get; set; }
     #region Singleton
     private static Player _instance = null;
@@ -174,6 +178,9 @@ public class Player : MonoBehaviour, IDamageable
             combo[i].attackCollider = attacksCollider[i];
         }
 
+        //c'est beau la prog quand meme
+        if(GameManager_Offi.Instance != null)
+            GameManager_Offi.Instance.SetPlayer(this);
     }
 
     private void Update()
@@ -347,6 +354,17 @@ public class Player : MonoBehaviour, IDamageable
     public CapsuleCollider hitbox;
     public bool iFraming { get; set; }
 
+
+    public void TutorialStopPlayer()
+    {
+        playerInput.enabled = false;
+    }
+
+    public void TutorialPlayerIsFine()
+    {
+        playerInput.enabled = true;
+    }
+
     //tout pareil qu'au dessus : c'pa'bo
     IEnumerator cdDamage()
     {
@@ -365,6 +383,9 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(2f);
         canShield = true;
     }
+
+
+
     #region interfaceDegats
 
     public void TakeDamage(int dgt)
@@ -374,7 +395,8 @@ public class Player : MonoBehaviour, IDamageable
             Debug.Log("PARRY");
             GameManager_Offi.Instance.AddStatParry();
             hps.GainMP(5);
-            parryFeedback.PlayFeedbacks();
+            parryFeedback.PlayFeedbacks(); 
+            playerUsedParry?.Invoke();
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)
