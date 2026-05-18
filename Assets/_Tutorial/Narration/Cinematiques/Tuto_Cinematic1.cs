@@ -2,13 +2,13 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-public class Tuto_Cinematic1 : CinematicPlayer
+public class Tuto_Cinematic1 : RoomManager
 {
     [SerializeField] private GameObject CubeInf1;
     [SerializeField] private Player player;
     [SerializeField] private GameObject dialogue;
 
-    public override void PlayCinematic()
+    public override void EnteredInRoom()
     {
         //Sequence s = DOTween.Sequence();
         ////Le joueur ne peut pas bouger
