@@ -65,9 +65,12 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     }
     public void Die()
     {
-        foreach(GameObject go in retroBoss.clones)
+        if(retroBoss != null)
         {
-            go.transform.DOScale(0, 0.2f).OnComplete(()=> Destroy(go));
+            foreach(GameObject go in retroBoss.clones)
+            {
+                go.transform.DOScale(0, 0.2f).OnComplete(()=> Destroy(go));
+            }
         }
         //Debug.Log("mort");
         FeedBackMort();
