@@ -79,6 +79,8 @@ public class GameManager_Offi : MonoBehaviour
                 Debug.LogWarning("ERREUR, LE BOSS NUMERO " + bossNumber + " N'EXISTE PAS !");
                 break;
         }
+
+        SaveStats();
     }
 
     private void Boss1UpdateScores(float time, char rank)
@@ -111,6 +113,8 @@ public class GameManager_Offi : MonoBehaviour
     {
         if (act == 0)
             act = GameProgression.TutoFinished;
+
+        SaveStats();
     }
 
     private char BestRank(char a, char b)
