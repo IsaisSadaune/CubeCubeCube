@@ -12,6 +12,7 @@ public class ShieldState : PlayerState
     public override void EnterState()
     {
         //Debug.Log("J'entre dans l'état : " + stateMachine.currentPlayerState);
+        player.rb.linearVelocity = Vector3.zero;
         player.shield.SetActive(true);
         lastDirection = player.transform.forward;
         player.shieldActivation = Time.time;
@@ -25,18 +26,12 @@ public class ShieldState : PlayerState
     {
         if (player.moveInput.magnitude > 0.1f)
         {
+            Vector3 direction = new Vector3(player.moveInput.x, 0f, player.moveInput.y);
             lastDirection = player.direction;
             
-            Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
-            
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, Time.deltaTime * player.rotationSpeed);
         }
-        else
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(lastDirection);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
-        }
-        
     }
 
     public override void PhysicsUpdate()

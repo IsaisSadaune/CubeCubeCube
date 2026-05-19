@@ -30,6 +30,7 @@ public partial class ThrowBombAction : Action
             .SetEase(Ease.InOutQuad).OnComplete(() =>
             {
                 done = true;
+                bomb.GetComponent<BoxCollider>().isTrigger = false;
                 bomb.GetComponent<Rigidbody>().isKinematic=false;
             });
 

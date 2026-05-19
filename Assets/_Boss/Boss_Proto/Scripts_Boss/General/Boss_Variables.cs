@@ -10,6 +10,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     public float HP { get; private set; }
     public bool isDestroying { get; private set; }
     public bool isHardDestroying { get; private set; }
+    private RetroBoss retroBoss;
 
     public MMF_Player damageFeedback;
     public MMF_Player deathFeedback;
@@ -30,6 +31,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     private void Awake()
     {
         HP = MaxHP;
+        retroBoss = GetComponent<RetroBoss>();
     }
 
     public void ResetDetectors()
@@ -63,9 +65,14 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     }
     public void Die()
     {
+        foreach(GameObject go in retroBoss.clones)
+        {
+            go.transform.DOScale(0, 0.2f).OnComplete(()=> Destroy(go));
+        }
         //Debug.Log("mort");
         FeedBackMort();
     }
+        
     public void FeedBackDMG()
     {
         damageFeedback.PlayFeedbacks();

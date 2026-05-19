@@ -28,6 +28,7 @@ public partial class SelfJumpOnBombAction : Action
             {
                 GameObject bomb = BombList.Value[0];
                 BombList.Value.Remove(bomb);
+                // RetroBoss.Instance.clones.Remove(bomb);
                 MonoBehaviour.Destroy(bomb);
                 BombFeedbacks.Value.PlayFeedbacks();
                 done = true;
