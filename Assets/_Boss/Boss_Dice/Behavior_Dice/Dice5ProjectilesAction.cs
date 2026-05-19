@@ -4,6 +4,7 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using System.Collections;
+using System.Collections.Generic;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "Dice5_Projectiles", story: "[Boss] throw [x] [Projectiles] on [Player]", category: "Action", id: "c11e40b7d2420a0f8a8051811d5bd93b")]
@@ -46,7 +47,7 @@ public partial class Dice5ProjectilesAction : Action
             Rigidbody rb = explo.GetComponent<Rigidbody>();
 
             // Position cible avec léger offset aléatoire
-            Vector3 targetPos = Player.Value.position + new Vector3(
+            Vector3 targetPos = Positions()[i] + new Vector3(
                 UnityEngine.Random.Range(-spawnRadius, spawnRadius),
                 0,
                 UnityEngine.Random.Range(-spawnRadius, spawnRadius)
@@ -73,8 +74,19 @@ public partial class Dice5ProjectilesAction : Action
             yield return new WaitForSeconds(timeBetweenTwoSpawns);
         }
 
-        yield return new WaitForSeconds(BreakAtTheEnd);
+        yield return new WaitForSeconds(0.5f);
         isComplete = true;
+    }
+
+    private List<Vector3> Positions()
+    {
+        List<Vector3> t = new();
+        t.Add(new Vector3(10, -1, -7));
+        t.Add(new Vector3(10, -1, 17));
+        t.Add(new Vector3(-11, -1, -7));
+        t.Add(new Vector3(-11, -1, 17));
+        t.Add(Player.Value.transform.position);
+        return t;
     }
 
 }
