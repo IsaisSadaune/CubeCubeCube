@@ -40,8 +40,8 @@ public class UIButtonsScript : MonoBehaviour
     public void SendToGivenScene(string sceneToSendTo)
     {
         Time.timeScale = 1f;
-        //GameManager_Offi.Instance.LoadCoroutineScene(sceneToSendTo);
-        SceneManager.LoadScene(sceneToSendTo);
+        GameManager_Offi.Instance.LoadCoroutineScene(sceneToSendTo);
+        //SceneManager.LoadScene(sceneToSendTo);
     }
 
     public void RestartSceneButton()
