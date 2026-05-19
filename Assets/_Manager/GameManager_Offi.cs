@@ -21,6 +21,8 @@ public class GameManager_Offi : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
 
+        Screen.SetResolution(1440, 1080, FullScreenMode.FullScreenWindow);
+
         LoadingScreen = transform.GetChild(0).gameObject;
 
         LoadingScreen.SetActive(false);
@@ -108,7 +110,7 @@ public class GameManager_Offi : MonoBehaviour
 
     public void TutoFinished()
     {
-        if(act == 0)
+        if (act == 0)
             act = GameProgression.TutoFinished;
 
         SaveStats();
@@ -155,7 +157,6 @@ public class GameManager_Offi : MonoBehaviour
         RagePerdue = 0f;
         fight = true;
     }
-
 
 
     public void IncreaseTimer()
