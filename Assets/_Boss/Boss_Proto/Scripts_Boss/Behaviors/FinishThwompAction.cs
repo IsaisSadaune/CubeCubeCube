@@ -11,14 +11,13 @@ public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<float> TimeToFall;
-    private Ease ease = Ease.InOutQuint; //Changer easing
     private Tween finished;
 
     protected override Status OnStart()
     {
         finished =
         Self.Value.transform.DOMoveY(0, TimeToFall.Value)
-            .SetEase(ease);
+            .SetEase(Ease.InOutQuint);
         return Status.Running;
     }
 
