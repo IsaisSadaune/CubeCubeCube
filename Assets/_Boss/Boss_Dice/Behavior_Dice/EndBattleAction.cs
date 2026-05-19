@@ -11,6 +11,7 @@ public partial class EndBattleAction : Action
 
     protected override Status OnStart()
     {
+        RetroBoss.Instance.GetComponent<BoxCollider>().enabled = false;
         GameManager_Offi.Instance.EndBattle();
         return Status.Running;
     }

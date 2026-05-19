@@ -24,9 +24,8 @@ public class GameManager_Offi : MonoBehaviour
         Screen.SetResolution(1440, 1080, FullScreenMode.FullScreenWindow);
 
         LoadingScreen = transform.GetChild(0).gameObject;
-        LoadingBarFill = LoadingScreen.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Image>();
 
-        transform.GetChild(0).gameObject.SetActive(false);
+        LoadingScreen.SetActive(false);
     }
 
 
@@ -233,31 +232,28 @@ public class GameManager_Offi : MonoBehaviour
     #region SceneLoading
 
     private GameObject LoadingScreen;
-    private UnityEngine.UI.Image LoadingBarFill;
-    Coroutine loadScene;
+    public UnityEngine.UI.Image LoadingBarFill;
+    Coroutine loadScene; 
     public void LoadCoroutineScene(string sceneName)
     {
         loadScene = StartCoroutine(LoadSceneAsync(sceneName));
     }
     public IEnumerator LoadSceneAsync(string sceneName)
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
 
         yield return null;
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!operation.isDone)
+        while(LoadingBarFill.fillAmount < 1)
         {
-            Debug.Log(transform.GetChild(0).ToString());
-            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            LoadingBarFill.fillAmount += 1f / 8f;
+            Debug.Log(LoadingBarFill.fillAmount);
 
-            LoadingBarFill.fillAmount = progressValue;
-
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(1f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        yield return new WaitForSeconds(0.5f);
         LoadingScreen.SetActive(false);
         loadScene = null;
     }
