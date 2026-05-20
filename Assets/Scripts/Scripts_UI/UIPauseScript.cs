@@ -47,6 +47,7 @@ public class UIPauseScript : MonoBehaviour
     {
         PauseCanva.SetActive(false);
         OptionCanvas.SetActive(true);
+        
     }
     public void QuitOption()
     {
