@@ -29,9 +29,9 @@ public partial class SelfJumpOnBombAction : Action
             {
                 GameObject bomb = BombList.Value[0];
                 BombList.Value.Remove(bomb);
-                // RetroBoss.Instance.clones.Remove(bomb);
                 MonoBehaviour.Destroy(bomb);
-                BombFeedbacks.Value.PlayFeedbacks();
+                // BombFeedbacks.Value.PlayFeedbacks();
+                AudioManager.Instance.PlaySound("Explosion");
                 done = true;
             });
         });
