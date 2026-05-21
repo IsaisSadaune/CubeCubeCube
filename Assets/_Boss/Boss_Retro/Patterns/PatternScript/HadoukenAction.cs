@@ -16,7 +16,6 @@ public partial class HadoukenAction : Action
     {
         GameObject fireball = RetroBoss.Instance.Hadouken(Fireball.Value, FireballSpeed.Value);
         Debug.Log(fireball.transform.position);
-        AudioManager.Instance.PlaySound("Fireball");
         return Status.Running;
     }
 
