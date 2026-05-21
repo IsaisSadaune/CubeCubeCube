@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
 public class AudioManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Music[] musics;
     [SerializeField] private int poolSize = 5;
     private List<AudioSource> audioSources =  new List<AudioSource>();
+    public AudioSource musicSource{get; private set;}
     private Dictionary<string, AudioClip>  soundDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip>  musicDictionary = new Dictionary<string, AudioClip>();
     public float globalSfxVolume = 1f;
@@ -43,7 +45,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i< poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();
             audioSources.Add(source);
@@ -56,8 +58,16 @@ public class AudioManager : MonoBehaviour
                 soundDictionary[sound.name] = sound.clip;
             }
         }
+        foreach(Music music in musics)
+        {
+            if(music.clip != null)
+            {
+                musicDictionary[music.name] = music.clip;
+            }
+        }
+        musicSource = gameObject.AddComponent<AudioSource>();
+        PlayMusic(SceneManager.GetActiveScene().name);
     }
-
     private AudioSource GetAvailableAudioSource()
     {
         foreach(AudioSource source in audioSources)
@@ -108,8 +118,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        AudioSource source = GetAvailableAudioSource();
-        if(source != null)
+        if(musicSource != null)
         {
             float musicVolume = 1f;
             float musicPitch = 1f;
@@ -123,10 +132,10 @@ public class AudioManager : MonoBehaviour
             }
             float finalVolume = musicVolume * globalSfxVolume;
 
-            source.clip = clip;
-            source.volume = finalVolume;
-            source.pitch = musicPitch;
-            source.Play();
+            musicSource.clip = clip;
+            musicSource.volume = finalVolume;
+            musicSource.pitch = musicPitch;
+            musicSource.Play();
         }
     }
 }
