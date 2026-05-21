@@ -20,22 +20,20 @@ public partial class Dice6MoveToSideAction : Action
         float tempsZ = Mathf.Abs(Mathf.Abs(PosBoss6.Value.transform.position.z) - Mathf.Abs(Boss.Value.transform.position.z)) / 10f;
         if (tempsX > tempsZ)
         {
-            s.Append(Boss.Value.transform.DOMoveZ(PosBoss6.Value.transform.position.z, tempsZ));
-            s.Append(Boss.Value.transform.DOMoveX(PosBoss6.Value.transform.position.x, tempsX));
+            s.Append(Boss.Value.transform.DOMoveZ(PosBoss6.Value.transform.position.z, tempsZ)).SetEase(Ease.OutQuint);
+            s.Append(Boss.Value.transform.DOMoveX(PosBoss6.Value.transform.position.x, tempsX)).SetEase(Ease.OutQuint);
         }
         else
         {
-            s.Append(Boss.Value.transform.DOMoveX(PosBoss6.Value.transform.position.x, tempsX));
-            s.Append(Boss.Value.transform.DOMoveZ(PosBoss6.Value.transform.position.z, tempsZ));
+            s.Append(Boss.Value.transform.DOMoveX(PosBoss6.Value.transform.position.x, tempsX)).SetEase(Ease.OutQuint);
+            s.Append(Boss.Value.transform.DOMoveZ(PosBoss6.Value.transform.position.z, tempsZ)).SetEase(Ease.OutQuint);
         }
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (!s.IsPlaying())
             return Status.Success;
-        return Status.Running;
     }
 
     protected override void OnEnd()

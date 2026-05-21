@@ -11,19 +11,33 @@ public partial class FinishThwompAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<float> TimeToFall;
-    private Tween finished;
+
+    private Sequence s;
 
     protected override Status OnStart()
     {
-        finished =
-        Self.Value.transform.DOMoveY(0, TimeToFall.Value)
-            .SetEase(Ease.InOutQuint);
+        s = DOTween.Sequence();
+
+        s.Append(Self.Value.transform.DOMoveY(0, TimeToFall.Value)
+            .SetEase(Ease.OutQuint));
+
+        //s.Insert(TimeToFall.Value - 0.45f, Self.Value.transform.DOScaleY(0.25f, 0.25f));
+        //s.Insert(TimeToFall.Value - 0.45f, Self.Value.transform.DOScaleX(2f, 0.25f));
+        //s.Insert(TimeToFall.Value - 0.45f, Self.Value.transform.DOScaleZ(2f, 0.25f));
+
+        //s.Append(Self.Value.transform.DOScaleY(1f, 0.25f)
+        //    .SetEase(Ease.OutQuint));
+        //s.Join(Self.Value.transform.DOScaleX(1f, 0.25f)
+        //    .SetEase(Ease.OutQuint));
+        //s.Join(Self.Value.transform.DOScaleZ(1f, 0.25f)
+        //    .SetEase(Ease.OutQuint));
+
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (!finished.IsPlaying())
+        if (!s.IsPlaying())
             return Status.Success;
         return Status.Running;
     }

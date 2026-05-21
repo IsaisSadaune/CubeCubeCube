@@ -14,13 +14,18 @@ public partial class Boss3ReworkAction : Action
     protected override Status OnStart()
     {
         s = DOTween.Sequence();
+
         s.Append(Boss1.Value.transform.DOScaleY(0.25f, 0.25f));
         s.Join(Boss1.Value.transform.DOScaleX(2f, 0.25f));
         s.Join(Boss1.Value.transform.DOScaleZ(2f, 0.25f));
 
-        s.Append(Boss1.Value.transform.DOScaleY(1f, 0.25f)).SetEase(Ease.OutQuint);
-        s.Join(Boss1.Value.transform.DOScaleX(1f, 0.25f)).SetEase(Ease.OutQuint);
-        s.Join(Boss1.Value.transform.DOScaleZ(1f, 0.25f)).SetEase(Ease.OutQuint);
+        s.Append(Boss1.Value.transform.DOScaleY(1f, 0.25f)
+            .SetEase(Ease.OutQuint));
+        s.Join(Boss1.Value.transform.DOScaleX(1f, 0.25f)
+            .SetEase(Ease.OutQuint));
+        s.Join(Boss1.Value.transform.DOScaleZ(1f, 0.25f)
+            .SetEase(Ease.OutQuint));
+
         return Status.Running;
     }
 

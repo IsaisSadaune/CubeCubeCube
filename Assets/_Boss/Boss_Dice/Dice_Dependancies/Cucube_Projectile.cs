@@ -8,7 +8,7 @@ public class Cucube_Projectile : MonoBehaviour
 
     private void Start()
     {
-        transform.DOMoveZ(posEndZ, 5f)
+        transform.DOMoveZ(posEndZ, 3f)
             .SetEase(Ease.Linear)
             .OnComplete( () => Destroy(this.gameObject) );
     }
