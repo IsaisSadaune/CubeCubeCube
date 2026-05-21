@@ -7,7 +7,7 @@ public class Music : MonoBehaviour
 
     void Start()
     {
-        gameplayMusic = GetComponent<AudioSource>();
+        gameplayMusic = AudioManager.Instance.musicSource;
     }
 
     public void PitchIncreasing()

@@ -240,6 +240,7 @@ public class GameManager_Offi : MonoBehaviour
     }
     public IEnumerator LoadSceneAsync(string sceneName)
     {
+        AudioManager.Instance.musicSource.Stop();
         LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
 
@@ -254,6 +255,7 @@ public class GameManager_Offi : MonoBehaviour
         }
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlayMusic(sceneName);
         LoadingScreen.SetActive(false);
         loadScene = null;
     }
