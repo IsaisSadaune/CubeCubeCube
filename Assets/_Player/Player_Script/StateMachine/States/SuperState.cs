@@ -31,17 +31,12 @@ public class SuperState : PlayerState
         base.FrameUpdate();
         if (player.moveInput.magnitude > 0.1f)
         {
+            Vector3 direction = new Vector3(player.moveInput.x, 0f, player.moveInput.y);
             lastDirection = player.direction;
             
-            Quaternion targetRotation = Quaternion.LookRotation(player.direction);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
-            
-        }
-        else
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(lastDirection);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, 0.1f);
-        }
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRotation, Time.deltaTime * player.rotationSpeed);
+        }        
     }
 
     public override void PhysicsUpdate()
