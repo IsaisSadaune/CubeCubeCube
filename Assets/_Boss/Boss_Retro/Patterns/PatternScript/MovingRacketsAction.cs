@@ -24,15 +24,15 @@ public partial class MovingRacketsAction : Action
         if(PongPositionsRight.Value.Contains(boss.pongEndPos))
             RacketLeft.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
-                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
-                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.white;
+                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.white;
+                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
                 done = true;
             });
         else if(PongPositionsLeft.Value.Contains(boss.pongEndPos))
             RacketRight.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
-                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.white;
-                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
+                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
+                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.white;
                 done = true;
             });
 
