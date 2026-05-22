@@ -13,14 +13,16 @@ public partial class BossBonkAction : Action
     [SerializeReference] public BlackboardVariable<float> Speed;
     [SerializeReference] public BlackboardVariable<float> N;
     [SerializeReference] public BlackboardVariable<bool> BonkDone;
-
+    bool done;
     protected override Status OnStart()
     {
+        done = false;
         if(Speed.Value >= N.Value)
             Speed.Value = Speed.Value - 0.15f; 
         AudioManager.Instance.PlaySound("Pong");
         Self.Value.transform.DOMove(RetroBoss.Instance.pongEndPos.transform.position, Speed.Value).SetEase(Ease.Linear).OnComplete(()=>
         {
+            done = true;
             BonkDone.Value = true;
         });
         
@@ -30,7 +32,8 @@ public partial class BossBonkAction : Action
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        if(done) return Status.Success;
+        else return Status.Running;
     }
 
     protected override void OnEnd()
