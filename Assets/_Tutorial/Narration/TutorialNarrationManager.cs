@@ -1,7 +1,6 @@
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialNarrationManager : MonoBehaviour
@@ -92,8 +91,8 @@ public class TutorialNarrationManager : MonoBehaviour
             GameManager_Offi.Instance.p.playerUsedParry += Tuto4ParryProc;
         }
     }
-	
-	
+
+
     private bool hasEventProc = false;
     public void Tuto4ParryProc()
     {

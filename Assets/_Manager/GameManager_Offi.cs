@@ -1,6 +1,5 @@
 using System.Collections;
 using System.IO;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,10 +21,11 @@ public class GameManager_Offi : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
 
-        LoadingScreen = transform.GetChild(0).gameObject;
-        LoadingBarFill = LoadingScreen.transform.GetChild(1).gameObject.GetComponent<UnityEngine.UI.Image>();
+        Screen.SetResolution(1440, 1080, FullScreenMode.FullScreenWindow);
 
-        transform.GetChild(0).gameObject.SetActive(false);
+        LoadingScreen = transform.GetChild(0).gameObject;
+
+        LoadingScreen.SetActive(false);
     }
 
 
@@ -78,6 +78,8 @@ public class GameManager_Offi : MonoBehaviour
                 Debug.LogWarning("ERREUR, LE BOSS NUMERO " + bossNumber + " N'EXISTE PAS !");
                 break;
         }
+
+        SaveStats();
     }
 
     private void Boss1UpdateScores(float time, char rank)
@@ -108,8 +110,10 @@ public class GameManager_Offi : MonoBehaviour
 
     public void TutoFinished()
     {
-        if(act == 0)
+        if (act == 0)
             act = GameProgression.TutoFinished;
+
+        SaveStats();
     }
 
     private char BestRank(char a, char b)
@@ -153,7 +157,6 @@ public class GameManager_Offi : MonoBehaviour
         RagePerdue = 0f;
         fight = true;
     }
-
 
 
     public void IncreaseTimer()
@@ -229,7 +232,7 @@ public class GameManager_Offi : MonoBehaviour
     #region SceneLoading
 
     private GameObject LoadingScreen;
-    private UnityEngine.UI.Image LoadingBarFill;
+    public UnityEngine.UI.Image LoadingBarFill;
     Coroutine loadScene; 
     public void LoadCoroutineScene(string sceneName)
     {
@@ -237,23 +240,22 @@ public class GameManager_Offi : MonoBehaviour
     }
     public IEnumerator LoadSceneAsync(string sceneName)
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        AudioManager.Instance.musicSource.Stop();
+        LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
 
         yield return null;
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
-        while(!operation.isDone)
+        while(LoadingBarFill.fillAmount < 1)
         {
-            Debug.Log(transform.GetChild(0).ToString());
-            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            
-            LoadingBarFill.fillAmount = progressValue;
+            LoadingBarFill.fillAmount += 1f / 8f;
+            Debug.Log(LoadingBarFill.fillAmount);
 
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(1f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlayMusic(sceneName);
         LoadingScreen.SetActive(false);
         loadScene = null;
     }

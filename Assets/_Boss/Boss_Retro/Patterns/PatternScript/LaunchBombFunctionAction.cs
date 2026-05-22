@@ -16,7 +16,7 @@ public partial class LaunchBombFunctionAction : Action
     {
         for(int i =0; i< N.Value ; i++)
         {
-            GameObject bomb = RetroBoss.Instance.bombPattern(Bomb);
+            GameObject bomb = RetroBoss.Instance.bombPattern(Bomb.Value);
             BombList.Value.Add(bomb);
         }
         return Status.Running;

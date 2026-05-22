@@ -19,6 +19,7 @@ public partial class BossBonkAction : Action
         done = false;
         if(Speed.Value >= N.Value)
             Speed.Value = Speed.Value - 0.15f; 
+        AudioManager.Instance.PlaySound("Pong");
         Self.Value.transform.DOMove(RetroBoss.Instance.pongEndPos.transform.position, Speed.Value).SetEase(Ease.Linear).OnComplete(()=>
         {
             done = true;

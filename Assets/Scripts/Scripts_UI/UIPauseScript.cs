@@ -9,6 +9,7 @@ public class UIPauseScript : MonoBehaviour
     [SerializeField] private GameObject PauseCanva;
     [SerializeField] private Button buttonToSelect;
     [SerializeField] private Player player;
+    [SerializeField] private GameObject OptionCanvas;
     private bool paused;
 
     public void PauseGame()
@@ -40,6 +41,18 @@ public class UIPauseScript : MonoBehaviour
         Time.timeScale = 1f;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void OptionButtonPressed()
+    {
+        PauseCanva.SetActive(false);
+        OptionCanvas.SetActive(true);
+        
+    }
+    public void QuitOption()
+    {
+        OptionCanvas.SetActive(false);
+        PauseCanva.SetActive(true);
     }
     #endregion
 }

@@ -41,6 +41,7 @@ public class UIButtonsScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameManager_Offi.Instance.LoadCoroutineScene(sceneToSendTo);
+        //SceneManager.LoadScene(sceneToSendTo);
     }
 
     public void RestartSceneButton()
@@ -54,7 +55,7 @@ public class UIButtonsScript : MonoBehaviour
         //Check si le joueur se trouve dans le HUB
         if (SceneManager.GetActiveScene().name == "Final_Hub1" || SceneManager.GetActiveScene().name == "Final_Hub2" || SceneManager.GetActiveScene().name == "TutorialScene")
         {
-            SceneManager.LoadScene("MainMenuScene");
+            SendToGivenScene("MainMenuScene");
             return;
         }
         else if (SceneManager.GetActiveScene().name == "RetroBoss" || SceneManager.GetActiveScene().name == "Scene_DiceBoss_Actual")
