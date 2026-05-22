@@ -36529,11 +36529,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a16aac973b3ee634e9f6408962d9da38, type: 3}
---- !u!1 &475662989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7363791710419241300, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-  m_PrefabInstance: {fileID: 1382013943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &512917290
 GameObject:
   m_ObjectHideFlags: 0
@@ -38942,17 +38937,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1938380643}
     - target: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-      propertyPath: interactImage
-      value: 
-      objectReference: {fileID: 475662989}
-    - target: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: parryFeedback
       value: 
       objectReference: {fileID: 1536813868}
     - target: {fileID: 1306149838767247564, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-      propertyPath: rotationSpeed
-      value: 25
-      objectReference: {fileID: 0}
+      propertyPath: timeScaleSuper
+      value: 
+      objectReference: {fileID: 1382013944}
     - target: {fileID: 1361484611944057971, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: m_Name
       value: PlayerV2
@@ -38965,18 +38956,6 @@ PrefabInstance:
       propertyPath: rageBar
       value: 
       objectReference: {fileID: 1748761173}
-    - target: {fileID: 4716094907151960582, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-      propertyPath: mp_Cost
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5553142010320020348, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-      propertyPath: ShapeModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6864827843319562208, guid: 504b9e43711dd064288f170bd1717752, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9042982479897492147, guid: 504b9e43711dd064288f170bd1717752, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -39022,6 +39001,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+--- !u!114 &1382013944 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 172909562498099144, guid: 504b9e43711dd064288f170bd1717752, type: 3}
+  m_PrefabInstance: {fileID: 1382013943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383747924
 GameObject:
   m_ObjectHideFlags: 0
@@ -46392,6 +46382,10 @@ PrefabInstance:
       propertyPath: managedReferences[5478766647461544327].AnimateScaleTarget
       value: 
       objectReference: {fileID: 1861485121}
+    - target: {fileID: 5393900645595442554, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+      propertyPath: managedReferences[5478766891209851830].PlayEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1319705242}
     - target: {fileID: 5785067274958607756, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       propertyPath: pacManSpeed
       value: 25
@@ -50904,8 +50898,10 @@ PrefabInstance:
       propertyPath: managedReferences[5478766869133656224].PlayEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 5393900645595442554, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 1629581655762213199, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7410571833251020714, guid: f0ae1efb5725e424bbab79ebf5129bf3, type: 3}
       insertIndex: -1
