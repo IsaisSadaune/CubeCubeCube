@@ -25,6 +25,11 @@ public class RetroBoss : MonoBehaviour
             _instance = this;
         }
     }
+    public void PacmanGummiesActivation(List<GameObject> gummies)
+    {
+        if(gummies != null)
+            StartCoroutine(pacmanGummies(gummies));
+    }
     public GameObject tetrisPiece(GameObject prefab, Vector3 pos)
     {
         clones.Add(Instantiate(prefab, new Vector3(pos.x, pos.y + 16, pos.z), prefab.transform.rotation));
@@ -57,5 +62,15 @@ public class RetroBoss : MonoBehaviour
 
         fireball.GetComponent<Rigidbody>().AddForce(dir * speed, ForceMode.Impulse);
         return fireball;
+    }
+
+    public IEnumerator pacmanGummies(List<GameObject> gummies)
+    {
+        foreach(GameObject gummy in gummies)
+        {
+            gummy.transform.DOMoveY(gummy.transform.position.y + 2, 0.1f);
+            yield return new WaitForSeconds(0.02f);
+        }
+        gummies.Clear();
     }
 }
