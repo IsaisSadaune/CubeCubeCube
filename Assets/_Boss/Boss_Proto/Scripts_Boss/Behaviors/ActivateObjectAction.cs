@@ -12,6 +12,7 @@ public partial class ActivateObjectAction : Action
     [SerializeReference] public BlackboardVariable<float> X;
     protected override Status OnStart()
     {
+        Feedback.Value.SetFeedback(0.5f,0.5f,X.Value);
         Feedback.Value.gameObject.SetActive(true);
         return Status.Running;
     }

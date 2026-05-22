@@ -11,12 +11,13 @@ public class PreviFeedbackScript : MonoBehaviour
 
     private Coroutine c;
 
-    public void SetFeedback(float ScaleDuration=1.5f, float ColorTime=1.75f, float TimeBeforeDestroy=2.5f)
+    public void SetFeedback(float ScaleDuration=1.5f, float ColorTime=0.5f, float TimeBeforeDestroy=2.5f)
     {
         changeScaleDuration = ScaleDuration;
         changeColorDuration = ColorTime;
         timeBeforeDestroy = TimeBeforeDestroy;
     }
+
 
 
     private void OnEnable()
