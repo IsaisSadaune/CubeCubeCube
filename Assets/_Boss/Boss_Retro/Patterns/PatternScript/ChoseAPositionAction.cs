@@ -16,7 +16,7 @@ public partial class ChoseAPositionAction : Action
     protected override Status OnStart()
     {
         boss = Self.Value.GetComponent<RetroBoss>();
-        if(Self.Value.transform.position.x < 0)
+        if(DirectionLeft.Value.Contains(boss.pongEndPos))
         {
             int rdm = Random.Range(0, DirectionRight.Value.Count);
             boss.pongEndPos = DirectionRight.Value[rdm];

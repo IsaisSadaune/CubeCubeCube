@@ -4,13 +4,16 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using DG.Tweening;
+using System.Collections.Generic;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "MovingRackets", story: "[RacketLeft] or [RacketRight] Moves at EndPos", category: "Action", id: "daa110d21a5c23659455eb6ab5f05449")]
+[NodeDescription(name: "MovingRackets", story: "[RacketLeft] or [RacketRight] Moves at EndPos depending on [PongPositionsLeft] and [PongPositionsRight]", category: "Action", id: "daa110d21a5c23659455eb6ab5f05449")]
 public partial class MovingRacketsAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> RacketLeft;
     [SerializeReference] public BlackboardVariable<GameObject> RacketRight;
+    [SerializeReference] public BlackboardVariable<List<GameObject>> PongPositionsLeft;
+    [SerializeReference] public BlackboardVariable<List<GameObject>> PongPositionsRight;
     RetroBoss boss;
     bool done;
     protected override Status OnStart()
@@ -18,14 +21,18 @@ public partial class MovingRacketsAction : Action
         done = false;
         boss = RetroBoss.Instance;
 
-        if(boss.pongEndPos.transform.position.x > 0)
+        if(PongPositionsRight.Value.Contains(boss.pongEndPos))
             RacketLeft.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
+                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
+                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.white;
                 done = true;
             });
-        else
+        else if(PongPositionsLeft.Value.Contains(boss.pongEndPos))
             RacketRight.Value.transform.DOMoveZ(boss.pongEndPos.transform.position.z, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() =>
             {
+                RacketLeft.Value.GetComponent<MeshRenderer>().material.color = Color.white;
+                RacketRight.Value.GetComponent<MeshRenderer>().material.color = Color.gray;
                 done = true;
             });
 
