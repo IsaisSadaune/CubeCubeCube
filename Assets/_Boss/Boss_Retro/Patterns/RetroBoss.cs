@@ -44,7 +44,7 @@ public class RetroBoss : MonoBehaviour
 
     public GameObject bombPattern(GameObject prefab)
     {
-        GameObject bomb = Instantiate(prefab, transform.position, prefab.transform.rotation);
+        GameObject bomb = Instantiate(prefab, new Vector3(transform.position.x, 0.75f, transform.position.z), prefab.transform.rotation);
         clones.Add(bomb);
         return bomb;
     }

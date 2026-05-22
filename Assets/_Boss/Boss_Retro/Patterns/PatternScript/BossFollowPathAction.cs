@@ -18,12 +18,11 @@ public partial class BossFollowPathAction : Action
     Sequence s;
     protected override Status OnStart()
     {
-        float speed = Vector3.Distance(Self.Value.transform.position, Path.Value.Last()) / X.Value;
         done = false;
         s = DOTween.Sequence();
         foreach(var v in Path.Value)
         {
-            s.Append(Self.Value.transform.DOMove(new Vector3(v.x, Self.Value.transform.position.y, v.z), speed));
+            s.Append(Self.Value.transform.DOMove(new Vector3(v.x, Self.Value.transform.position.y, v.z), X.Value));
         }
         s.OnComplete(()=> done = true);
         return Status.Running;
