@@ -1,34 +1,16 @@
-using Unity.AppUI.UI;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioOptions : MonoBehaviour
 {
-    public UnityEngine.UI.Button buttonToSelect;
-    public UnityEngine.UI.Slider sliderMusic;
-    public UnityEngine.UI.Slider sliderSFX;
-    AudioManager audioManager;
+    public UnityEngine.UI.Slider sliderToSelect;
 
     public void OnEnable()
     {
-        buttonToSelect.Select();
-    }
-    void Start()
-    {
-        audioManager = AudioManager.Instance;
-    }
-    public void onMusicSelected()
-    {
-        sliderMusic.Select();
-    }
-    public void onSFXSelected()
-    {
-        sliderSFX.Select();
+        sliderToSelect.Select();
     }
 
-    void Update()
+    public void BackButtonPressed()
     {
-        audioManager.globalSfxVolume = sliderSFX.value;
+        Debug.Log("Code pas encore ajoute");
     }
 }
