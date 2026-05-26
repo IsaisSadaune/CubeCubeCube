@@ -1686,6 +1686,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1169869607}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Menu Button
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &434730365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,6 +3311,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167682454}
   m_CullTransparentMesh: 1
+--- !u!114 &1169869607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+  m_PrefabInstance: {fileID: 1659940057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d60c4064bc81ec49be6fc6d55e77294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177857250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,6 +4069,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Final_Hub2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1169869607}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play Button
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1263827190
@@ -10318,7 +10353,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: e255edd9eaa1ad8459ff806ff64dca46, type: 3}
     - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
       propertyPath: musics.Array.data[0].volume
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
       propertyPath: musics.Array.data[1].volume
@@ -10331,6 +10366,30 @@ PrefabInstance:
     - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
       propertyPath: musics.Array.data[5].volume
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dc833da4f40bc3549aefdd204b857288, type: 3}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[3].name
+      value: Play Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cd0e8b57fc665704aa05079776e49a99, type: 3}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[4].name
+      value: Menu Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[3].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749530831266290775, guid: eb36dd4fa49e13b468ce9f720a38f33c, type: 3}
+      propertyPath: soundEffects.Array.data[4].volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
