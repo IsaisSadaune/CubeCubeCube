@@ -20,7 +20,7 @@ public partial class SelfJumpOnBombAction : Action
     protected override Status OnStart()
     {
         done = false;
-        BombList.Value[0].GetComponent<MMF_Player>().PlayFeedbacks();
+        BombList.Value[0].GetComponent<MeshRenderer>().material.color = Color.red;
         float distance = Vector3.Distance(Self.Value.transform.position, BombList.Value[0].transform.position);
         float timeToGo = distance / SpeedBomb.Value;
         Self.Value.transform.DOMove(new Vector3(BombList.Value[0].transform.position.x, 5f, BombList.Value[0].transform.position.z), timeToGo).SetEase(Ease.Linear).OnComplete(() =>
