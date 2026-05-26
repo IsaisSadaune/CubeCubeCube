@@ -5,21 +5,19 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "EndBattle", story: "Battle Ends", category: "Action", id: "6e5de750b0f2a7c62bd4841aacca8b15")]
-public partial class EndBattleAction : Action
+[NodeDescription(name: "playerDesacHB", story: "Desactivate [Player] Hitbox", category: "Action", id: "20aa851e71b34e3ef0c9afed03df486a")]
+public partial class PlayerDesacHbAction : Action
 {
-
+    [SerializeReference] public BlackboardVariable<Player> Player;
     protected override Status OnStart()
     {
-        if(RetroBoss.Instance != null)
-            RetroBoss.Instance.GetComponent<BoxCollider>().enabled = false;
-            
-        GameManager_Offi.Instance.EndBattle();
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
+
+        Player.Value.hitbox.enabled = false;
         return Status.Success;
     }
 
