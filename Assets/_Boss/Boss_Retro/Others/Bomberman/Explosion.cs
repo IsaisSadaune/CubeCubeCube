@@ -1,13 +1,19 @@
+using System.Collections;
+using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    SlabController tile;
-    MMF_Player feedback;
-    void Awake()
+    public void Scaling(int scale)
     {
-        feedback = GetComponent<MMF_Player>();
-        feedback.PlayFeedbacks();
+        transform.DOScale(scale, 0.5f * (scale/100));
+        StartCoroutine(Dissapearing());
+    }
+
+    IEnumerator Dissapearing()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

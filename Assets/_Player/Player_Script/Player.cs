@@ -56,6 +56,7 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player dmgFeedback;
     public MMF_Player parryFeedback;
     public AudioSource dashSound;
+    [SerializeField] private MMF_Player timeScaleSuper;
     #endregion
     public Super actualSuper;
     #region Others Variables
@@ -272,6 +273,9 @@ public class Player : MonoBehaviour, IDamageable
         if (context.started && hps.CanUlt)
         {
             gapClose.isUlting = true;
+            Time.timeScale = 0.3f;
+            timeScaleSuper.PlayFeedbacks();
+
             stateMachine.ChangeState(superState);
         }
         if (context.canceled && hps.CanUlt && gapClose.isUlting)
@@ -279,15 +283,18 @@ public class Player : MonoBehaviour, IDamageable
             gapClose.isUlting = false;
             if (actualSuper == global::Super.GapClose)
             {
+                Time.timeScale = 1f;
                 gapClose.GapClosing();
             }
             else if (actualSuper == global::Super.Heal)
             {
+                Time.timeScale = 1f;
                 healing.Heal();
             }
         }
         else if (context.canceled && hps.CanUlt && !gapClose.isUlting)
         {
+            Time.timeScale = 1f;
             stateMachine.ChangeState(idleState);
         }
     }
