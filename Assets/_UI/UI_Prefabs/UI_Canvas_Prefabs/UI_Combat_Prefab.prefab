@@ -51,8 +51,10 @@ MonoBehaviour:
   pauseFeedbacks: {fileID: 3645647462836720822}
   PauseCanva: {fileID: 6581321256326551920}
   buttonToSelect: {fileID: 5637745368117508495}
+  optionButtons: {fileID: 9077979897567345093}
+  buttonToSelectInOptions: {fileID: 7184351773426363156}
   player: {fileID: 0}
-  OptionCanvas: {fileID: 0}
+  OptionCanvas: {fileID: 2207849783360677492}
 --- !u!114 &7750172961850696442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2602,14 +2604,14 @@ PrefabInstance:
     - target: {fileID: 6108604904575478615, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4407139943556902912}
+      objectReference: {fileID: 6445229931383660309}
     - target: {fileID: 6108604904575478615, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackButtonPressed
+      value: QuitOption
       objectReference: {fileID: 0}
     - target: {fileID: 6108604904575478615, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: AudioOptions, Assembly-CSharp
+      value: UIPauseScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6313107424373072562, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2811,7 +2813,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 225
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 746648083509309507, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7995817446721936832, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
     m_AddedGameObjects: []
@@ -2828,20 +2831,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2207849783360677492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3014656074629932599, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
+  m_PrefabInstance: {fileID: 3996362015754453059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3397567145382409110 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1752880217198097365, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
   m_PrefabInstance: {fileID: 3996362015754453059}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4407139943556902912 stripped
+--- !u!114 &7184351773426363156 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 746648083509309507, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6108604904575478615, guid: 1b4222c278159dc42ad98a1eeb73f96e, type: 3}
   m_PrefabInstance: {fileID: 3996362015754453059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5a921910afdd4409f462e3ddd567d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7856536480554611509 stripped
