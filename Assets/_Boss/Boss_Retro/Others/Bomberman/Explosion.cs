@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public void Scaling(int scale)
+    public void Awake()
     {
-        transform.DOScale(scale, 0.5f * (scale/100));
+        transform.DOScale(100, 0.5f);
         StartCoroutine(Dissapearing());
     }
 

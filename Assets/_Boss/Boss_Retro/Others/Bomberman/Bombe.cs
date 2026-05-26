@@ -14,10 +14,4 @@ public class Bombe : MonoBehaviour
         explose.PlayFeedbacks();
     }
 
-    public void Explosion()
-    {
-        GameObject explosion = Instantiate(prefabExplosion, transform.position, Quaternion.Euler(new Vector3 (-90,0,0)));
-        explosion.GetComponent<Explosion>().Scaling(powerLevel);
-        transform.DOScale(0, 0.3f).OnComplete(()=> Destroy(gameObject));
-    }
 }
