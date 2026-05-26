@@ -10,7 +10,8 @@ public partial class PlayerDeathCondition : Condition
 
     public override bool IsTrue()
     {
-        return Player.Value == null || !Player.Value.activeSelf;
+        Debug.Log(Player.Value);
+        return Player.Value == null || Player.Value.GetComponent<Player>().hps.current_hp <= 0;
     }
 
     public override void OnStart()
