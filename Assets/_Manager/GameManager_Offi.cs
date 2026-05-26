@@ -184,7 +184,11 @@ public class GameManager_Offi : MonoBehaviour
     public void EndBattle()
     {
         if (fight)
+        {
+            Debug.Log("desactivate");
             fight = false;
+            p.hitbox.enabled = false;
+        }
     }
 
     #endregion
