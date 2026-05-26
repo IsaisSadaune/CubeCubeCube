@@ -106,6 +106,7 @@ public class AudioManager : MonoBehaviour
 
             source.clip = clip;
             source.volume = finalVolume;
+
             source.Play();
         }
     }
@@ -137,5 +138,28 @@ public class AudioManager : MonoBehaviour
             musicSource.pitch = musicPitch;
             musicSource.Play();
         }
+    }
+
+    public void PauseMusic()
+    {
+        if(musicSource != null)
+            musicSource.Pause();
+    }
+    public void UnpauseMusic()
+    {
+        if(musicSource != null)
+            musicSource.UnPause();
+    }
+
+    public void SoundStop(AudioClip clip)
+    {
+        foreach(AudioSource source in audioSources)
+            {
+                if(clip == source.clip)
+                {
+                    source.Stop();
+                    source.clip = null;
+                }
+            }
     }
 }

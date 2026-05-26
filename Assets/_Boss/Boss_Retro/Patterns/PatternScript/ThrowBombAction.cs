@@ -20,8 +20,6 @@ public partial class ThrowBombAction : Action
         foreach(GameObject bomb in BombList.Value)
         {
             int rdmPos = UnityEngine.Random.Range(0, ArenaTiles.Value.Count);
-            Debug.Log(ArenaTiles.Value[rdmPos].transform.position);
-            Debug.Log(BombList.Value.Count);
             Vector3 pos  = ArenaTiles.Value[rdmPos].transform.position;
             pos.y = 2f;
             ArenaTiles.Value.Remove(ArenaTiles.Value[rdmPos]);

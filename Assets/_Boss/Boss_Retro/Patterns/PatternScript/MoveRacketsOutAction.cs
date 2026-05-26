@@ -14,9 +14,13 @@ public partial class MoveRacketsOutAction : Action
     [SerializeReference] public BlackboardVariable<bool> RacketsUp;
     protected override Status OnStart()
     {
-        RacketLeft.Value.transform.DOMoveY(16, 1f).SetEase(Ease.InOutQuad);
-        RacketRight.Value.transform.DOMoveY(-15, 1f).SetEase(Ease.InOutQuad).OnComplete(()
-        =>{RacketsUp.Value = false;});
+        if(RacketLeft.Value.activeSelf)
+        {
+            RacketLeft.Value.transform.DOMoveY(16, 1f).SetEase(Ease.InOutQuad);
+            RacketRight.Value.transform.DOMoveY(-15, 1f).SetEase(Ease.InOutQuad).OnComplete(()
+            =>{RacketsUp.Value = false;});
+        }
+        
         return Status.Running;
     }
 
