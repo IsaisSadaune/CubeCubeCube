@@ -7,7 +7,7 @@ public class HP_Test : MonoBehaviour
     public event Action RageBarFull;
 
     [SerializeField] private int hp_max;
-    int current_hp;
+    public int current_hp { get; private set; }
     int mp_max = 0;
     public int current_mp { get; set; }
     Player player;
