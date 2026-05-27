@@ -50,7 +50,7 @@ public class PreBossUIScript : MonoBehaviour
                 
 
             case BossSelection.RetroBoss:
-                if (GameManager_Offi.Instance.act > GameProgression.Boss2Beaten)
+                if (GameManager_Offi.Instance.act >= GameProgression.Boss2Beaten)
                 {
                     bossName = "Retro Boss";
                     recordTempsBoss = GameManager_Offi.Instance.recordTempsBoss2;
