@@ -27,10 +27,29 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private int poolSize = 5;
     private List<AudioSource> audioSources =  new List<AudioSource>();
     public AudioSource musicSource{get; private set;}
+    private Music currentMusic;
     private Dictionary<string, AudioClip>  soundDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip>  musicDictionary = new Dictionary<string, AudioClip>();
-    public float globalSfxVolume = 1f;
-    public float globalMusicVolume = 1f;
+    [SerializeField]private float _globalSfxVolume = 1f;
+    public float globalSfxVolume
+    {
+        get{return _globalSfxVolume;}
+        set
+        {
+            _globalSfxVolume = value;
+            UpdateSfxVolume();
+        }
+    }
+    [SerializeField]private float _globalMusicVolume = 1f;
+    public float globalMusicVolume
+    {
+        get{return _globalMusicVolume;}
+        set
+        {
+            _globalMusicVolume = value;
+            UpdateMusicVolume();
+        }
+    }
 
     public static AudioManager Instance {get; private set;}
     private void Awake()
@@ -130,6 +149,7 @@ public class AudioManager : MonoBehaviour
                 {
                     musicVolume = music.volume;
                     musicPitch = music.pitch;
+                    currentMusic = music;
                 }
             }
             float finalVolume = musicVolume * globalMusicVolume;
@@ -162,5 +182,28 @@ public class AudioManager : MonoBehaviour
                     source.clip = null;
                 }
             }
+    }
+
+    public void UpdateSfxVolume()
+    {
+        foreach(AudioSource sources in audioSources)
+        {
+            if(sources.clip != null)
+            {
+                foreach(SoundEffect sound in soundEffects)
+                {
+                    if(sources.clip == sound.clip)
+                    {
+                        sources.volume = sound.volume * globalSfxVolume;
+                    }
+                } 
+            }
+        }
+    }
+
+    public void UpdateMusicVolume()
+    {
+        if(currentMusic != null)
+            musicSource.volume = currentMusic.volume * globalMusicVolume;
     }
 }
