@@ -81,14 +81,25 @@ public partial class Dice5ProjectilesAction : Action
         isComplete = true;
     }
 
+    //private List<Vector3> Positions()
+    //{
+    //    List<Vector3> t = new();
+    //    t.Add(new Vector3(10, -1, -7));
+    //    t.Add(new Vector3(10, -1, 17));
+    //    t.Add(new Vector3(-11, -1, -7));
+    //    t.Add(new Vector3(-11, -1, 17));
+    //    t.Add(Player.Value.transform.position);
+    //    return t;
+    //}
+
     private List<Vector3> Positions()
     {
         List<Vector3> t = new();
-        t.Add(new Vector3(10, -1, -7));
-        t.Add(new Vector3(10, -1, 17));
-        t.Add(new Vector3(-11, -1, -7));
-        t.Add(new Vector3(-11, -1, 17));
-        t.Add(Player.Value.transform.position);
+        t.Add(Zone1.Value.position);
+        t.Add(Zone2.Value.position);
+        t.Add(Zone3.Value.position);
+        t.Add(Zone4.Value.position);
+        t.Add(Player.Value.position); // pas besoin de .transform, c'est déjà un Transform
         return t;
     }
 
