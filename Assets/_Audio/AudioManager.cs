@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource{get; private set;}
     private Dictionary<string, AudioClip>  soundDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip>  musicDictionary = new Dictionary<string, AudioClip>();
-    public float globalSfxVolume = 1f;
+    public float globalSfxVolume = 1f, globalMusicVolume = 1f;
 
     public static AudioManager Instance {get; private set;}
     private void Awake()
@@ -131,7 +131,7 @@ public class AudioManager : MonoBehaviour
                     musicPitch = music.pitch;
                 }
             }
-            float finalVolume = musicVolume * globalSfxVolume;
+            float finalVolume = musicVolume * globalMusicVolume;
 
             musicSource.clip = clip;
             musicSource.volume = finalVolume;
