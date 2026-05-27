@@ -12,6 +12,12 @@ public class AudioSlidersScript : MonoBehaviour
 
     public void SliderMusicChangeValue()
     {
-        Debug.Log("New music value : " + musicSlider.value);
+        AudioManager.Instance.globalMusicVolume = musicSlider.value;
+
+    }
+
+    public void SliderSfxChangeValue()
+    {
+        AudioManager.Instance.globalSfxVolume = sfxSlider.value;
     }
 }
