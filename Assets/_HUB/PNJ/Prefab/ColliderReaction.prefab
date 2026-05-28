@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5761374648349627032}
   - component: {fileID: 2427400417854943601}
   - component: {fileID: 6548855913317444311}
-  - component: {fileID: 2390997457882546600}
   - component: {fileID: 176037581562673717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2390997457882546600
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4143165267317288857, guid: 605f578002f8cfc419e9627418f8b0ac, type: 3}
-  m_PrefabInstance: {fileID: 7678862233290929961}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708076024701698548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &176037581562673717
 Animator:
   serializedVersion: 7
@@ -131,6 +109,59 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3204373388199581349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3426861919127345568}
+  - component: {fileID: 7335125256897397861}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3426861919127345568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3204373388199581349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8422031764128909117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7335125256897397861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3204373388199581349}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0336685, y: 4.256167, z: 2.7899404}
+  m_Center: {x: 0, y: 1.0587041, z: 0}
 --- !u!1 &4040077902972951226
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +266,7 @@ Transform:
   m_Children:
   - {fileID: 5761374648349627032}
   - {fileID: 6264029856358852448}
+  - {fileID: 3426861919127345568}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8323157668307358577
@@ -322,7 +354,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubO
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4354484886570549982, guid: 605f578002f8cfc419e9627418f8b0ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
