@@ -40,7 +40,7 @@ public class UIPauseScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        GameManager_Offi.Instance.LoadCoroutineScene(currentScene.name);
     }
 
     public void OptionButtonPressed()

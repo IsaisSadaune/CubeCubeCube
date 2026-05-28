@@ -86,6 +86,7 @@ public class AudioManager : MonoBehaviour
             }
         }
         musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.loop = true;
         PlayMusic(SceneManager.GetActiveScene().name);
     }
     private AudioSource GetAvailableAudioSource()
