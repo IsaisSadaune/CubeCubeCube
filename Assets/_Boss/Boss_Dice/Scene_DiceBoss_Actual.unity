@@ -314,6 +314,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2095713384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &91218062 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1049473066199124462, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+  m_PrefabInstance: {fileID: 822782098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &109655052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,12 +1649,12 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 453944960}
         DebugActive: 0
-        TargetRenderer: {fileID: 2053336288}
+        TargetRenderer: {fileID: 91218062}
         ExtraTargetRenderers: []
         MaterialID: 0
-        PropertyName: _Tint
+        PropertyName: _EmissionColor
         PropertyType: 0
-        NewColor: {r: 0.101960786, g: 0.13725491, b: 0.16981131, a: 1}
+        NewColor: {r: 0, g: 0, b: 0, a: 0}
         NewFloat: 1
         NewInt: 0
         NewTexture: {fileID: 0}
@@ -2052,12 +2057,12 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 453944960}
         DebugActive: 0
-        TargetRenderer: {fileID: 2053336288}
+        TargetRenderer: {fileID: 91218062}
         ExtraTargetRenderers: []
         MaterialID: 0
-        PropertyName: _Tint
+        PropertyName: _EmissionColor
         PropertyType: 0
-        NewColor: {r: 0.5411765, g: 0.73333335, b: 1, a: 1}
+        NewColor: {r: 1, g: 0.07058824, b: 0.05490196, a: 0}
         NewFloat: 1
         NewInt: 0
         NewTexture: {fileID: 0}
@@ -4652,6 +4657,26 @@ PrefabInstance:
       propertyPath: 'managedReferences[7067765255996179175].m_Value.Array.data[5]'
       value: 
       objectReference: {fileID: 822782101}
+    - target: {fileID: 1049473066199124462, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 11178442e4ea77341a6e7d340613c03d, type: 2}
+    - target: {fileID: 2223466417686868609, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223466417686868609, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10.100001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223466417686868609, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10.100001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223466417686868609, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2793156059494820107, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
@@ -4659,7 +4684,7 @@ PrefabInstance:
     - target: {fileID: 2793156059494820107, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: df3d2f21779bae74bb0ac33b86b1d17c, type: 2}
+      objectReference: {fileID: 2100000, guid: 82b01b017c89a634481563a25f8a0b2a, type: 2}
     - target: {fileID: 2874050417379911047, guid: 420bfe241577c174c9ae208f2b6d99e0, type: 3}
       propertyPath: FeedbacksList.Array.size
       value: 3
