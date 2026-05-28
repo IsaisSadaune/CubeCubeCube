@@ -7,6 +7,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     [SerializeField] private GameObject visual;
 
     [SerializeField] private float MaxHP;
+    public float MaxHPs => MaxHP;
     public float HP { get; private set; }
     public bool isDestroying { get; private set; }
     public bool isHardDestroying { get; private set; }
