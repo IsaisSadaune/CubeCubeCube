@@ -12,6 +12,7 @@ public class TutorialNarrationManager : MonoBehaviour
     [SerializeField] private MMF_Player cinematic2;
     [SerializeField] private MMF_Player cinematic3;
     [SerializeField] private MMF_Player cinematic6;
+    [SerializeField] private MMF_Player cinematic8;
 
     [SerializeField] private HP_GlitchTuto glitchCubeDestroyed;
 
@@ -136,7 +137,6 @@ public class TutorialNarrationManager : MonoBehaviour
                 {
                     Destroy(CubeNeedToMove.gameObject);
                     walls6.UnlockZone();
-
                 });
         }
     }
@@ -149,6 +149,7 @@ public class TutorialNarrationManager : MonoBehaviour
             Debug.Log("Boss Battle");
             //walls8.EnteredInRoom();
             //Tuto8BossVaincu();
+            cinematic8.PlayFeedbacks();
             Tuto8BossVaincu();
             walls8.EnteredInRoom();
             StartCoroutine(SimulateBoss());
