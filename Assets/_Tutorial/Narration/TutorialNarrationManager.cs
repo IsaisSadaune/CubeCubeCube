@@ -98,7 +98,7 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         numberDefenseProc++;
 
-        if (tutostate <= 4 && numberDefenseProc >= 3 && !hasEventProc)
+        if (tutostate <= 4 && numberDefenseProc >= 1 && !hasEventProc)
         {
             walls4.UnlockZone();
             hasEventProc = true;

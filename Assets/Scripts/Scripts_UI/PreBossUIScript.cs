@@ -34,7 +34,7 @@ public class PreBossUIScript : MonoBehaviour
         switch (bossReferenced)
         {
             case BossSelection.DiceBoss:
-                if (GameManager_Offi.Instance.act > GameProgression.Boss1Beaten)
+                if (GameManager_Offi.Instance.act >= GameProgression.Boss1Beaten)
                 {
                     bossName = "Dice Boss";
                     recordTempsBoss = GameManager_Offi.Instance.recordTempsBoss1;
