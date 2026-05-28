@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TutorialNarrationManager : MonoBehaviour
 {
-    private int numberDefenseProc = 0;
+    private int numberParryProc = 0;
 
     public int tutostate { get; private set; } = 0;
     [SerializeField] private MMF_Player cinematic1;
@@ -88,7 +88,7 @@ public class TutorialNarrationManager : MonoBehaviour
             tutostate = 4;
             walls4.EnteredInRoom();
             Debug.Log("Le joueur entre dans la salle 4");
-            numberDefenseProc = 0;
+            numberParryProc = 0;
             GameManager_Offi.Instance.p.playerUsedParry += Tuto4ParryProc;
         }
     }
@@ -97,9 +97,9 @@ public class TutorialNarrationManager : MonoBehaviour
     private bool hasEventProc = false;
     public void Tuto4ParryProc()
     {
-        numberDefenseProc++;
+        numberParryProc++;
 
-        if (tutostate <= 4 && numberDefenseProc >= 1 && !hasEventProc)
+        if (tutostate <= 4 && numberParryProc >= 3 && !hasEventProc)
         {
             walls4.UnlockZone();
             hasEventProc = true;
