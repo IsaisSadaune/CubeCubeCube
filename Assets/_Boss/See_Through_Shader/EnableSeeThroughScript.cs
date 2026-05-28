@@ -33,12 +33,12 @@ public class EnableSeeThroughScript : MonoBehaviour
         if (playerBehindBoss)
         {
             DOTween.To(() => opacityValue, x => opacityValue = x, 0.8f, 0.2f);
-            _materialInstance.SetFloat("_BossOpacity", opacityValue); 
+            _materialInstance.SetFloat("_Opacity", opacityValue); 
         }
         else
         {
             DOTween.To(() => opacityValue, x => opacityValue = x, 1, 0.2f);
-            _materialInstance.SetFloat("_BossOpacity", opacityValue);
+            _materialInstance.SetFloat("_Opacity", opacityValue);
         }
     }
 
