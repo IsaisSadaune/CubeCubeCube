@@ -34,7 +34,7 @@ public class PlayerDoingDamage : MonoBehaviour
                 }
                 else
                     cible.TakeDamage(player.gapClose.damage);
-                GetComponent<BoxCollider>().enabled = false;
+                    GetComponent<BoxCollider>().enabled = false;
             }
         }
     }
