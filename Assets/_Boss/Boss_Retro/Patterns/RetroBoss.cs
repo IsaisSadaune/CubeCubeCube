@@ -25,6 +25,10 @@ public class RetroBoss : MonoBehaviour
             _instance = this;
         }
     }
+    public void StartTimerAfterCinematic()
+    {
+        GameManager_Offi.Instance.ResetStats();
+    }
     public void CinematicDesactivation()
     {
         GetComponent<BehaviorGraphAgent>().enabled = false;

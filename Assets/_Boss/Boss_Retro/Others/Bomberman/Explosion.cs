@@ -13,7 +13,7 @@ public class Explosion : MonoBehaviour
 
     IEnumerator Dissapearing()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         Destroy(gameObject);
     }
 }

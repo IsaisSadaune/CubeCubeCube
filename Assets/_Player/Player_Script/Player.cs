@@ -372,12 +372,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TutorialStopPlayer()
     {
-        playerInput.enabled = false;
+        Player.Instance.playerInput.enabled = false;
     }
 
     public void TutorialPlayerIsFine()
     {
-        playerInput.enabled = true;
+        Player.Instance.playerInput.enabled = true;
     }
 
     //tout pareil qu'au dessus : c'pa'bo
