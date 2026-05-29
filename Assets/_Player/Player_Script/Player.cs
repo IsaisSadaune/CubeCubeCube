@@ -241,6 +241,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed)
         {
+
             moveInput = context.ReadValue<Vector2>();
         }
         UpdateDirectionFromCamera();
@@ -263,6 +264,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!context.started) return;
         {
+            AudioManager.Instance.PlaySound("Dash");
             gapClose.isUlting = false;
             dashBuffer = bufferTimer;
         }
@@ -275,6 +277,7 @@ public class Player : MonoBehaviour, IDamageable
             gapClose.isUlting = true;
             Time.timeScale = 0.3f;
             timeScaleSuper.PlayFeedbacks();
+            AudioManager.Instance.PlaySound("Slowmotion Charged Dash");
 
             stateMachine.ChangeState(superState);
         }
@@ -285,6 +288,7 @@ public class Player : MonoBehaviour, IDamageable
             {
                 Time.timeScale = 1f;
                 gapClose.GapClosing();
+                AudioManager.Instance.PlaySound("Charged Dash");
             }
             else if (actualSuper == global::Super.Heal)
             {
@@ -311,6 +315,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (context.performed && stateMachine.currentPlayerState != attackState && canShield)
         {
+            AudioManager.Instance.PlaySound("Shield");
             gapClose.isUlting = false;
             stateMachine.ChangeState(shieldState);
         }
@@ -402,21 +407,23 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
+            AudioManager.Instance.PlaySound("Parry");
             Debug.Log("PARRY");
             GameManager_Offi.Instance.AddStatParry();
             hps.GainMP(5);
             parryFeedback.PlayFeedbacks(); 
             playerUsedParry?.Invoke();
+
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)
         {
-            hps.LoseHP(dgt / 2);
             StartCoroutine(ShieldBreak());
             stateMachine.ChangeState(idleState);
         }
         else
         {
+            AudioManager.Instance.PlaySound("Player Damaged");
             gapClose.isUlting = false;
             hps.LoseHP(dgt);
         }
@@ -431,6 +438,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void Die()
     {
+        AudioManager.Instance.PlaySound("Player Death");
         deathFeedback.PlayFeedbacks();
     }
 

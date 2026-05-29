@@ -14,7 +14,18 @@ public class Attack : MonoBehaviour
     public void LaunchAttack(int xCombo)
     {
         // AudioSource slashSound = player.combo[xCombo].attackCollider.gameObject.GetComponent<AudioSource>();
-        
+        switch(xCombo)
+            {
+            case 0:
+                AudioManager.Instance.PlaySound("Player Attack");
+                break;
+            case 1:
+                AudioManager.Instance.PlaySound("Player Attack 2");
+                break;
+            case 2:
+                AudioManager.Instance.PlaySound("Player Attack 3");
+                break;
+            }
         if (player.resetCombo != null)
         {
             StopCoroutine(player.resetCombo);
