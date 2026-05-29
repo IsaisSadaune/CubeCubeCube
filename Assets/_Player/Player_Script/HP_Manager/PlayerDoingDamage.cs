@@ -12,7 +12,7 @@ public class PlayerDoingDamage : MonoBehaviour
         if (player == null)
             player = GameManager_Offi.Instance.p;
 
-        if (!other.CompareTag("Player") && !other.CompareTag("Projectile"))
+        if (!other.CompareTag("Player") && !other.CompareTag("Projectile") && !other.CompareTag("BossModel"))
         {
             IDamageable cible = null;
             if (other.GetComponent<IDamageable>() != null)
