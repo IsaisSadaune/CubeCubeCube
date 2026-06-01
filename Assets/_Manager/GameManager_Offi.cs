@@ -7,6 +7,8 @@ public class GameManager_Offi : MonoBehaviour
 {
     private static GameManager_Offi instance = null;
     public static GameManager_Offi Instance => instance;
+    public bool hubCinematicPlayed {get;set;}
+    public bool bossCinematicPlayed {get;set;}
 
     private void Awake()
     {
@@ -79,7 +81,9 @@ public class GameManager_Offi : MonoBehaviour
                 break;
         }
 
+        #if UNITY_EDITOR
         SaveStats();
+        #endif
     }
 
     private void Boss1UpdateScores(float time, char rank)
@@ -89,7 +93,12 @@ public class GameManager_Offi : MonoBehaviour
         rankBoss1 = BestRank(rankBoss1, rank);
 
         if (act == GameProgression.TutoFinished)
+        {
             act++;
+            hubCinematicPlayed = false;
+            bossCinematicPlayed = false;
+        }
+            
     }
     private void Boss2UpdateScores(float time, char rank)
     {
@@ -97,7 +106,10 @@ public class GameManager_Offi : MonoBehaviour
             recordTempsBoss2 = time;
         rankBoss2 = BestRank(rankBoss2, rank);
         if (act == GameProgression.Boss1Beaten)
-            act++;
+            {
+                act++;
+                hubCinematicPlayed = false;
+            }
     }
     private void Boss3UpdateScores(float time, char rank)
     {
@@ -105,7 +117,10 @@ public class GameManager_Offi : MonoBehaviour
             recordTempsBoss3 = time;
         rankBoss3 = BestRank(rankBoss3, rank);
         if (act == GameProgression.Boss2Beaten)
-            act++;
+            {
+                act++;
+                hubCinematicPlayed = false;
+            }
     }
 
     public void TutoFinished()
@@ -113,7 +128,9 @@ public class GameManager_Offi : MonoBehaviour
         if (act == 0)
             act = GameProgression.TutoFinished;
 
+        #if UNITY_EDITOR
         SaveStats();
+        #endif
     }
 
     private char BestRank(char a, char b)
@@ -244,6 +261,12 @@ public class GameManager_Offi : MonoBehaviour
     }
     public IEnumerator LoadSceneAsync(string sceneName)
     {
+        //Remettre la cinématique longue lorsque le joueur revient au Hub
+        if(sceneName != SceneManager.GetActiveScene().name)
+        {
+            bossCinematicPlayed = false;
+        }
+
         AudioManager.Instance.musicSource.Stop();
         LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
