@@ -1,5 +1,6 @@
 using DG.Tweening;
 using MoreMountains.Feedbacks;
+using Unity.Behavior;
 using UnityEngine;
 
 public class Boss_Variables : MonoBehaviour, IDamageable
@@ -98,5 +99,18 @@ public class Boss_Variables : MonoBehaviour, IDamageable
                     .OnComplete(() => Destroy(gameObject));
             }
         }
+    }
+
+    public void StartTimerAfterCinematic()
+    {
+        GameManager_Offi.Instance.ResetStats();
+    }
+    public void CinematicDesactivation()
+    {
+        GetComponent<BehaviorGraphAgent>().enabled = false;
+    }
+    public void AfterCinematicActivation()
+    {
+        GetComponent<BehaviorGraphAgent>().enabled = true;
     }
 }

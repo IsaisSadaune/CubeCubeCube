@@ -25,18 +25,7 @@ public class RetroBoss : MonoBehaviour
             _instance = this;
         }
     }
-    public void StartTimerAfterCinematic()
-    {
-        GameManager_Offi.Instance.ResetStats();
-    }
-    public void CinematicDesactivation()
-    {
-        GetComponent<BehaviorGraphAgent>().enabled = false;
-    }
-    public void AfterCinematicActivation()
-    {
-        GetComponent<BehaviorGraphAgent>().enabled = true;
-    }
+    
     public void PacmanGummiesActivation(List<GameObject> gummies)
     {
         if(gummies != null)
