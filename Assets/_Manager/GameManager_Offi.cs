@@ -126,8 +126,10 @@ public class GameManager_Offi : MonoBehaviour
     public void TutoFinished()
     {
         if (act == 0)
+        {
             act = GameProgression.TutoFinished;
-
+            hubCinematicPlayed = false;
+        }
         #if UNITY_EDITOR
         SaveStats();
         #endif

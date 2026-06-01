@@ -27,6 +27,7 @@ public class Dash : MonoBehaviour
     #region Coroutines
     public IEnumerator DashCoroutine()
     {
+        AudioManager.Instance.PlaySound("Dash");
         Debug.Log("DashCoroutine");
         player.canDash = false;
         player.hitbox.enabled = false;
