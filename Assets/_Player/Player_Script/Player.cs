@@ -264,7 +264,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!context.started) return;
         {
-            AudioManager.Instance.PlaySound("Dash");
             gapClose.isUlting = false;
             dashBuffer = bufferTimer;
         }
