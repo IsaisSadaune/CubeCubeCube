@@ -24,6 +24,8 @@ public class TutorialNarrationManager : MonoBehaviour
     [SerializeField] private RoomToLock walls8;
     [SerializeField] private HP_GlitchTuto CubeNeedToMove;
 
+    [SerializeField] private Transform RespawnZ6;
+    [SerializeField] private RespawnBoxScript respawn;
 
     private void OnEnable()
     {
@@ -124,6 +126,7 @@ public class TutorialNarrationManager : MonoBehaviour
             GameManager_Offi.Instance.p.hps.RageBarFull += Tuto6SuperProc;
             walls6.EnteredInRoom();
             cinematic6.PlayFeedbacks();
+            respawn.SetNewSpawnPoint(RespawnZ6);
         }
     }
     public void Tuto6SuperProc()
