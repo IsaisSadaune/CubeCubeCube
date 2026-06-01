@@ -126,7 +126,7 @@ public class TutorialNarrationManager : MonoBehaviour
             GameManager_Offi.Instance.p.hps.RageBarFull += Tuto6SuperProc;
             walls6.EnteredInRoom();
             cinematic6.PlayFeedbacks();
-            respawn.SetNewSpawnPoint(RespawnZ6);
+            respawn.SetNewSpawnPoint(RespawnZ6);    
         }
     }
     public void Tuto6SuperProc()
