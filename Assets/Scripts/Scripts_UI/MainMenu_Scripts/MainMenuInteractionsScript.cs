@@ -12,6 +12,11 @@ public class MainMenuInteractionsScript : MonoBehaviour
     public GameObject creditsScreen;
     [SerializeField] MMF_Player creditsPlayer;
 
+    [Header("Option Screen")]
+    public GameObject optionScreen;
+    public GameObject mainMenuScreen;
+    public Button buttonToSelectOptionOpen, buttonToSelectOptionClose;
+
 
     private void Update()
     {
@@ -28,6 +33,11 @@ public class MainMenuInteractionsScript : MonoBehaviour
         startGameFeedbacks.PlayFeedbacks();
     }
 
+    public void SelectPlayButton()
+    {
+        buttonToSelect.Select();
+    }
+
     public void CreditsButtonPressed()
     {
         creditsScreen.SetActive(true);
@@ -37,5 +47,19 @@ public class MainMenuInteractionsScript : MonoBehaviour
     public void ButtonSelectMainMenu()
     {
         buttonToSelect.Select();
+    }
+
+    public void OptionButtonMainMenu()
+    {
+        optionScreen.SetActive(true);
+        mainMenuScreen.SetActive(false);
+        buttonToSelectOptionOpen.Select();
+    }
+
+    public void BackButtonOptions()
+    {
+        optionScreen.SetActive(false);
+        mainMenuScreen.SetActive(true);
+        buttonToSelectOptionClose.Select();
     }
 }
