@@ -55,6 +55,7 @@ public class Asteroid : MonoBehaviour
         if(other.CompareTag("Attack"))
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
+            player.hps.GainMP(3);
             Explosion();
         }
     }
