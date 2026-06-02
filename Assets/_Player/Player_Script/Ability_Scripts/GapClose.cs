@@ -40,12 +40,16 @@ public class GapClose : MonoBehaviour
         {
             hitPrevi.SetActive(false);
             posPrevi.SetActive(false);
+
             float distance = Vector3.Distance(transform.position + Vector3.up, posPrevi.transform.position);
             Vector3 dir = (posPrevi.transform.position - transform.position).normalized;
             RaycastHit hit;
+
             StartCoroutine(ColliderActivation());
+
             player.hps.current_mp = 0;
             player.hps.rageBar.DecreaseBarValue(mp_Cost);
+
             if (Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
             {
                 player.rb.MovePosition(hit.point);
