@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PreBossUIScript : MonoBehaviour
 {
     public PlayerInput input;
-    public enum BossSelection { DiceBoss, RetroBoss, Tutorial }
+    public enum BossSelection { DiceBoss, RetroBoss }
     [SerializeField] BossSelection bossReferenced;
 
     [Space(10f)]
@@ -34,14 +34,15 @@ public class PreBossUIScript : MonoBehaviour
         switch (bossReferenced)
         {
             case BossSelection.DiceBoss:
-                bossName = "Dice Boss";
-                if (GameManager_Offi.Instance.act >= GameProgression.Boss1Beaten)
+                if (GameManager_Offi.Instance.act > GameProgression.Boss1Beaten)
                 {
+                    bossName = "Dice Boss";
                     recordTempsBoss = GameManager_Offi.Instance.recordTempsBoss1;
                     rankBoss = GameManager_Offi.Instance.rankBoss1;
                 }
                 else
                 {
+                    bossName = "Dice Boss";
                     recordTempsBoss = 0.00f;
                     rankBoss = 'X';
                 }
@@ -49,23 +50,18 @@ public class PreBossUIScript : MonoBehaviour
                 
 
             case BossSelection.RetroBoss:
-                bossName = "Retro Boss";
-
-                if (GameManager_Offi.Instance.act >= GameProgression.Boss2Beaten)
+                if (GameManager_Offi.Instance.act > GameProgression.Boss2Beaten)
                 {
+                    bossName = "Retro Boss";
                     recordTempsBoss = GameManager_Offi.Instance.recordTempsBoss2;
                     rankBoss = GameManager_Offi.Instance.rankBoss2;
                 }
                 else
                 {
+                    bossName = "Retro Boss";
                     recordTempsBoss = 0.00f;
                     rankBoss = 'X';
                 }
-                break;
-
-
-            case BossSelection.Tutorial:
-                bossName = "Tutorial";
                 break;
 
             default:
@@ -78,12 +74,9 @@ public class PreBossUIScript : MonoBehaviour
 
     private void UpdateText()
     {
-        if(bossNameText  != null)
-            bossNameText.SetText(bossName);
-        if(rankText)
-            rankText.SetText(rankBoss + "");
-        if(highScoreText)
-            highScoreText.SetText(recordTempsBoss + "");
+        bossNameText.SetText(bossName);
+        rankText.SetText(rankBoss + "");
+        highScoreText.SetText(recordTempsBoss + "");
     }
 
     public void CloseMenu()
