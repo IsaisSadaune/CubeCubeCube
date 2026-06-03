@@ -12,6 +12,7 @@ public class TutorialNarrationManager : MonoBehaviour
     [SerializeField] private MMF_Player cinematic2;
     [SerializeField] private MMF_Player cinematic3;
     [SerializeField] private MMF_Player cinematic6;
+    [SerializeField] private MMF_Player cinematic7;
     [SerializeField] private MMF_Player cinematic8;
 
     [SerializeField] private HP_GlitchTuto glitchCubeDestroyed;
@@ -46,7 +47,7 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate == 0)
         {
-            Debug.Log("Cinématique 1 tuto");
+            Debug.Log("Cinï¿½matique 1 tuto");
             tutostate = 1;
             cinematic1.PlayFeedbacks();
         }
@@ -56,7 +57,7 @@ public class TutorialNarrationManager : MonoBehaviour
     {
         if (tutostate <= 1)
         {
-            Debug.Log("Cinématique 2 en arriere plan");
+            Debug.Log("Cinï¿½matique 2 en arriere plan");
             tutostate = 2;
             cinematic2.PlayFeedbacks();
         }
@@ -134,13 +135,7 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 6)
         {
             Debug.Log("Cinematique 6 Tuto");
-            CubeNeedToMove.transform.DOMoveX(CubeNeedToMove.transform.position.x + 50f, 1f)
-
-                .OnComplete(() =>
-                {
-                    Destroy(CubeNeedToMove.gameObject);
-                    walls6.UnlockZone();
-                });
+            cinematic7.PlayFeedbacks();
         }
     }
     public void Tuto7()

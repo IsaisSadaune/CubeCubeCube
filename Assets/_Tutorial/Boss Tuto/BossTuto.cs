@@ -40,10 +40,12 @@ public class BossTuto : MonoBehaviour
 
             Vector3 dir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
 
-            GameObject cube = Instantiate(cubePrefab, transform.position, Quaternion.identity);
-            cube.transform.position = new Vector3(transform.position.x, transform.position.y - 3, transform.position.z);
+            GameObject cube = Instantiate(cubePrefab, 
+            new Vector3(transform.position.x, transform.position.y - 3, transform.position.z)
+            , Quaternion.identity);
+            
 
-            cube.transform.DOMove(transform.position + dir * 50f, 3f).SetEase(Ease.Linear).OnComplete(()=> Destroy(cube));
+            cube.transform.DOMove(cube.transform.position + dir * 50f, 3f).SetEase(Ease.Linear).OnComplete(()=> Destroy(cube));
         }
     }
     IEnumerator Patterns()
