@@ -53,11 +53,13 @@ public class GapClose : MonoBehaviour
             if (Physics.Raycast(transform.position, dir, out hit, distance, wallLayer))
             {
                 player.rb.MovePosition(hit.point);
+                StartCoroutine(player.iFrames());
                 player.stateMachine.ChangeState(player.idleState);
             }
             else
             {
                 player.rb.MovePosition(posPrevi.transform.position);
+                StartCoroutine(player.iFrames());
                 player.stateMachine.ChangeState(player.idleState);
             }
 

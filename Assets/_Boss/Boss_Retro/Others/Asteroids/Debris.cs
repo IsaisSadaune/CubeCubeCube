@@ -29,7 +29,7 @@ public class Debris : MonoBehaviour
         if(other.CompareTag("Attack"))
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
-            Player.Instance.hps.GainMP(3);
+            Player.Instance.hps.GainMP(1);
             Destroy(gameObject);
         }
     }
