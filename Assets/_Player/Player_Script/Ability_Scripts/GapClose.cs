@@ -68,7 +68,10 @@ public class GapClose : MonoBehaviour
     {
         GameObject attack = Instantiate(hitPrevi, hitPrevi.transform.position, hitPrevi.transform.rotation);
         attack.SetActive(true);
-        attack.AddComponent<BoxCollider>().isTrigger = true;
+
+        BoxCollider bc = attack.AddComponent<BoxCollider>();
+        bc.isTrigger = true;
+        bc.size = new Vector3(bc.size.x, bc.size.y*5, bc.size.z);
         yield return new WaitForSeconds(1f);
         Destroy(attack);
     }
