@@ -1,13 +1,16 @@
 using System.Collections;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class BossTuto : MonoBehaviour
 {
     [SerializeField] private GameObject cubePrefab;
     [SerializeField] private float cubeSpeed = 10f;
+    [SerializeField] private MMF_Player deathFeedbackBossTuto;
     bool pattern1 = false;
     bool pattern2 = true;
+    bool feedbackPlayed = false;
     Boss_Variables variables;
     void Start()
     {
@@ -16,6 +19,14 @@ public class BossTuto : MonoBehaviour
     public void StartBattle()
     {
         StartCoroutine(Patterns());
+    }
+    private void Update()
+    {
+        if(variables.HP <= 0 && feedbackPlayed)
+        {
+            deathFeedbackBossTuto.PlayFeedbacks();
+            feedbackPlayed = true;
+        }
     }
 
     void SendCubesAway()
@@ -30,6 +41,7 @@ public class BossTuto : MonoBehaviour
             Vector3 dir = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
 
             GameObject cube = Instantiate(cubePrefab, transform.position, Quaternion.identity);
+            cube.transform.position = new Vector3(transform.position.x, transform.position.y - 3, transform.position.z);
 
             cube.transform.DOMove(transform.position + dir * 50f, 3f).SetEase(Ease.Linear).OnComplete(()=> Destroy(cube));
         }

@@ -153,9 +153,8 @@ public class TutorialNarrationManager : MonoBehaviour
             //walls8.EnteredInRoom();
             //Tuto8BossVaincu();
             cinematic8.PlayFeedbacks();
-            Tuto8BossVaincu();
             walls8.EnteredInRoom();
-            StartCoroutine(SimulateBoss());
+            //StartCoroutine(SimulateBoss());
         }
     }
 
@@ -172,6 +171,7 @@ public class TutorialNarrationManager : MonoBehaviour
             Debug.Log("BossBattu");
             Debug.Log("Cinematique 8");
             tutostate = 8;
+            walls8.UnlockZone();
         }
     }
 }
