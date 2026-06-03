@@ -15,6 +15,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
     private RetroBoss retroBoss;
 
     public MMF_Player damageFeedback;
+    public MMF_Player BigDamageFeedback;
     public MMF_Player deathFeedback;
 
     public GameObject detector1;
@@ -63,8 +64,11 @@ public class Boss_Variables : MonoBehaviour, IDamageable
         //Debug.Log("ouch");
         HP -= _dgt;
         if (HP <= 0) Die();
-        else FeedBackDMG();
-    }
+        else if (_dgt < 10)
+            FeedBackDMG();
+        else
+            FeedBackBigDMG();
+}
     public void Die()
     {
         if(retroBoss != null)
@@ -86,6 +90,13 @@ public class Boss_Variables : MonoBehaviour, IDamageable
         //     .OnComplete(() =>
         //     visual.transform.DOScale(x, 0.12f).SetEase(Ease.InOutBounce));
     }
+
+    public void FeedBackBigDMG()
+    {
+        BigDamageFeedback.PlayFeedbacks();
+    }
+
+
     public virtual void FeedBackMort()
     {
         if (!isDying)
