@@ -40,24 +40,13 @@ public class HP_Test : MonoBehaviour
         {
             rageBar.SetRageMax(mp_max);
         }
+
+
+
+        MpsLoss = StartCoroutine(MpLoss());
+
     }
 
-    void Update()
-    {
-        if (current_mp < mp_max)
-        {
-            if (MpsLoss == null)
-                MpsLoss = StartCoroutine(MpLoss());
-        }
-        else
-        {
-            if (MpsLoss != null)
-            {
-                StopCoroutine(MpsLoss);
-                MpsLoss = null;
-            }
-        }
-    }
     #region hp
     public void LoseHP(int x)
     {
@@ -113,23 +102,33 @@ public class HP_Test : MonoBehaviour
     }
     public void GainMP(int mp)
     {
+        ResetMpTimer();
         current_mp = Mathf.Min(current_mp + mp, mp_max);
 
         if (current_mp >= mp_max)
             RageBarFull?.Invoke();
 
         rageBar.IncreaseRageBar(mp);
+
     }
 
 
     IEnumerator MpLoss()
     {
-        while (current_mp < mp_max)
+        yield return new WaitForSeconds(0.75f);
+        if (current_mp < mp_max)
         {
             LoseMP(1);
-            yield return new WaitForSeconds(0.75f);
         }
+        MpsLoss = StartCoroutine(MpLoss());
     }
+
+    public void ResetMpTimer()
+    {
+        StopCoroutine(MpsLoss);
+        MpsLoss = StartCoroutine(MpLoss());
+    }
+
 
     #endregion
 }
