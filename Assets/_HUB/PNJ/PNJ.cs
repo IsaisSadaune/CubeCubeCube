@@ -7,6 +7,7 @@ public class PNJ : MonoBehaviour
 {
     public string dialogueText;
     [SerializeField] public Sprite pnj_Sprite;
+    [SerializeField] private string pnj_Voice;
     public float delay;
     public TextMeshProUGUI emptyDialogueText;
     public TextMeshProUGUI emptyNameText;
@@ -16,10 +17,18 @@ public class PNJ : MonoBehaviour
     public void ShowText()
     {
         if(dialogueCoroutine == null)
+        {
             dialogueCoroutine = StartCoroutine(LetterByLetter());
+            if(pnj_Voice != null)
+                AudioManager.Instance.PlaySound(pnj_Voice);
+        }
+            
         else
+        {
             StopCoroutine(LetterByLetter());
             dialogueCoroutine = null;
+        }
+            
     }
 
 
