@@ -10,6 +10,7 @@ public class InteractState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        AudioManager.Instance.PlaySound("Launch PNJ Talk");
         player.rb.linearVelocity = new Vector3(Vector3.zero.x, player.rb.linearVelocity.y, Vector3.zero.z);
         player.playerInput.SwitchCurrentActionMap("UI");
         player.dialogueCanvas.SetActive(true);
@@ -20,6 +21,7 @@ public class InteractState : PlayerState
 
     public override void ExitState()
     {
+        AudioManager.Instance.PlaySound("Finish PNJ Talk");
         player.pnj.StopAllCoroutines();
         player.pnj.emptyDialogueText.text = "";
         player.pnj.emptyNameText.text = "";
