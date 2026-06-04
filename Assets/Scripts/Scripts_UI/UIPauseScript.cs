@@ -20,8 +20,12 @@ public class UIPauseScript : MonoBehaviour
             Time.timeScale = 0f;
             pauseFeedbacks.PlayFeedbacks();
         }
-        else
+
+        else if (!OptionCanvas.activeSelf && !player.isDead)
             ResumeGame();
+
+        else if (OptionCanvas.activeSelf && !player.isDead)
+            QuitOption();
     }
 
     public void ResumeGame()
