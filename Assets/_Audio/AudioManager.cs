@@ -173,16 +173,19 @@ public class AudioManager : MonoBehaviour
             musicSource.UnPause();
     }
 
-    public void SoundStop(AudioClip clip)
+    public void SoundStop(string soundName)
     {
-        foreach(AudioSource source in audioSources)
+        if (!soundDictionary.TryGetValue(soundName, out AudioClip clip))
+            return;
+
+        foreach (AudioSource source in audioSources)
+        {
+            if (source.clip == clip)
             {
-                if(clip == source.clip)
-                {
-                    source.Stop();
-                    source.clip = null;
-                }
+                source.Stop();
+                source.clip = null;
             }
+        }
     }
 
     public void UpdateSfxVolume()

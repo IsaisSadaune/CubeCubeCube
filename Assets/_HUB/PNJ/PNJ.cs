@@ -26,9 +26,9 @@ public class PNJ : MonoBehaviour
         else
         {
             StopCoroutine(LetterByLetter());
-            dialogueCoroutine = null;
         }
-            
+        dialogueCoroutine = null;
+
     }
 
 
@@ -58,5 +58,6 @@ public class PNJ : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         textEnded = true;
+        AudioManager.Instance.SoundStop(pnj_Voice);
     }
 }
