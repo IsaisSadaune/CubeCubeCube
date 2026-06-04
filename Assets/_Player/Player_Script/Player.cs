@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -125,6 +126,17 @@ public class Player : MonoBehaviour, IDamageable
             pnj = null;
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Interact"))
+        {
+            if (stateMachine.currentPlayerState == interactState)
+                interactImage.SetActive(false);
+            else 
+                interactImage.SetActive(true);
+        }
+    }
+
     #endregion
     private void Awake()
     {
@@ -390,6 +402,14 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.enabled = true;
         iFraming = false; //bug mais c'est pas grave
     }
+
+    public IEnumerator iFrames()
+    {
+        hitbox.enabled = false;
+        yield return new WaitForSeconds(cdIFrames);
+        hitbox.enabled = true;
+        iFraming = false;
+    }
     bool canShield = true;
     IEnumerator ShieldBreak()
     {
@@ -407,17 +427,19 @@ public class Player : MonoBehaviour, IDamageable
         if (stateMachine.currentPlayerState == shieldState && Time.time - shieldActivation < parryTiming)
         {
             AudioManager.Instance.PlaySound("Parry");
-            Debug.Log("PARRY");
+            StartCoroutine(iFrames());
             GameManager_Offi.Instance.AddStatParry();
             hps.GainMP(5);
             parryFeedback.PlayFeedbacks(); 
             playerUsedParry?.Invoke();
-
+            stateMachine.ChangeState(idleState);
             //Parry();
         }
         else if (stateMachine.currentPlayerState == shieldState)
         {
             StartCoroutine(ShieldBreak());
+            StartCoroutine(cdDamage());
+            //Un ptit feedback de shield break pourrait être cool
             stateMachine.ChangeState(idleState);
         }
         else
@@ -425,8 +447,9 @@ public class Player : MonoBehaviour, IDamageable
             AudioManager.Instance.PlaySound("Player Damaged");
             gapClose.isUlting = false;
             hps.LoseHP(dgt);
+            StartCoroutine(cdDamage());
         }
-        StartCoroutine(cdDamage());
+        
     }
 
     public void Knockback(Transform other)
