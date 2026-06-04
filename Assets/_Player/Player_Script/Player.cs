@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -125,6 +126,17 @@ public class Player : MonoBehaviour, IDamageable
             pnj = null;
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Interact"))
+        {
+            if (stateMachine.currentPlayerState == interactState)
+                interactImage.SetActive(false);
+            else 
+                interactImage.SetActive(true);
+        }
+    }
+
     #endregion
     private void Awake()
     {
