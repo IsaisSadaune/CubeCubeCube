@@ -62,6 +62,9 @@ public class RetroBoss : MonoBehaviour
         Vector3 dir = (Player.Instance.transform.position - fireball.transform.position).normalized;
 
         fireball.GetComponent<Rigidbody>().AddForce(dir * speed, ForceMode.Impulse);
+
+        //fireball.GetComponentInChildren<ParticleSystem>().transform.rotation = 
+
         return fireball;
     }
 
