@@ -87,6 +87,7 @@ public class MainMenuInteractionsScript : MonoBehaviour
     private void DeleteConfirmed()
     {
         Debug.Log("Save Deleted");
+        GameManager_Offi.Instance.ResetSave();
         deleteButtonText.SetText("Save deleted !");
     }
 }
