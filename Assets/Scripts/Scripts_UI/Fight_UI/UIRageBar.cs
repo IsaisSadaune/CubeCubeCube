@@ -44,6 +44,12 @@ public class UIRageBar : MonoBehaviour
         ChangeBarValue(value);
     }
 
+    public void SetRageValue(float absoluteValue)
+    {
+        value = Mathf.Clamp(absoluteValue, 0f, rageMax);
+        ChangeBarValue(value);
+    }
+
     IEnumerator BarFlickerTrigger()
     {
         yield return new WaitForSeconds(0.50f);

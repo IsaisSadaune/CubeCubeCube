@@ -135,9 +135,12 @@ public class TutorialNarrationManager : MonoBehaviour
         if (tutostate <= 6)
         {
             Debug.Log("Cinematique 6 Tuto");
-            CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
-            CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.SetFloat("_Emission", 0);
-            CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION_ON");
+            if (CubeNeedToMove && CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>())
+            {
+                CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
+                CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.SetFloat("_Emission", 0);
+                CubeNeedToMove.gameObject.GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION_ON");
+            }
             cinematic7.PlayFeedbacks();
         }
     }
