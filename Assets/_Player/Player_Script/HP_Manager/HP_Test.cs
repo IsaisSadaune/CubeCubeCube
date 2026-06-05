@@ -96,20 +96,20 @@ public class HP_Test : MonoBehaviour
     {
         if (current_mp > 0)
         {
-            current_mp = Mathf.Max(0, current_mp - mp);
-            rageBar.DecreaseBarValue(mp);
+            current_mp = Mathf.Max(0, current_mp - mp); 
+            rageBar.SetRageValue(current_mp);
         }
     }
     public void GainMP(int mp)
     {
         ResetMpTimer();
+
         current_mp = Mathf.Min(current_mp + mp, mp_max);
 
         if (current_mp >= mp_max)
             RageBarFull?.Invoke();
 
-        rageBar.IncreaseRageBar(mp);
-
+        rageBar.SetRageValue(current_mp);
     }
 
 
