@@ -114,7 +114,7 @@ public class Boss_Variables : MonoBehaviour, IDamageable
 
     public void StartTimerAfterCinematic()
     {
-        GameManager_Offi.Instance.ResetStats();
+        GameManager_Offi.Instance.ResetStatsCombat();
     }
     public void CinematicDesactivation()
     {

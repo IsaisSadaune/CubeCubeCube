@@ -7,8 +7,8 @@ public class GameManager_Offi : MonoBehaviour
 {
     private static GameManager_Offi instance = null;
     public static GameManager_Offi Instance => instance;
-    public bool hubCinematicPlayed {get;set;}
-    public bool bossCinematicPlayed {get;set;}
+    public bool hubCinematicPlayed { get; set; }
+    public bool bossCinematicPlayed { get; set; }
 
     private void Awake()
     {
@@ -81,9 +81,9 @@ public class GameManager_Offi : MonoBehaviour
                 break;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         SaveStats();
-        #endif
+#endif
     }
 
     private void Boss1UpdateScores(float time, char rank)
@@ -98,7 +98,7 @@ public class GameManager_Offi : MonoBehaviour
             hubCinematicPlayed = false;
             bossCinematicPlayed = false;
         }
-            
+
     }
     private void Boss2UpdateScores(float time, char rank)
     {
@@ -106,10 +106,10 @@ public class GameManager_Offi : MonoBehaviour
             recordTempsBoss2 = time;
         rankBoss2 = BestRank(rankBoss2, rank);
         if (act == GameProgression.Boss1Beaten)
-            {
-                act++;
-                hubCinematicPlayed = false;
-            }
+        {
+            act++;
+            hubCinematicPlayed = false;
+        }
     }
     private void Boss3UpdateScores(float time, char rank)
     {
@@ -117,10 +117,10 @@ public class GameManager_Offi : MonoBehaviour
             recordTempsBoss3 = time;
         rankBoss3 = BestRank(rankBoss3, rank);
         if (act == GameProgression.Boss2Beaten)
-            {
-                act++;
-                hubCinematicPlayed = false;
-            }
+        {
+            act++;
+            hubCinematicPlayed = false;
+        }
     }
 
     public void TutoFinished()
@@ -130,9 +130,9 @@ public class GameManager_Offi : MonoBehaviour
             act = GameProgression.TutoFinished;
             hubCinematicPlayed = false;
         }
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         SaveStats();
-        #endif
+#endif
     }
 
     private char BestRank(char a, char b)
@@ -168,7 +168,7 @@ public class GameManager_Offi : MonoBehaviour
     /// <summary>
     /// Appeler cette fonction pour remettre les stats du joueur � 0 (� activer avant chaque debut de combat)
     /// </summary>
-    public void ResetStats()
+    public void ResetStatsCombat()
     {
         NbParry = 0;
         NbHeal = 0;
@@ -176,7 +176,6 @@ public class GameManager_Offi : MonoBehaviour
         RagePerdue = 0f;
         fight = true;
     }
-
 
     public void IncreaseTimer()
     {
@@ -215,7 +214,7 @@ public class GameManager_Offi : MonoBehaviour
     private void Start()
     {
         Debug.Log("Start temporaire pour reset stats, � placer ailleurs");
-        ResetStats();
+        ResetStatsCombat();
 
 
         //SaveStats();
@@ -236,9 +235,20 @@ public class GameManager_Offi : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/save.txt", saveString);
     }
 
+    public void ResetProgression()
+    {
+        recordTempsBoss1 = 99999;
+        recordTempsBoss2 = 99999;
+        recordTempsBoss3 = 99999;
+        rankBoss1 = 'D';
+        rankBoss2 = 'D';
+        rankBoss3 = 'D';
+        act = 0;
+    }
+
     public void ResetSave()
     {
-        ResetStats();
+        ResetProgression();
         SaveStats();
     }
 
@@ -261,7 +271,7 @@ public class GameManager_Offi : MonoBehaviour
 
     private GameObject LoadingScreen;
     public UnityEngine.UI.Image LoadingBarFill;
-    Coroutine loadScene; 
+    Coroutine loadScene;
     public void LoadCoroutineScene(string sceneName)
     {
         loadScene = StartCoroutine(LoadSceneAsync(sceneName));
@@ -269,7 +279,7 @@ public class GameManager_Offi : MonoBehaviour
     public IEnumerator LoadSceneAsync(string sceneName)
     {
         //Remettre la cinématique longue lorsque le joueur revient au Hub
-        if(sceneName != SceneManager.GetActiveScene().name)
+        if (sceneName != SceneManager.GetActiveScene().name)
         {
             bossCinematicPlayed = false;
         }
@@ -280,7 +290,7 @@ public class GameManager_Offi : MonoBehaviour
 
         yield return null;
 
-        while(LoadingBarFill.fillAmount < 1)
+        while (LoadingBarFill.fillAmount < 1)
         {
             LoadingBarFill.fillAmount += 1f / 8f;
             Debug.Log(LoadingBarFill.fillAmount);
