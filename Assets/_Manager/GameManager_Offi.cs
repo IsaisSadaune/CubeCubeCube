@@ -236,6 +236,12 @@ public class GameManager_Offi : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/save.txt", saveString);
     }
 
+    public void ResetSave()
+    {
+        ResetStats();
+        SaveStats();
+    }
+
 
     private void LoadStats()
     {
@@ -250,7 +256,6 @@ public class GameManager_Offi : MonoBehaviour
         rankBoss2 = char.Parse(contents[4]);
         rankBoss3 = char.Parse(contents[5]);
         act = (GameProgression)System.Enum.Parse(typeof(GameProgression), contents[6]);
-
     }
     #region SceneLoading
 
