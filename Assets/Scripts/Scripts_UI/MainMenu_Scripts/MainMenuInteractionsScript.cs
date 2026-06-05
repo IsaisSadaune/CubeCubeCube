@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,8 @@ public class MainMenuInteractionsScript : MonoBehaviour
     public GameObject optionScreen;
     public GameObject mainMenuScreen;
     public Button buttonToSelectOptionOpen, buttonToSelectOptionClose;
-
+    public TextMeshProUGUI deleteButtonText;
+    private bool deleteButtonPressedOnce;
 
     private void Update()
     {
@@ -61,5 +63,30 @@ public class MainMenuInteractionsScript : MonoBehaviour
         optionScreen.SetActive(false);
         mainMenuScreen.SetActive(true);
         buttonToSelectOptionClose.Select();
+
+        if (deleteButtonPressedOnce)
+            ResetDeletionConfirmation();
+    }
+
+    private void ResetDeletionConfirmation()
+    {
+        deleteButtonPressedOnce = false;
+        deleteButtonText.SetText("Delete save");
+    }
+
+    public void DeleteButtonPressed()
+    {
+        if (deleteButtonPressedOnce)
+            DeleteConfirmed();
+        else
+        {
+            deleteButtonPressedOnce = true;
+            deleteButtonText.SetText("Confirm deletion ?");
+        }
+    }
+    private void DeleteConfirmed()
+    {
+        Debug.Log("Save Deleted");
+        deleteButtonText.SetText("Save deleted !");
     }
 }
