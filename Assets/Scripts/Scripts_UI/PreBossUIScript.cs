@@ -84,7 +84,7 @@ public class PreBossUIScript : MonoBehaviour
         if(rankText)
             rankText.SetText(rankBoss + "");
         if(highScoreText)
-            highScoreText.SetText(recordTempsBoss + "");
+            highScoreText.SetText(recordTempsBoss.ToString("F2").Replace(',', '.') + " s");
     }
 
     public void CloseMenu()
