@@ -17,7 +17,8 @@ public class LoadingBackground : MonoBehaviour
             if (transform.position.y <= 0 && !hasInstantiated)
             {
                 hasInstantiated = true;
-                Instantiate(titleToInstantiate, instantiatePosition.position, Quaternion.identity, parentTransformScript.parentTransform);
+                GameObject go = Instantiate(titleToInstantiate, instantiatePosition.position, Quaternion.identity, parentTransformScript.parentTransform);
+                go.transform.rotation = Quaternion.Euler(0f,0f,90f);
             }
 
             if (transform.position.y <= destroyPosition.position.y)
