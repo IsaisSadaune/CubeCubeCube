@@ -296,7 +296,6 @@ public class GameManager_Offi : MonoBehaviour
 
         AudioManager.Instance.musicSource.Stop();
         LoadingScreen.SetActive(true);
-        loadingCube.progress = 0;
 
         yield return new WaitForSeconds(2f);
 
