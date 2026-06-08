@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TextScroll_script : MonoBehaviour
+public class LoadingBackgroundRight : MonoBehaviour
 {
     [SerializeField] private GameObject titleToInstantiate;
     [SerializeField] private ScriptToReferenceInstantPos parentTransformScript;
@@ -12,17 +12,17 @@ public class TextScroll_script : MonoBehaviour
     {
         if (parentTransformScript.scrollingEnabled)
         {
-            if (transform.position.x <= 0 && !hasInstantiated)
+            if (transform.position.y >= 0 && !hasInstantiated)
             {
                 hasInstantiated = true;
                 GameObject go = Instantiate(titleToInstantiate, instantiatePosition.position, Quaternion.identity, parentTransformScript.parentTransform);
-                go.transform.SetAsLastSibling();
+                go.transform.rotation = Quaternion.Euler(0f,0f,-90f);
             }
 
-            if (transform.position.x <= destroyPosition.position.x)
+            if (transform.position.y >= destroyPosition.position.y)
                 Destroy(this.gameObject);
 
-            transform.position = new Vector3(transform.position.x - scrollSpeed * Time.deltaTime, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + scrollSpeed * Time.deltaTime, transform.position.z);
         }
     }
 }

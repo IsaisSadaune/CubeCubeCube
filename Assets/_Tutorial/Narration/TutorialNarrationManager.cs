@@ -33,7 +33,14 @@ public class TutorialNarrationManager : MonoBehaviour
         glitchCubeDestroyed.GlitchDestroyed += Tuto3CorruptionVaincue;
     }
 
-
+    public void PauseMusic()
+    {
+        AudioManager.Instance.PauseMusic();
+    }
+    public void PlayMusic(string music)
+    {
+        AudioManager.Instance.PlayMusic(music);
+    }
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(0f);

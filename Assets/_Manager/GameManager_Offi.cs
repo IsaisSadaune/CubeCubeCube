@@ -24,9 +24,9 @@ public class GameManager_Offi : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         Screen.SetResolution(1440, 1080, FullScreenMode.FullScreenWindow);
+        loadingCube = GetComponentInChildren<LoadingCubeAnim>();
 
         LoadingScreen = transform.GetChild(0).gameObject;
-
         LoadingScreen.SetActive(false);
     }
 
@@ -280,7 +280,7 @@ public class GameManager_Offi : MonoBehaviour
     #region SceneLoading
 
     private GameObject LoadingScreen;
-    public UnityEngine.UI.Image LoadingBarFill;
+    private LoadingCubeAnim loadingCube;
     Coroutine loadScene;
     public void LoadCoroutineScene(string sceneName)
     {
@@ -296,17 +296,9 @@ public class GameManager_Offi : MonoBehaviour
 
         AudioManager.Instance.musicSource.Stop();
         LoadingScreen.SetActive(true);
-        LoadingBarFill.fillAmount = 0f;
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
 
-        while (LoadingBarFill.fillAmount < 1)
-        {
-            LoadingBarFill.fillAmount += 1f / 8f;
-            Debug.Log(LoadingBarFill.fillAmount);
-
-            yield return new WaitForSeconds(0.1f);
-        }
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.PlayMusic(sceneName);
