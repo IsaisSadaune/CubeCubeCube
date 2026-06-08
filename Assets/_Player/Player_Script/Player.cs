@@ -56,7 +56,6 @@ public class Player : MonoBehaviour, IDamageable
     public MMF_Player deathFeedback;
     public MMF_Player dmgFeedback;
     public MMF_Player parryFeedback;
-    public AudioSource dashSound;
     [SerializeField] private MMF_Player timeScaleSuper;
     #endregion
     public Super actualSuper;
