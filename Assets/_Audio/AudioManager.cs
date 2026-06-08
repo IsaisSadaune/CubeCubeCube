@@ -30,7 +30,8 @@ public class AudioManager : MonoBehaviour
     private Music currentMusic;
     private Dictionary<string, AudioClip>  soundDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip>  musicDictionary = new Dictionary<string, AudioClip>();
-    [SerializeField]private float _globalSfxVolume = 1f;
+    [SerializeField]private float _globalSfxVolume = 1f; //
+    
     public float globalSfxVolume
     {
         get{return _globalSfxVolume;}
@@ -40,7 +41,7 @@ public class AudioManager : MonoBehaviour
             UpdateSfxVolume();
         }
     }
-    [SerializeField]private float _globalMusicVolume = 1f;
+    [SerializeField]private float _globalMusicVolume = 1f; //
     public float globalMusicVolume
     {
         get{return _globalMusicVolume;}

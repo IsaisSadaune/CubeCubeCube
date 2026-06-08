@@ -13,10 +13,30 @@ public class Dash : MonoBehaviour
     public Transform positionToSpawn;
     public Material mat;
     private SkinnedMeshRenderer[] skinnedMeshRenderers;
+    int clip = 0;
 
 
     public void StartDash()
     {
+        switch (clip)
+        {
+            case 0:
+                AudioManager.Instance.SoundStop("Dash 3");
+                AudioManager.Instance.PlaySound("Dash");
+                clip++;
+                break;
+            case 1:
+                AudioManager.Instance.SoundStop("Dash");
+                AudioManager.Instance.PlaySound("Dash 2");
+                clip++;
+                break;
+            case 2:
+                AudioManager.Instance.SoundStop("Dash 2");
+                AudioManager.Instance.PlaySound("Dash 3");
+                clip = 0;
+                break;
+        }
+
         if (!player.isDead)
         {
             StartCoroutine(DashCoroutine());

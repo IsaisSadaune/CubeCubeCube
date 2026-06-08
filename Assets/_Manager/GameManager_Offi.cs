@@ -231,7 +231,11 @@ public class GameManager_Offi : MonoBehaviour
         string rank3 = rankBoss3.ToString();
         string progression = act.ToString();
 
-        string saveString = string.Join("\n", pb1, pb2, pb3, rank1, rank2, rank3, progression);
+        string globalSfxVolume = AudioManager.Instance.globalSfxVolume.ToString();
+        string globalMusicVolume = AudioManager.Instance.globalSfxVolume.ToString();
+
+
+        string saveString = string.Join("\n", pb1, pb2, pb3, rank1, rank2, rank3, progression, globalSfxVolume, globalMusicVolume);
         File.WriteAllText(Application.dataPath + "/save.txt", saveString);
     }
 
@@ -266,6 +270,12 @@ public class GameManager_Offi : MonoBehaviour
         rankBoss2 = char.Parse(contents[4]);
         rankBoss3 = char.Parse(contents[5]);
         act = (GameProgression)System.Enum.Parse(typeof(GameProgression), contents[6]);
+
+        if(float.Parse(contents[7]) != 0)
+            AudioManager.Instance.globalSfxVolume = float.Parse(contents[7]);
+
+        if(float.Parse(contents[8]) != 0)
+            AudioManager.Instance.globalMusicVolume = float.Parse(contents[8]);
     }
     #region SceneLoading
 

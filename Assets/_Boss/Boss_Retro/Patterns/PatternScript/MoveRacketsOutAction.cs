@@ -16,8 +16,8 @@ public partial class MoveRacketsOutAction : Action
     {
         if(RacketLeft.Value.activeSelf)
         {
-            RacketLeft.Value.transform.DOMoveY(16, 1f).SetEase(Ease.InOutQuad);
-            RacketRight.Value.transform.DOMoveY(-15, 1f).SetEase(Ease.InOutQuad).OnComplete(()
+            RacketLeft.Value.transform.DOMoveY(-11, 1f).SetEase(Ease.InOutQuad);
+            RacketRight.Value.transform.DOMoveY(15, 1f).SetEase(Ease.InOutQuad).OnComplete(()
             =>{RacketsUp.Value = false;});
         }
         
