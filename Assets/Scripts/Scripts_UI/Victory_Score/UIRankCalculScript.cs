@@ -14,6 +14,7 @@ public class UIRankCalculScript : MonoBehaviour
 
     public void CalculateAndDisplayVictoryDatas(float secondsToBeat, int nbrParryDone, int nbrHealsUsed, float lostRage, int bossnumber)
     {
+        AudioManager.Instance.PauseMusic();
         DetermineRank(secondsToBeat);
 
         UpdateText(secondsToBeat);
