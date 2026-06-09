@@ -300,7 +300,7 @@ public class GameManager_Offi : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSeconds(0.5f);
+
         AudioManager.Instance.PlayMusic(sceneName);
         LoadingScreen.GetComponentInChildren<Canvas>().worldCamera = Camera.main;
         if(sceneName == "MainMenuScene")
