@@ -295,12 +295,15 @@ public class GameManager_Offi : MonoBehaviour
         }
 
         AudioManager.Instance.musicSource.Stop();
+        
+        
         LoadingScreen.SetActive(true);
-
         yield return new WaitForSeconds(2f);
-
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(1f);
+
+
         AudioManager.Instance.PlayMusic(sceneName);
         LoadingScreen.GetComponentInChildren<Canvas>().worldCamera = Camera.main;
         if(sceneName == "MainMenuScene")
