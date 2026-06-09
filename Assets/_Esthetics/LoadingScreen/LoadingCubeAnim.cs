@@ -2,6 +2,7 @@ using System.Transactions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class LoadingCubeAnim : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class LoadingCubeAnim : MonoBehaviour
         {4,5},{5,6},{6,7},{7,4}    // face avant (4 arêtes)
     };
 
-    void Start()
+    void OnEnable()
     {
         transform.GetChild(0).gameObject.SetActive(false);
 
@@ -51,8 +52,15 @@ public class LoadingCubeAnim : MonoBehaviour
 
             LineRenderer lr = go.AddComponent<LineRenderer>();
             lr.material = OutlineMat;
-            lr.startWidth = lineWidth;
-            lr.endWidth = lineWidth;
+            if(SceneManager.GetActiveScene().name == "MainMenuScene")
+            {
+                lr.startWidth = 0.1f;
+            }
+            else
+            {
+                lr.startWidth = 0.5f;
+            }
+            lr.endWidth = lr.startWidth;
             lr.positionCount = 2;
             lr.useWorldSpace = false;
             lr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
