@@ -30,6 +30,7 @@ public partial class FruitSpawnAction : Action
             Fruit.Value.transform.position = farthest.transform.position;
 
         Fruit.Value.SetActive(true);
+        AudioManager.Instance.PlaySound("Pacman Fruit");
         return Status.Running;
     }
 

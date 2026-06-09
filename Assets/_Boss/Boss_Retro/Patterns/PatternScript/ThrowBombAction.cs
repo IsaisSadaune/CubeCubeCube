@@ -28,6 +28,7 @@ public partial class ThrowBombAction : Action
             .SetEase(Ease.InOutQuad).OnComplete(() =>
             {
                 done = true;
+                AudioManager.Instance.PlaySound("Mine planted");
                 bomb.GetComponent<BoxCollider>().isTrigger = false;
                 bomb.GetComponent<Rigidbody>().isKinematic=false;
             });

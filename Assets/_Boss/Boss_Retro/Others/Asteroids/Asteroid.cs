@@ -56,6 +56,7 @@ public class Asteroid : MonoBehaviour
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
             Player.Instance.hps.GainMP(2);
+            AudioManager.Instance.PlaySound("Asteroids destroyed");
             Explosion();
         }
     }

@@ -30,6 +30,7 @@ public class Debris : MonoBehaviour
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
             Player.Instance.hps.GainMP(1);
+            AudioManager.Instance.PlaySound("Asteroids destroyed");
             Destroy(gameObject);
         }
     }

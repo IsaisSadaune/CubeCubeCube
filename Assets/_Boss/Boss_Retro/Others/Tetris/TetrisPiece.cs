@@ -8,6 +8,7 @@ public class TetrisPiece : MonoBehaviour
     SlabController tile;
     private void Awake()
     {
+        AudioManager.Instance.PlaySound("Tetromino pop");
         StartCoroutine(DestroyingGround());
     }
 
@@ -33,6 +34,7 @@ public class TetrisPiece : MonoBehaviour
     {
         if(other.CompareTag("Ground"))
         {
+            AudioManager.Instance.PlaySound("Tetromino Impact");
             Debug.Log("Collision with ground");
 
         }
