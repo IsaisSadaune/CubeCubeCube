@@ -26,15 +26,30 @@ public class UIRankCalculScript : MonoBehaviour
     void DetermineRank(float secondsToBeat)
     {
         if (secondsToBeat <= scoreRequirements.timeForS)
+        { 
             finalRank = 'S';
+            AudioManager.Instance.PlaySound("S Rank");
+        }
         else if (secondsToBeat > scoreRequirements.timeForS && secondsToBeat <= scoreRequirements.timeForA)
+        {
             finalRank = 'A';
+            AudioManager.Instance.PlaySound("A Rank");
+        }
         else if (secondsToBeat > scoreRequirements.timeForA && secondsToBeat <= scoreRequirements.timeForB)
+        {
             finalRank = 'B';
+            AudioManager.Instance.PlaySound("B Rank");
+        }
         else if (secondsToBeat > scoreRequirements.timeForB && secondsToBeat <= scoreRequirements.timeForC)
+        {
             finalRank = 'C';
+            AudioManager.Instance.PlaySound("C Rank");
+        }
         else if (secondsToBeat > scoreRequirements.timeForC)
+        {
             finalRank = 'D';
+            AudioManager.Instance.PlaySound("D Rank");
+        }
     }
     #endregion
 
