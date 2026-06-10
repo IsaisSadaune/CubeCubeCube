@@ -16,7 +16,7 @@ public class HubCinematicActivation : MonoBehaviour
         else
         {
             if(!GameManager_Offi.Instance.finalCinematicPlayed && 
-                GameManager_Offi.Instance.act == GameProgression.Boss2Beaten)
+                GameManager_Offi.Instance.act >= GameProgression.Boss2Beaten)
             {
                 Debug.Log("cinematique finale");
                 finalCinematic.PlayFeedbacks();

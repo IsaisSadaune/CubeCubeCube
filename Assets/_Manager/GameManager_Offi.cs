@@ -95,7 +95,7 @@ public class GameManager_Offi : MonoBehaviour
 
         if (act == GameProgression.TutoFinished)
         {
-            act++;
+            act = GameProgression.Boss1Beaten;
             hubCinematicPlayed = false;
             bossCinematicPlayed = false;
         }
@@ -106,9 +106,9 @@ public class GameManager_Offi : MonoBehaviour
         if (time < recordTempsBoss2)
             recordTempsBoss2 = time;
         rankBoss2 = BestRank(rankBoss2, rank);
-        if (act == GameProgression.Boss1Beaten)
+        if (act <= GameProgression.Boss1Beaten)
         {
-            act++;
+            act = GameProgression.Boss2Beaten;
             hubCinematicPlayed = false;
         }
     }
@@ -119,7 +119,7 @@ public class GameManager_Offi : MonoBehaviour
         rankBoss3 = BestRank(rankBoss3, rank);
         if (act == GameProgression.Boss2Beaten)
         {
-            act++;
+            act = GameProgression.Boss3Beaten;
             hubCinematicPlayed = false;
         }
     }
