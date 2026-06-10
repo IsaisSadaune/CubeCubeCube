@@ -23,10 +23,10 @@ public class AudioManager : MonoBehaviour
     }
 
     [SerializeField] private AudioSource[] ambiantSources;
-    [SerializeField] private SoundEffect[] soundEffects;
+    [SerializeField]  SoundEffect[] soundEffects;
     [SerializeField] private Music[] musics;
     [SerializeField] private int poolSize = 5;
-    private List<AudioSource> audioSources =  new List<AudioSource>();
+    public List<AudioSource> audioSources {get; private set;} =  new List<AudioSource>();
     public AudioSource musicSource{get; private set;}
     private Music currentMusic;
     private Dictionary<string, AudioClip>  soundDictionary = new Dictionary<string, AudioClip>();
