@@ -9,6 +9,7 @@ public class GameManager_Offi : MonoBehaviour
     public static GameManager_Offi Instance => instance;
     public bool hubCinematicPlayed { get; set; }
     public bool bossCinematicPlayed { get; set; }
+    public bool finalCinematicPlayed { get; set; }
 
     private void Awake()
     {
