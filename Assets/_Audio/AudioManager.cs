@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
         [Range(0f, 1f)] public float pitch = 1f;
     }
 
+    [SerializeField] private AudioSource[] ambiantSources;
     [SerializeField] private SoundEffect[] soundEffects;
     [SerializeField] private Music[] musics;
     [SerializeField] private int poolSize = 5;
@@ -55,6 +56,13 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance {get; private set;}
     private void Awake()
     {
+        foreach(AudioSource sources in ambiantSources)
+        {
+            if(sources.clip != null)
+            {
+                sources.volume = sources.volume * globalSfxVolume;
+            }
+        }
         if(Instance == null)
         {
             Instance = this;
@@ -202,6 +210,13 @@ public class AudioManager : MonoBehaviour
                         sources.volume = sound.volume * globalSfxVolume;
                     }
                 } 
+            }
+        }
+        foreach(AudioSource sources in ambiantSources)
+        {
+            if(sources.clip != null)
+            {
+                sources.volume = sources.volume * globalSfxVolume;
             }
         }
     }
