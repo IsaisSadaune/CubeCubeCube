@@ -81,10 +81,7 @@ public class GameManager_Offi : MonoBehaviour
                 Debug.LogWarning("ERREUR, LE BOSS NUMERO " + bossNumber + " N'EXISTE PAS !");
                 break;
         }
-
-#if UNITY_EDITOR
         SaveStats();
-#endif
     }
 
     private void Boss1UpdateScores(float time, char rank)
@@ -131,9 +128,7 @@ public class GameManager_Offi : MonoBehaviour
             act = GameProgression.TutoFinished;
             hubCinematicPlayed = false;
         }
-#if UNITY_EDITOR
         SaveStats();
-#endif
     }
 
     private char BestRank(char a, char b)
