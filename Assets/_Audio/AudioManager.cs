@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,6 @@ public class AudioManager : MonoBehaviour
         [Range(0f, 1f)] public float pitch = 1f;
     }
 
-    [SerializeField] private AudioSource[] ambiantSources;
     [SerializeField]  SoundEffect[] soundEffects;
     [SerializeField] private Music[] musics;
     [SerializeField] private int poolSize = 5;
@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip>  musicDictionary = new Dictionary<string, AudioClip>();
     [SerializeField]private float _globalSfxVolume = 1f; //
     
+    public event Action ChangeSfxVolume;
     public float globalSfxVolume
     {
         get{return _globalSfxVolume;}
@@ -56,12 +57,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance {get; private set;}
     private void Awake()
     {
-        foreach(AudioSource sources in ambiantSources)
-        {
-            
-            sources.volume = sources.volume * globalSfxVolume;
-            
-        }
         if(Instance == null)
         {
             Instance = this;
@@ -211,10 +206,7 @@ public class AudioManager : MonoBehaviour
                 } 
             }
         }
-        foreach(AudioSource sources in ambiantSources)
-        {
-            sources.volume = sources.volume * globalSfxVolume;
-        }
+        ChangeSfxVolume?.Invoke();
     }
 
     public void UpdateMusicVolume()
