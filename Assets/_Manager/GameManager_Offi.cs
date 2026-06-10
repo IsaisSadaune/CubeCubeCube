@@ -310,15 +310,13 @@ public class GameManager_Offi : MonoBehaviour
         LoadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
 
-        
-
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         if(Player.Instance != null)
             Player.Instance.playerInput.enabled = true;
             
-        yield return new WaitForSeconds(1f);
-
+        yield return new WaitForSeconds(0.35f);
+        LoadingScreen.SetActive(false);
 
         AudioManager.Instance.PlayMusic(sceneName);
         LoadingScreen.GetComponentInChildren<Canvas>().worldCamera = Camera.main;
@@ -330,7 +328,7 @@ public class GameManager_Offi : MonoBehaviour
         {
             LoadingScreen.GetComponentInChildren<Canvas>().planeDistance = -42f;
         }
-        LoadingScreen.SetActive(false);
+        
         loadScene = null;
 
         if(uib != null)
