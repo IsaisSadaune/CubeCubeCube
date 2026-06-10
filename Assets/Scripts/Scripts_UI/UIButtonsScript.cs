@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class UIButtonsScript : MonoBehaviour
 {
-
-    public void Awake()
+    public void Start()
     {
-
+        GameManager_Offi.Instance.SetUIB(this);
     }
     public void SendToHUBDependingGameState()
     {
