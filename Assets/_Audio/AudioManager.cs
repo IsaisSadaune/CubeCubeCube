@@ -58,10 +58,9 @@ public class AudioManager : MonoBehaviour
     {
         foreach(AudioSource sources in ambiantSources)
         {
-            if(sources.clip != null)
-            {
-                sources.volume = sources.volume * globalSfxVolume;
-            }
+            
+            sources.volume = sources.volume * globalSfxVolume;
+            
         }
         if(Instance == null)
         {
@@ -214,10 +213,7 @@ public class AudioManager : MonoBehaviour
         }
         foreach(AudioSource sources in ambiantSources)
         {
-            if(sources.clip != null)
-            {
-                sources.volume = sources.volume * globalSfxVolume;
-            }
+            sources.volume = sources.volume * globalSfxVolume;
         }
     }
 
