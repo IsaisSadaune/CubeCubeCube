@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
-    public AudioSource gameplayMusic;
+    private AudioSource gameplayMusic;
 
-    void Start()
+    void Awake()
     {
         gameplayMusic = AudioManager.Instance.musicSource;
     }

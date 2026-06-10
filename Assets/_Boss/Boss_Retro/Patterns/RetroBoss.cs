@@ -72,6 +72,7 @@ public class RetroBoss : MonoBehaviour
     {
         foreach(GameObject gummy in gummies)
         {
+            clones.Add(gummy);
             gummy.transform.DOMoveY(gummy.transform.position.y + 2, 0.1f);
             yield return new WaitForSeconds(0.02f);
         }
