@@ -300,13 +300,22 @@ public class GameManager_Offi : MonoBehaviour
         {
             source.Stop();
         }
-        
-        uib.gameObject.SetActive(false);
-        Player.Instance.playerInput.enabled = false;
+        if(uib != null)
+            uib.gameObject.SetActive(false);
+
+        if(Player.Instance != null)
+            Player.Instance.playerInput.enabled = false;
+
         LoadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
+
+        
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
+        if(Player.Instance != null)
+            Player.Instance.playerInput.enabled = true;
+            
         yield return new WaitForSeconds(1f);
 
 
@@ -322,8 +331,9 @@ public class GameManager_Offi : MonoBehaviour
         }
         LoadingScreen.SetActive(false);
         loadScene = null;
-        Player.Instance.playerInput.enabled = true;
-        uib.gameObject.SetActive(true);
+
+        if(uib != null)
+            uib.gameObject.SetActive(true);
     }
     #endregion
 
