@@ -323,6 +323,11 @@ public class GameManager_Offi : MonoBehaviour
         loadScene = null;
     }
     #endregion
+
+    public bool debugMode { get; private set; } = false;
+
+    public void ActivateDebugMode() => debugMode = true;
+
 }
 
 
