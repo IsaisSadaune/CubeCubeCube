@@ -8,7 +8,8 @@ public class HubCinematicActivation : MonoBehaviour
     [SerializeField] private MMF_Player finalCinematic;
     private void Start()
     {
-        if(!GameManager_Offi.Instance.hubCinematicPlayed)
+        if(!GameManager_Offi.Instance.hubCinematicPlayed 
+            && GameManager_Offi.Instance.act == GameProgression.Boss1Beaten)
         {
             cinematic.PlayFeedbacks();
             GameManager_Offi.Instance.hubCinematicPlayed = true;
@@ -16,9 +17,8 @@ public class HubCinematicActivation : MonoBehaviour
         else
         {
             if(!GameManager_Offi.Instance.finalCinematicPlayed && 
-                GameManager_Offi.Instance.act >= GameProgression.Boss2Beaten)
+                GameManager_Offi.Instance.act == GameProgression.Boss2Beaten)
             {
-                Debug.Log("cinematique finale");
                 finalCinematic.PlayFeedbacks();
                 GameManager_Offi.Instance.finalCinematicPlayed = true;
             }
