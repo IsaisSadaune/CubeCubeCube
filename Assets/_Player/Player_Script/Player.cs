@@ -1,10 +1,10 @@
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             if (stateMachine.currentPlayerState == interactState)
                 interactImage.SetActive(false);
-            else 
+            else
                 interactImage.SetActive(true);
         }
     }
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         //c'est beau la prog quand meme
-        if(GameManager_Offi.Instance != null)
+        if (GameManager_Offi.Instance != null)
             GameManager_Offi.Instance.SetPlayer(this);
     }
 
@@ -429,7 +429,7 @@ public class Player : MonoBehaviour, IDamageable
             StartCoroutine(iFrames());
             GameManager_Offi.Instance.AddStatParry();
             hps.GainMP(5);
-            parryFeedback.PlayFeedbacks(); 
+            parryFeedback.PlayFeedbacks();
             playerUsedParry?.Invoke();
             stateMachine.ChangeState(idleState);
             //Parry();
@@ -448,7 +448,7 @@ public class Player : MonoBehaviour, IDamageable
             hps.LoseHP(dgt);
             StartCoroutine(cdDamage());
         }
-        
+
     }
 
     public void Knockback(Transform other)
@@ -491,4 +491,52 @@ public class Player : MonoBehaviour, IDamageable
         isTouchingWall = false;
     }
     #endregion
+
+    public void Debug_ActivationDebugMode() => GameManager_Offi.Instance.ActivateDebugMode();
+
+    public void Debug_SetRageBarMax()
+    {
+        if(GameManager_Offi.Instance.debugMode)
+            hps.GainMP(150);
+    }
+
+    public void Debug_KillBoss()
+    {
+        if (GameManager_Offi.Instance.debugMode)
+            FindFirstObjectByType<Boss_Variables>().TakeDamage(1000);
+    }
+
+    public void Debug_HealPlayer()
+    {
+        if (GameManager_Offi.Instance.debugMode)
+            hps.GainHP(10000);
+    }
+
+    public void Debug_TutoBeaten()
+    {
+        if (GameManager_Offi.Instance.debugMode)
+        { 
+            GameManager_Offi.Instance.TutoFinished();
+            GameManager_Offi.Instance.LoadCoroutineScene("Final_Hub1");
+        }
+    }
+
+    public void Debug_Boss1Beaten()
+    {
+        if (GameManager_Offi.Instance.debugMode)
+        {
+            GameManager_Offi.Instance.UpdateScore(1, 99999, 'D');
+            GameManager_Offi.Instance.LoadCoroutineScene("Final_Hub2");
+        }
+    }
+
+    public void Debug_Boss2Beaten()
+    {
+        if (GameManager_Offi.Instance.debugMode)
+        {
+            GameManager_Offi.Instance.UpdateScore(2, 99999, 'D');
+            GameManager_Offi.Instance.LoadCoroutineScene("Final_Hub2");
+        }
+    }
+
 }
