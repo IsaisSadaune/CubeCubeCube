@@ -296,6 +296,11 @@ public class GameManager_Offi : MonoBehaviour
 
         AudioManager.Instance.musicSource.Stop();
         
+        foreach(AudioSource source in AudioManager.Instance.audioSources)
+        {
+            source.Stop();
+        }
+        
         
         LoadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
@@ -318,6 +323,11 @@ public class GameManager_Offi : MonoBehaviour
         loadScene = null;
     }
     #endregion
+
+    public bool debugMode { get; private set; } = false;
+
+    public void ActivateDebugMode() => debugMode = true;
+
 }
 
 
