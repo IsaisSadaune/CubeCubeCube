@@ -230,8 +230,15 @@ public class GameManager_Offi : MonoBehaviour
         string globalSfxVolume = AudioManager.Instance.globalSfxVolume.ToString();
         string globalMusicVolume = AudioManager.Instance.globalSfxVolume.ToString();
 
+        string cutscene1Proc = hubCinematicPlayed.ToString();
+        string cutScene2Proc = finalCinematicPlayed.ToString();
 
-        string saveString = string.Join("\n", pb1, pb2, pb3, rank1, rank2, rank3, progression, globalSfxVolume, globalMusicVolume);
+
+        string saveString = string.Join(
+            "\n", 
+            pb1, pb2, pb3, rank1, rank2, rank3, progression, 
+            globalSfxVolume, globalMusicVolume, 
+            cutscene1Proc, cutScene2Proc);
         File.WriteAllText(Application.dataPath + "/save.txt", saveString);
     }
 
@@ -272,6 +279,10 @@ public class GameManager_Offi : MonoBehaviour
 
         if(float.Parse(contents[8]) != 0)
             AudioManager.Instance.globalMusicVolume = float.Parse(contents[8]);
+
+        bossCinematicPlayed = bool.Parse(contents[9]);
+        finalCinematicPlayed = bool.Parse(contents[10]);
+
     }
     #region SceneLoading
 
